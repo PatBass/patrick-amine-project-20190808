@@ -1,0 +1,20 @@
+@import "common.css?version=4.x-dev";
+
+/*
+* Afficher les radio buttons en face label ("Choix du type d'entreprise")
+*/ 
+#inputTypeEntreprise-container .input-group {
+	display: table;
+}
+
+#step2 .mention-asterisk {
+	display: none;
+}
+
+.step-page .post-note {
+	text-align: center;
+}
+
+button[name=btnPrecedent] {
+	float: left;
+}

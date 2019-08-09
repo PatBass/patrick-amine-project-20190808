@@ -1,0 +1,66 @@
+{
+  "autocomplete": [
+    "impôt sur le revenu",
+    "crédit d impôt",
+    "impôt sur les sociétés",
+    "avis d imposition",
+    "réduction d impôt"
+  ],
+  "acces_direct": {
+    "fiches_pratiques": [],
+    "slf": [
+      {
+        "title": "Réduction d'impôt mécénat ",
+        "url": "/particuliers/R18024"
+      },
+      {
+        "title": "Les impôts des associations ",
+        "url": "/particuliers/R3155"
+      }
+    ],
+    "actualites": [
+      {
+        "title": "Réduction d'impôt : le projet de loi de finances rectificative pour 2014 présenté en Conseil des ministres ",
+        "url": "/particuliers/actualites/3147"
+      },
+      {
+        "title": "Foyers modestes : vers une réduction de l'impôt sur le revenu d'ici fin 2014 ",
+        "url": "/particuliers/actualites/3114"
+      },
+      {
+        "title": "Impôt sur le revenu : paiement du 2e acompte jusqu'au 15 mai 2014 (20 mai en ligne) ",
+        "url": "/particuliers/actualites/3086"
+      },
+      {
+        "title": "Avis d'impôt sur le revenu : calendrier 2014 des mises en ligne et envois ",
+        "url": "/particuliers/actualites/3261"
+      },
+      {
+        "title": "Barème d'imposition : comment le montant de l'impôt sur le revenu est-il calculé ? ",
+        "url": "/particuliers/actualites/3303"
+      }
+    ],
+    "annuaire": [
+      {
+        "title": "Contentieux recours gracieux relatifs aux impôts directs des professionnels",
+        "url": ""
+      },
+      {
+        "title": "Aspects généraux de l impôt sur le revenu et de la fiscalité directe locale",
+        "url": ""
+      },
+      {
+        "title": "Contentieux et recours gracieux relatifs aux impôts directs des particuliers produits divers et amendes",
+        "url": ""
+      },
+      {
+        "title": "Contentieux des impôts des particuliers",
+        "url": ""
+      },
+      {
+        "title": "Contentieux des impôts des professionnels",
+        "url": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,267 @@
+@import "common.css?version=4.2.20";
+
+
+.btn[name=telechargerlecerfa] {
+    background-color:#44317c;
+    color: #fff;
+}
+
+.btn:hover[name=telechargerlecerfa], .btn:focus[name=telechargerlecerfa] {
+    background-color: #44317c;
+    color: #fff;
+}
+
+
+
+
+#personnaliser_1, #masquer_1  { /* masquer les bouton radio de personaliser */
+     position: absolute !important;
+  clip: rect(0, 0, 0, 0); 
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+
+@media (min-width: 37em)  {
+#personnaliser-container, #masquer-container, #ModifierSaisie-container { 
+/*le div entier de personnaliser en version non mobile*/
+	display: flex;
+	lex-direction: row;
+	justify-content: space-between;
+    border: 1px solid #44317c;
+    border-radius: 3px;
+    background-color: #44317c;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+
+}
+}
+@media (max-width: 37em)  {
+#personnaliser-container, #masquer-container, #ModifierSaisie-container { /*le div entier en version mobile*/
+	
+	justify-content: space-between;
+    border: 1px solid #44317c;
+    border-radius: 3px;
+    background-color: #44317c;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+
+}
+}
+
+
+.step-page label.choice { /*  text boutton personnaliser  */
+    margin-top: 0.1em;
+    margin-right: 1.2em;
+	margin-left: 1.2em;
+    padding: 0;
+     width: auto; 
+    min-width: 1em;
+     font-weight: normal; 
+     text-align: right; 
+    font-weight: 600;
+	color: #44317c;
+
+	font-size: 14px;
+}
+
+#personnaliser-label, #masquer-label, #ModifierSaisie-label{ /*text explicatif en haut*/
+color: #fff;
+text-align: left;
+}
+
+.step-page label.choice:hover{ /*text boutton personnaliser*/
+color: #000;
+cursor: pointer;
+}
+#personnaliser, #masquer { /*boutton personaliser*/
+background-color: #fff;
+    border-color: #fff;
+	border: 10px;
+	color:#44317c;
+	padding: 0.5em;
+	font-weight:700;
+	border-radius: 4px;
+	
+  width: 11.2em;
+  height: 2.6em;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  margin-top: .3em;
+  white-space: inherit;
+  padding: 10px 10px 10px 10px;
+
+  
+}
+
+
+
+#personnaliser:hover, #masquer:hover { 
+    background-color: #eae6f7;
+	cursor: pointer;
+}
+h2, .h2 {
+    font-size: 24px;
+    color: #fff; 
+}
+h3, .h3 {
+   font-size: 16px;
+     color: #fff; 
+}
+h5, .h5 {
+   font-size: 16px;
+     color: #000; 
+}
+
+@media (max-width: 62em) {
+	.form-horizontal .control-label {
+     text-align: left; 
+}
+
+.step-page .form-group[data-type=date] .input-group {
+    max-width: 21em;
+
+    width: 21em;
+}
+
+
+}
+
+.step-page input[type=text] {
+   width: 21em !important;
+   max-width: 21em;
+}
+.pre-note{
+	height: 50px;
+	display: none;
+}
+
+.step-page .fieldset-container legend {
+    border-bottom: 3px solid;
+    color: #44317c;
+    margin: 0 0 0.8em;
+    padding: 0;
+    width: 100%;
+}
+
+.step-page .blockinfo-chapters, .step-page .section-content, .step-page .section-annotations {
+    border: 0px #fff;
+    border-radius: 3px;
+}
+div#ModeleLettre-panel-1-blockinfo-5-chapter-1-section-1-content{
+	background-color: #fff;
+	padding: 0em 0em 0em 0em;
+}
+
+.fiche-item .fiche-item-content {
+   padding: 0em 0em 0em 0em;
+}
+
+
+.step-page fieldset, .step-page div.fieldset {
+    margin-top: 0;
+    margin-bottom: 0em;
+}
+.step-page .action_buttons {
+    margin: 0em 0 0;
+    text-align: center;
+}
+
+.simulator-breadcrumb {
+    display: none;
+height: 0em;
+}
+
+input#ModifierSaisie_1{
+	visibility: hidden;
+}
+
+
+.step-page .action_buttons2 button {
+
+  color: #fff;
+    background-color: #44317c !important;
+    border-color: #44317c;
+	display: inline-block;
+    font-size: 1.2em;
+	margin-left: 40%;
+	padding: 7px 27px 7px 27px;
+
+}
+
+#ModeleLettre-panel-1-blockinfo-6-chapter-1-section-1-content { /* msg text de champ oblogatoires */
+  color: #000;
+  text-align: center;
+}
+ 
+.step-page .action_buttons [name=DeplacerFocus]{
+visibility: hidden;
+}
+.step-page .action_buttons [name=Corriger]{
+	visibility: hidden;
+}
+.step-page .action_buttons [name=TelechargerPDF]{
+	  color: #44317c;
+    background-color: #fff !important;
+    border-color: #44317c;
+	display: inline-block;
+    font-size: 1.2em;
+
+	padding: 7px 27px 7px 27px;
+}
+
+
+#confirmationcopie { /* style du confoirmation de cipie de text */
+            background-color: #ccc;
+			margin: 2px 0px -15px 0px;
+			text-align:center;
+			width: auto;
+			height: auto;
+			opacity: 0;
+			transition: all 4s linear;
+        }
+
+centrertext  { /* alignement du titre */
+font-style: normal;
+  text-decoration: underline;
+  margin-left: 30%;
+}
+
+@media (max-width: 37em)  { /*version mobile alignement du titre*/
+ centrertext  {
+	 margin-left: 1%;
+ }
+}
+
+.step-page input[type=number] {
+    max-width: 21em;
+}
+
+
+
+.step-page .form-group[data-type=choice]:not([data-expanded=true]) .input-group {
+    float: right;
+    width: 50%;
+}
+
+.step-page .form-group .input-group {
+    display: table;
+  margin-right:40px;
+  vertical-align:top;
+}
+
+
+.btn-help {/* aligner lke bouton d aide a droite */
+
+    float: right;
+}
+
+
+.step-page div.has-error { /* alignement correcte du msg derreur */
+    clear: initial;
+    text-align: center;
+}

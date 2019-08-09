@@ -1,0 +1,41 @@
+{
+  "type": "prefecture",
+  "libelle": "Préfecture ",
+  "count": 1,
+  "theme": null,
+  "results": [
+    {
+      "nomDepartement": "Haut-Rhin",
+      "codeDepartement": "68",
+      "nomCommune": "Colmar",
+      "codePostal": "68620",
+      "adresse": "11, avenue de la République",
+      "url": "/alsace/haut-rhin/prefecture-68066-01",
+      "latitude": 48.073864,
+      "longitude": 7.349746,
+      "nom": "Préfecture du Haut-Rhin"
+    },
+    {
+      "nomDepartement": "Haut-Rhin",
+      "codeDepartement": "68",
+      "nomCommune": "Colmar",
+      "codePostal": "68620",
+      "adresse": "11, avenue de la République",
+      "url": "/alsace/haut-rhin/prefecture-68066-01",
+      "latitude": 48.073864,
+      "longitude": 7.349746,
+      "nom": "Préfecture du Haut-Rhin"
+    },
+    {
+      "nomDepartement": "Haut-Rhin",
+      "codeDepartement": "68",
+      "nomCommune": "Colmar",
+      "codePostal": "68620",
+      "adresse": "11, avenue de la République",
+      "url": "/alsace/haut-rhin/prefecture-68066-01",
+      "latitude": 48.073864,
+      "longitude": 7.349746,
+      "nom": "Préfecture du Haut-Rhin"
+    }
+  ]
+}

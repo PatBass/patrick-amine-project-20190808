@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="interets-moratoires" label="Simulateur de calcul des intérêts moratoires des marchés publics" defaultView="professionnels-entreprises" referer="https://www.service-public.fr/professionnels-entreprises/vosdroits/R209" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description edition="manual"><![CDATA[
+Lors de l'exécution d'un marché, si l'acheteur public ne respecte pas les délais réglementaires pour payer son cocontractant, ce dernier a droit à des intérêts moratoires.
+
+Les dates saisies, dont certaines ne sont pas toujours connues avec précision par l’entreprise, ont une incidence sur le calcul. Les différents montants simulés sont donc proposés à titre estimatif et n’engagent pas la direction de l'information légale et administrative (DILA).
+
+<b></b>
+<b> </b>
+
+<b></b>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="dateMarche" label="Date de conclusion du marché" type="date">
+			<Description edition="manual"><![CDATA[
+La date de conclusion du marché correspond à la date de notification du marché par l'acheteur public.
+			]]></Description>
+		</Data>
+		<Data id="2" name="dateExecutionPrestations" label="Date d'exécution des prestations" type="date">
+			<Description edition="manual"><![CDATA[
+Le point de départ du délai de paiement est la date de réception de la facture. Toutefois, si la facture est reçue avant la certification du service fait (consistant à constater l’exécution des prestations ou la livraison de la commande). C'est cette dernière date qui est retenue comme point de départ du délai de paiement.
+			]]></Description>
+		</Data>
+		<Data id="3" name="dateReceptionFacture" label="Date de réception de la facture (format : JJ/MM/AAAA) :" type="date">
+			<Description edition="manual"><![CDATA[
+Date de réception de la demande de paiement (sous la forme d'une facture) par l'acheteur public.
+La date de réception de la facture doit être postérieure à la date de conclusion du marché.
+			]]></Description>
+		</Data>
+		<Data id="4" name="typeAcheteurPublic" label="Type d'acheteur public" type="choice">
+			<Choices>
+				<Source id="1" valueColumn="id" labelColumn="name" />
+			</Choices>
+		</Data>
+		<Data id="5" name="dateInitiale" label="Point de départ délai de paiement" type="date">
+			<Description edition="manual"><![CDATA[
+Le point de départ du délai est la date de réception de la facture qui vaut demande de paiement (avec preuve de dépôt). Toutefois, le point de départ du délai est la date de la certification du service fait, lorsqu'elle est postérieure à la réception de la facture.
+			]]></Description>
+		</Data>
+		<Data id="6" name="anciensCalculs" label="Règlement avant 2013 ?" type="boolean" />
+		<Data id="7" name="delaiPaiement" label="Délai de paiement" type="integer" source="2" index="'delaiPaiement'" unit="jours">
+			<Description edition="manual"><![CDATA[
+Le délai de paiement réglementaire est de :
+- 30 jours pour l’Etat et ses établissements publics ainsi que pour les collectivités territoriales et les établissements publics locaux,
+- 50 jours pour les établissements publics de santé et les établissements du service de santé des armées,
+- 60 jours pour les autres entreprises publiques.
+			]]></Description>
+		</Data>
+		<Data id="8" name="suspensionDelai" label="Suspension du délai ?" type="choice" default="2">
+			<Description edition="manual"><![CDATA[
+Pour être valable, la demande de paiement (facture) doit contenir un certain nombre d'informations, notamment les références du marché, la date et les montants. Ces informations figurent dans les cahiers des clauses administratives générales et particulières du marché. Si la demande de paiement n'est pas conforme à ses attentes, l'ordonnateur peut suspendre le délai de paiement jusqu'à réception d'une demande conforme.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="9" name="prolongDelai" label="Nombre de jours de prolongation du délai" type="integer" default="0" unit="jours">
+			<Description edition="manual"><![CDATA[
+Pour être valable, la demande de paiement (facture) doit contenir un certain nombre d'informations, notamment les références du marché, la date et les montants. Ces informations figurent dans les cahiers des clauses administratives générales et particulières du marché. Si la demande de paiement n'est pas conforme à ses attentes, l'ordonnateur peut suspendre le délai de paiement jusqu'à réception d'une demande conforme.
+			]]></Description>
+		</Data>
+		<Data id="10" name="dateLimitePaiement" label="Date limite de paiement" type="date" />
+		<Data id="11" name="facturePayee" label="Facture payée ?" type="choice" default="2">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="12" name="datePaiementPrinc" label="Date de paiement de la facture" type="date">
+			<Description edition="manual"><![CDATA[
+Cette date peut aussi être celle du paiement de l'acompte, du solde ou de l’avance à verser.
+			]]></Description>
+		</Data>
+		<Data id="13" name="datePaiementRetenue" label="Date de paiement retenue" type="date">
+			<Description edition="manual"><![CDATA[
+Cette date peut aussi être celle du paiement de l'acompte, du solde ou de l’avance à verser.
+			]]></Description>
+		</Data>
+		<Data id="14" name="retardIm" label="Nombre de jours de retard" type="number" content="#13 - #10" unit="jours">
+			<Description edition="manual"><![CDATA[
+Retard entre la date de paiement du principal et la date limite de paiement.
+			]]></Description>
+		</Data>
+		<Data id="15" name="montantPrincipalTTC" label="Montant de la facture" type="money">
+			<Description edition="manual"><![CDATA[
+Par montant de la facture, on entend le montant total, celui de l’acompte, du solde ou de l’avance selon ce qui est effectivement dû par l'acheteur public hors intérêts moratoires.
+			]]></Description>
+		</Data>
+		<Data id="16" name="typeTaux" label="Type de taux" type="integer" source="2" index="'typeTaux'" />
+		<Data id="17" name="tauxLegal" label="Taux légal" type="percent" source="3" index="'tauxLegal'">
+			<Description edition="manual"><![CDATA[
+Taux légal
+			]]></Description>
+		</Data>
+		<Data id="18" name="tauxBCE" label="Taux BCE" type="percent" source="3" index="'tauxBCE'">
+			<Description edition="manual"><![CDATA[
+Taux directeur de la BCE
+			]]></Description>
+		</Data>
+		<Data id="19" name="dateIm" label="Date des intérêts moratoires" type="date" source="3" index="'dateIM'">
+			<Description edition="manual"><![CDATA[
+Date des intérêts moratoires
+			]]></Description>
+		</Data>
+		<Data id="20" name="tauxIm" label="Taux des intérêts moratoires" type="percent">
+			<Description edition="manual"><![CDATA[
+<strong>- Contrats conclus jusqu'au 15 mars 2013</strong>
+Le taux des intérêts moratoires est calculé de 2 façons différentes :
+. pour <strong>les établissements publics de santé et les établissements de santé des armées</strong> c’est le taux d'intérêt légal en vigueur à la date à laquelle les intérêts moratoires ont commencé à courir, majoré de 2 points,
+. pour l'<strong>État, les établissements publics administratifs (EPA) nationaux, les collectivités territoriales et les établissements publics locaux</strong>, c’est le taux de refinancement de la Banque centrale européenne (BCE) en vigueur au 1er jour du semestre au cours duquel les intérêts moratoires ont commencé à courir, augmenté de 7 points.
+
+<strong>- Contrats conclus à partir du 16 mars 2013 et facture dont le délai de paiement a commencé à courir à partir du 1er mai 2013 :</strong>
+Le taux des intérêts moratoires correspond au taux de refinancement de la Banque centrale européenne (BCE), en vigueur le 1er jour du semestre au cours duquel les intérêts moratoires ont commencé à courir, majoré de 8 points de pourcentage.
+<strong>- Contrats conclus à partir du 16 mars 2013 mais facture dont le délai de paiement a commencé à courir avant le 1er mai 2013,</strong> c’est la règle applicable aux contrats conclus jusqu’au 15 mars 2013 qui s’applique encore de façon transitoire.
+			]]></Description>
+		</Data>
+		<Data id="21" name="montantIm" label="Montant des intérêts moratoires" type="money" content="#15 * #14 / 365 * #20 / 100" />
+		<Data id="22" name="indemniteForfaitaire" label="Indemnité forfaitaire pour frais de recouvrement" type="money">
+			<Description edition="manual"><![CDATA[
+Pour les contrats signés après le 16 mars 2013 et facture dont le délai de paiement a commencé à courir à partir du 1er mai 2013, une indemnité forfaitaire pour frais de recouvrement de 40 € s’ajoute aux intérêts moratoires (pénalités de retard).
+			]]></Description>
+		</Data>
+		<Data id="23" name="cumul" label="Cumul" type="money" content="#21 + #22" />
+		<Data id="24" name="departIM" label="Départ IM" type="date" content="#10 + 1" />
+		<Data id="25" name="references" label="Références du marché" type="textarea" />
+	</DataSet>
+	<Steps>
+		<Step id="1" name="dates" label="Dates" template="pages:article.html.twig" dynamic="1">
+			<Description edition="manual"><![CDATA[
+Ces renseignements servent à déterminer le mode de calcul des intérêts moratoires qui sera appliqué.
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" label="Date de conclusion du marché (format : JJ/MM/AAAA) :" required="1" visibleRequired="0" colon="0" help="1" widget="abDatepicker">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="2" usage="input" label="Date de service fait (format : JJ/MM/AAAA) :" required="1" visibleRequired="0" colon="0" help="1" widget="abDatepicker">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="3" usage="input" label="Date de réception de la facture  (format : JJ/MM/AAAA) :" required="1" visibleRequired="0" colon="0" help="1" widget="abDatepicker">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="4" usage="input" label="Type d'acheteur public" prompt="--- Sélectionnez le type d'acheteur dans la liste ---" required="1" visibleRequired="0" help="0" widget="abListbox" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="effacer" label="Effacer le formulaire" shape="button" what="reset" for="currentStep" location="bottom" class="btn-default" />
+				<Action name="commencer" label="Poursuivre" shape="button" what="submit" for="nextStep" location="bottom" class="btn-primary" />
+			</ActionList>
+		</Step>
+		<Step id="2" name="paiement" label="Paiement" template="pages:article.html.twig" dynamic="1">
+			<Description edition="manual"><![CDATA[
+Informations relatives au paiement
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="5" usage="output" label="Point de départ du délai de paiement" required="0" visibleRequired="0" help="1" />
+						<Field position="2" data="7" usage="input" label="Délai de paiement (1)" required="1" visibleRequired="0" help="1">
+							<PostNote edition="manual"><![CDATA[
+Le délai de paiement proposé a été calculé en fonction de la réglementation. Doit être modifié si le contrat prévoit un délai de paiement particulier ou si le paiement a été suspendu par l'acheteur public.
+							]]></PostNote>
+						</Field>
+						<Field position="5" data="11" usage="input" label="La facture a-t-elle été payée ?" required="1" visibleRequired="0" help="0" expanded="1">
+							<PostNote edition="manual"><![CDATA[
+Si la facture n'a pas encore été payée, le calcul vaut pour la période comprise entre la date limite de paiement et le jour de la simulation.
+							]]></PostNote>
+						</Field>
+						<Field position="6" data="12" usage="input" label="Date de paiement de la facture" required="0" visibleRequired="0" help="1" widget="abDatepicker" />
+						<Field position="7" data="15" usage="input" label="Montant de la facture TTC" required="1" visibleRequired="0" help="1" widget="AutoMoneyFormat" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" shape="button" what="submit" for="priorStep" location="bottom" class="btn-default" />
+				<Action name="calculer" label="Calculer" shape="button" what="submit" for="nextStep" location="bottom" class="btn-primary" />
+				<Action name="effacer" label="Effacer le formulaire" shape="button" what="reset" for="currentStep" location="bottom" class="btn-default" />
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="1" edition="manual"><![CDATA[
+(1) Attention, le délai de paiement peut être suspendu du fait d’un rejet de la facture ou en l’attente de précisions etc... Si c'est le cas, modifier le nombre de jours du délais de paiement.
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+		<Step id="3" name="complements" label="Compléments" template="pages:article.html.twig">
+			<Description edition="manual"><![CDATA[
+Informations complémentaires
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="9" usage="input" label="Nombre de jours de suspension du délai" required="0" visibleRequired="0" help="1" />
+						<Field position="2" data="12" usage="input" label="Date de paiement de la facture" required="1" visibleRequired="0" help="1" widget="abDatepicker" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" shape="button" what="submit" for="priorStep" location="bottom" class="btn-default" />
+				<Action name="calculer" label="Calculer" shape="button" what="submit" for="nextStep" location="bottom" class="btn-primary" />
+				<Action name="effacer" label="Effacer le formulaire" shape="button" what="reset" for="currentStep" location="bottom" class="btn-default" />
+			</ActionList>
+		</Step>
+		<Step id="4" name="resultat" label="Résultat" template="pages:article.html.twig">
+			<Description edition="manual"><![CDATA[
+Résultats
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend edition="manual"><![CDATA[
+Récapitulatif des données saisies
+						]]></Legend>
+						<Field position="1" data="1" usage="output" label="Date de conclusion du marché" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="2" usage="output" label="Date de service fait" required="0" visibleRequired="0" help="0" />
+						<Field position="3" data="3" usage="output" label="Date de réception de la facture" required="0" visibleRequired="0" help="0" />
+						<Field position="4" data="4" usage="output" label="Type d'acheteur public" required="0" visibleRequired="0" help="0" />
+						<Field position="5" data="7" usage="output" label="Délai de paiement" required="0" visibleRequired="0" help="0" />
+						<Field position="8" data="11" usage="output" label="La facture a-t-elle été payée ?" required="1" visibleRequired="0" help="0" expanded="1" />
+						<Field position="9" data="12" usage="output" label="Date de paiement de la facture" required="0" visibleRequired="0" help="0" />
+						<Field position="10" data="15" usage="output" label="Montant de la facture TTC" required="0" visibleRequired="0" help="0" />
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend edition="manual"><![CDATA[
+Résultats de la simulation (calcul réalisé en fonction des données saisies)
+						]]></Legend>
+						<Field position="11" data="5" usage="output" label="Point de départ du délai de paiement" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="12" data="10" usage="output" label="Date limite de paiement" required="0" visibleRequired="0" help="0" emphasize="1">
+							<PostNote edition="manual"><![CDATA[
+Si la date limite de paiement tombe un jour férié, un dimanche ou un samedi, ce simulateur prévoit que le délai prend fin le premier jour ouvrable suivant (à l'expiration de la dernière heure de ce jour).
+							]]></PostNote>
+						</Field>
+						<Field position="13" data="14" usage="output" label="Nombre de jours de retard à ce jour" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="14" data="20" usage="output" label="Taux des intérêts moratoires (*)" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="15" data="21" usage="output" label="Montant des intérêts moratoires" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="16" data="22" usage="output" label="Indemnité forfaitaire" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="17" data="23" usage="output" label="Cumul" required="0" visibleRequired="0" help="0" emphasize="1" />
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend edition="manual"><![CDATA[
+Références du marché (optionnel)
+						]]></Legend>
+						<Field position="1" data="25" usage="input" prompt="vos références ici" required="0" visibleRequired="0" help="0" emphasize="1">
+							<PreNote edition="manual"><![CDATA[
+Si vous souhaitez imprimer ou conserver les résultats de la simulation, vous pouvez indiquer les références du marché ou toute autre information avant de cliquer sur le bouton [ Imprimer (PDF) > ].
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" shape="button" what="submit" for="priorStep" location="bottom" class="btn-default" />
+				<Action name="imprimer" label="Imprimer (PDF)" shape="button" what="submit" for="nextStep" location="bottom" class="btn-primary" />
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="1" edition="manual"><![CDATA[
+Les intérêts moratoires sont dus sans que le titulaire du marché n’ait besoin de les demander.
+<br/><br/>
+Les intérêts moratoires doivent être payés au maximum 45 jours après la mise au paiement de la facture. Sinon, des intérêts moratoires complémentaires sont dus.
+<br/><br/>
+				]]></FootNote>
+				<FootNote id="2" edition="manual"><![CDATA[
+<strong>Pour les contrats signés après le 16 mars 2013 et pour une facture dont le délai de paiement a commencé à courir à partir du 1er mai 2013</strong>, une indemnité forfaitaire pour <strong>frais de recouvrement de 40&#xA0;€</strong> s’ajoute aux intérêts moratoires.
+<br/><br/>
+Les intérêts moratoires, et l'indemnité forfaitaire pour frais de recouvrement le cas échéant, sont dus sans que le titulaire du marché n’ait besoin de les demander.
+<br/><br/>
+Intérêts moratoires et indemnité forfaitaire pour frais de recouvrement doivent être payés au maximum 45 jours après la mise au paiement de la facture. Sinon, des intérêts moratoires complémentaires sont dus.
+<br/><br/>
+				]]></FootNote>
+				<FootNote id="3" edition="manual"><![CDATA[
+(*) Le taux appliqué est le taux légal (#17%) au #19 augmenté de 2 points
+				]]></FootNote>
+				<FootNote id="4" edition="manual"><![CDATA[
+(*) Le taux appliqué est le taux directeur de la BCE (#18%) au #19 augmenté de 8 points
+				]]></FootNote>
+				<FootNote id="5" edition="manual"><![CDATA[
+(*) Le taux appliqué est le taux directeur de la BCE (#18%) au #19 augmenté de 7 points
+				]]></FootNote>
+				<FootNote id="6" edition="manual"><![CDATA[
+(*) Le taux appliqué est le taux directeur de la BCE (#18%) au #19 augmenté de 8 points
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+		<Step id="5" name="impressionPDF" label="Impression PDF" template="pages:interets-moratoires.print.html.twig" output="downloadablePDF">
+			<Description edition="manual"><![CDATA[
+Résultat du calcul des intérêts moratoires
+(calcul réalisé en fonction des données saisies)
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend edition="manual"><![CDATA[
+Récapitulatif des données saisies
+						]]></Legend>
+						<Field position="1" data="1" usage="output" label="Date de conclusion du marché" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="2" usage="output" label="Date de service fait" required="0" visibleRequired="0" help="0" />
+						<Field position="3" data="3" usage="output" label="Date de réception de la facture" required="0" visibleRequired="0" help="0" />
+						<Field position="4" data="4" usage="output" label="Type d'acheteur public" required="0" visibleRequired="0" help="0" />
+						<Field position="5" data="7" usage="output" label="Délai de paiement" required="0" visibleRequired="0" help="0" />
+						<Field position="8" data="11" usage="output" label="La facture a-t-elle été payée ?" required="1" visibleRequired="0" help="0" expanded="1" />
+						<Field position="9" data="12" usage="output" label="Date de paiement de la facture" required="0" visibleRequired="0" help="0" />
+						<Field position="10" data="15" usage="output" label="Montant de la facture TTC" required="0" visibleRequired="0" help="0" />
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend edition="manual"><![CDATA[
+Résultats de la simulation (calcul réalisé en fonction des données saisies)
+						]]></Legend>
+						<Field position="11" data="5" usage="output" label="Point de départ du délai de paiement" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="12" data="10" usage="output" label="Date limite de paiement" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="13" data="14" usage="output" label="Nombre de jours de retard à ce jour" required="0" visibleRequired="0" help="0" emphasize="1" />
+						<Field position="14" data="20" usage="output" label="Taux des intérêts moratoires (*)" required="0" visibleRequired="0" help="1" emphasize="1" />
+						<Field position="15" data="21" usage="output" label="Montant des intérêts moratoires" required="0" visibleRequired="0" help="1" emphasize="1" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="interets-moratoires" request="SELECT id, name FROM acheteurPublic" returnType="assocArray" />
+		<Source id="2" datasource="interets-moratoires" request="SELECT delaipaiement as delaiPaiement, typetaux as typeTaux FROM acheteurPublic WHERE id = %1$s" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="typeAcheteurPublic" data="4" />
+		</Source>
+		<Source id="3" datasource="interets-moratoires" request="SELECT tauxlegal as tauxLegal, tauxbce as tauxBCE, dateim as dateIM FROM taux WHERE dateIM &lt;= '%1$s' ORDER BY dateim DESC LIMIT 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="dateIm" format="Y-m-d" data="24" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Contrôle date de conclusion du marché">
+			<Conditions value="#1 &lt; 01/01/2005">
+				<Condition operand="dateMarche" operator="&lt;" expression="01/01/2005" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="1" value="La date de conclusion du marché doit être postérieure à 2005" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Contrôle date d'exécution des prestations">
+			<Conditions value="#2 &lt;= #1">
+				<Condition operand="dateExecutionPrestations" operator="&lt;=" expression="#1" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="2" value="La date d'exécution des prestations doit être postérieure à la date de conclusion du marché" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Contrôle date de réception de la facture">
+			<Conditions value="#3 &lt;= #1">
+				<Condition operand="dateReceptionFacture" operator="&lt;=" expression="#1" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="3" value="La date de réception de la facture doit être postérieure à la date de conclusion du marché" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Contrôle du délai de paiement">
+			<Conditions value="#7 &lt;= 0">
+				<Condition operand="delaiPaiement" operator="&lt;=" expression="0" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="7" value="Le délai de paiement doit être supérieur à 0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Contrôle date de paiement de la facture">
+			<Conditions value="#11 = 1 &amp;&amp; (!defined(#12) || #12 &lt; #5)">
+				<Connector type="all">
+					<Condition operand="facturePayee" operator="=" expression="1" />
+					<Connector type="any">
+						<Condition operand="datePaiementPrinc" operator="blank" />
+						<Condition operand="datePaiementPrinc" operator="&lt;" expression="#5" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="12" value="La date de paiement de la facture doit être renseignée et postérieure à la date de départ du délai de paiement" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Contrôle montant de la facture">
+			<Conditions value="#15 &lt;= 0">
+				<Condition operand="montantPrincipalTTC" operator="&lt;=" expression="0" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="15" value="Le montant TTC de la facture doit être supérieur à 0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Condition d'affichage du champ de saisie Date de paiement de la facture">
+			<Conditions value="script = 1 &amp;&amp; #11 = 1">
+				<Connector type="all">
+					<Condition operand="script" operator="=" expression="1" />
+					<Condition operand="facturePayee" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="2" panel="1" fieldset="1" field="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Condition d'affichage de l'étape compléments">
+			<Conditions value="step2.dynamic = 1 &amp;&amp; script = 1">
+				<Connector type="all">
+					<Condition operand="step2.dynamic" operator="=" expression="1" />
+					<Condition operand="script" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="step" step="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="step" step="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Condition d'affichage du champ Nombre de jours de suspension du délai (cas étape compléments)">
+			<Conditions value="(step2.dynamic = 1 &amp;&amp; script = 1) || #8 != 1">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="step2.dynamic" operator="=" expression="1" />
+						<Condition operand="script" operator="=" expression="1" />
+					</Connector>
+					<Condition operand="suspensionDelai" operator="!=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="3" panel="1" fieldset="1" field="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="3" panel="1" fieldset="1" field="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Condition d'affichage du champ de saisie Date de paiement de la facture">
+			<Conditions value="(step2.dynamic = 1 &amp;&amp; script = 1) || #11 != 1">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="step2.dynamic" operator="=" expression="1" />
+						<Condition operand="script" operator="=" expression="1" />
+					</Connector>
+					<Condition operand="facturePayee" operator="!=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="3" panel="1" fieldset="1" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="3" panel="1" fieldset="1" field="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Condition d'affichage du champ de restitution Date de paiement de la facture">
+			<Conditions value="#11 = 1">
+				<Condition operand="facturePayee" operator="=" expression="1" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="1" field="9" />
+				<Action id="2" name="showObject" target="field" step="5" panel="1" fieldset="1" field="9" />
+				<Action id="3" name="setAttribute" target="content" data="13" value="#12" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="9" />
+				<Action id="2" name="hideObject" target="field" step="5" panel="1" fieldset="1" field="9" />
+				<Action id="3" name="setAttribute" target="content" data="13" value="now" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Condition d'affichage du champ Indemnité forfaitaire de l'étape résultat">
+			<Conditions value="#22 &lt;= 0">
+				<Condition operand="indemniteForfaitaire" operator="&lt;=" expression="0" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="2" field="16" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="2" field="16" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Condition d'affichage du champ Cumul de l'étape résultat">
+			<Conditions value="#22 &lt;= 0">
+				<Condition operand="indemniteForfaitaire" operator="&lt;=" expression="0" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="2" field="17" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="2" field="17" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Condition d'affichage des notes 1 et 2 de l'étape résultat">
+			<Conditions value="#6">
+				<Condition operand="anciensCalculs" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="1" />
+				<Action id="2" name="hideObject" target="footnote" step="4" footnote="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="1" />
+				<Action id="2" name="showObject" target="footnote" step="4" footnote="2" />
+				<Action id="3" name="setAttribute" target="content" data="20" value="#18 + 8" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Condition d'affichage de la note 3 de l'étape résultat">
+			<Conditions value="#16 != 1 || !#6">
+				<Connector type="any">
+					<Condition operand="typeTaux" operator="!=" expression="1" />
+					<Condition operand="anciensCalculs" operator="isFalse" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Condition d'affichage de la note 4 de l'étape résultat">
+			<Conditions value="#16 != 1 || #6">
+				<Connector type="any">
+					<Condition operand="typeTaux" operator="!=" expression="1" />
+					<Condition operand="anciensCalculs" operator="isTrue" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Condition d'affichage de la note 5 de l'étape résultat">
+			<Conditions value="#16 != 2 || !#6">
+				<Connector type="any">
+					<Condition operand="typeTaux" operator="!=" expression="2" />
+					<Condition operand="anciensCalculs" operator="isFalse" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Condition d'affichage de la note 6 de l'étape résultat">
+			<Conditions value="#16 != 2 || #6">
+				<Connector type="any">
+					<Condition operand="typeTaux" operator="!=" expression="2" />
+					<Condition operand="anciensCalculs" operator="isTrue" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="footnote" step="4" footnote="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Détermination du point de départ du délai de paiement">
+			<Conditions value="#2 > #3">
+				<Condition operand="dateExecutionPrestations" operator=">" expression="#3" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="#2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="#3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Détermination du mode de calcul (avant ou après Mars 2013)">
+			<Conditions value="#1 &lt; 16/03/2013 || #5 &lt; 01/05/2013">
+				<Connector type="any">
+					<Condition operand="dateMarche" operator="&lt;" expression="16/03/2013" />
+					<Condition operand="dateInitiale" operator="&lt;" expression="01/05/2013" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Détermination de la date limite de paiement">
+			<Conditions value="defined(#8) &amp;&amp; #8 = 1">
+				<Connector type="all">
+					<Condition operand="suspensionDelai" operator="present" />
+					<Condition operand="suspensionDelai" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="10" value="nextWorkDay(#5 + #7 + #9)" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="10" value="nextWorkDay(#5 + #7)" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Taux des intérets moratoires pour les marchés antérieurs à  Mars 2013 (taux légal)">
+			<Conditions value="#16 = 1 &amp;&amp; #6">
+				<Connector type="all">
+					<Condition operand="typeTaux" operator="=" expression="1" />
+					<Condition operand="anciensCalculs" operator="isTrue" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="20" value="#17 + 2" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Taux des intérets moratoires pour les marchés antérieurs à  Mars 2013 (taux BCE)">
+			<Conditions value="#16 = 2 &amp;&amp; #6">
+				<Connector type="all">
+					<Condition operand="typeTaux" operator="=" expression="2" />
+					<Condition operand="anciensCalculs" operator="isTrue" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="20" value="#18 + 7" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Valeur de l'indemnité forfaitaire pour frais de recouvrement">
+			<Conditions value="#14 = 0 || #6">
+				<Connector type="any">
+					<Condition operand="retardIm" operator="=" expression="0" />
+					<Condition operand="anciensCalculs" operator="isTrue" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="22" value="0" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="22" value="40" />
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations edition="manual"><![CDATA[
+Mise en production en février 2015.
+Avertissement ajouté en 28/12/2018 (Les taux applicables à compter du 1er janvier 2019 ne sont pas encore connus. Ce simulateur sera mis à jour à leur publication) puis supprimer (en qualif) le 31/12/2018.
+	]]></RelatedInformations>
+</Simulator>

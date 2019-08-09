@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="cout-embauche1" label="Simulateur de calcul du coût d'une embauche en France" defaultView="professionnels-entreprises" referer="" dynamic="1" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+<b>Vous envisagez de recruter ?</b><b></b>
+Grâce à l'outil "simulateur d'embauche" développé par le SGMAP (Secrétariat Général pour la Modernisation de l'Action Publique), calculez rapidement le coût de l'embauche pour votre entreprise, et l'estimation de la rémunération nette de votre futur salarié.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="dateJour" label="Date du jour de la simulation" type="date" content="now"></Data>
+		<Data id="2" name="typeEntreprise" label="Type d'entreprise" type="choice" default="'entreprise'">
+			<Choices>
+				<Choice id="1" value="entreprise" label="entreprise"></Choice>
+				<Choice id="2" value="association" label="association à but non lucratif"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="effectifEntreprise" label="Effectif de l'entreprise" type="integer" default="0" min="0" max="99999"></Data>
+		<Data id="4" name="typeEmploye" label="Type Employé" type="choice" default="'CDI'">
+			<Choices>
+				<Choice id="1" value="CDI" label="CDI"></Choice>
+				<Choice id="2" value="apprenti" label="apprenti-e"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="categorieSalarie" label="Categorie Salarié" type="choice" default="'prive_non_cadre'">
+			<Choices>
+				<Choice id="1" value="prive_non_cadre" label="non-cadre"></Choice>
+				<Choice id="2" value="prive_cadre" label="cadre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="salaire" label="Salaire" type="money" min="0" max="999999999" content="2300"></Data>
+		<Data id="7" name="typeSalaireEntre" label="Type salaire entré" type="choice" default="1" unit="mensuel">
+			<Choices>
+				<Choice id="1" value="1" label="brut"></Choice>
+				<Choice id="2" value="2" label="net"></Choice>
+			</Choices>
+		</Data>
+		<Data id="8" name="tempsDeTravail" label="Temps de travail" type="choice" default="'temps_plein'">
+			<Choices>
+				<Choice id="1" value="temps_plein" label="temps plein"></Choice>
+				<Choice id="2" value="temps_partiel" label="temps partiel"></Choice>
+			</Choices>
+		</Data>
+		<Data id="9" name="heuresParSemaine" label="Heures par semaine" type="integer" min="1" max="35" content="30" unit="heures par semaine "></Data>
+		<Data id="10" name="commune" label="Commune" type="text" content="29019"></Data>
+		<Data id="11" name="dateEmbauche" label="Date Embauche" type="date" content="now"></Data>
+		<Data id="12" name="entrepriseInnovante" label="Statut entreprise innovante" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="0" label="Non"></Choice>
+				<Choice id="2" value="1" label="oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="13" name="complementaireSante" label="Montant mensuel de la complémentaire santé" type="money" content="40">
+			<Description><![CDATA[
+L'employeur a l'obligation de proposer une offre de complémentaire santé. Son montant est libre, tant qu'elle couvre un panier légal de soins. Il doit prendre en charge la moitié du montant, ce que nous avons retenu pour cette simulation, ou davantage.
+Voir les détails (<a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754" title="Link: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754">service-public.fr</a>)
+			]]></Description>
+		</Data>
+		<Data id="14" name="association" label="L'entreprise est une association à but non-lucratif" type="text"></Data>
+		<Data id="15" name="expositionPenibilite" label="Exposition pénibilité" type="choice" content="0">
+			<Description><![CDATA[
+Un employeur qui expose un salarié à un facteur de pénibilité au-delà des seuils prévus est redevable d'une cotisation de pénibilité additionnelle. Elle est doublée si les facteurs sont multiples.
+<a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777">Comprendre la cotisation pénibilité (service-public.fr)</a>
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="0" label="Non"></Choice>
+				<Choice id="2" value="1" label="Un facteur"></Choice>
+				<Choice id="3" value="2" label="Plusieurs facteurs"></Choice>
+			</Choices>
+		</Data>
+		<Data id="16" name="salaireNet" label="Salaire net" type="money"></Data>
+		<Data id="17" name="salaireBrut" label="Salaire brut" type="money"></Data>
+		<Data id="18" name="regimeAlsaceMoselle" label="Affilié au régime d'Alsace-Moselle" type="choice" content="0">
+			<Description><![CDATA[
+Cette affiliation est obligatoire si l'activité est exercée dans les départements du Bas-Rhin, du Haut-Rhin et de la Moselle. Elle l'est aussi dans certains autres cas, expliqués sur cette <a target="_blank" rel="nofollow" href="http://regime-local.fr/salaries/">page</a>.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="0" label="Non"></Choice>
+				<Choice id="2" value="1" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="19" name="volumeHeuresRemuneres" label="Volume heures rémunérés" type="number" content="#9 * 4.333142857142857"></Data>
+		<Data id="20" name="tauxRisqueConnu" label="Taux de rique connu" type="number" content="0.01"></Data>
+		<Data id="21" name="effectifCorrige" label="Effectif corrigé (pourquoi ?)" type="number" content="#3 + 1"></Data>
+		<Data id="22" name="salaireSuperBrut" label="Salaire super brut" type="money" source="1" index="'salaire_super_brut'"></Data>
+		<Data id="23" name="salaireSuperBrutArrondi" label="Salaire super brut arrondi" type="money" content="round(#22)"></Data>
+		<Data id="24" name="coutDuTravail" label="Coût du travail" type="money" source="1" index="'cout_du_travail'"></Data>
+		<Data id="25" name="coutDuTravailArrondi" label="Coût du travail arrondi" type="money" content="round(#24)"></Data>
+		<Data id="26" name="salaireSalarie" label="Salaire du salarié" type="money" source="1"></Data>
+		<Data id="27" name="salaireSalarieArrondi" label="Salaire du salarié arrondi" type="money" content="round(#26)"></Data>
+		<Data id="28" name="donneesRetourDeBase" label="Données retour de base" type="text" content="'cout_du_travail salaire_super_brut ags agff_employeur apec_employeur agirc_employeur agirc_gmp_employeur arrco_employeur chomage_employeur cotisation_exceptionnelle_temporaire_employeur famille vieillesse_deplafonnee_employeur vieillesse_plafonnee_employeur mmid_employeur contribution_solidarite_autonomie formation_professionnelle participation_effort_construction taxe_apprentissage fnal financement_organisations_syndicales prevoyance_obligatoire_cadre versement_transport forfait_social accident_du_travail taxe_salaires contribution_supplementaire_apprentissage complementaire_sante_employeur penibilite agff_salarie agirc_salarie agirc_gmp_salarie apec_salarie arrco_salarie chomage_salarie cotisation_exceptionnelle_temporaire_salarie vieillesse_plafonnee_salarie vieillesse_deplafonnee_salarie mmid_salarie csg_deductible_salaire csg_imposable_salaire crds_salaire complementaire_sante_salarie allegement_fillon allegement_cotisation_allocations_familiales exoneration_cotisations_employeur_jei exoneration_cotisations_employeur_apprenti credit_impot_competitivite_emploi aide_premier_salarie aide_embauche_pme'"></Data>
+		<Data id="29" name="donneesRetour" label="Données retour" type="text"></Data>
+		<Data id="30" name="ags" label="ags" type="money" source="1" index="'ags'"></Data>
+		<Data id="31" name="agffemployeur" label="agff employeur" type="money" source="1" index="'agff_employeur'"></Data>
+		<Data id="32" name="apecemployeur" label="apec employeur" type="money" source="1" index="'apec_employeur'"></Data>
+		<Data id="33" name="agircemployeur" label="agirc employeur" type="money" source="1" index="'agirc_employeur'"></Data>
+		<Data id="34" name="agircgmpemployeur" label="agirc gmp employeur" type="money" source="1" index="'agirc_gmp_employeur'"></Data>
+		<Data id="35" name="arrcoemployeur" label="arrco employeur" type="money" source="1" index="'arrco_employeur'"></Data>
+		<Data id="36" name="chomageemployeur" label="chomage employeur" type="money" source="1" index="'chomage_employeur'"></Data>
+		<Data id="37" name="cotisationexceptionnelletemporaireemployeur" label="cotisation exceptionnelle temporaire employeur" type="money" source="1" index="'cotisation_exceptionnelle_temporaire_employeur'"></Data>
+		<Data id="38" name="famille" label="famille" type="money" source="1" index="'famille'"></Data>
+		<Data id="39" name="vieillessedeplafonneeemployeur" label="vieillesse deplafonnee employeur" type="money" source="1" index="'vieillesse_deplafonnee_employeur'"></Data>
+		<Data id="40" name="vieillesseplafonneeemployeur" label="vieillesse plafonnee employeur" type="money" source="1" index="'vieillesse_plafonnee_employeur'"></Data>
+		<Data id="41" name="mmidemployeur" label="mmid employeur" type="money" source="1" index="'mmid_employeur'"></Data>
+		<Data id="42" name="contributionsolidariteautonomie" label="contribution solidarite autonomie" type="money" source="1" index="'contribution_solidarite_autonomie'"></Data>
+		<Data id="43" name="formationprofessionnelle" label="formation professionnelle" type="money" source="1" index="'formation_professionnelle'"></Data>
+		<Data id="44" name="participationeffortconstruction" label="participation effort construction" type="money" source="1" index="'participation_effort_construction'"></Data>
+		<Data id="45" name="taxeapprentissage" label="taxe apprentissage" type="money" source="1" index="'taxe_apprentissage'"></Data>
+		<Data id="46" name="fnal" label="fnal" type="money" source="1" index="'fnal'"></Data>
+		<Data id="47" name="financementorganisationssyndicales" label="financement organisations syndicales" type="money" source="1" index="'financement_organisations_syndicales'"></Data>
+		<Data id="48" name="prevoyanceobligatoirecadre" label="prevoyance obligatoire cadre" type="money" source="1" index="'prevoyance_obligatoire_cadre'"></Data>
+		<Data id="49" name="versementtransport" label="versement transport" type="money" source="1" index="'versement_transport'"></Data>
+		<Data id="50" name="forfaitsocial" label="forfait social" type="money" source="1" index="'forfait_social'"></Data>
+		<Data id="51" name="accidentdutravail" label="accident du travail" type="money" source="1" index="'accident_du_travail'"></Data>
+		<Data id="52" name="taxesalaires" label="taxe salaires" type="money" source="1" index="'taxe_salaires'"></Data>
+		<Data id="53" name="contributionsupplementaireapprentissage" label="contribution supplementaire apprentissage" type="money" source="1" index="'contribution_supplementaire_apprentissage'"></Data>
+		<Data id="54" name="complementairesanteemployeur" label="complementaire sante employeur" type="money" source="1"></Data>
+		<Data id="55" name="penibilite" label="penibilite" type="money" source="1" index="'penibilite'"></Data>
+		<Data id="56" name="agffsalarie" label="agff salarie" type="money" source="1" index="'agff_salarie'"></Data>
+		<Data id="57" name="agircsalarie" label="agirc salarie" type="money" source="1" index="'agirc_salarie'"></Data>
+		<Data id="58" name="agircgmpsalarie" label="agirc gmp salarie" type="money" source="1" index="'agirc_gmp_salarie'"></Data>
+		<Data id="59" name="apecsalarie" label="apec salarie" type="money" source="1" index="'apec_salarie'"></Data>
+		<Data id="60" name="arrcosalarie" label="arrco salarie" type="money" source="1" index="'arrco_salarie'"></Data>
+		<Data id="61" name="chomagesalarie" label="chomage salarie" type="money" source="1" index="'chomage_salarie'"></Data>
+		<Data id="62" name="cotisationexceptionnelletemporairesalarie" label="cotisation exceptionnelle temporaire salarie" type="money" source="1" index="'cotisation_exceptionnelle_temporaire_salarie'"></Data>
+		<Data id="63" name="vieillesseplafonneesalarie" label="vieillesse plafonnee salarie" type="money" source="1" index="'vieillesse_plafonnee_salarie'"></Data>
+		<Data id="64" name="vieillessedeplafonneesalarie" label="vieillesse deplafonnee salarie" type="money" source="1" index="'vieillesse_deplafonnee_salarie'"></Data>
+		<Data id="65" name="mmidsalarie" label="mmid salarie" type="money" source="1" index="'mmid_salarie'"></Data>
+		<Data id="66" name="csgdeductiblesalaire" label="csg deductible salaire" type="money" source="1" index="'csg_deductible_salaire'"></Data>
+		<Data id="67" name="csgimposablesalaire" label="csg imposable salaire" type="money" source="1" index="'csg_imposable_salaire'"></Data>
+		<Data id="68" name="crdssalaire" label="crds salaire" type="money" source="1" index="'crds_salaire'"></Data>
+		<Data id="69" name="complementairesantesalarie" label="complementaire sante salarie" type="money" source="1" index="'complementaire_sante_salarie'"></Data>
+		<Data id="70" name="allegementfillon" label="allegement fillon" type="money" source="1" index="'allegement_fillon'"></Data>
+		<Data id="71" name="allegementcotisationallocationsfamiliales" label="allegement cotisation allocations familiales" type="money" source="1" index="'allegement_cotisation_allocations_familiales'"></Data>
+		<Data id="72" name="exonerationcotisationsemployeurjei" label="exoneration cotisations employeur jei" type="money" source="1" index="'exoneration_cotisations_employeur_jei'"></Data>
+		<Data id="73" name="exonerationcotisationsemployeurapprenti" label="exoneration cotisations employeur apprenti" type="money" source="1" index="'exoneration_cotisations_employeur_apprenti'"></Data>
+		<Data id="74" name="creditimpotcompetitiviteemploi" label="credit impot competitivite emploi" type="money" source="1" index="'credit_impot_competitivite_emploi'"></Data>
+		<Data id="75" name="aidepremiersalarie" label="aide premier salarie" type="money" source="1" index="'aide_premier_salarie'"></Data>
+		<Data id="76" name="aideembauchepme" label="aide embauche pme" type="money" source="1" index="'aide_embauche_pme'"></Data>
+		<Data id="77" name="affinageSituation" label="Affinage situation" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+			</Choices>
+		</Data>
+		<Data id="78" name="connaissanceTauxRisque" label="Connaissance taux risque" type="choice">
+			<Description><![CDATA[
+C'est le taux de la cotisation accidents du travail (AT) et maladies professionnelles (MP). Il est accessible sur <a target="_blank" rel="nofollow" href="http://www.net-entreprises.fr/html/compte-accident-travail.htm" title="Link: http://www.net-entreprises.fr/html/compte-accident-travail.htm">net-entreprises.fr</a> ou reçu par courrier.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+			</Choices>
+		</Data>
+		<Data id="79" name="cotisationATMP" label="Taux cotisation ATMP" type="choice" source="2">
+			<Choices>
+				<Source id="2" valueColumn="Taux net" labelColumn="Nature du risque"></Source>
+			</Choices>
+		</Data>
+		<Data id="80" name="risquesProfessionnels" label="Risques professionnels" type="percent"></Data>
+		<Data id="81" name="extensionsOpenfisca" label="x-openfisca-extensions" type="text"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="0" name="calcul" label="Calcul" template="pages:article.html.twig">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Votre entreprise
+						]]></Legend>
+						<Field position="1" data="2" usage="input" label="Forme juridique" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="2" data="3" usage="input" label="Nombre de salariés" required="1" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="3" data="12" usage="input" label="Bénéficiez-vous du statut de jeune entreprise innovante ?" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Votre projet d'embauche
+						]]></Legend>
+						<Field position="1" data="4" usage="input" label="Type de contrat" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PostNote><![CDATA[
+Note: pour une simulation plus fiable du cas de l'apprentissage, rendez-vous sur <a target="_blank" rel="nofollow" href="https://www.alternance.emploi.gouv.fr/portail_alternance/jcms/hl_6238/simulateur-alternant">le simulateur du portail de l'alternance</a>
+							]]></PostNote>
+						</Field>
+						<Field position="2" data="5" usage="input" label="Statut" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="3" data="6" usage="input" newline="0" label="Salaire" required="1" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat"></Field>
+						<Field position="4" data="7" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="5" data="8" usage="input" label="Horaires" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="6" data="9" usage="input" label="Nombre d'heures par semaine" required="0" visibleRequired="1" colon="0" help="0"></Field>
+						<Field position="7" data="10" usage="input" label="Commune" required="1" visibleRequired="0" colon="0" help="0" widget="geoAPILocalities"></Field>
+						<Field position="8" data="11" usage="input" label="Date d'embauche" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker"></Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Field position="1" data="77" usage="input" label="Pour des résultats plus précis, affinez votre situation" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+					</FieldSet>
+					<FieldSet id="4">
+						<Legend><![CDATA[
+Affinez votre situation
+						]]></Legend>
+						<Field position="1" data="13" usage="input" label="Quel est le montant mensuel de la complémentaire santé obligatoire de l'entreprise ?" required="0" visibleRequired="0" colon="0" help="1" widget="AutoMoneyFormat"></Field>
+						<Field position="2" data="78" usage="input" label="Connaissez-vous votre taux de risque AT/MP ?" required="0" visibleRequired="0" colon="0" help="1" expanded="1"></Field>
+						<Field position="3" data="20" usage="input" label="Entrez votre taux de risque" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="4" data="79" usage="input" label="Quelle est la catégorie de risque de votre entreprise ?" prompt="Tapez des mots ou déroulez la liste complète" required="0" visibleRequired="0" colon="0" help="0" widget="AutocompletionListbox"></Field>
+						<Field position="5" data="80" usage="output" label="Risques professionnels" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="6" data="18" usage="input" label="Le salarié est-il affilié au régime d'Alsace-Moselle ?" required="0" visibleRequired="0" colon="0" help="1" expanded="1"></Field>
+						<Field position="7" data="15" usage="input" label="Le salarié est-il exposé à des facteurs de pénibilité au-delà des seuils d'exposition ?" required="0" visibleRequired="0" colon="0" help="1" expanded="1"></Field>
+					</FieldSet>
+					<BlockInfo id="5" name="blocinfoSalaireBrut" label="">
+						<Chapter id="1" name="chapitreSalaireBrut" label="">
+							<Section id="1" name="sectionSalaireBrut" label="">
+								<Content><![CDATA[
+Mon #2 versera #23 € par mois,
+ou #25 € après déduction des aides différées.
+
+Mon salarié·e touchera #27 € brut par mois.
+								]]></Content>
+							</Section>
+							<Section id="2" name="sectionSalaireBrut2" label="">
+								<Content><![CDATA[
+Mon #2 versera #23 € par mois.
+
+Mon salarié·e touchera #27 € brut par mois.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="6" name="blocinfoSalaireNet" label="">
+						<Chapter id="1" name="chapitreSalaireNet" label="">
+							<Section id="1" name="sectionSalaireNet" label="">
+								<Content><![CDATA[
+Mon #2 versera #23 € par mois,
+ou #25 € après déduction des aides différées.
+
+Mon salarié·e touchera #27 € net par mois.
+								]]></Content>
+							</Section>
+							<Section id="2" name="sectionSalaireNet2" label="">
+								<Content><![CDATA[
+Mon #2 versera #23 € par mois.
+
+Mon salarié·e touchera #27 € net par mois.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="detail" label="">
+						<Chapter id="1" name="cotisationsDetaillees" label="Cotisations détaillées" collapsible="1">
+							<Section id="1" name="sectionCotisationsEmployeur" label="Cotisations employeur">
+								<Content><![CDATA[
+<table>
+<tbody>
+<tr> <th>AGS</th> <td><span data-source="ags"> #30 </span> €</td> </tr>
+<tr> <th>AGFF</th> <td><span data-source="agff_employeur">#31</span> €</td> </tr>
+<tr> <th>APEC</th> <td><span data-source="apec_employeur">#32</span> €</td> </tr>
+<tr> <th>AGIRC</th> <td><span data-source="agirc_employeur">#33</span> €</td> </tr>
+<tr> <th>AGIRC GMP</th> <td><span data-source="agirc_gmp_employeur">#34</span> €</td> </tr>
+<tr> <th>ARRCO</th> <td><span data-source="arrco_employeur">#35</span> €</td> </tr>
+<tr> <th>Assurance chômage</th> <td><span data-source="chomage_employeur">#36</span> €</td> </tr>
+<tr> <th>Cotisation exceptionnelle temporaire</th> <td><span data-source="cotisation_exceptionnelle_temporaire_employeur">#37</span> €</td> </tr>
+<tr> <th>Allocations familiales</th> <td><span data-source="famille">#38</span> €</td> </tr>
+<tr> <th>Vieillesse (déplafonnée)</th> <td><span data-source="vieillesse_deplafonnee_employeur">#39</span> €</td> </tr>
+<tr> <th>Vieillesse (plafonnée)</th> <td><span data-source="vieillesse_plafonnee_employeur">#40</span> €</td> </tr>
+<tr> <th>Maladie</th> <td><span data-source="mmid_employeur">#41</span> €</td> </tr>
+<tr> <th>Contribution solidarité autonomie</th> <td><span data-source="contribution_solidarite_autonomie">#42</span> €</td> </tr>
+<tr> <th>Formation professionnelle</th> <td><span data-source="formation_professionnelle">#43</span> €</td> </tr>
+<tr> <th>Participation à l'effort de construction</th> <td><span data-source="participation_effort_construction">#44</span> €</td> </tr>
+<tr> <th>Taxe d'apprentissage</th> <td><span data-source="taxe_apprentissage">#45</span> €</td> </tr>
+<tr> <th>Fonds national d'aide au logement</th> <td><span data-source="fnal">#46</span> €</td> </tr>
+<tr> <th>Contribution au dialogue social</th> <td><span data-source="financement_organisations_syndicales">#47</span> €</td> </tr>
+<tr> <th>Prévoyance obligatoire cadre</th> <td><span data-source="prevoyance_obligatoire_cadre">#48</span> €</td> </tr>
+<tr> <th>Versement transport</th> <td><span data-source="versement_transport">#49</span> €</td> </tr>
+<tr> <th>Forfait social</th> <td><span data-source="forfait_social">#50</span> €</td> </tr>
+<tr class="explained" title="Montant calculé pour une activité à faible risque d'accident de travail."> <th>Accident du travail</th> <td><span data-source="accident_du_travail">#51</span> €</td> </tr>
+<tr class="explained" title="Montant imprécis. Décroît en fonction du pourcentage de l'effectif en apprentissage."> <th>Contribution supplémentaire à l'apprentissage</th> <td><span data-source="contribution_supplementaire_apprentissage">#52</span> €</td> </tr>
+<tr class="explained" title="Montant non calculé, sauf pour le cas des associations à but non lucratif. Taxe due notamment par les entreprises non assujetties à la TVA."> <th>Taxe sur les salaires</th> <td><span data-source="taxe_salaires">#53</span> €</td> </tr>
+<tr class="explained" title="L'employeur doit proposer et payer la moitié d'une offre couvrant un panier de soins minimum. Cette part employeur n'est qu'un exemple."> <th>Complémentaire santé</th> <td><span data-source="complementaire_sante_employeur">#54</span> €</td> </tr>
+<tr class="explained" title="L'employeur est redevable d'une cotisation de pénibilité additionnelle pour les salariés exposés à un ou des facteurs de pénibilité."> <th>Cotisation pénibilité</th> <td><span data-source="penibilite">#55</span> €</td> </tr>
+</tbody>
+</table>
+								]]></Content>
+							</Section>
+							<Section id="2" name="sectionCotisationsSalarie" label="Cotisations salarié">
+								<Content><![CDATA[
+<table>
+<tr> <th>AGFF</th> <td><span data-source="agff_salarie">#56</span> €</td> </tr>
+<tr> <th>AGIRC</th> <td><span data-source="agirc_salarie">#57</span> €</td> </tr>
+<tr> <th>AGIRC GMP</th> <td><span data-source="agirc_gmp_salarie">#58</span> €</td> </tr>
+<tr> <th>APEC</th> <td><span data-source="apec_salarie">#59</span> €</td> </tr>
+<tr> <th>ARRCO</th> <td><span data-source="arrco_salarie">#60</span> €</td> </tr>
+<tr> <th>Assurance chômage</th> <td><span data-source="chomage_salarie">#61</span> €</td> </tr>
+<tr> <th>Cotisation exceptionnelle temporaire</th> <td><span data-source="cotisation_exceptionnelle_temporaire_salarie">#62</span> €</td> </tr>
+<tr> <th>Vieillesse (plafonnée)</th> <td><span data-source="vieillesse_plafonnee_salarie">#63</span> €</td> </tr>
+<tr> <th>Vieillesse (déplafonnée)</th> <td><span data-source="vieillesse_deplafonnee_salarie">#64</span> €</td> </tr>
+<tr> <th>Maladie</th> <td><span data-source="mmid_salarie">#65</span> €</td> </tr>
+<tr> <th>CSG déductible</th> <td><span data-source="csg_deductible_salaire">#66</span> €</td> </tr>
+<tr> <th>CSG non déductible</th> <td><span data-source="csg_imposable_salaire">#67</span> €</td> </tr>
+<tr> <th>CRDS</th> <td><span data-source="crds_salaire">#68</span> €</td> </tr>
+<tr> <th>Complémentaire santé</th> <td><span data-source="complementaire sante salarie">#69</span> €</td> </tr>
+</tbody>
+</table>
+								]]></Content>
+							</Section>
+							<Section id="3" name="sectionAidesEmployeurImmediates" label="Aides employeur immédiates">
+								<Content><![CDATA[
+<table>
+<tbody>
+<tr> <th>Réduction générale sur les bas salaires (ex-Fillon)</th> <td><span data-source="allegement_fillon">#70</span> €</td> </tr>
+<tr> <th>Réduction de cotisation d’allocations familiales</th> <td><span data-source="allegement_cotisation_allocations_familiales">#71</span> €</td> </tr>
+<tr> <th>Jeune entreprise innovante</th> <td><span data-source="exoneration_cotisations_employeur_jei">#72</span> €</td> </tr>
+<tr> <th>Apprentissage</th> <td><span data-source="exoneration_cotisations_employeur_apprenti">#73</span> €</td> </tr>
+</tbody>
+</table>
+								]]></Content>
+							</Section>
+							<Section id="4" name="sectionAidesEmployeurdifférees" label="Aides employeur différées">
+								<Content><![CDATA[
+<table>
+<tbody>
+<tr> <th>Crédit d'impôt pour la compétitivité et l'emploi (CICE)</th> <td><span data-source="credit_impot_competitivite_emploi">#74</span> €</td> </tr>
+<tr> <th>Aide à l'embauche d'un premier salarié</th> <td><span data-source="aide_premier_salarie">#75</span> €</td> </tr>
+<tr> <th>Aide à l'embauche pour les PME</th> <td><span data-source="aide_embauche_pme">#76</span> €</td> </tr>
+</tbody>
+</table>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="openfisca" label="donneesEmbauche" returnType="json" returnPath="//values">
+			<Parameter type="path" origin="data" name="moisSimulation" format="Y-m" data="1"></Parameter>
+			<Parameter type="path" origin="data" name="donneesRetour" data="29"></Parameter>
+			<Parameter type="queryString" origin="constant" name="allegement_fillon_mode_recouvrement" constant="anticipe_regularisation_fin_de_periode"></Parameter>
+			<Parameter type="queryString" origin="constant" name="allegement_cotisation_allocations_familiales_mode_recouvrement" constant="anticipe_regularisation_fin_de_periode"></Parameter>
+			<Parameter type="queryString" origin="data" name="contrat_de_travail_debut" format="Y-m" data="11"></Parameter>
+			<Parameter type="queryString" origin="data" name="effectif_entreprise" data="21"></Parameter>
+			<Parameter type="queryString" origin="data" name="heures_remunerees_volume" data="19"></Parameter>
+			<Parameter type="queryString" origin="data" name="salaire_net_a_payer" data="16" optional="1"></Parameter>
+			<Parameter type="queryString" origin="data" name="salaire_de_base" data="17" optional="1"></Parameter>
+			<Parameter type="queryString" origin="data" name="contrat_de_travail" data="8"></Parameter>
+			<Parameter type="queryString" origin="data" name="categorie_salarie" data="5"></Parameter>
+			<Parameter type="queryString" origin="data" name="complementaire_sante_montant" data="13"></Parameter>
+			<Parameter type="queryString" origin="data" name="salarie_regime_alsace_moselle" data="18"></Parameter>
+			<Parameter type="queryString" origin="data" name="depcom_entreprise" data="10"></Parameter>
+			<Parameter type="queryString" origin="constant" name="ratio_alternants" constant="0"></Parameter>
+			<Parameter type="queryString" origin="data" name="taux_accident_travail" data="20"></Parameter>
+			<Parameter type="queryString" origin="data" name="exposition_penibilite" data="15"></Parameter>
+			<Parameter type="queryString" origin="data" name="jeune_entreprise_innovante" data="12"></Parameter>
+			<Parameter type="queryString" origin="data" name="entreprise_est_association_non_lucrative" data="14" optional="1"></Parameter>
+			<Parameter type="header" origin="data" name="x-openfisca-extensions" data="81" optional="1"></Parameter>
+		</Source>
+		<Source id="2" datasource="taux-cotisation-atmp" label="Taux cotisation ATMP" returnType="json"></Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="R1">
+			<Conditions value="#8 = 'temps_partiel'">
+				<Condition operand="tempsDeTravail" operator="=" expression="temps_partiel"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="2" field="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="2" field="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="R2">
+			<Conditions value="#2 = 'association'">
+				<Condition operand="typeEntreprise" operator="=" expression="association"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="14" value="true"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="unsetAttribute" target="content" data="14"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="R3">
+			<Conditions value="defined(#6) &amp;&amp; #7 = 2">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="81" value="'de_net_a_brut'"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="17"></Action>
+				<Action id="3" name="setAttribute" target="index" data="26" value="'salaire_de_base'"></Action>
+				<Action id="4" name="setAttribute" target="content" data="29" value="#28 + ' salaire_de_base'"></Action>
+				<Action id="5" name="setAttribute" target="content" data="16" value="#6"></Action>
+				<Action id="6" name="showObject" target="blockinfo" step="0" panel="1" blockinfo="5"></Action>
+				<Action id="7" name="hideObject" target="blockinfo" step="0" panel="1" blockinfo="6"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="R4">
+			<Conditions value="defined(#6) &amp;&amp; #7 = 1">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="unsetAttribute" target="content" data="81"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="16"></Action>
+				<Action id="3" name="setAttribute" target="index" data="26" value="'salaire_net_a_payer'"></Action>
+				<Action id="4" name="setAttribute" target="content" data="29" value="#28 + ' salaire_net_a_payer'"></Action>
+				<Action id="5" name="setAttribute" target="content" data="17" value="#6"></Action>
+				<Action id="6" name="hideObject" target="blockinfo" step="0" panel="1" blockinfo="5"></Action>
+				<Action id="7" name="showObject" target="blockinfo" step="0" panel="1" blockinfo="6"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="R5">
+			<Conditions value="#4 = 'apprenti'">
+				<Condition operand="typeEmploye" operator="=" expression="apprenti"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="postnote" step="0" panel="1" fieldset="2" postnote="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="postnote" step="0" panel="1" fieldset="2" postnote="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="R6">
+			<Conditions value="defined(#77) &amp;&amp; #77 = 1">
+				<Connector type="all">
+					<Condition operand="affinageSituation" operator="present"></Condition>
+					<Condition operand="affinageSituation" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="0" panel="1" fieldset="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="0" panel="1" fieldset="4"></Action>
+				<Action id="2" name="setAttribute" target="content" data="13" value="40"></Action>
+				<Action id="3" name="setAttribute" target="content" data="20" value="0.01"></Action>
+				<Action id="4" name="unsetAttribute" target="content" data="79"></Action>
+				<Action id="5" name="setAttribute" target="content" data="18" value="0"></Action>
+				<Action id="6" name="setAttribute" target="content" data="15" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="R7">
+			<Conditions value="defined(#78) &amp;&amp; #78 = 1">
+				<Connector type="all">
+					<Condition operand="connaissanceTauxRisque" operator="present"></Condition>
+					<Condition operand="connaissanceTauxRisque" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="4" field="3"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="79"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="4" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="R8">
+			<Conditions value="defined(#78) &amp;&amp; #78 = 2">
+				<Connector type="all">
+					<Condition operand="connaissanceTauxRisque" operator="present"></Condition>
+					<Condition operand="connaissanceTauxRisque" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="4" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="4" field="4"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="79"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="R9">
+			<Conditions value="defined(#79)">
+				<Condition operand="cotisationATMP" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="0" panel="1" fieldset="4" field="5"></Action>
+				<Action id="2" name="setAttribute" target="content" data="80" value="#79"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="0" panel="1" fieldset="4" field="5"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="80"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="R10">
+			<Conditions value="defined(#80)">
+				<Condition operand="risquesProfessionnels" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="20" value="#80 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="20" value="0.01"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="R11">
+			<Conditions value="defined(#6) &amp;&amp; #2 = 'entreprise' &amp;&amp; #7 = 2">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeEntreprise" operator="=" expression="entreprise"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="0" panel="1" blockinfo="5" chapter="1" section="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="0" panel="1" blockinfo="5" chapter="1" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="R12">
+			<Conditions value="defined(#6) &amp;&amp; #2 = 'association' &amp;&amp; #7 = 2">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeEntreprise" operator="=" expression="association"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="0" panel="1" blockinfo="5" chapter="1" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="0" panel="1" blockinfo="5" chapter="1" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="R13">
+			<Conditions value="defined(#6) &amp;&amp; #2 = 'entreprise' &amp;&amp; #7 = 1">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeEntreprise" operator="=" expression="entreprise"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="0" panel="1" blockinfo="6" chapter="1" section="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="0" panel="1" blockinfo="6" chapter="1" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="R14">
+			<Conditions value="defined(#6) &amp;&amp; #2 = 'association' &amp;&amp; #7 = 1">
+				<Connector type="all">
+					<Condition operand="salaire" operator="present"></Condition>
+					<Condition operand="typeEntreprise" operator="=" expression="association"></Condition>
+					<Condition operand="typeSalaireEntre" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="0" panel="1" blockinfo="6" chapter="1" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="0" panel="1" blockinfo="6" chapter="1" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

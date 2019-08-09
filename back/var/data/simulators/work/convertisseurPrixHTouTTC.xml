@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="convertisseurPrixHTouTTC" label="Calculateur prix HT ou TTC" defaultView="professionnels-entreprises" referer="https://www.service-public.fr/professionnels-entreprises/vosdroits/F24271" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description edition="manual"><![CDATA[
+Ce convertisseur permet de calculer un prix hors taxes (HT) à partir d'un prix toutes taxes comprises (TTC) et vice versa selon les <a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23567">différents taux de TVA applicables</a>. Les taux de la taxe sur la valeur ajoutée (TVA) dépendent de la nature du produit ou du service, du mode de consommation (produits alimentaires) et du lieu d'achat du produit ou de la prestation de service (France métropolitaine, Corse ou Guadeloupe/Martinique/Réunion).
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<DataGroup id="1" name="SaisieInformationsTTCversHT" label="Saisie des informations TTC vers HT">
+			<Data id="1" name="prixHT" label="Prix HT" type="money" />
+			<Data id="2" name="prixTTC" label="prix TTC" type="money" />
+			<Data id="3" name="tauxTVA" label="Taux de TVA" type="choice">
+				<Choices>
+					<Choice id="1" value="20" label="20 %" />
+					<Choice id="2" value="10" label="10 %" />
+					<Choice id="3" value="5.5" label="5,5 %" />
+					<Choice id="4" value="2.1" label="2,10 %" />
+					<Choice id="5" value="8.5" label="8,5 %" />
+					<Choice id="6" value="1.75" label="1,75 %" />
+					<Choice id="7" value="1.05" label="1,05 %" />
+					<Choice id="8" value="0.9" label="0,90 %" />
+				</Choices>
+			</Data>
+			<Data id="4" name="montantTVA" label="montant de la TVA" type="money" />
+		</DataGroup>
+		<DataGroup id="2" name="SaisieInformationsHTversTTC" label="Saisie Informations HT vers TTC">
+			<Data id="5" name="montantHT2HtVersTtc" label="Montant HT 2 HT vers TTC" type="money" />
+			<Data id="6" name="tauxTVA2" label="Taux de TVA 2" type="choice">
+				<Choices>
+					<Choice id="1" value="20" label="20 %" />
+					<Choice id="2" value="10" label="10 %" />
+					<Choice id="3" value="5.5" label="5,5 %" />
+					<Choice id="4" value="2.1" label="2,1 %" />
+					<Choice id="5" value="8.5" label="8,5 %" />
+					<Choice id="6" value="1.75" label="1,75 %" />
+					<Choice id="7" value="1.05" label="1,05 %" />
+					<Choice id="8" value="0.9" label="0.90 %" />
+				</Choices>
+			</Data>
+			<Data id="7" name="montantTVA2HtVersTtc" label="Montant TVA 2 HT vers TTC" type="money" />
+			<Data id="8" name="montantTTC2HtVersTtc" label="Montant TTC 2 HT vers TTC" type="money" />
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="convertion" label="Conversion HT &lt;=> TTC" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panneauGroupeChamps1" label="Calcul d'un prix HT à partir d'un prix TTC">
+					<FieldSet id="1" disposition="grid">
+						<Legend edition="manual"><![CDATA[
+Entrer le montant à convertir
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="MontantTTC" type="money" label="Montant TTC" />
+							<Column id="2" name="tauxTVA" type="choice" label="Taux de TVA" />
+							<Column id="3" name="montantTVA" type="money" label="Montant de la TVA" />
+							<Column id="4" name="montantHT" type="money" label="Montant HT" />
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="TTC vers HT" colon="0">
+							<Field position="1" data="2" usage="input" newline="0" label="Prix TTC" required="0" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat" />
+							<Field position="2" data="3" usage="input" newline="0" label="Taux de la TVA" prompt="Choisir le taux " required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="4" usage="output" newline="0" label="Montant TVA" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="4" data="1" usage="output" newline="0" label="Prix HT" required="0" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat" />
+						</FieldRow>
+					</FieldSet>
+					<BlockInfo id="2" name="blocFrance1" label="Quelques informations sur le taux de TVA applicable">
+						<Chapter id="1" name="chapitreFrance1" label="France métropolitaine" collapsible="1">
+							<Section id="1" name="sectionFrance20" label="Taux de 20 %">
+								<Content edition="manual"><![CDATA[
+<b></b><b>V</b><b></b><b>entes de biens et prestations de services. </b>Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. il s'applique notamment aux :
+- boissons alcoolisées ;
+- produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré) ;
+- produits agricoles ou piscicoles non transformés, qui ne sont utilisés ni pour l'alimentation, ni pour la production agricole ;
+- centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+- fourniture de logement en meublé ou en garni autres qu'hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+<b></b>
+								]]></Content>
+							</Section>
+							<Section id="2" name="sectionFrance10" label="Taux de 10 %">
+								<Content edition="manual"><![CDATA[
+<u>Agro-alimentaire</u>
+- restauration et vente de produits alimentaires préparés destinés à une consommation immédiate ;
+<div>- boissons sans alcool et eau (à consommation immédiate) ;</div><div>- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale.</div><div></div><div></div><div></div><div></div><div></div><div><u>
+</u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u>
+</div><div><u>
+</u><u></u><u></u><u></u><u></u><u></u>
+</div><div></div><div><u>Culture et loisirs</u>
+- parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+-  travaux de composition et d'impression des périodiques et cessions d'informations par les agences de presse.
+</div><div><u>Hygiène et santé</u></div><div>- médicaments non remboursables par la sécurité sociale.</div><div></div><div></div><div></div><div></div><div></div><div></div><div><u>
+</u><u></u><u></u><u></u><u></u>
+</div><div><u>Logement</u>
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+-  travaux de rénovation d'un logement.
+<u>Autres :</u> transport de voyageurs.
+
+</div>
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionFrance55" label="Taux de 5,5 %">
+								<Content edition="manual"><![CDATA[
+<div><u>Agro-alimentaire
+</u><u></u><u></u><u></u><u></u>- boissons sans alcool et eau (à consommation différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits alimentaires ;
+- restauration et vente de produits alimentaires préparés vendus sous un emballage permettant leur conservation.
+</div><div><u>Culture et loisirs</u>
+- billetterie des spectacles vivants ;
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- droits d'entrée dans les zoos et cinémas ;
+- livres (y compris leur location) tout support ;
+- ventes d’œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- préservatifs masculin et féminin ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux d‘amélioration énergétique d'un logement.
+<u>Autres</u> : équipements spéciaux et appareillages ; prestations pour personnes dépendantes (handicapées ou âgées).
+
+</div><div></div>
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionFrance21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis ;
+billetterie des spectacles vivants (pour les 140 premières représentations) ;
+contribution à l'audiovisuel public ; médicaments remboursables par la sécurité sociale ; publications de presse détenant un n° de CPPAP, y compris la presse en ligne.
+								]]></Content>
+							</Section>
+							<Section id="5" name="Annotations" label="A noter">
+								<Content edition="manual"><![CDATA[
+Pour les produits alimentaires, les taux réduits sont applicables en fonction du mode de consommation :
+<div>- taux de 10 % s'ils sont destinés à une consommation immédiate (il n'est pas possible de les conserver)</div><div>- taux de 5,5 % s'ils sont vendus sous emballage permettant une conservation.</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="2" name="chapitreCorse1" label="Corse" collapsible="1">
+							<Section id="1" name="sectionCorse20" label="Taux de 20 %">
+								<Content edition="manual"><![CDATA[
+<b></b>
+<b>Ventes de biens et prestations de services. </b>Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. Il s’applique notamment aux :
+-  boissons alcoolisées à emporter ou à livrer ;
+-  centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+-  produits agricoles ou piscicoles non transformés, qui ne sont utilisés ni pour l'alimentation, ni pour la production agricole ;
+-  produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré) ;
+-  publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+								]]></Content>
+							</Section>
+							<Section id="2" name="SectionCorse10" label="Taux de 10 %">
+								<Content edition="manual"><![CDATA[
+<div><u>Agro-alimentaire</u><u></u>
+- boissons alcoolisées à consommer sur place ;
+- boissons sans alcool et eau (à consommation immédiate) ;
+- restauration et vente de produits alimentaires préparés destinés à une consommation immédiate.
+<u>Logement</u>
+- fourniture de logement en meublé ou en garni autres qu'hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+- travaux de rénovation d'un logement.
+<u>Autres</u>
+- médicaments non remboursables par la sécurité sociale.
+
+</div><div></div>
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionCorse55" label="Taux de 5,5 %">
+								<Content edition="manual"><![CDATA[
+<div><u>Culture et loisirs
+</u><u></u><u></u><u></u><u></u>
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- ventes d'œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- préservatifs masculin et féminin ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux d‘amélioration énergétique d'un logement.
+<u>Autres :</u>  équipements spéciaux et appareillages, prestations pour personnes dépendantes (handicapées ou âgées).
+
+</div><div></div><div></div>
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionCorse21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+<u>Agro-alimentaire</u>
+<u></u><u></u><u></u><u></u><u></u><u></u><u></u>
+- boissons sans alcool et eau (à consommation différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale ;
+- produits alimentaires ;
+- restauration et vente de produits alimentaires préparés vendus sous un emballage permettant leur conservation.
+<u>Culture et loisirs</u>
+- billetterie des spectacles vivants ;
+- contribution à l'audiovisuel public ;
+- droits d'entrée dans les zoos et cinémas ; parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+- livres (y compris leur location) tout support ;
+- publications de presse détenant un n° de CPPAP, y compris la presse en ligne ;
+- travaux de composition et d'impression des périodiques et cessions d'informations par les agences de presse.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé.
+<u>Autres</u>
+- médicaments remboursables par la sécurité sociale ;
+- transport de voyageurs (exonération totale entre la Corse et la France continentale).
+								]]></Content>
+							</Section>
+							<Section id="5" name="SectionCorse09" label="Taux de 0.90 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis ;
+billetterie des spectacles vivants (pour les 140 premières représentations).
+								]]></Content>
+							</Section>
+							<Section id="6" name="Annotations" label="A noter">
+								<Content edition="manual"><![CDATA[
+<b></b>Le <b></b>transport de voyageurs entre la Corse et la France continentale est totalement exonéré.
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="3" name="chapitreGuadeloupeMartiniqueReunion1" label="Guadeloupe, Martinique, Réunion" collapsible="1">
+							<Section id="1" name="sectionGuadeloupeMartiniqueReunion85" label="Taux de 8,5 %">
+								<Content edition="manual"><![CDATA[
+<b></b>
+<b>Ventes de biens et prestations de services</b>. Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. Il s’’applique notamment aux :
+<u>Agro-alimentaire</u>
+- boissons alcoolisées à emporter ou à livrer ;
+- boissons alcoolisées à consommer sur place ;
+- produits agricoles ou piscicoles non transformés, qui ne sont utilisés ni pour l'alimentation, ni pour la production agricole ;
+- produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré).
+<u>Culture et loisirs</u>
+- centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+- publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+
+<div></div>
+								]]></Content>
+							</Section>
+							<Section id="2" name="SectionGuadeloupeMartiniqueReunion21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+<u>Agro-alimentaire</u>
+- boissons sans alcool et eau (à consommation immédiate ou différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale ;
+- restauration et vente de produits alimentaires.
+<u>Culture et loisirs</u>
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- billetterie des spectacles vivants ;
+- contribution à l'audiovisuel public ;
+- droits d'entrée dans les zoos, cinémas, parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+- livres (y compris leur location) tout support ;
+- travaux de composition et d'impression des périodiques et cessions d’informations par les agences de presse ;
+- ventes d’œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- médicaments ;
+- préservatifs masculins et féminins ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- fourniture de logement en meublé ou en garni ;
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux de rénovation d'un logement.
+<u>Autres</u>
+- équipements spéciaux et appareillages, prestations pour personnes dépendantes (handicapées ou âgées) ;
+- transport de voyageurs (transport maritime exonéré à l'intérieur du département).
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionGuadeloupeMartiniqueReunion175" label="Taux de 1,75 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis.
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionGuadeloupeMartiniqueReunion105" label="Taux de 1,05 %">
+								<Content edition="manual"><![CDATA[
+Billetterie des spectacles vivants (pour les 140 premières représentations) ; publications de presse détenant un n° de CPPAP, y compris la presse en ligne.
+								]]></Content>
+							</Section>
+							<Section id="5" name="section2GuadeloupeMartiniqueReunion1" label="A noter">
+								<Content edition="manual"><![CDATA[
+<b></b>
+Le transport maritime de voyageurs à l'intérieur de ces
+<b></b>
+départements est exonéré. Les ventes de riz sont exonérées de la TVA
+dans le département de la Réunion.
+<div>En Polynésie française, les taux de TVA sont fixés à :</div><div>- 16 % pour le taux normal ;</div><div>- 13 % pour le taux intermédiaire ;</div><div>- 5 % pour le taux réduit.</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+				<Panel id="2" name="HTversTTC" label="Calcul d'un prix TTC à partir d'un prix HT">
+					<FieldSet id="1" disposition="grid">
+						<Legend edition="manual"><![CDATA[
+Entrer le montant à convertir
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="montantHT2" type="money" label="Montant HT" />
+							<Column id="2" name="tauxTVA2" type="choice" label="Taux de TVA" />
+							<Column id="3" name="montantTVA2" type="money" label="Montant de la TVA" />
+							<Column id="4" name="montantTTC2" type="money" label="Montant TTC" />
+						</Columns>
+						<FieldRow id="1" datagroup="2" label="HT vers TTC" colon="0">
+							<Field position="1" data="5" usage="input" newline="0" label="Prix HT" required="0" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat" />
+							<Field position="2" data="6" usage="input" newline="0" label="Taux de TVA" prompt="Choisir le taux " required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="7" usage="output" newline="0" label="Montant de la TVA" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="4" data="8" usage="output" newline="0" label="Prix TTC" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+					</FieldSet>
+					<BlockInfo id="2" name="blocFrance2" label="Quelques informations sur le taux de TVA applicable">
+						<Chapter id="1" name="chapitreFrance2" label="France métropolitaine" collapsible="1">
+							<Section id="1" name="sectionFrance20" label="Taux de 20 %">
+								<Content edition="manual"><![CDATA[
+<b></b>
+<b></b>
+
+<b>V</b><b></b><b>entes de biens et prestations de services. </b>Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. il s'applique notamment aux :
+- boissons alcoolisées ;
+- produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré) ;
+- produits agricoles ou piscicoles non transformés, qui ne sont utilisés
+ni pour l'alimentation, ni pour la production agricole ;
+- centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+- fourniture de logement en meublé ou en garni autres qu'hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+
+<div></div>
+								]]></Content>
+							</Section>
+							<Section id="2" name="SectionFrance10" label="Taux de 10 %">
+								<Content edition="manual"><![CDATA[
+<u>Agro-alimentaire</u>
+- restauration et vente de produits alimentaires préparés destinés à une consommation immédiate ;
+<div>- boissons sans alcool et eau (à consommation immédiate) ;</div><div>- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale.</div><div><u>Culture et loisirs</u></div><div>- parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+-  travaux de composition et d'impression des périodiques et cessions d'informations par les agences de presse.
+</div><div><u>Hygiène et santé</u></div><div>- médicaments non remboursables par la sécurité sociale.</div><div><u>Logement</u>
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+-  travaux de rénovation d'un logement.
+<u>Autres :</u> transport de voyageurs.
+
+</div>
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionFrance55" label="Taux de 5,5 %">
+								<Content edition="manual"><![CDATA[
+<div><u></u></div><div><u>Agro-alimentaire
+</u><u></u><u></u><u></u><u></u>- boissons sans alcool et eau (à consommation différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits alimentaires ;
+- restauration et vente de produits alimentaires préparés vendus sous un emballage permettant leur conservation.
+</div><div><u>Culture et loisirs</u>
+- billetterie des spectacles vivants ;
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- droits d'entrée dans les zoos et cinémas ;
+- livres (y compris leur location) tout support ;
+- ventes d’œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- préservatifs masculin et féminin ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux d‘amélioration énergétique d'un logement.
+<u>Autres</u> : équipements spéciaux et appareillages ; prestations pour personnes dépendantes (handicapées ou âgées).
+
+</div>
+<div></div>
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionFrance21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis ; billetterie des spectacles vivants (pour les 140 premières représentations) ;
+contribution à l'audiovisuel public ; médicaments remboursables par la sécurité sociale ; publications de presse détenant un n° de CPPAP, y compris la presse en ligne.
+								]]></Content>
+							</Section>
+							<Section id="5" name="Annotations" label="A noter ">
+								<Content edition="manual"><![CDATA[
+<b></b>﻿P<b></b>our les produits alimentaires, les taux réduits sont applicables en fonction du mode de consommation :
+<div>- taux de 10 % s'ils sont destinés à une consommation immédiate (il n'est pas possible de les conserver)</div><div>- taux de 5,5 % s'ils sont vendus sous emballage permettant une conservation.</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="2" name="chapitreCorse2" label="Corse" collapsible="1">
+							<Section id="1" name="sectionCorse20" label="Taux de 20 %">
+								<Content edition="manual"><![CDATA[
+<b></b>
+<b>Ventes de biens et prestations de services. </b>Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. Il s’applique notamment aux :
+-  boissons alcoolisées à emporter ou à livrer ;
+-  centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+-  produits agricoles ou piscicoles non transformés, qui ne sont utilisés ni pour l'alimentation, ni pour la production agricole ;
+-  produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré) ;
+-  publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+								]]></Content>
+							</Section>
+							<Section id="2" name="SectionCorse10" label="Taux de 10 %">
+								<Content edition="manual"><![CDATA[
+<u></u>
+<u>Agro-alimentaire</u>
+- boissons alcoolisées à consommer sur place ;
+- boissons sans alcool et eau (à consommation immédiate) ;
+- restauration et vente de produits alimentaires préparés destinés à une consommation immédiate.
+<u>Logement</u>
+- fourniture de logement en meublé ou en garni autres qu'hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+- travaux de rénovation d'un logement.
+<u>Autres</u>
+- médicaments non remboursables par la sécurité sociale.
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionCorse55" label="Taux de 5,5 %">
+								<Content edition="manual"><![CDATA[
+<div><u></u>
+<u>Culture et loisirs</u>
+<u></u><u></u>
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- ventes d'œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- préservatifs masculin et féminin ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux d‘amélioration énergétique d'un logement.
+<u>Autres :</u>  équipements spéciaux et appareillages, prestations pour personnes dépendantes (handicapées ou âgées).
+
+</div><div></div><div></div>
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionCorse21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+<u></u>
+<u>Agro-alimentaire</u>
+- boissons sans alcool et eau (à consommation différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale ;
+- produits alimentaires ;
+- restauration et vente de produits alimentaires préparés vendus sous un emballage permettant leur conservation.
+<u>Culture et loisirs</u>
+- billetterie des spectacles vivants ;
+- contribution à l'audiovisuel public ;
+- droits d'entrée dans les zoos et cinémas ; parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+- livres (y compris leur location) tout support ;
+- publications de presse détenant un n° de CPPAP, y compris la presse en ligne ;
+- travaux de composition et d'impression des périodiques et cessions d'informations par les agences de presse.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé.
+<u>Autres</u>
+- médicaments remboursables par la sécurité sociale ;
+- transport de voyageurs (exonération totale entre la Corse et la France continentale).
+								]]></Content>
+							</Section>
+							<Section id="5" name="SectionCorse09" label="Taux de 0,90 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis ;
+billetterie des spectacles vivants (pour les 140 premières représentations).
+								]]></Content>
+							</Section>
+							<Section id="6" name="Annotations" label="A noter">
+								<Content edition="manual"><![CDATA[
+Le transport de voyageurs entre la Corse et la France continentale est totalement exonéré.
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="3" name="chapitreGuadeloupeMartiniqueReunion2" label="Guadeloupe, Martinique, Réunion" collapsible="1">
+							<Section id="1" name="sectionGuadeloupeMartiniqueReunion85" label="Taux de 8,5 %">
+								<Content edition="manual"><![CDATA[
+<b></b>
+<b>Ventes de biens et prestations de services</b>. Ce taux s'applique à tous les produits ou services pour lesquels aucun autre taux n'est expressément prévu. Il s’’applique notamment aux :
+<u>Agro-alimentaire</u>
+- boissons alcoolisées à emporter ou à livrer ;
+- boissons alcoolisées à consommer sur place ;
+- produits agricoles ou piscicoles non transformés, qui ne sont utilisés ni pour l'alimentation, ni pour la production agricole ;
+- produits alimentaires spécifiques : confiserie, matières grasses végétales (margarines), caviar, chocolat et produits composés contenant du chocolat ou du cacao (chocolat au lait, chocolat blanc, chocolat fourré).
+<u>Culture et loisirs</u>
+- centres équestres (prestations correspondant au droit d'utilisation d'animaux à des fins d'activités physiques et sportives) ;
+- publications (livres, journaux, revues) pornographiques ou violentes, interdites de vente aux mineurs, d'exposition à la vue du public ou de publicité.
+								]]></Content>
+							</Section>
+							<Section id="2" name="SectionGuadeloupeMartinique21" label="Taux de 2,10 %">
+								<Content edition="manual"><![CDATA[
+<u></u>
+<u>Agro-alimentaire</u>
+- boissons sans alcool et eau (à consommation immédiate ou différée) ;
+- cantines scolaires ;
+- chocolat brut, chocolat de ménage au lait (chocolat en poudre), bonbons de chocolat, fèves de cacao et beurre de cacao ;
+- produits agricoles ou piscicoles non transformés destinés à l'alimentation animale ;
+- restauration et vente de produits alimentaires.
+<u>Culture et loisirs</u>
+- billetterie des rencontres sportives (matchs, compétitions, courses automobiles) ;
+- billetterie des spectacles vivants ;
+- contribution à l'audiovisuel public ;
+- droits d'entrée dans les zoos, cinémas, parcs botaniques, musées, monuments, expositions, foires, salons, jeux et manèges forains et sites culturels ;
+- livres (y compris leur location) tout support ;
+- travaux de composition et d'impression des périodiques et cessions d’informations par les agences de presse ;
+- ventes d’œuvres d'art originales effectuées par leur auteur ou ses ayants droit.
+<u>Hygiène et santé</u>
+- dispositifs d'autotests de dépistage du VIH ;
+- médicaments ;
+- préservatifs masculins et féminins ;
+- protection hygiénique féminine.
+<u>Logement</u>
+- abonnements au gaz et électricité de 36 kW maximum ;
+- fourniture de logement en meublé ou en garni ;
+- hébergement en hôtel (et aux 3/4 du prix de pension ou demi-pension), en location meublée, en camping classé ;
+- livraison de logements locatifs sociaux et travaux effectués dans les logements sociaux ;
+- opérations d'accession sociale à la propriété dans les quartiers prioritaires de la politique de la ville ;
+- prestations d'hébergement et d'accompagnement social rendues dans les résidences hôtelières à vocation sociale ;
+- travaux de rénovation d'un logement.
+<u>Autres</u>
+- équipements spéciaux et appareillages, prestations pour personnes dépendantes (handicapées ou âgées) ;
+- transport de voyageurs (transport maritime exonéré à l'intérieur du département).
+								]]></Content>
+							</Section>
+							<Section id="3" name="SectionGuadeloupeMartiniqueReunion175" label="Taux de 1,75 %">
+								<Content edition="manual"><![CDATA[
+Animaux vivants de boucherie et de charcuterie vendus à des non-assujettis.
+								]]></Content>
+							</Section>
+							<Section id="4" name="SectionGuadeloupeMartiniqueReunion105" label="Taux de 1,05 %">
+								<Content edition="manual"><![CDATA[
+Billetterie des spectacles vivants (pour les 140 premières représentations) ; publications de presse détenant un n° de CPPAP, y compris la presse en ligne.
+								]]></Content>
+							</Section>
+							<Section id="5" name="Annotations" label="A noter">
+								<Content edition="manual"><![CDATA[
+Le transport maritime de voyageurs à l'intérieur de ces départements est exonéré.
+Les ventes de riz sont exonérées de la TVA dans le département de la Réunion.
+
+<div>En Polynésie française, les taux de TVA sont fixés à :</div><div>- 16 % pour le taux normal ;</div><div>- 13 % pour le taux intermédiaire ;</div><div>- 5 % pour le taux réduit.</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<FootNotes position="beforeActions">
+				<FootNote id="1" edition="manual"><![CDATA[
+<div>Pour plus d'informations, consulter la fiche <a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23567 ">Application des différents taux de TVA</a></div>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Calcul montant HT">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3)">
+				<Connector type="all">
+					<Condition operand="prixTTC" operator="present" />
+					<Condition operand="tauxTVA" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="1" value="#2 * 100 / (100 + #3)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Calcul montant TVA TTC vers HT">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2)">
+				<Connector type="all">
+					<Condition operand="prixHT" operator="present" />
+					<Condition operand="prixTTC" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="#2 - #1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Affichage HT">
+			<Conditions value="!defined(#2) || !defined(#3)">
+				<Connector type="any">
+					<Condition operand="prixTTC" operator="blank" />
+					<Condition operand="tauxTVA" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="unsetAttribute" target="content" data="1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Affichage TVA">
+			<Conditions value="!defined(#2) || !defined(#3)">
+				<Connector type="any">
+					<Condition operand="prixTTC" operator="blank" />
+					<Condition operand="tauxTVA" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="unsetAttribute" target="content" data="4" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Calcul montant TTC">
+			<Conditions value="defined(#5) &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="montantHT2HtVersTtc" operator="present" />
+					<Condition operand="tauxTVA2" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="#5 * (100 + #6) / 100" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Calcul montant de la TVA2 (HT vers TTC)">
+			<Conditions value="defined(#5) &amp;&amp; defined(#8)">
+				<Connector type="all">
+					<Condition operand="montantHT2HtVersTtc" operator="present" />
+					<Condition operand="montantTTC2HtVersTtc" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="7" value="#8 - #5" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Affichage TVA 2">
+			<Conditions value="!defined(#5) || !defined(#6)">
+				<Connector type="any">
+					<Condition operand="montantHT2HtVersTtc" operator="blank" />
+					<Condition operand="tauxTVA2" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="unsetAttribute" target="content" data="7" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Affichage TTC 2">
+			<Conditions value="!defined(#5) || !defined(#6)">
+				<Connector type="any">
+					<Condition operand="montantHT2HtVersTtc" operator="blank" />
+					<Condition operand="tauxTVA2" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="unsetAttribute" target="content" data="8" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations edition="manual"><![CDATA[
+Mise en prod : 25 juin 2018
+Mise à jour : 17 juillet 2018 (amélioration du référencement par ajout des développés de HT et
+TTC, TVA dans le texte de présentation
+
++ modification du titre "calculateur" et non plus "convertisseur").
+
+<div>
+
+</div>
+	]]></RelatedInformations>
+</Simulator>

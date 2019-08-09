@@ -1,0 +1,83 @@
+/*Ajout Dila*/
+.faq dt.question{margin-top:1em;}
+.faq dt.question a{background:url('img/ico-nav-context-2.png') no-repeat 24px 0.5em white;padding-left:39px;}
+.faq dt.open a{background:url('img/ico-nav-context-2-on.png') no-repeat 24px 0.5em white;padding-left:39px;}
+.faq dd.reponse{background:#fff; padding:.5em; border:1px solid #e5e5e5; margin-top:.5em;}
+
+.glossaire .ico {display:table-cell; width:70px; height:91px; background:#197671 url(img/ico-quick-acces.png) 0 0 no-repeat;}
+.glossaire .ico-glossaire {background-position:0 -1190px;}
+
+.alt-theme .form-login-account .form-title, .alt-theme .form-login-main .form-title {color: #b9396c;}
+.pagination > .active > span > a, .pagination > .active > span > a:hover, .pagination > .active > span > a:focus {z-index: 2; color: white; background-color: #197671; border-color: white; cursor: pointer;}
+
+.pagenavigator {margin:40px 20px;}
+
+.article li.master, .article ul li.parent{background:none; padding-left:14px;}
+q{font-style:italic;}
+cite{font-style:italic;}
+
+.nav-context ul ul li.master >a{display:inline-block; background-image:none; padding-left:24px;}
+.nav-context ul ul li.master >a+a, .nav-context ul ul ul li.master >a+a, .nav-context ul ul ul ul li.master >a+a{background-image:none; padding-left:0;}
+.nav-context ul ul ul li.master >a{padding-left:45px;}
+.nav-context ul ul ul ul li.master >a{padding-left:64px;}
+.nav-context ul ul ul ul ul li{padding-left:18px;}
+.nav-context ul.plan ul li{border-top:1px solid #efeeed;}
+.nav-context ul.plan ul a{border-top:none}
+.nav-context ul.plan ul ul a, .nav-context ul.plan ul ul ul a{background-color:#fff;}
+.nav-context ul.plan ul{border:none;}
+
+.margin-large-vertical {margin-top:50px; margin-bottom:10px;}
+
+.form-login-main .btn-panel-fournisseur { text-align: center; margin-bottom: 10px; }
+.form-login-main .btn-panel-fournisseur .btn, .form-login-main .btn-panel-fournisseur .btn-next, .form-login-main .btn-panel-fournisseur .btn-help, .form-login-main .btn-panel-fournisseur .btn-close{ padding: 0px 11px 0 20px; font-size: 150%; font-family: "roboto_condensedregular", Arial, sans-serif; }
+
+.form-login-main .btn-panel-fournisseur a, .form-login-main .btn-panel-fournisseur a:hover, .form-login-main .btn-panel-fournisseur a:active, .form-login-main .btn-panel-fournisseur a:visited , a.btn-cancel-form,a.btn-cancel-form:hover,a.btn-cancel-form:active,a.btn-cancel-form:visited {color:#fff; text-decoration:none;}
+.form-login-main .btn-panel-fournisseur a{text-decoration:none;}
+a.nav-main-toggle{font-family:"roboto_condensedregular",arial,sans-serif;}
+
+span.arobas {
+    background: url("img/ico-arob.gif") no-repeat center center white;
+    padding: 0px 5px;
+}
+/* AFFICHAGE COOKIE CNIL */
+#layerCookies{background:#edf9f9; color:#125552; margin:0; min-height:26px; padding:6px; position:fixed; text-align:center; top:0; width:100%; z-index:12; box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.7);}
+#layerCookies em{display:inline-block;font-style:normal;}
+#layerCookies p{margin:0 auto; overflow:hidden; padding:0;}
+#layerCookies a{color:#5b6362; font-weight:bold; padding-left:3px; text-decoration:underline;}
+
+/* Empecher la definition de s'afficher comme les autres liens, vous pouvez donner les attributs standards de votre texte */
+.article a.cs_glossaire, a.cs_glossaire:hover, a.cs_glossaire:focus{color:#000; text-decoration:none; z-index:998;}
+.article a.cs_glossaire:hover, a.cs_glossaire:focus{cursor:help;}
+/* L'effet de survol est obtenu grace aux proprietes display */
+a.cs_glossaire span.gl_dl, a.cs_glossaire span.gl_dt, a.cs_glossaire span.gl_dd {display:none; visibility:hidden; z-index:999;}
+a.cs_glossaire span.gl_dd{font-weight:normal;}
+a.cs_glossaire:hover span.gl_dt, a.cs_glossaire:focus span.gl_dt, a.cs_glossaire:hover span.gl_dd, a.cs_glossaire:focus span.gl_dd{display:block; visibility:visible;}
+a.cs_glossaire:hover span.gl_dl, a.cs_glossaire:focus span.gl_dl{display:inline; visibility:visible;
+	/* Placement de la definition dans la page. */
+	position:absolute; width:20em; margin-left:-6em; margin-top:2.5em;
+	/* Decoration */
+	padding:0.5em; border:1px solid #cccccc; background:whitesmoke; font-size:0.8em; font-weight:normal; line-height:1.5em; text-transform:none; color:#2f2e2c; border-radius:.7em;}
+.tabProcedure .cs_glossaire:hover span.gl_dl, .tabProcedure .cs_glossaire:focus span.gl_dl {margin-left:-17.5em;}
+a.cs_glossaire:hover span.gl_dt, a.cs_glossaire:focus span.gl_dt{font-weight:bold; text-align:left;border-bottom: 1px solid #efeeed;margin-bottom:0.5em;}
+a.cs_glossaire span.gl_mot{border-bottom:1px dotted gray; font-size:inherit; cursor:help;}
+
+.form-login a.btn-cancel-form{color:white; background-color:#197671; border-color:#197671; text-decoration:none; font-family:"roboto_condensedregular", Arial, sans-serif;}
+.form-login a.btn-cancel-form:hover {color:white; background-color:#104c49; border-color:#0e4341;}
+.form-login a.btn-cancel-form:active{background-image:none;}
+.alt-theme .form-login a.btn-cancel-form{color:white; background-color:#b9396c; border-color:#b9396c; text-decoration:none; font-family:"roboto_condensedregular", Arial, sans-serif;}
+.alt-theme .form-login a.btn-cancel-form:hover {color:white; background-color:#922d55; border-color:#8a2b51;}
+.alt-theme .form-login a.btn-cancel-form:active{background-image:none;}
+
+img.pull-left {margin-right:15px;}
+img.pull-right {margin-left:15px;}
+img.pull-center {display:block; margin-left:auto; margin-right:auto;}
+
+.alt-theme .symbol-required{color:#b9396c}
+
+@media (max-width: 767px) {
+.row-detail-avis {margin-left:0; margin-right:0;}
+.detail-avis-content{margin-left: -20px; margin-right: -20px;}
+}
+
+.btn.over-alert{white-space:normal; text-align:left;}
+.disabled.over-alert{color:#000;}

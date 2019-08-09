@@ -1,0 +1,32 @@
+{% extends 'base/layout/pagelayout.html.twig' %}
+
+{# les macro utilisées dans le projet #}
+{% import "boamp/element/pub.html.twig" as pub %}
+{% import "boamp/element/nav.html.twig" as nav %}
+{% block doctype %}
+<!DOCTYPE html>
+{% endblock %}
+
+{% block html %}{{ parent() }}{% endblock %}
+
+{% block title %}Boamp.fr{% endblock %}
+
+{% block metas %}
+{{ parent() }}{% include 'boamp/sections/meta.html.twig' %}
+{% endblock %}
+
+{% block bodyclass %}{% endblock %}
+
+{% block styles %}
+{{ parent() }}{% include 'boamp/sections/favicon.html.twig' %}
+{% include 'boamp/sections/styles.html.twig' %}
+{% endblock %}
+
+{% block body %}
+  {% include 'boamp/sections/header.html.twig' %}
+  {% block content %}{% endblock %}
+  {% include 'boamp/sections/footer.html.twig' %}
+  {% block scripts %}
+	{{ parent() }}{% include 'boamp/sections/scripts.html.twig' %}
+  {% endblock %}
+{% endblock %}

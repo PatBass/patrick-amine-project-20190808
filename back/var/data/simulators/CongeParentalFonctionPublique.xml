@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="CongeParentalFonctionPublique" label="Demande initiale de congé parental dans la fonction publique" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce service vous permet de personnaliser un modèle de lettre pour une première demande de congé parental dans la fonction publique.
+Le document est rédigé au fur et à mesure de vos réponses. Une fois complété, vous pouvez le télécharger au format PDF ou bien le copier d'un clic. Vous pourrez alors l'imprimer, puis le signer.
+
+<div>Pour plus d'informations sur le congé parental d'éducation dans la fonction publique, consultez notre <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F517">fiche d'information</a> sur service-public.fr.
+
+</div>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1' data-xiti-name='Particuliers::Services_en_ligne_et_formulaires::Demande_initiale_de_conge_parental_dans_la_fonction_publique::demarrer' data-xiti-type='action' onclick=&quot;toggle_1a5div(this,'Prenom','Commencer','Fermer','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13'); return false;&quot;&gt;Commencer &lt;span class='glyphicon glyphicon-menu-down'  &gt;&lt;/span&gt;&lt;/button&gt;  "></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="Prenom" label="Prénom" type="text"></Data>
+		<Data id="7" name="name" label="Nom" type="text"></Data>
+		<Data id="8" name="AdresseExp" label="Adresse Exp" type="text"></Data>
+		<Data id="9" name="ComplementAdresseExp" label="Complément d'adresse Exp" type="text"></Data>
+		<Data id="10" name="CodePostalExpediteur" label="Code postal Expéditeur" type="integer" min="1000" max="99000"></Data>
+		<Data id="11" name="VilleExp" label="Ville expéditeur" type="text"></Data>
+		<Data id="12" name="NomSocieteDest" label="2NomSocieteDest" type="text">
+			<Description><![CDATA[
+Indiquez le nom ou le sigle de l'administration qui vous emploie.
+			]]></Description>
+		</Data>
+		<Data id="13" name="AdresseDestinataire" label="2Adresse du destinataire" type="text"></Data>
+		<Data id="14" name="ComplementAdresseDestinataire" label="2Complément d'adresse du destinataire" type="text"></Data>
+		<Data id="15" name="CodePostalDestinataire" label="2Code postal du destinataire" type="integer" min="1000" max="99000"></Data>
+		<Data id="16" name="VilleDestinataire" label="2Ville du destinataire" type="text"></Data>
+		<Data id="17" name="Nometfonctiondudestinataire" label="2Nom et fonction du destinataire" type="text">
+			<Description><![CDATA[
+Indiquez le prénom, le nom de la personne à qui est adressé ce courrier au sein de l'administration.
+			]]></Description>
+		</Data>
+		<Data id="18" name="VilleLettre" label="3VilleLettre" type="text"></Data>
+		<Data id="19" name="DateJour" label="3Date du jour" type="date" default="today"></Data>
+		<Data id="20" name="TypeRemiseLettre" label="3Type de remise de la lettre" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Lettre recommandée avec accusé de réception"></Choice>
+				<Choice id="2" value="2" label="Remise en mains propres contre décharge"></Choice>
+			</Choices>
+		</Data>
+		<Data id="21" name="GenreDestinataire" label="3Genre du destinataire" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Monsieur"></Choice>
+				<Choice id="2" value="2" label="Madame"></Choice>
+			</Choices>
+		</Data>
+		<Data id="22" name="DateDebutConge" label="4Date du début du congé" type="date">
+			<Description><![CDATA[
+La demande de congé doit être présentée au moins 2 mois avant le début du congé.
+			]]></Description>
+		</Data>
+		<Data id="23" name="DureeConge" label="4Durée du congé" type="text" default="'6 mois'">
+			<Description><![CDATA[
+Le congé parental est accordé par période de 6 mois et peut être renouvelé :
+•  jusqu’au 3e anniversaire de l'enfant ou dans la limite d’un délai de 3 ans à partir de l'arrivée au foyer en cas d’adoption d’un ou de 2 enfants de moins de 3 ans,
+•  dans la limite d’un an à partir de l'arrivée au foyer, en cas d’adoption d’un ou de 2 enfants d’au moins 3 ans et de moins de 16 ans,
+•  jusqu'à l'entrée à l'école maternelle des enfants, en cas de naissance de jumeaux,
+•  dans la limite de 5 fois et au plus tard jusqu’au 6e anniversaire du plus jeune des enfants en cas de naissance d'au moins 3 enfants ou en cas d’adoption d'au moins 3 enfants.
+			]]></Description>
+		</Data>
+		<Data id="24" name="TempsPartiel" label="4TempsPartiel?" type="choice">
+			<Description><![CDATA[
+Le congé parental à temps partiel existe seulement dans le secteur privé. Dans la fonction publique, l'agent a la possibilité de demander à travailler à temps partiel jusqu’au 3e anniversaire de l’enfant.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="25" name="NombreHeuresTempsPartiel" label="4NombreHeuresTempsPartiel" type="integer" min="16">
+			<Description><![CDATA[
+Le nombre d’heures travaillées doit être au minimum de 16 heures par semaine.
+			]]></Description>
+		</Data>
+		<Data id="26" name="RepartitionTempsTravailPartiel" label="4RepartitionTempsTravailPartiel" type="text"></Data>
+		<DataGroup id="1" name="groupededonneevaleursaisie" label="groupededonneevaleursaisie">
+			<Data id="27" name="valeurprenom1" label="Valeur Prénom" type="text"></Data>
+			<Data id="28" name="valeurnom1" label="Valeur Nom" type="text"></Data>
+			<Data id="29" name="ValeurAdresseExp" label="Valeur adresse expéditeur" type="text"></Data>
+			<Data id="30" name="ValeurComplementAdresseExp" label="Valeur complément d'adresse expéditeur" type="text"></Data>
+			<Data id="31" name="ValeurCodePostal" label="Valeur Code postal" type="text"></Data>
+			<Data id="32" name="ValeurVilleExp" label="Valeur de ville expéditeur" type="text"></Data>
+			<Data id="33" name="ValeurAdresseDestinataire" label="ValeurAdresseDestinataire" type="text"></Data>
+			<Data id="34" name="ValeurComplementAdresseDest" label="ValeurComplementAdresseDest" type="text"></Data>
+			<Data id="35" name="ValeurCodePostalDest" label="ValeurCodePostalDest" type="text"></Data>
+			<Data id="36" name="ValeurVilleDest" label="ValeurVilleDest" type="text"></Data>
+			<Data id="37" name="valeurNometfonctiondudestinataire" label="Valeur Nom et fonction du destinataire" type="text"></Data>
+			<Data id="38" name="ValeurGenreDest" label="Valeur genre destinataire" type="text"></Data>
+			<Data id="39" name="ValeurFaitANomVille" label="ValeurFaitANomVille" type="text"></Data>
+			<Data id="40" name="ValeurJourDateJour" label="ValeurJourDateJour" type="text"></Data>
+			<Data id="41" name="ValeurMoisAnneeDateJour" label="ValeurMoisAnneeDateJour" type="text"></Data>
+			<Data id="42" name="ValeurTypeRemise" label="ValeurTypeRemise" type="text"></Data>
+			<Data id="43" name="ValeurJourDateDebutConge" label="ValeurJourDateDebutConge" type="text"></Data>
+			<Data id="44" name="ValeurMoisAnneeDateDebutConge" label="ValeurMoisAnneeDateDebutConge" type="text"></Data>
+			<Data id="45" name="ValeurDureeConge" label="ValeurDureeConge" type="text"></Data>
+			<Data id="46" name="ValeurNomSocieteDest" label="ValeurNomSocieteDest" type="text"></Data>
+			<Data id="47" name="ValeurTempsPartiel" label="ValeurTempsPartiel" type="text"></Data>
+			<Data id="48" name="ValeurNombreHeuresTempsPartiel" label="ValeurNombreHeuresTempsPartiel" type="text"></Data>
+			<Data id="49" name="ValeurRepartitionTempsTravailPartiel" label="ValeurRepartitionTempsTravailPartiel" type="text"></Data>
+			<Data id="50" name="ValeurPhraseTempsPartiel" label="ValeurPhraseTempsPartiel" type="text"></Data>
+		</DataGroup>
+		<DataGroup id="51" name="Groupededonneetextessaisis" label="Groupe de données textes saisis">
+			<Data id="51" name="Donnee1objet" label="Donnée 1 : objet" type="text" default="'Objet : démission'">
+				<Description><![CDATA[
+Il faudra changer la valeur par défaut de l'objet selon le type de la lettre
+				]]></Description>
+			</Data>
+			<Data id="52" name="donnee2personnalisation" label="Donnée 2 : Personnalisation" type="text" default="'[Madame/Monsieur],'">
+				<Description><![CDATA[
+Cette partie reste fixe
+				]]></Description>
+			</Data>
+			<Data id="53" name="donnee3" label="donnée 3" type="text"></Data>
+			<Data id="54" name="donnee4" label="Donnée 4" type="text"></Data>
+			<Data id="55" name="donnee5" label="Donnée 5" type="text"></Data>
+			<Data id="56" name="donnee6" label="Donnée 6" type="text"></Data>
+			<Data id="57" name="donnee7" label="donnée 7" type="text"></Data>
+			<Data id="58" name="donnee8" label="Donnée 8" type="text"></Data>
+			<Data id="59" name="donnee9" label="Donnée 9" type="text"></Data>
+			<Data id="60" name="donnee10" label="Donnée 10" type="text"></Data>
+			<Data id="61" name="donnee11" label="donnée 11" type="text"></Data>
+			<Data id="62" name="donnee12" label="Donnée 12" type="text"></Data>
+			<Data id="63" name="donnee13" label="Donnée 13" type="text"></Data>
+			<Data id="64" name="donnee14" label="Donnée 14" type="text"></Data>
+			<Data id="65" name="signature" label="Donnée 15 signature" type="text"></Data>
+			<Data id="66" name="sup11" label="sup 11" type="text"></Data>
+			<Data id="67" name="sup12" label="sup 12" type="text"></Data>
+			<Data id="68" name="sup13" label="sup 13" type="text"></Data>
+			<Data id="69" name="sup21" label="sup 21" type="text"></Data>
+			<Data id="70" name="sup22" label="sup 22" type="text"></Data>
+			<Data id="71" name="sup23" label="sup 23" type="text"></Data>
+			<Data id="72" name="sup31" label="Donnée 31" type="text"></Data>
+			<Data id="73" name="sup32" label="Donnée 32" type="text"></Data>
+			<Data id="74" name="sup33" label="Donnée 33" type="text"></Data>
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2&gt;REMPLIR&lt;br&gt; LA LETTRE DE DEMANDE &lt;br&gt;DE CONGÉ PARENTAL&lt;/h2&gt; &lt;h3&gt;Vous pouvez personnaliser ce modèle et télécharger votre lettre prête à l'emploi.&lt;/h3&gt;" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Quelles sont vos coordonnées ?
+						]]></Legend>
+						<Field position="1" data="6" usage="input" newline="0" label="Prénom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="7" usage="input" newline="0" label="Nom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="8" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="9" usage="input" newline="0" label="Complément d'adresse" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="10" usage="input" newline="0" label="Code postal (exemple : 19100)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="11" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Quelles sont les coordonnées de votre employeur ?
+						]]></Legend>
+						<Field position="1" data="12" usage="input" newline="0" label="Nom de l'employeur" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="17" usage="input" newline="0" label="Nom et fonction du destinataire" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="13" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="14" usage="input" newline="0" label="Complément d'adresse" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="15" usage="input" newline="0" label="Code postal (exemple : 12450)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="16" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+À quelle date et de quel endroit envoyez-vous cette lettre ?
+						]]></Legend>
+						<Field position="1" data="18" usage="input" newline="0" label="Fait à (nom de la ville)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="19" usage="input" newline="0" label="Date du jour (format : JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="20" usage="input" newline="0" label="Type de remise de la lettre" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="21" usage="input" newline="0" label="Genre du destinataire" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="13">
+						<Legend><![CDATA[
+Quelle est votre demande spécifique ?
+						]]></Legend>
+						<Field position="1" data="22" usage="input" newline="0" label="Date du début du congé parental (format : JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="1" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="23" usage="input" newline="0" label="Durée du congé (exemple : 1 an)" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="5" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Veuillez relire votre lettre avant de la copier ou de la télécharger (boutons en bas). Ensuite, n'oubliez pas de la signer.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+#27 #28
+#29
+#30
+#31 #32
+#66
+#67
+#68
+
+<div style="padding: 0 0 0 50%;">#46
+#37
+#33
+#34
+#35 #36
+#69
+#70
+#71</div>
+
+<div style="padding: 0 0 0 50%;">À #39, le #40 #41
+#72
+#73
+#74</div>
+
+#51
+
+#38,
+
+#53
+#54
+#55
+#56
+
+<div style="padding: 0 0 0 50%;">#65</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="9" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table id='table1'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Demande_initiale_de_conge_parental_dans_la_fonction_publique::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier </button></td></table>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table  id='table2'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Demande_initiale_de_conge_parental_dans_la_fonction_publique::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier</button></td>
+<td><div class="action_buttons2"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Demande_initiale_de_conge_parental_dans_la_fonction_publique::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div></td></tr></table>
+<div id="boutttelecharger"  class="action_buttons3"><button class="btn " type="submit" name="DeplacerFocus" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Demande_initiale_de_conge_parental_dans_la_fonction_publique::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" what="submit" for="jumpToStep" uri="2" class="btn-default" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger l'attestation" template="pages:GenerateurLettre.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="7" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#6)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non rensigné)">
+			<Conditions value="!defined(#6) || !defined(#7) || !defined(#8) || !defined(#10) || !defined(#11)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="name" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 nn renseigné)">
+			<Conditions value="!defined(#6) || !defined(#7) || !defined(#8) || !defined(#10) || !defined(#11) || !defined(#12) || !defined(#13) || !defined(#15) || !defined(#16)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="name" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+					<Condition operand="NomSocieteDest" operator="blank"></Condition>
+					<Condition operand="AdresseDestinataire" operator="blank"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="blank"></Condition>
+					<Condition operand="VilleDestinataire" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage de la partie 4   (1 ou 2 ou 3 non renseigné)">
+			<Conditions value="!defined(#6) || !defined(#7) || !defined(#8) || !defined(#10) || !defined(#11) || !defined(#13) || !defined(#15) || !defined(#16) || !defined(#12) || !defined(#18) || !defined(#19) || !defined(#20) || !defined(#21)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="name" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+					<Condition operand="AdresseDestinataire" operator="blank"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="blank"></Condition>
+					<Condition operand="VilleDestinataire" operator="blank"></Condition>
+					<Condition operand="NomSocieteDest" operator="blank"></Condition>
+					<Condition operand="VilleLettre" operator="blank"></Condition>
+					<Condition operand="DateJour" operator="blank"></Condition>
+					<Condition operand="TypeRemiseLettre" operator="blank"></Condition>
+					<Condition operand="GenreDestinataire" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="affichage du boutton suivant (tous les champs non rensegnés)">
+			<Conditions value="defined(#6) &amp;&amp; defined(#7) &amp;&amp; defined(#8) &amp;&amp; defined(#10) &amp;&amp; defined(#11) &amp;&amp; defined(#13) &amp;&amp; defined(#15) &amp;&amp; defined(#16) &amp;&amp; defined(#12) &amp;&amp; defined(#18) &amp;&amp; defined(#19) &amp;&amp; defined(#22) &amp;&amp; defined(#23) &amp;&amp; (#20 = 1 || #20 = 2) &amp;&amp; (#21 = 1 || #21 = 2)">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="name" operator="present"></Condition>
+					<Condition operand="AdresseExp" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="VilleExp" operator="present"></Condition>
+					<Condition operand="AdresseDestinataire" operator="present"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="present"></Condition>
+					<Condition operand="VilleDestinataire" operator="present"></Condition>
+					<Condition operand="NomSocieteDest" operator="present"></Condition>
+					<Condition operand="VilleLettre" operator="present"></Condition>
+					<Condition operand="DateJour" operator="present"></Condition>
+					<Condition operand="DateDebutConge" operator="present"></Condition>
+					<Condition operand="DureeConge" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="TypeRemiseLettre" operator="=" expression="1"></Condition>
+						<Condition operand="TypeRemiseLettre" operator="=" expression="2"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="GenreDestinataire" operator="=" expression="1"></Condition>
+						<Condition operand="GenreDestinataire" operator="=" expression="2"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="2"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+				<Action id="4" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="4" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Affichage valeur prernom">
+			<Conditions value="defined(#6)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="27" value="ucfirst(#6)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="27" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Affichage valeur nom">
+			<Conditions value="defined(#7)">
+				<Condition operand="name" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="upper(#7)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="'[Nom du demandeur]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Affichage valeur adresse">
+			<Conditions value="defined(#8)">
+				<Condition operand="AdresseExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="29" value="#8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="29" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Affichage complément adresse">
+			<Conditions value="defined(#9)">
+				<Condition operand="ComplementAdresseExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="30" value="#9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="30" value="' '"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Affichage code postal si non renseigné">
+			<Conditions value="!defined(#10)">
+				<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="31" value="'[Code postal]'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Affichage Ville">
+			<Conditions value="defined(#11)">
+				<Condition operand="VilleExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="ucfirst(#11)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Affichage CP expéditeur si CP supérieur ou égal à 10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#10) &amp;&amp; #10 &gt;= 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&gt;=" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="31" value="#10"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Affichage CP expéditeur si CP inférieur à 10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#10) &amp;&amp; #10 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="31" value="concat(0, #10)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Affichage genre destinataire Monsieur">
+			<Conditions value="defined(#21) &amp;&amp; #21 = 1">
+				<Connector type="all">
+					<Condition operand="GenreDestinataire" operator="present"></Condition>
+					<Condition operand="GenreDestinataire" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="'Monsieur'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Affichage genre destinataire Madame">
+			<Conditions value="defined(#21) &amp;&amp; #21 = 2">
+				<Connector type="all">
+					<Condition operand="GenreDestinataire" operator="present"></Condition>
+					<Condition operand="GenreDestinataire" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="'Madame'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Affichage genre destinataire non renseigné">
+			<Conditions value="!defined(#21)">
+				<Condition operand="GenreDestinataire" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="'[Madame/Monsieur]'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Affichage Nom et Fonction du destinataire">
+			<Conditions value="defined(#17)">
+				<Condition operand="Nometfonctiondudestinataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="#17"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="' '"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="affichage nom de la société">
+			<Conditions value="defined(#12)">
+				<Condition operand="NomSocieteDest" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="#12"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="'[Nom de l\'employeur]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Affichage adresse destinataire">
+			<Conditions value="defined(#13)">
+				<Condition operand="AdresseDestinataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="#13"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Affichage valeur complément adresse destinataire">
+			<Conditions value="defined(#14)">
+				<Condition operand="ComplementAdresseDestinataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="#14"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="' '"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Affichage valeur code postal destinataire">
+			<Conditions value="!defined(#15)">
+				<Condition operand="CodePostalDestinataire" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="'[Code postal]'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Affichage valeur ville destinataire">
+			<Conditions value="defined(#16)">
+				<Condition operand="VilleDestinataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="ucfirst(#16)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Affichage Valeur Jour + Mois année Date du jour">
+			<Conditions value="defined(#19)">
+				<Condition operand="DateJour" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="day(#19)"></Action>
+				<Action id="2" name="setAttribute" target="content" data="41" value="fullmonth(#19)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="'[Date du jour]'"></Action>
+				<Action id="2" name="setAttribute" target="content" data="41" value="' '"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Affichage ville (Fait à )">
+			<Conditions value="defined(#18)">
+				<Condition operand="VilleLettre" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="ucfirst(#18)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Affichage Valeur type de remise lettre recommandée AR">
+			<Conditions value="defined(#20) &amp;&amp; #20 = 1">
+				<Connector type="all">
+					<Condition operand="TypeRemiseLettre" operator="present"></Condition>
+					<Condition operand="TypeRemiseLettre" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="'Lettre recommandée avec accusé de réception'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Affichage type de remise remise main propre">
+			<Conditions value="defined(#20) &amp;&amp; #20 = 2">
+				<Connector type="all">
+					<Condition operand="TypeRemiseLettre" operator="present"></Condition>
+					<Condition operand="TypeRemiseLettre" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="'Remise en mains propres contre décharge'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Affichage valeur type remise non renseigné">
+			<Conditions value="!defined(#20)">
+				<Condition operand="TypeRemiseLettre" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="'[Type de remise de la lettre]'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Affichage valeur date début congé">
+			<Conditions value="defined(#22)">
+				<Condition operand="DateDebutConge" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="day(#22)"></Action>
+				<Action id="2" name="setAttribute" target="content" data="44" value="fullmonth(#22)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="' '"></Action>
+				<Action id="2" name="setAttribute" target="content" data="44" value="'[date de début du congé]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Affichage durée du congé">
+			<Conditions value="defined(#23)">
+				<Condition operand="DureeConge" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="45" value="#23"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="45" value="'[durée de congé]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="TextValeurObjet">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="51" value="concat('Objet : demande de congé parental ', #47)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="TextValeurP1">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="52" value="#38"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="TextValeurP2">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="'Je vous informe de mon intention de prendre un congé parental d\'éducation dans le respect des dispositions légales en vigueur.'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="TextValeurP3">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="concat('Je souhaite bénéficier de ce congé à compter du ', concat(#43, concat(' ', concat(#44, concat(' pour une durée de ', concat(#45,'.'))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="TextValeurP4">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="'Je vous prie d\'agréer l\'expression de mes salutations distinguées.'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="TextValeurP5">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="' '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="TextValeurP6">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="TextValeurP7">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="TextValeurP8">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="59"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="TextValeurP9">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="TextValeurP10">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="TextValeurP11">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="62"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="TextValeurP12">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="TextValeurtypedelettre">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="72" value="#42"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="TextValeurPSIGNATURE">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="concat(#27, concat(' ',#28))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Masquer champs durée du congé">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="13" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Affichage code postal dest si supérieur ou égal à 10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#15) &amp;&amp; #15 &gt;= 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="present"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="&gt;=" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="#15"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Affichage code postal dest si inférieur à 10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#15) &amp;&amp; #15 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="present"></Condition>
+					<Condition operand="CodePostalDestinataire" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="concat(0, #15)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

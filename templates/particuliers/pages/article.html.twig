@@ -1,0 +1,25 @@
+{% extends "particuliers/layout/pagelayout.html.twig" %}
+
+{% import "base/macros/form.html.twig" as form %}
+
+{% block title %}{{ step.simulator.label }} - {{ step.label }} - {{ parent() }}{% endblock %}
+
+{% block styles %}
+{{ parent() }}<link rel='stylesheet' type='text/css' href="{{ asset('assets/particuliers/css/' ~ step.simulator.name ~ '.css') }}" />
+{% endblock %}
+
+{% block content %}
+	    <h1>{% block page_title %}{{ step.simulator.label }}{% endblock %}</h1>
+		{{ form.paragraphs(step.simulator.description|raw) }}
+		{{ form.breadcrumb(_context) }}
+
+		<div id="step{{ step.id }}" class="step-page step-container{% if step.simulator.dynamic %} dynamic{%- endif -%}{% if script == 0 %} no-js{%- endif -%}">
+			{{ form.heading(step.description, 2, "step-description legend") }}
+			{{ form.profiles(_context) }}
+			<div class="mention-asterisk">{{ 'Fields marked with an %asterisk% are required.'|trans({ '%asterisk%': '<span class="asterisk">*</span>' })|raw }}</div>
+			<form method="post" action="#main" enctype="multipart/form-data" id="g6k_form">
+			{{ form.row(_context, 'form-horizontal', 'form-group', 'control-label', 'input-group', 'form-control', 'fiche-item', 'fiche-item-title', 'fiche-item-content') }}
+			</form>
+		</div>
+
+{% endblock %}

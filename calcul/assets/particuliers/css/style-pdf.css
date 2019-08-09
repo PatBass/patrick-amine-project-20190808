@@ -1,0 +1,33 @@
+/*********************************************************
+ *                                                       *
+ * Définition des styles du simulateur (partie centrale) *
+ *                                                       *
+ *********************************************************/
+body {
+    font-family: "Dejavu Sans"; font-style: normal; 
+}
+
+ 
+.step-page .foot-notes {
+	/* border: 2px solid #008080;
+	background: #E0E0E0;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-top: 0em;
+    clear: both;
+    float: none;*/
+}
+.step-page .AlignerAgauche{
+	text-align:left;
+}
+.step-page .AlignerMilieu{
+	text-align:center;
+}
+.step-page .AlignerAdroite{
+	text-align:right;
+}
+.step-page .aligneradroite2{
+	margin-left:51%;
+}
+

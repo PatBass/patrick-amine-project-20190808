@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="bareme-indemnites-prudhomales" label="Simulateur des indemnités en cas de licenciement abusif" defaultView="particuliers" referer="https://www.service-public.fr/particuliers/vosdroits/R49067" dynamic="0" memo="1" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce simulateur indique les montants minimum et maximum des indemnités pour dommages et intérêts susceptibles d'être fixées par le juge prud'homal en cas de licenciement irrégulier ou sans cause réelle et sérieuse.
+Ces planchers et plafonds, qui s'imposent désormais au juge, ne concernent que des licenciements notifiés au salarié après le 23 septembre 2017.
+<b>Attention </b>: le juge n'est pas lié par ces montants dans certains cas de nullité du licenciement (en cas de violation d'une liberté fondamentale, de faits de harcèlement moral ou sexuel, de licenciement discriminatoire, ...)
+
+Pour en savoir plus cliquez <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1848">ici</a>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="inputNbrAnciennete" label="Saisie par l'utilisateur : nombre d'années d'ancienneté " type="integer" max="80" unit="an(s)">
+			<Description><![CDATA[
+L'ancienneté est calculée au jour de la rupture du contrat, c'est-à-dire à la fin du préavis, même si celui-ci n'est pas exécuté.
+			]]></Description>
+		</Data>
+		<Data id="2" name="anciennete1an" label="Ancienneté 0 ou 1 an" type="integer" content="#1" unit="année complète"></Data>
+		<Data id="3" name="anciennete2ansouplus" label="Ancienneté 2 ans ou plus" type="integer" content="#1" unit="années complètes"></Data>
+		<Data id="4" name="inputTypeEntreprise" label="Saisie par l'utilisateur : Choix du type d'entreprise" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Entreprise de moins de 11 salariés"></Choice>
+				<Choice id="2" value="2" label="Entreprise de 11 salariés et plus"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="indemniteMiniMoins11" label="Résultat de Requête : Indemnité minimale pour les entreprises de moins de 11 salariés" type="text" source="1" index="'indemniteminimalemoinsde11'"></Data>
+		<Data id="6" name="indemniteMax" label="Résultat de Requête : Indemnité maximale (en mois de salaire brut)" type="text" source="1" index="'indemnitemaximale'"></Data>
+		<Data id="7" name="resultatIndemniteMini11etPlus" label="Résultat de Requête : Indemnité minimale pour les entreprises de 11 salariés ou +" type="text" source="1" index="'indemniteminimale11etplus'"></Data>
+		<Data id="8" name="indemniteMinimale" label="Indeminite Minimale" type="text" unit="mois de salaire brut"></Data>
+		<Data id="9" name="indemniteMaximale" label="Indemnité maximale" type="text" unit="mois de salaire brut"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="situationSalariale" label="Situation" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panelAnciennete" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Ancienneté du salarié dans l'entreprise " required="1" visibleRequired="0" help="1">
+							<PostNote><![CDATA[
+En années complètes
+							]]></PostNote>
+						</Field>
+						<Field position="2" data="4" usage="input" newline="0" label="Type d'entreprise " required="0" visibleRequired="1" help="0" expanded="1"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="btnSubmitAnciennete" label="Calculer" what="submit" for="nextStep" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="resultatIndemnites" label="Calcul du plancher et du plafond " template="pages:article.html.twig" output="normal">
+			<Panels>
+				<Panel id="1" name="panelResultatIndemnites" label="">
+					<FieldSet id="1">
+						<Field position="1" data="2" usage="output" newline="0" label="Ancienneté du salarié dans l'entreprise" required="0" visibleRequired="0" help="0"></Field>
+						<Field position="2" data="3" usage="output" newline="0" label="Ancienneté du salarié dans l'entreprise" required="0" visibleRequired="0" help="0"></Field>
+						<Field position="3" data="4" usage="output" newline="0" label="Type d'entreprise" required="0" visibleRequired="0" help="0"></Field>
+						<Field position="4" data="8" usage="output" newline="0" label="Indemnité minimale" required="0" visibleRequired="0" help="0" emphasize="1"></Field>
+						<Field position="5" data="9" usage="output" newline="0" label="Indemnité maximale" required="0" visibleRequired="0" help="0" emphasize="1"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="btnPrecedent" label="Précédent" what="submit" for="priorStep" class="btn-default" shape="button" location="bottom"></Action>
+				<Action name="reset" label="Nouvelle Simulation" what="submit" for="newSimulation" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="bareme-indemnites-prudhomales" label="Requête : Indemnités" request="SELECT indemnitemaximale, indemniteminimalemoinsde11, indemniteminimale11etplus FROM bareme WHERE ancienneteSalarie = %1$d AND ancienneteSalarie IS NOT NULL AND ancienneteSalarie &gt; -1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="inputNbrAncienneteSalarie" data="1"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Contrôle ancienneté maximale">
+			<Conditions value="defined(#1) &amp;&amp; #1 &gt; 80">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputNbrAnciennete" operator="&gt;" expression="80"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="1" value="Le nombre d'années d'ancienneté ne peut être supérieure à 80 "></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Demander Type d'entreprise si ancienneté &gt; 10 ans">
+			<Conditions value="!defined(#1) || (defined(#1) &amp;&amp; #1 &gt; 10)">
+				<Connector type="any">
+					<Condition operand="inputNbrAnciennete" operator="blank"></Condition>
+					<Connector type="all">
+						<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+						<Condition operand="inputNbrAnciennete" operator="&gt;" expression="10"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Indemnité minimale pour entreprises de moins de 11 salariés">
+			<Conditions value="defined(#1) &amp;&amp; defined(#4) &amp;&amp; #4 = 1">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputTypeEntreprise" operator="present"></Condition>
+					<Condition operand="inputTypeEntreprise" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="#5"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Indemnité minimale pour entreprise de 11 salariés ou plus">
+			<Conditions value="defined(#1) &amp;&amp; defined(#4) &amp;&amp; #4 = 2">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputTypeEntreprise" operator="present"></Condition>
+					<Condition operand="inputTypeEntreprise" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="#7"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Indemnité maximale">
+			<Conditions value="defined(#1) &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="indemniteMax" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="9" value="#6"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Choix affichage anncienneté">
+			<Conditions value="!defined(#1)">
+				<Condition operand="inputNbrAnciennete" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="1"></Action>
+				<Action id="2" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Choix affichage ancienneté (inférieur ou égal à 1 an)">
+			<Conditions value="defined(#1) &amp;&amp; #1 &lt;= 1">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputNbrAnciennete" operator="&lt;=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Choix affichage ancienneté (supérieur à 1 an)">
+			<Conditions value="defined(#1) &amp;&amp; #1 &gt; 1">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputNbrAnciennete" operator="&gt;" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Cacher Type entreprise en étape 2">
+			<Conditions value="defined(#1) &amp;&amp; #1 &gt; 10">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputNbrAnciennete" operator="&gt;" expression="10"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Si ancienneté supérieure à 10 alors type entreprise pré-saisi ">
+			<Conditions value="defined(#1) &amp;&amp; #1 &gt; 10">
+				<Connector type="all">
+					<Condition operand="inputNbrAnciennete" operator="present"></Condition>
+					<Condition operand="inputNbrAnciennete" operator="&gt;" expression="10"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+Mise en production : octobre 2017
+	]]></RelatedInformations>
+</Simulator>

@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="charges-sociales" label="Simulateur de calcul des charges sociales" defaultView="professionnels-entreprises" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Versées à la Sécurité sociale ou aux différents organismes du régime privé (Assedic...), les<b> </b>cotisations sociales sont directement calculées sur les salaires et s'intègrent dans la partie "taxes sur les traitements et salaires". Cependant, les charges sociales se décomposent en deux catégories.
+Les cotisations sociales employeurs (ou  charges patronales) sont calculées en fonction du salaire brut mensuel. De leur côté, les salariés participent également au financement des prestations sociales en assumant des cotisations salariales qui sont décomptées du salaire brut.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="SMIC" label="Montant du SMIC" type="money" content="1480.27"></Data>
+		<Data id="2" name="pss" label="Plafond de la sécurité sociale" type="money" content="3269.00"></Data>
+		<Data id="3" name="salaireBrutMensuel" label="Salaire brut mensuel" type="money"></Data>
+		<Data id="4" name="salaireBrutAnnuel" label="Salaire brut annuel" type="money" content="#3 * 12"></Data>
+		<Data id="5" name="tempsTravaille" label="Temps travaillé" type="choice" default="1">
+			<Choices>
+				<Choice id="1" value="1" label="temps plein"></Choice>
+				<Choice id="2" value="2" label="temps partiel"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="heuresSemaine" label="Heures travaillées par semaine" type="integer" default="35" unit="heures"></Data>
+		<Data id="7" name="statutSalarie" label="Statut du salarié (cadre/non-cadre)" type="choice" default="2">
+			<Choices>
+				<Choice id="1" value="1" label="Cadre"></Choice>
+				<Choice id="2" value="2" label="Non-cadre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="8" name="typeContrat" label="Type de contrat" type="choice" default="1">
+			<Choices>
+				<Choice id="1" value="1" label="CDI"></Choice>
+				<Choice id="2" value="2" label="CDD"></Choice>
+			</Choices>
+		</Data>
+		<Data id="9" name="dureeCDD" label="Durée du CDD en mois" type="integer" unit="mois"></Data>
+		<Data id="10" name="NombreSalaries" label="Nombre de salariés" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="moins de 10"></Choice>
+				<Choice id="2" value="2" label="entre 10 et 19"></Choice>
+				<Choice id="3" value="3" label="entre 20 et 250"></Choice>
+				<Choice id="4" value="4" label="plus de 250"></Choice>
+			</Choices>
+		</Data>
+		<Data id="11" name="affiliationRegimeAlsaceMoselle" label="Affiliation au régime Alsace-Moselle" type="choice" default="1">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="12" name="gestionInterneCPF" label="Gestion interne du CPF" type="choice" default="1">
+			<Description><![CDATA[
+<strong>Les entreprises d’au moins 10 salariés </strong>peuvent conclure un accord d’entreprise triennal afin de gérer directement les dépenses liées au compte personnel de formation et à son abondement. Dans ce cas, la contribution de 1 % est minorée de 0,2 % (soit 0,8 % de la masse salariale à verser annuellement à l’OPCA) et l’entreprise devra transmettre à l’OPCA un état récapitulatif annuel de ses dépenses.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<DataGroup id="1" name="CSGDeductible" label="CSG déductible">
+			<Data id="13" name="CSGDeductibleSalarie" label="CSG déductible - part salarié" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="CSGNonDeductible" label="CSG non déductible">
+			<Data id="14" name="CSGNonDeductibleSalarie" label="CSG non déductible - part salarié" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="3" name="CRDS" label="CRDS">
+			<Data id="15" name="CRDSSalarie" label="CRDS - part salarié" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="4" name="CSA" label="Contribution Solidarité Autonomie">
+			<Data id="16" name="contributionSolidariteAutonomieSalarie" label="Contribution Solidarité Autonomie - part salarié" type="money" content="0"></Data>
+			<Data id="17" name="contributionSolidariteAutonomieEmployeur" label="Contribution Solidarité Autonomie - part employeur" type="money" content="#3 * 0.3 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="5" name="assuranceMaladie" label="Assurance maladie">
+			<Data id="18" name="assuranceMaladieSalarie" label="Assurance maladie - part salarié" type="money" content="0"></Data>
+			<Data id="19" name="assuranceMaladieEmployeur" label="Assurance maladie - part employeur" type="money" content="#3 * 13.19 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="6" name="assuranceVieillessePlafonne" label="Assurance vieillesse plafonnée">
+			<Data id="20" name="assuranceVieillessePlafonneSalarie" label="Assurance vieillesse plafonnée - part salarié" type="money" content="min(#3, #2) * 6.90 / 100"></Data>
+			<Data id="21" name="assuranceVieillessePlafonneEmployeur" label="Assurance vieillesse plafonnée - part employeur" type="money" content="min(#3, #2) * 8.55 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="7" name="assuranceVieillesseDeplafonne" label="Assurance vieillesse déplafonnée">
+			<Data id="22" name="assuranceVieillesseDeplafonneSalarie" label="Assurance vieillesse déplafonnée - part salarié" type="money" content="#3 * 0.40 / 100"></Data>
+			<Data id="23" name="assuranceVieillesseDeplafonneEmployeur" label="Assurance vieillesse déplafonnée - part employeur" type="money" content="#3 * 1.90 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="8" name="allocationsFamiliales" label="Allocations familiales">
+			<Data id="24" name="allocationsFamilialesSalarie" label="Allocations familiales - part salarié" type="money" content="0"></Data>
+			<Data id="25" name="allocationsFamilialesEmployeur" label="Allocations familiales - part employeur" type="money" content="#3 * 5.25 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="9" name="aideAuLogement" label="Aide au logement">
+			<Data id="26" name="aideAuLogementSalarie" label="Aide au logement - part salarié" type="money" content="0"></Data>
+			<Data id="27" name="aideAuLogementEmployeur" label="Aide au logement - part employeur" type="money" content="min(#3, #2) * 0.10 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="10" name="FNAL" label="Fond national d'aide au logement (FNAL)">
+			<Data id="28" name="FNALSalarie" label="FNAL - part salarié" type="money" content="0"></Data>
+			<Data id="29" name="FNALEmployeur" label="FNAL - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="11" name="cotisationChomage" label="Cotisation chomage">
+			<Data id="30" name="cotisationChomageSalarie" label="Cotisation chomage - part salarié" type="money" content="min(#3, #2 * 4) * 2.40 / 100"></Data>
+			<Data id="31" name="cotisationChomageEmployeur" label="Cotisation chomage - part employeur" type="money" content="min(#3, #2 * 4) * 4.00 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="12" name="fondGarantieSalaire" label="Fonds de garantie des salaires">
+			<Data id="32" name="fondGarantieSalaireSalarie" label="Fonds de garantie des salaires - part salarié" type="money" content="0"></Data>
+			<Data id="33" name="fondGarantieSalaireEmployeur" label="Fonds de garantie des salaires - part employeur" type="money" content="min(#3, #2 * 4) * 0.15 / 100"></Data>
+		</DataGroup>
+		<DataGroup id="13" name="AGFFTranche1" label="AGFF tranche 1">
+			<Data id="34" name="AGFFTranche1Salarie" label="AGFF tranche 1 - part salarié" type="money" content="0"></Data>
+			<Data id="35" name="AGFFTranche1Employeur" label="AGFF tranche 1 - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="14" name="AGFFTranche2" label="AGFF tranche 2">
+			<Data id="36" name="AGFFTranche2Salarie" label="AGFF tranche 2 - part salarié" type="money" content="0"></Data>
+			<Data id="37" name="AGFFTranche2Employeur" label="AGFF tranche 2 - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="15" name="ARRCOTranche1" label="ARRCO tranche 1">
+			<Data id="38" name="ARRCOTranche1Salarie" label="ARRCO tranche 1 - part salarié" type="money" content="0"></Data>
+			<Data id="39" name="ARRCOTranche1Employeur" label="ARRCO tranche 1 - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="16" name="ARRCOTranche2" label="ARRCO tranche 2">
+			<Data id="40" name="ARRCOTranche2Salarie" label="ARRCO tranche 2 - part salarié" type="money" content="0"></Data>
+			<Data id="41" name="ARRCOTranche2Employeur" label="ARRCO tranche 2 - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="17" name="AGFFTrancheA" label="AGFF tranche A">
+			<Data id="42" name="AGFFTrancheASalarie" label="AGFF tranche A - part salarié" type="money" content="0"></Data>
+			<Data id="43" name="AGFFTrancheAEmployeur" label="AGFF tranche A - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="18" name="AGFFTrancheB" label="AGFF tranche B">
+			<Data id="44" name="AGFFTrancheBSalarie" label="AGFF tranche B - part salarié" type="money" content="0"></Data>
+			<Data id="45" name="AGFFTrancheBEmployeur" label="AGFF tranche B - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="19" name="AGIRCTrancheB" label="AGIRC tranche B">
+			<Data id="46" name="AGIRCTrancheBSalarie" label="AGIRC tranche B - part salarié" type="money" content="0"></Data>
+			<Data id="47" name="AGIRCTrancheBEmployeur" label="AGIRC tranche B - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="20" name="AGIRCTrancheC" label="AGIRC tranche C">
+			<Data id="48" name="AGIRCTrancheCSalarie" label="AGIRC tranche C - part salarié" type="money" content="0"></Data>
+			<Data id="49" name="AGIRCTrancheCEmployeur" label="AGIRC tranche C - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="21" name="assuranceDeces" label="Assurance décès">
+			<Data id="50" name="assuranceDecesSalarie" label="Assurance décès - part salarié" type="money" content="0"></Data>
+			<Data id="51" name="assuranceDecesEmployeur" label="Assurance décès - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="22" name="APEC" label="APEC">
+			<Data id="52" name="APECSalarie" label="APEC - part salarié" type="money" content="0"></Data>
+			<Data id="53" name="APECEmployeur" label="APEC - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="23" name="CET" label="CET">
+			<Data id="54" name="CETSalarie" label="CET - part salarié" type="money" content="0"></Data>
+			<Data id="55" name="CETEmployeur" label="CET - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="24" name="taxesSurSalaires" label="Taxes sur les salaires">
+			<Data id="56" name="taxesSurSalairesEmployeur" label="Taxes sur les salaires - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="25" name="contributionFormationProfessionnelle" label="Contribution à la formation professionnelle">
+			<Data id="57" name="contributionFormationProfessionnelleEmployeur" label="Contribution formation professionnelle - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="26" name="taxeApprentissage" label="Taxe d'apprentissage">
+			<Data id="58" name="taxeApprentissageEmployeur" label="Taxe d'apprentissage - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="27" name="participationEffortConstruction" label="Participation à l'effort de construction">
+			<Data id="59" name="participationEffortConstructionEmployeur" label="Participation à l'effort de construction - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="28" name="financementOrganisationsSyndicales" label="Financement des organisations syndicales">
+			<Data id="60" name="financementOrganisationsSyndicalesEmployeur" label="Financement des organisations syndicales - part employeur" type="money" content="#3 * 0.00016"></Data>
+		</DataGroup>
+		<DataGroup id="29" name="versementTransport" label="Versement de transport">
+			<Data id="61" name="versementTransportEmployeur" label="Versement transport - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="30" name="indemniteFinContrat" label="Indemnité de fin de contrat">
+			<Data id="62" name="indemniteFinContratEmployeur" label="Indemnité de fin de contrat - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="31" name="CICE" label="CICE">
+			<Data id="63" name="CICEEmployeur" label="CICE - part employeur" type="money" content="0"></Data>
+		</DataGroup>
+		<DataGroup id="32" name="reductionBasSalaire" label="Réduction de cotisations sur les bas salaires">
+			<Data id="64" name="reductionBasSalaireEmployeur" label="Réduction de cotisations sur les bas salaires" type="money" content="0"></Data>
+		</DataGroup>
+		<Data id="65" name="soumisVersementTransport" label="Soumis au versement transport" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="66" name="salaireBrutMensuelTempsPlein" label="Salaire brut mensuel temps plein" type="money"></Data>
+		<Data id="67" name="insee" label="Code insee" type="text"></Data>
+		<Data id="68" name="TauxTransport" label="Taux transport" type="percent" source="1" index="'taux'"></Data>
+		<Data id="69" name="tauxAdditionnelTransport" label="Taux additionnel transport" type="percent" source="1" index="'tauxAdditionnel'"></Data>
+		<Data id="70" name="totalPartSalarie" label="Total part salariale" type="money" content="#13 + #14 + #15 + #16 + #18 + #20 + #22 + #24 + #26 + #28 + #30 + #32 + #34 + #36 + #38 + #40 + #42 + #44 + #46 + #48 + #50 + #52 + #54"></Data>
+		<Data id="71" name="totalPartEmployeur" label="Total part patronale" type="money" content="#17 + #19 + #21 + #23 + #25 + #27 + #29 + #31 + #33 + #35 + #37 + #39 + #41 + #43 + #45 + #47 + #49 + #51 + #53 + #55 + #56 + #57 + #58 + #59 + #60 + #61 + #62 + #63 + #64"></Data>
+		<Data id="72" name="salaireNet" label="Salaire net" type="money" content="#3 - #70"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="saisie" label="Saisie" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panneausaisie" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Le salarié :
+						]]></Legend>
+						<Field position="1" data="3" usage="input" newline="0" label="Salaire brut mensuel" required="1" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat"></Field>
+						<Field position="2" data="7" usage="input" newline="0" label="Statut" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="3" data="8" usage="input" newline="0" label="Type de contrat" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="4" data="9" usage="input" newline="0" label="Durée du CDD" prompt="Durée en mois" required="0" visibleRequired="1" colon="0" help="0"></Field>
+						<Field position="5" data="5" usage="input" newline="0" label="Temps travaillé" required="1" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="6" data="6" usage="input" newline="0" label="Nombre d'heures travaillés par semaine" required="0" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+L'employeur :
+						]]></Legend>
+						<Field position="1" data="10" usage="input" newline="0" label="Nombre de salariés" required="1" visibleRequired="0" colon="0" help="0" widget="abListbox"></Field>
+						<Field position="2" data="11" usage="input" newline="0" label="Affiliation au régime Alsace-Moselle" required="0" visibleRequired="1" colon="0" help="0" expanded="1"></Field>
+						<Field position="3" data="12" usage="input" newline="0" label="Le compte personnel de formation (CPF) est géré en interne" required="0" visibleRequired="1" colon="0" help="1" expanded="1"></Field>
+						<Field position="4" data="65" usage="input" newline="0" label="L'entreprise est située dans une zone soumise au versement de transport" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="5" data="67" usage="input" newline="0" label="Code postal ou nom de la commune de la zone" required="0" visibleRequired="1" colon="0" help="0" widget="geoAPILocalities"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="calculer" label="Calculer" what="submit" for="nextStep" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="resultat" label="Résultat" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="Panneau12" label="">
+					<FieldSet id="1" disposition="grid">
+						<Legend><![CDATA[
+CSG / CRDS salarié
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partSalarie" type="money" label="Montant"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="CSG déductible" colon="0">
+							<Field position="1" data="13" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="2" label="CSG non déductible" colon="0">
+							<Field position="1" data="14" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="3" label="CRDS" colon="0">
+							<Field position="1" data="15" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="2" disposition="grid">
+						<Legend><![CDATA[
+Santé - Sécurité sociale
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partSalarie" type="money" label="Part salariale"></Column>
+							<Column id="2" name="partEmployeur" type="money" label="Part patronale"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="4" label="Contribution Solidarité Autonomie" colon="0">
+							<Field position="1" data="16" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="17" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="5" label="Assurance maladie" colon="0">
+							<Field position="1" data="18" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="19" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="6" label="Assurance vieillesse plafonnée" colon="0">
+							<Field position="1" data="20" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="21" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="7" label="Assurance vieillesse déplafonnée" colon="0">
+							<Field position="1" data="22" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="23" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="8" label="Allocations familiales" colon="0">
+							<Field position="1" data="24" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="25" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="6" datagroup="9" label="Aide au logement" colon="0">
+							<Field position="1" data="26" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="27" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="7" datagroup="10" label="Fonds national d'aide au logement (FNAL)" colon="0">
+							<Field position="1" data="28" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="29" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="8" datagroup="11" label="Cotisation chomage" colon="0">
+							<Field position="1" data="30" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="31" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="9" datagroup="12" label="Fonds de garantie des salaires" colon="0">
+							<Field position="1" data="32" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="33" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="3" disposition="grid">
+						<Legend><![CDATA[
+Retraites complémentaires
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partSalarie" type="money" label="Part salariale"></Column>
+							<Column id="2" name="partEmployeur" type="money" label="Part patronale"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="13" label="AGFF tranche 1" colon="0">
+							<Field position="1" data="34" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="35" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="14" label="AGFF tranche 2" colon="0">
+							<Field position="1" data="36" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="37" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="15" label="ARRCO tranche 1" colon="0">
+							<Field position="1" data="38" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="39" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="16" label="ARRCO tranche 2" colon="0">
+							<Field position="1" data="40" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="41" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="17" label="AGFF tranche A" colon="0">
+							<Field position="1" data="42" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="43" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="6" datagroup="18" label="AGFF tranche B" colon="0">
+							<Field position="1" data="44" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="45" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="7" datagroup="19" label="AGIRC tranche B" colon="0">
+							<Field position="1" data="46" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="47" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="8" datagroup="20" label="AGIRC tranche C" colon="0">
+							<Field position="1" data="48" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="49" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="9" datagroup="21" label="Assurance décès" colon="0">
+							<Field position="1" data="50" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="51" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="10" datagroup="22" label="Cotisation pour le financement de l'emploi des cadres (APEC)" colon="0">
+							<Field position="1" data="52" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="53" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="11" datagroup="23" label="Cotisation Exceptionnelle Temporaire (CET)" colon="0">
+							<Field position="1" data="54" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="55" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="4" disposition="grid">
+						<Legend><![CDATA[
+Autres contributions patronales
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partEmployeur" type="money" label="Montant"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="24" label="Taxe sur les salaires" colon="0">
+							<Field position="1" data="56" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="25" label="Contribution à la formation professionnelle" colon="0">
+							<Field position="1" data="57" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="26" label="Taxe d'apprentissage" colon="0">
+							<Field position="1" data="58" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="27" label="Participation à l'effort de construction" colon="0">
+							<Field position="1" data="59" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="28" label="Contribution au dialogue social" colon="0">
+							<Field position="1" data="60" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="29" label="Versement transport" colon="0">
+							<Field position="1" data="61" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="5" disposition="grid">
+						<Legend><![CDATA[
+Surcoût CDD
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partEmployeur" type="money" label="Montant"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="30" label="Indemnité de fin de contrat" colon="0">
+							<Field position="1" data="62" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="6" disposition="grid">
+						<Legend><![CDATA[
+Réductions
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partEmployeur" type="money" label="Montant"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="31" label="Crédit d'impôt pour la compétitivité et l'emploi (CICE)" colon="0">
+							<Field position="1" data="63" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="32" label="Réduction générale des cotisations patronales sur les bas salaires (ex-réduction Fillon)" colon="0">
+							<Field position="1" data="64" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="7">
+						<Legend><![CDATA[
+Résultats
+						]]></Legend>
+						<Field position="1" data="3" usage="output" newline="0" label="Salaire brut" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="2" data="70" usage="output" newline="0" label="Total part salariale" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="3" data="71" usage="output" newline="0" label="Total part patronale" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="4" data="72" usage="output" newline="0" label="Salaire net" required="0" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" shape="button" location="bottom"></Action>
+				<Action name="nouvelleSimulation" label="Nouvelle simulation" what="submit" for="newSimulation" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="tauxTransport" label="Taux de versement transport" request="SELECT taux, tauxadditionnel as tauxAdditionnel FROM tauxTransport WHERE insee = '%1$s' AND dateEffet &lt;= CURRENT_DATE ORDER BY dateeffet DESC LIMIT 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="insee" data="67"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Condition d'affichage des éléments liés au CDD">
+			<Conditions value="defined(#8) &amp;&amp; #8 = 2">
+				<Connector type="all">
+					<Condition operand="typeContrat" operator="present"></Condition>
+					<Condition operand="typeContrat" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+				<Action id="2" name="showObject" target="fieldset" step="2" panel="1" fieldset="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+				<Action id="2" name="hideObject" target="fieldset" step="2" panel="1" fieldset="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Condition d'affichage du champ CPF">
+			<Conditions value="defined(#10) &amp;&amp; #10 != 1">
+				<Connector type="all">
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Conditions d'affichage du champ versement transport">
+			<Conditions value="defined(#10) &amp;&amp; #10 != 1">
+				<Connector type="all">
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Condition d'affichage du champ nombre d'heures travaillés">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 2">
+				<Connector type="all">
+					<Condition operand="tempsTravaille" operator="present"></Condition>
+					<Condition operand="tempsTravaille" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Condition d'affichage du champ commune">
+			<Conditions value="defined(#10) &amp;&amp; #10 != 1 &amp;&amp; defined(#65) &amp;&amp; #65 = 2">
+				<Connector type="all">
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+					<Condition operand="soumisVersementTransport" operator="present"></Condition>
+					<Condition operand="soumisVersementTransport" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Calcul du salaire brut mensuel temps plein">
+			<Conditions value="defined(#3) &amp;&amp; defined(#5) &amp;&amp; #5 = 2 &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="tempsTravaille" operator="present"></Condition>
+					<Condition operand="tempsTravaille" operator="=" expression="2"></Condition>
+					<Condition operand="heuresSemaine" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="#3 * (35 / #6)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="#3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Calcul CSG et CRDS : salaire brut &gt; 4 PSS">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2) &amp;&amp; #3 &gt; #2 * 4">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="&gt;" expression="#2 * 4"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="(#3 - 0.07 * #2) * 0.051"></Action>
+				<Action id="2" name="setAttribute" target="content" data="14" value="(#3 - 0.07 * #2) * 0.024"></Action>
+				<Action id="3" name="setAttribute" target="content" data="15" value="(#3 - 0.07 * #2) * 0.005"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Calcul CSG et CRDS: salaire brut &lt;= 4 PSS">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2) &amp;&amp; #3 &lt;= #2 * 4">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="&lt;=" expression="#2 * 4"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="#3 * 0.9825 * 0.051"></Action>
+				<Action id="2" name="setAttribute" target="content" data="14" value="#3 * 0.9825 * 0.024"></Action>
+				<Action id="3" name="setAttribute" target="content" data="15" value="#3 * 0.9825 * 0.005"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Calcul assurance maladie part salarié hors Alsace - Moselle">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#11) &amp;&amp; #11 = 1">
+				<Connector type="all">
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="18" value="#3 * 0.0075"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Calcul assurance maladie part salarié Alsace - Moselle">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#11) &amp;&amp; #11 = 2">
+				<Connector type="all">
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="18" value="#3 * 0.0225"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Calcul de la cotisation FNAL moins de 20 salariés">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#10) &amp;&amp; (#10 = 1 || #10 = 2)">
+				<Connector type="all">
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="NombreSalaries" operator="=" expression="1"></Condition>
+						<Condition operand="NombreSalaries" operator="=" expression="2"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="29" value="min(#2, #3) * 0.001"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Calcul de la cotisation FNAL 20 salariés et plus">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; (#10 = 3 || #10 = 4)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="NombreSalaries" operator="=" expression="3"></Condition>
+						<Condition operand="NombreSalaries" operator="=" expression="4"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="29" value="#3 * 0.005"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Calcul de la cotisation à la formation professionnelle moins de 10 salariés">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; #10 = 1">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="#3 * 0.0055"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Calcul de la contribution à la formation professionnelle 10 salariés et plus">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; #10 != 1 &amp;&amp; defined(#12) &amp;&amp; #12 = 1">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+					<Condition operand="gestionInterneCPF" operator="present"></Condition>
+					<Condition operand="gestionInterneCPF" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="#3 * 0.01"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Calcul de la contribution à la formation professionnelle 10 salariés et plus + gestion interne du CPF">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; #10 != 1 &amp;&amp; defined(#12) &amp;&amp; #12 = 2">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+					<Condition operand="gestionInterneCPF" operator="present"></Condition>
+					<Condition operand="gestionInterneCPF" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="#3 * 0.008"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Calcul de AGFF et ARRCO non cadres - Tranches 1 et 2">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#7) &amp;&amp; #7 = 2">
+				<Connector type="all">
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="statutSalarie" operator="present"></Condition>
+					<Condition operand="statutSalarie" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="min(#3, #2) * 0.008"></Action>
+				<Action id="2" name="setAttribute" target="content" data="35" value="min(#3, #2) * 0.012"></Action>
+				<Action id="3" name="setAttribute" target="content" data="36" value="min(#2 * 3, max(#3 - #2, 0)) * 0.009"></Action>
+				<Action id="4" name="setAttribute" target="content" data="37" value="min(#2 * 3, max(#3 - #2, 0)) * 0.013"></Action>
+				<Action id="5" name="setAttribute" target="content" data="38" value="min(#3, #2) * 0.031"></Action>
+				<Action id="6" name="setAttribute" target="content" data="39" value="min(#3, #2) * 0.0465"></Action>
+				<Action id="7" name="setAttribute" target="content" data="40" value="min(#2 * 3, max(#3 - #2, 0)) * 0.081"></Action>
+				<Action id="8" name="setAttribute" target="content" data="41" value="min(#2 * 3, max(#3 - #2, 0)) * 0.1215"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Calcul de AGFF, ARRCO et AGIRC cadres - Tranches A, B, C">
+			<Conditions value="defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#7) &amp;&amp; #7 = 1">
+				<Connector type="all">
+					<Condition operand="pss" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="statutSalarie" operator="present"></Condition>
+					<Condition operand="statutSalarie" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="min(#2, #3) * 0.031"></Action>
+				<Action id="2" name="setAttribute" target="content" data="39" value="min(#2, #3) * 0.0465"></Action>
+				<Action id="3" name="setAttribute" target="content" data="42" value="min(#2, #3) * 0.008"></Action>
+				<Action id="4" name="setAttribute" target="content" data="43" value="min(#2, #3) * 0.012"></Action>
+				<Action id="5" name="setAttribute" target="content" data="44" value="min(#2 * 4, max(#3 - #2, 0)) * 0.009"></Action>
+				<Action id="6" name="setAttribute" target="content" data="45" value="min(#2 * 4, max(#3 - #2, 0)) * 0.013"></Action>
+				<Action id="7" name="setAttribute" target="content" data="46" value="min(#2 * 4, max(#3 - #2, 0)) * 0.078"></Action>
+				<Action id="8" name="setAttribute" target="content" data="47" value="min(#2 * 4, max(#3 - #2, 0)) * 0.1275"></Action>
+				<Action id="9" name="setAttribute" target="content" data="48" value="min(#2 * 8, max(#3 - #2 * 4, 0)) * 0.1275"></Action>
+				<Action id="10" name="setAttribute" target="content" data="49" value="min(#2 * 8, max(#3 - #2 * 4, 0)) * 0.078"></Action>
+				<Action id="11" name="setAttribute" target="content" data="51" value="min(#3, #2) * 0.015"></Action>
+				<Action id="12" name="setAttribute" target="content" data="52" value="min(#3, #2 * 4) * 0.00024"></Action>
+				<Action id="13" name="setAttribute" target="content" data="53" value="min(#3, #2 * 4) * 0.00036"></Action>
+				<Action id="14" name="setAttribute" target="content" data="54" value="min(#3, #2 * 8) * 0.0013"></Action>
+				<Action id="15" name="setAttribute" target="content" data="55" value="min(#3, #2 * 8) * 0.0022"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Calcul taxe sur salaires taux normal">
+			<Conditions value="defined(#4) &amp;&amp; #4 &lt;= 7721">
+				<Connector type="all">
+					<Condition operand="salaireBrutAnnuel" operator="present"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&lt;=" expression="7721"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#3 * 0.0425"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Calcul taxe sur salaires 1er taux majoré">
+			<Conditions value="defined(#4) &amp;&amp; #4 &gt; 7721 &amp;&amp; #4 &gt;= 15417">
+				<Connector type="all">
+					<Condition operand="salaireBrutAnnuel" operator="present"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&gt;" expression="7721"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&gt;=" expression="15417"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#3 * 0.0850"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Calcul taxe sur salaires 2ème taux majoré">
+			<Conditions value="defined(#4) &amp;&amp; #4 &gt; 15417 &amp;&amp; #4 &lt;= 152279">
+				<Connector type="all">
+					<Condition operand="salaireBrutAnnuel" operator="present"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&gt;" expression="15417"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&lt;=" expression="152279"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#3 * 0.136"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Calcul taxe sur salaires 3ème taux majoré">
+			<Conditions value="defined(#4) &amp;&amp; #4 &gt; 152279">
+				<Connector type="all">
+					<Condition operand="salaireBrutAnnuel" operator="present"></Condition>
+					<Condition operand="salaireBrutAnnuel" operator="&gt;" expression="152279"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#3 * 0.20"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Calcul de la taxe d'apprentissage hors Alsace-Moselle">
+			<Conditions value="defined(#3) &amp;&amp; defined(#11) &amp;&amp; #11 = 1">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="#3 * 0.0068"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Calcul de la taxe d'apprentissage Alsace-Moselle">
+			<Conditions value="defined(#3) &amp;&amp; defined(#11) &amp;&amp; #11 = 2">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="present"></Condition>
+					<Condition operand="affiliationRegimeAlsaceMoselle" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="#3 * 0.0044"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Calcul de la participation à l'effort de construction">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; (#10 = 3 || #10 = 4)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="NombreSalaries" operator="=" expression="3"></Condition>
+						<Condition operand="NombreSalaries" operator="=" expression="4"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="#3 * 0.0045"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Calcul de l'indemnité de fin de contrat">
+			<Conditions value="defined(#3) &amp;&amp; #8 = 2 &amp;&amp; defined(#9)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="typeContrat" operator="=" expression="2"></Condition>
+					<Condition operand="dureeCDD" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="#3 * #9 * 0.1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Calcul versement transport">
+			<Conditions value="defined(#3) &amp;&amp; defined(#10) &amp;&amp; #10 != 1 &amp;&amp; defined(#65) &amp;&amp; #65 = 2 &amp;&amp; defined(#67) &amp;&amp; defined(#68) &amp;&amp; defined(#69)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Condition operand="NombreSalaries" operator="!=" expression="1"></Condition>
+					<Condition operand="soumisVersementTransport" operator="present"></Condition>
+					<Condition operand="soumisVersementTransport" operator="=" expression="2"></Condition>
+					<Condition operand="insee" operator="present"></Condition>
+					<Condition operand="TauxTransport" operator="present"></Condition>
+					<Condition operand="tauxAdditionnelTransport" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="#3 * (#68 + #69) / 100"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Calcul du CICE">
+			<Conditions value="defined(#66) &amp;&amp; #3 &lt;= #1 * 2.5">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuelTempsPlein" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="&lt;=" expression="#1 * 2.5"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="#66 * -0.07"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Calcul de la réduction sur les bas salaires. Entreprises de moins 20 salariés">
+			<Conditions value="defined(#3) &amp;&amp; #3 &lt; #1 * 1.6 &amp;&amp; defined(#10) &amp;&amp; (#10 = 1 || #10 = 2)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="&lt;" expression="#1 * 1.6"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="NombreSalaries" operator="=" expression="1"></Condition>
+						<Condition operand="NombreSalaries" operator="=" expression="2"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="#3 * (0.2809 / 0.6) * (1.6 * (#1 / #3) - 1) * -1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Calcul de la réduction sur les bas salaires. Entreprises de 20 salariés et plus">
+			<Conditions value="defined(#3) &amp;&amp; #3 &lt; #1 * 1.6 &amp;&amp; defined(#10) &amp;&amp; (#10 = 3 || #10 = 4)">
+				<Connector type="all">
+					<Condition operand="salaireBrutMensuel" operator="present"></Condition>
+					<Condition operand="salaireBrutMensuel" operator="&lt;" expression="#1 * 1.6"></Condition>
+					<Condition operand="NombreSalaries" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="NombreSalaries" operator="=" expression="3"></Condition>
+						<Condition operand="NombreSalaries" operator="=" expression="4"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="#3 * (0.2849 / 0.6) * (1.6 * (#1 / #3) - 1) * -1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

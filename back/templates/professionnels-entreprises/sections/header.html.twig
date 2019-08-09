@@ -1,0 +1,428 @@
+		<noscript>
+			<p class="text-center text-danger">Javascript est desactivé dans votre navigateur.</p>
+		</noscript>
+		<!--[if lt IE 8]>
+		<div class="browsehappy">
+			<div class="container">
+				<p>Savez-vous que votre navigateur est obsolète ?
+				<p>
+				<p> Pour naviguer de la manière la plus satisfaisante sur le Web, nous vous recommandons de procéder à une <a href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie">mise à jour de votre navigateur</a>.<br>Vous pouvez aussi <a href="http://browsehappy.com/">essayer d’autres navigateurs web populaires</a>.</p>
+			</div>
+		</div>
+		<![endif]-->
+		<div id="outer-wrap">
+			<div id="inner-wrap">
+				<!-- attention le lien vers la recherche n'est peut etre pas présent sur toutes les pages -->
+				<!-- le lien aller au menu est contextualisé -->
+				<ul class="nav-skip" id="top">
+					<li><a href="#main"><div class="container">Aller au contenu</div></a></li>
+					<li><a href="#search"><div class="container">Aller à la recherche</div></a></li>
+					<li class="skip-link-nav"><a href="#nav-main"><div class="container">Aller au menu de Professionnels</div></a></li>
+				</ul>
+				<header class="banner">
+					<esi:remove>
+					<div class="nav-top">
+						<div class="container">
+							<nav class="nav-top-main" aria-label="menu principal">
+								<ul>
+									<li class="nav-top-menu">
+										<button id="nav-open-btn" class="btn btn-menu nav-top-menu" type="button">menu</button>
+									</li>
+									<li class="nav-top-part">
+										<a href="{{ path }}/">
+											Particuliers
+										</a>
+									</li>
+									<li class="nav-top-pro">
+										<a href="{{ path }}/professionnels-entreprises" class="active" title="Professionnels - actif">
+											Pro<span>fessionnels</span>
+										</a>
+									</li>
+									<li class="nav-top-asso">
+										<a href="{{ path }}/associations">
+											Asso<span>ciations</span>
+										</a>
+									</li>
+									<li class="nav-top-annuaire">
+										<a href="https://lannuaire.service-public-2016.fr.qualif.ext.dila.fr">
+											Annuaire<span> de l’administration</span>
+										</a>
+									</li>
+									<li class="nav-top-compte">
+										<a href="#" class="collapsed" data-toggle="collapse" data-target="#compte">
+											<svg width="28px" height="28px" aria-hidden="true">
+												<use xlink:href="#icon-compte"></use>
+											</svg>
+											Mon compte
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div><!-- container -->
+					</div>
+					<div id="compte" class="nav-compte collapse">
+					  <div class="container">
+					    <p class="close"><button class="btn btn-link btn-close" data-target="#compte" data-toggle="collapse">Fermer</button></p>
+					    <p class="nav-compte-title">Acceder à mon compte compte sur :</p>
+					    <ul class="nav-compte-list">
+					      <li><a href="https://mon.service-public.fr/">Mon.service-public.fr</a></li>
+					      <li><a href="https://comptepro.service-public.fr/">Votre compte Pro</a></li>
+					      <li><a href="https://compteasso.service-public.fr/">Votre compte Association</a></li>
+					    </ul>					
+					  </div><!-- container -->
+					</div>
+					<!-- nav-top -->
+					<div class="container container-logo">
+						<div class="logo">
+							<img width="465" height="65" src="{{ path }}/resources/web/img/logo-service-public-pro.png" alt="Service-Public Professionnels" />
+						</div>
+						<div class="nav-header">
+							<ul>
+								<li class="nav-header-2">
+									<a href="{{ path }}/professionnels-entreprises/vosdroits/services-en-ligne-et-formulaires">
+										<svg width="35px" height="35px" aria-hidden="true">
+											<use xlink:href="#icon-formulaire"></use>
+										</svg>
+										Services en ligne et formulaires
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- nav-header -->
+					</div>
+					<!-- container -->
+					<nav class="nav-mobile" id="nav-mobile" aria-label="menu Professionnels">
+						<p class="nav-mobile-close">
+							<button id="nav-close-btn" class="btn btn-close" type="button">Fermer</button>
+						</p>
+						<ul class="nav-mobile-global">
+							<li id="profil">
+								<a href="https://mon.service-public.fr/" id="msp">
+									<svg width="25px" height="25px">
+										<use xlink:href="#icon-compte"></use>
+									</svg>
+									Mon compte
+								</a>
+							</li>
+							<li>
+								<a href="{{ path }}/professionnels-entreprises/vosdroits/services-en-ligne-et-formulaires">
+									<svg width="25px" height="25px">
+										<use xlink:href="#icon-formulaire"></use>
+									</svg>
+									Service en ligne et formulaires
+								</a>
+							</li>
+						</ul>
+						<div class="nav-mobile-espace">
+							<p><a href="{{ path }}/professionnels-entreprises">Professionels</a></p>
+							<ul>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24264">Création - Cessation</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24266">Gestion - Finances</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24265">Fiscalité</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24267">Ressources humaines</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24268">Vente - Commerce</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24269">Secteurs</a></li>
+								<li><a href="{{ path }}/professionnels-entreprises/actualites">Actualités</a></li>
+							</ul>
+						</div>
+					</nav>
+					</esi:remove>
+					<esi:include src="/esi/professionnels-entreprises/header?{{ marquage }}"></esi:include>
+				</header>
+				<nav class="nav-main" id="nav-main" aria-label="menu Professionnels">
+					<div class="container">
+						<esi:remove>
+						<ul class="nav-main-first nav-main-desktop" id="nav-main-dropdown">
+							<li>
+								<a class="nav-main-item nav-main-home" href="{{ path }}/professionnels-entreprises">
+									<span class="icon icon-home" aria-hidden="true" title="Accueil"></span>
+									<span class="blank">Accueil</span> Professionnels
+								</a>
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-1" href="{{ path }}/professionnels-entreprises/vosdroits/N24264">Création - Cessation</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-1">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-1">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16147">Préalables à la création d&#039;entreprise</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16153">Financement de la création ou reprise d&#039;entreprise</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16178">Formalités de la création d&#039;entreprise</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N31143">Modification d&#039;une entreprise</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16594">Cessation, transmission et reprise d&#039;entreprise</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24264">Afficher le thème Création - Cessation</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-3" href="{{ path }}/professionnels-entreprises/vosdroits/N24265">Fiscalité</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-3">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-3">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<p>Impôts liés au chiffre d&#039;affaires</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13442">Imposition des sociétés</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N23456">Impôt sur le revenu pour les professionnels</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13445">Taxe sur la valeur ajoutée (TVA)</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Impôts locaux</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13443">Contribution économique territoriale (CET)</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22470">Taxes foncières</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22471">Taxes et redevances locales</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Autres impôts et taxes</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13444">Taxes liées aux salaires</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22250">Taxes liées à l&#039;activité des entreprises</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Relations avec l&#039;administration fiscale</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N23594">Réclamations - Contentieux fiscaux</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10812">Allègements fiscaux</a></li>
+												</ul>
+												<p class="nav-main-more">Voir aussi&nbsp;:</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/F31190">Quels sont les numéros d'identification des entreprises ?</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24265">Afficher le thème Fiscalité</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-2" href="{{ path }}/professionnels-entreprises/vosdroits/N24266">Gestion - Finances</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-2">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-2">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10730">Baux commerciaux et professionnels</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10806">Comptabilité</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16369">Marchés publics</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22284">Financement</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17323">Assurance</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18278">Entreprises en difficulté</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24266">Afficher le thème Gestion - Finances</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-4" href="{{ path }}/professionnels-entreprises/vosdroits/N24267">Ressources humaines</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-4">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-4">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<p>Recrutement, aides à l&#039;emploi</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22781">Formalités d&#039;embauche</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N16992">Recrutements spécifiques</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N23663">Aides à l&#039;embauche</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17109">Contrats de travail</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Réglementation du travail</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N14601">Santé et sécurité au travail</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N31002">Chômage partiel</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N31006">Licenciement</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13415">Fin et rupture de contrat</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Protection sociale</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10779">Déclarations sociales de l&#039;employeur</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10805">Affiliation aux régimes sociaux des travailleurs indépendants</a></li>
+												</ul>
+												<p>Action sociale</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13414">Formation</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17310">Droits syndicaux</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N24663">Prestations sociales de l&#039;employeur</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p class="nav-main-more">Voir aussi&nbsp;:</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/F23106">Quelles sont les obligations d'affichage dans une entreprise ?</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/F2395">Où peut-on se procurer une convention collective ?</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/F31630">Une entreprise peut-elle relever de plusieurs conventions collectives ?</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24267">Afficher le thème Ressources humaines</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-5" href="{{ path }}/professionnels-entreprises/vosdroits/N24268">Vente - Commerce</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-5">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-5">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22773">Réglementation du commerce</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17267">Commerces spécifiques</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17163">Litiges commerciaux</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22281">Importation - Exportation</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24268">Afficher le thème Vente - Commerce</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li class="panel">
+								<a class="nav-main-item" data-parent="#nav-main-dropdown" data-toggle="collapse" data-target="#nav-main-6" href="{{ path }}/professionnels-entreprises/vosdroits/N24269">Secteurs</a>
+								<div class="nav-main-dropdown-inner collapse " id="nav-main-6">
+									<div class="container">
+										<p class="close"><button title="Fermer" data-toggle="collapse" class="btn-close" type="button" data-target="#nav-main-6">
+											Fermer
+											</button>
+										</p>
+										<div class="nav-main-sous-theme">
+											<div class="col-nav-main">
+												<p>Culture</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18471">Secteur du livre et de la presse</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13347">Spectacle vivant (théâtre, danse, spectacles)</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18470">Cinéma</a></li>
+												</ul>
+												<p>Environnement</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13363">Déchets, pollution et produits toxiques</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N22377">Protection de la faune et de la flore</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N14422">Aides pour l&#039;environnement</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Agriculture</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N31140">Bail rural</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N14419">Aides à la production agricole</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N23662">Obligations en matière d&#039;agriculture</a></li>
+												</ul>
+												<p>Recherche et développement</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N10734">Propriété intellectuelle</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N23442">Recherche</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Transports</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N19470">Automobile-Moto</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18568">Poids-lourds</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18570">Aviation</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N18569">Transport maritime et fluvial</a></li>
+												</ul>
+											</div>
+											<div class="col-nav-main">
+												<p>Autres secteurs</p>
+												<ul>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13345">Urbanisme - BTP</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13352">Tourisme</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N13337">Sécurité</a></li>
+													<li><a href="{{ path }}/professionnels-entreprises/vosdroits/N17972">Santé</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- nav-main-sous-theme -->
+										<p class="link-theme"><a href="{{ path }}/professionnels-entreprises/vosdroits/N24269">Afficher le thème Secteurs</a></p>
+									</div>
+									<!-- container -->
+								</div>
+								<!-- nav-main-dropdown-inner -->
+							</li>
+							<li><a class="nav-main-item nav-main-item-actu" href="{{ path }}/professionnels-entreprises/actualites">Actualités</a></li>
+						</ul>
+						</esi:remove>
+						<esi:include src="/esi/professionnels-entreprises/nav?{{ marquage }}"></esi:include>
+					</div>
+				</nav>
+				<esi:remove>
+				<div class="search" role="search" id="search">
+					<form id="recherche" action="{{ path }}/professionnels-entreprises/recherche" method="get" class="search-site">
+						<div class="container">
+							<h1><span class="sr-only">Service-Public.fr Professionnels :</span> Connaître vos droits, effectuer vos démarches</h1>
+							<div class="input-group">
+								<input type="search" class="form-control ui-autocomplete-input" id="keyword" placeholder="Exemple : Passeport, mairie de Montreuil, acte d&#39;état-civil…" autocomplete="off" name="keyword" title="Recherche dans l&#39;espace Professionnels" value="" />
+								<span class="input-group-btn">
+								<button class="btn" type="submit">
+								<span aria-hidden="true" class="icon icon-search"></span>
+								<span class="blank">Valider la recherche dans le site service-public-pro</span>
+								</button>
+								</span>
+							</div>
+						</div>
+					</form>
+				</div>
+				</esi:remove>
+				<esi:include src="/esi/professionnels-entreprises/search?{{ marquage }}"></esi:include>
+				<main class="main" id="main">
+					<div class="breadcrumb">
+						<div class="container">
+							<p>
+								<span><a href="/professionnels-entreprises">Accueil professionnels</a><span class="breadcrumb-separator"> ></span></span> 
+								<span><a href="/professionnels-entreprises/vosdroits/services-en-ligne-et-formulaires">Services en ligne et formulaires</a><span class="breadcrumb-separator"> ></span></span> 
+								<span><a href="{{step.simulator.referer }}">{{step.simulator.label }}</a><span class="breadcrumb-separator"> ></span></span> 
+								<strong class="active">Simulateur</strong>
+							</p>
+						</div>
+					</div><!-- breadcrumb -->
+					<div class="container main-container">
+						<div class="col-main">
+							<article class="article">
+{% block page_title %}{% endblock %}

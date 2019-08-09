@@ -1,0 +1,152 @@
+[
+  {
+    "nom": "Fougères",
+    "insee": "35115",
+    "departmentCode": null,
+    "organismes": [
+      {
+        "nom": "Préfecture d'Ille-et-Vilaine",
+        "editeurSource": "Services de l'État : Ille-et-Vilaine",
+        "externalId": "prefecture-35238-01",
+        "inseeCode": "35238",
+        "dateMiseAjour": "18-02-2015,23:00",
+        "pivotLocal": "prefecture",
+        "openingDaysDTO": [
+          {
+            "from": "lundi",
+            "to": "jeudi",
+            "note": null,
+            "openingHours": [
+              {
+                "from": "09:00",
+                "to": "12:00"
+              },
+              {
+                "from": "13:30",
+                "to": "16:00"
+              }
+            ]
+          },
+          {
+            "from": "vendredi",
+            "to": "vendredi",
+            "note": null,
+            "openingHours": [
+              {
+                "from": "09:00",
+                "to": "12:00"
+              }
+            ]
+          }
+        ],
+        "serviceDTOs": [
+          {
+            "centreAppelDTO": null,
+            "dateMiseAjour": "10-03-2015,23:00",
+            "commentaire": "<p>L'ensemble des démarches au bureau du séjour sont traitées lors d'un rendez-vous. Pour prendre rendez-vous, consultez le site internet de la préfecture d'Ille-et-Vilaine <a href=\"http://www.ille-et-vilaine.gouv.fr/Demarches-administratives/Accueil-Etrangers\">http://www.ille-et-vilaine.gouv.fr/Demarches-administratives/Accueil-Etrangers</a></p><p>Avant de vous présenter&amp;#160;au rendez-vous, vous devez disposer des originaux et des photocopies des documents demandés. Tout dossier incomplet fera l'objet d'un refus.</p>",
+            "nom": "Bureau du séjour et éloignement",
+            "pointAcceuilPhysiqueDTO": {
+              "adresseDTOList": [
+                {
+                  "nom": "Rennes Cedex 9",
+                  "label": "3 avenue de la préfecture\n",
+                  "lignes": [
+                    "3 avenue de la préfecture"
+                  ],
+                  "numeroVoie": null,
+                  "typeVoie": null,
+                  "complement": null,
+                  "type": "physique",
+                  "pays": null,
+                  "codePostal": "35026",
+                  "accessibility": "",
+                  "accessibilityType": "DEM",
+                  "longitude": -1.694663,
+                  "latitude": 48.12796,
+                  "precision": 6
+                },
+                {
+                  "nom": "Rennes Cedex 9",
+                  "label": "Préfecture d'Ille-et-Vilaine service séjour et éloignement,\n3 avenue de la préfecture\n",
+                  "lignes": [
+                    "Préfecture d'Ille-et-Vilaine service séjour et éloignement,",
+                    "3 avenue de la préfecture"
+                  ],
+                  "numeroVoie": null,
+                  "typeVoie": null,
+                  "complement": null,
+                  "type": "postale",
+                  "pays": null,
+                  "codePostal": "35026",
+                  "accessibility": null,
+                  "accessibilityType": null,
+                  "longitude": 0,
+                  "latitude": 0,
+                  "precision": 0
+                }
+              ],
+              "openingDaysDTOs": [
+                {
+                  "from": "lundi",
+                  "to": "vendredi",
+                  "note": null,
+                  "openingHours": [
+                    {
+                      "from": "09:00",
+                      "to": "12:00"
+                    },
+                    {
+                      "from": "13:30",
+                      "to": "16:00"
+                    }
+                  ]
+                }
+              ],
+              "coordonneesNumDTO": {
+                "telephone": "0821 80 30 35",
+                "coutTelephone": "0,12 € la minute + surcoût depuis un mobile",
+                "fax": "+33 2 99 02 10 15",
+                "url": "http://www.ille-et-vilaine.gouv.fr/Demarches-administratives/Accueil-Etrangers",
+                "email": null,
+                "versionMobile": null
+              }
+            },
+            "serviceEnLigneDTO": null
+          }
+        ],
+        "adresseDTOs": [
+          {
+            "nom": "Rennes Cedex 9",
+            "label": "3 avenue de la préfecture\nPréfecture d'Ille-et-Vilaine\n",
+            "lignes": [
+              "3 avenue de la préfecture",
+              "Préfecture d'Ille-et-Vilaine"
+            ],
+            "numeroVoie": null,
+            "typeVoie": null,
+            "complement": null,
+            "type": "géopostale",
+            "pays": null,
+            "codePostal": "35026",
+            "accessibility": "",
+            "accessibilityType": "DEM",
+            "longitude": -1.694834,
+            "latitude": 48.128033,
+            "precision": 6
+          }
+        ],
+        "commentaire": null,
+        "mailEditeur": null,
+        "idPresta": "135",
+        "coordonneesNumDTO": {
+          "telephone": "+0821 80 30 35",
+          "coutTelephone": "0,12 € la minute + surcoût depuis un mobile",
+          "fax": "+33 2 99 02 10 15",
+          "url": "http://www.ille-et-vilaine.gouv.fr/",
+          "email": null,
+          "versionMobile": null
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+@import "common.css";
+
+.step-page .grid-header th:first-child {
+	width: 80%;
+}
+.step-page table.grid tbody th {
+	padding-left: 1em;
+	text-align: left;
+}
+.step-page table.grid tbody td {
+	padding-right: 1em;
+	text-align: right;
+}

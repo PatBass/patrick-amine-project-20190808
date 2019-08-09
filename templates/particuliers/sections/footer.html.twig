@@ -1,0 +1,177 @@
+		
+								<div class="toolbar">
+                                                                    <p class="toolbar-comment"><a rel="nofollow" href="/contact/remarque?type=serviceComplementaire&amp;titreFiche={{ step.simulator.label|url_encode }}&amp;urlFiche={{  path|url_encode ~ '/simulateur/calcul/'|url_encode }}{{ step.simulator.name|url_encode }}&amp;audienceFiche=Particuliers&amp;isTeleserviceExterieur=false"><span>Signaler un problème</span></a></p>
+									<div class="toolbar-share">
+										<!--
+											liens de partage sans javascript :
+											https://github.com/cferdinandi/social-sharing
+											http://www.sitepoint.com/social-media-button-links/
+											-->
+
+<ul>
+<li><button class="btn-print" title="Imprimer" onclick="window.print()" data-xiti-name="Partage::Imprimer::Particuliers::Services_en_ligne_et_formulaires" data-xiti-type="action"><span aria-hidden="true" class="icon icon-print"></span><span class="txt" rel="noopener noreferrer">Imprimer</span></button></li>
+                    
+<li><a class="btn-share-txt" title="Partager sur Facebook - facebook.com - Nouvelle fenêtre" href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.uri }}" target="_blank" data-xiti-name="Partage::Facebook::Particuliers::Services_en_ligne_et_formulaires" data-xiti-type="action"><span aria-hidden="true" class="icon icon-facebook"></span>
+<span class="txt">Partager </span></a></li>
+     
+<li><a class="btn-share-txt" target="_blank"  title="Partager sur Twitter - twitter.com - Nouvelle fenêtre" href="https://twitter.com/intent/tweet?text={{step.simulator.label}}&amp;url={{ app.request.uri }}" data-xiti-name="Partage::Twitter::Particuliers::Services_en_ligne_et_formulaires" data-xiti-type="action"><span aria-hidden="true" class="icon icon-twitter"></span>
+<span class="txt">Tweeter </span></a></li>
+  
+<li><a class="btn-share-txt" target="_blank"  title="Partager sur LinkedIn - linkedin.com - Nouvelle fenêtre" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ app.request.uri }}&amp;title={{step.simulator.label }}" data-xiti-name="Partage::LinkedIn::Particuliers::Services_en_ligne_et_formulaires" data-xiti-type="action"><span aria-hidden="true" class="icon icon-linkedin"></span>
+<span class="txt">Partager </span></a></li>
+
+ </ul>
+ 
+  
+									</div>
+									
+								</div>
+							                                
+                                
+  
+
+  
+  
+								<p class="nav-up">
+									<a href="#top"><span>Retour en haut de page</span></a>
+								</p>
+							</article>
+						</div>
+						<!-- col-main -->
+					</div>
+					<!-- container -->
+				</main>
+				<!-- Modal -->
+				<div class="modal fade" id="modal-mail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="btn btn-link btn-close" data-dismiss="modal">Fermer</button>
+								<h4 class="modal-title" id="modalLabel">Partage par courriel</h4>
+							</div>
+							<div class="modal-body">
+								<div id="envoi-mail" class="envoi-mail">
+									<form action="">
+										<p><strong>Pour partager cette page, veuillez saisir les informations suivantes</strong></p>
+										<p class="note">Les champs marqués d'un <span class="symbol-required">*</span> sont obligatoires</p>
+										<div class="form-group envoi-mail-col-1">
+											<label for="envoi-mail-1"><span class="symbol-required">*</span> Nom</label>
+											<input type="text" class="form-control" id="envoi-mail-1" aria-required="true">
+										</div>
+										<div class="form-group envoi-mail-col-2">
+											<label for="envoi-mail-2"><span class="symbol-required">*</span> Prénom</label>
+											<input type="text" class="form-control" id="envoi-mail-2" aria-required="true">
+										</div>
+										<div class="form-group">
+											<label for="envoi-mail-3"><span class="symbol-required">*</span> Le courriel des destinataires</label>
+											<input type="text" class="form-control" id="envoi-mail-3" aria-required="true">
+											<p class="help-block">Vous pouvez mettre jusqu'à 3 adresses en les séparant par un ;</p>
+										</div>
+										<div class="form-group">
+											<label for="envoi-mail-4">Votre message</label>
+											<textarea class="form-control" id="envoi-mail-4" cols="30" rows="8"></textarea>
+											<p class="letter-count" aria-live="polite"><span>800</span> caractères restants</p>
+										</div>
+										<div class="submit">
+											<button class="btn btn-primary" type="submit">Envoyer</button>
+										</div>
+									</form>
+								</div>
+								<!-- envoi-mail -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer class="footer" role="contentinfo">
+					<esi:remove>
+					<nav class="footer-sitemap" role="navigation" aria-label="navigation secondaire de pied de page">
+						<div class="container">
+							<div class="row" role="list">
+								<div class="footer-sitemap-col" role="listitem">
+									<p>Assistance et contact</p>
+									<ul>
+										<li><a href="{{ path }}/assistance-et-contact/aide">Aide sur le site</a></li>
+										<li><a href="{{ path }}/particuliers/glossaire">Glossaire</a></li>
+										<li><a href="{{ path }}/contact">Contact</a></li>
+									</ul>
+								</div>
+								<!-- footer-sitemap-col -->
+								<div class="footer-sitemap-col" role="listitem">
+									<p>À propos</p>
+									<ul>
+										<li><a href="{{ path }}/a-propos/missions">Missions</a></li>
+										<li><a href="{{ path }}/a-propos/presse">Presse</a></li>
+										<li><a href="{{ path }}/a-propos/donnees-personnelles">Données personnelles</a></li>
+										<li><a href="{{ path }}/a-propos/conditions-generales-utilisation">Conditions générales d'utilisation</a></li>
+									</ul>
+								</div>
+								<!-- footer-sitemap-col -->
+								<div class="footer-sitemap-col" role="listitem">
+									<p>Qualité de service</p>
+									<ul>
+										<li><a href="{{ path }}/qualite-de-service/accessibilite">Accessibilité</a></li>
+										<li><a href="{{ path }}/qualite-de-service/securite">Sécurité</a></li>
+										<li><a href="{{ path }}/qualite-de-service/engagement-qualite">Engagement qualité</a></li>
+										<li><a href="{{ path }}/qualite-de-service/statistiques">Statistiques</a></li>
+									</ul>
+								</div>
+								<!-- footer-sitemap-col -->
+								<div class="footer-sitemap-col" role="listitem">
+									<p>Partenariats</p>
+									<ul>
+										<li><a href="{{ path }}/partenaires/communaute-partenaire">Partenaires</a></li>
+										<li><a href="{{ path }}/partenaires/comarquage">Co-marquage</a></li>
+									</ul>
+								</div>
+								<!-- footer-sitemap-col -->
+								<div class="footer-sitemap-col" role="listitem">
+									<p>Abonnement</p>
+									<ul>
+										<li><a href="{{ path }}/actualites/lettresp/abonnement">Lettre de service-public</a></li>
+										<li><a href="{{ path }}/actualites/lettresp/archives">Archives de la lettre</a></li>
+										<li><a href="{{ path }}/abonnements/rss"><span aria-hidden="true" class="icon icon-rss"></span>&nbsp;RSS</a></li>
+										<li><a href="https://twitter.com/servicepublicfr" target="_blank" title="twitter @servicepublicfr (nouvelle fenêtre)"><span aria-hidden="true" class="icon icon-twitter"></span>&nbsp;Twitter</a></li>
+										<li><a href="https://plus.google.com/+servicepublic/posts" target="_blank" title="service-public.fr sur google plus (nouvelle fenêtre)"><span aria-hidden="true" class="icon icon-google-plus"></span>&nbsp;Google+</a></li>
+									</ul>
+								</div>
+								<!-- footer-sitemap-col -->
+							</div>
+							<!-- row -->
+						</div>
+						<!-- container -->
+					</nav>
+					<!-- footer-sitemap -->
+					<div class="footer-gouv-link">
+						<div class="container">
+							<ul class="gouv-link">
+								<li><a href="http://www.service-public.fr/poser-question/allo-service-public/" target="_blank">3939 Allo Service Public&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="http://www.vie-publique.fr/" target="_blank">Vie-publique.fr&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="http://legifrance.gouv.fr/" target="_blank">Legifrance.gouv.fr&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="https://www.data.gouv.fr/" target="_blank">Data.gouv.fr&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="http://www.gouvernement.fr/" target="_blank">Gouvernement.fr&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="http://france.fr/" target="_blank">France.fr&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+							</ul>
+						</div>
+						<!-- container -->
+					</div>
+					<!-- col -->
+					<div class="footer-link">
+						<div class="container">
+							<ul>
+								<li><a href="{{ path }}/a-propos/about" lang="en">About service-public.fr</a></li>
+								<li><a href="{{ path }}/a-propos/uber" lang="de">Über service-public.fr</a></li>
+								<li><a href="{{ path }}/a-propos/acerca" lang="es">Acerca service-public.fr</a></li>
+							</ul>
+							<ul>
+								<li><a href="http://www.dila.premier-ministre.gouv.fr/" target="_blank">Direction de l'information légale et administrative&nbsp;<span aria-hidden="true" class="icon icon-external-link" title="nouvelle fenêtre"></span><span class="blank">nouvelle fenêtre</span></a></li>
+								<li><a href="{{ path }}/a-propos/mentions-legales">Mentions légales</a></li>
+							</ul>
+{#							<p class="ojd"><a href="" title="ojd (nouvelle fenêtre)" target="_blank"><img src="{{ path }}/resources/web/img/logo-ojd.png" alt="ojd (nouvelle fenêtre)"></a></p>
+#}						</div>
+					</div>
+					</esi:remove>
+					<esi:include src="/esi/particuliers/footer?{{ marquage }}"></esi:include>
+					<!-- footer-links -->
+				</footer>
+			</div>
+		</div>

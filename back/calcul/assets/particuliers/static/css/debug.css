@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/*!
+   _|_|_|    _|_|_|    _|_|    _|      _|  _|_|_|    _|_|_|
+ _|        _|        _|    _|  _|_|  _|_|  _|    _|    _|
+   _|_|    _|        _|_|_|_|  _|  _|  _|  _|_|_|      _|
+       _|  _|        _|    _|  _|      _|  _|          _|
+ _|_|_|      _|_|_|  _|    _|  _|      _|  _|        _|_|_|
+
+Système de CSS adaptables et modulaires du Pôle internet
+*/
+body::before { position: fixed; bottom: 0; right: 0; z-index: 11; padding: 0 10px; color: #000; background-color: #fff; }
+
+body::before { content: "under xxs"; }
+
+@media (min-width: 20em) { body::before { content: "xxs"; } }
+
+@media (min-width: 25em) { body::before { content: "xs"; } }
+
+@media (min-width: 30em) { body::before { content: "s"; } }
+
+@media (min-width: 37em) { body::before { content: "m"; } }
+
+@media (min-width: 48em) { body::before { content: "xm"; } }
+
+@media (min-width: 60em) { body::before { content: "l"; } }
+
+@media (min-width: 70em) { body::before { content: "xl"; } }
+
+@media (min-width: 80em) { body::before { content: "xxl"; } }
+
+/*# sourceMappingURL=debug.css.map */

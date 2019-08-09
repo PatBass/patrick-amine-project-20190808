@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="Concubinage" label="Déclaration de concubinage" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce service vous permet de personnaliser le modèle de déclaration de concubinage (ou de vie commune).
+
+Le document est rédigé au fur et à mesure de vos réponses. Une fois complété, vous pouvez copier le texte ou bien télécharger un PDF de votre déclaration.
+
+Vous pourrez alors l'imprimer et le signer. La signature doit être obligatoirement manuscrite.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1'   data-xiti-name='Particuliers::Services_en_ligne_et_formulaires::Declaration_de_concubinage::demarrer' data-xiti-type='action' onclick=&quot;toggle_1a5div(this,'Prenom','Commencer','Fermer','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13','14'); return false;&quot;&gt;Commencer &lt;span class='glyphicon glyphicon-menu-down'  &gt;&lt;/span&gt;&lt;/button&gt;  "></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherCG5" label="afficherCG5" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="7" name="Prenom" label="Prénom" type="text"></Data>
+		<Data id="8" name="CommuneAttestation" label="quatre" type="text"></Data>
+		<Data id="9" name="donne" label="cinq" type="text"></Data>
+		<DataGroup id="1" name="Groupededonneetextessaisis" label="Groupe de données textes saisis">
+			<Data id="10" name="Donnee1objet" label="Donnée objet : objet" type="text"></Data>
+			<Data id="11" name="donnee1" label="Donnée 1" type="text"></Data>
+			<Data id="12" name="donnee2" label="donnée 2" type="text"></Data>
+			<Data id="13" name="donnee3" label="donnée 3" type="text"></Data>
+			<Data id="14" name="donnee4" label="Donnée 4" type="text"></Data>
+			<Data id="15" name="donnee5" label="Donnée 5" type="text"></Data>
+			<Data id="16" name="donnee6" label="Donnée 6" type="text"></Data>
+			<Data id="17" name="donnee7" label="donnée 7" type="text"></Data>
+			<Data id="18" name="donnee8" label="Donnée 8" type="text"></Data>
+			<Data id="19" name="donnee9" label="Donnée 9" type="text"></Data>
+			<Data id="20" name="donnee10" label="Donnée 10" type="text"></Data>
+			<Data id="21" name="donnee11" label="donnée 11" type="text"></Data>
+			<Data id="22" name="donnee12" label="Donnée 12" type="text"></Data>
+			<Data id="23" name="donnee13" label="Donnée 13" type="text"></Data>
+			<Data id="24" name="donnee14" label="Donnée 14 signature" type="text"></Data>
+			<Data id="25" name="donnee15" label="Donnée 15 signature 2" type="text"></Data>
+			<Data id="26" name="donnee16" label="Donnée 16 signature 3" type="text"></Data>
+			<Data id="27" name="entete1" label="Donnée entete1" type="text"></Data>
+			<Data id="28" name="entete2" label="Donnée entete2" type="text"></Data>
+			<Data id="29" name="entete3" label="Donnée entete3" type="text"></Data>
+			<Data id="30" name="entete4" label="Donnée entete4" type="text"></Data>
+			<Data id="65" name="donnee17" label="Donnée 17" type="text"></Data>
+			<Data id="66" name="donnee18" label="donnée 18" type="text"></Data>
+			<Data id="67" name="donnee19" label="Donnée 19" type="text"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="valeursdeschamps" label="valeurs des champs">
+			<Data id="31" name="Valeurun" label="Valeur Un" type="text"></Data>
+			<Data id="32" name="Valeur_Prenom_1" label="Valeur Prénom 1" type="text"></Data>
+			<Data id="33" name="Valeur_Nom_2" label="Valeur Nom 1" type="text"></Data>
+			<Data id="34" name="Valeur_Date_Naissance_1" label="Valeur Date naissance 1" type="text"></Data>
+			<Data id="35" name="Valeur_Lieu_Naissance_1" label="Valeur Lieu naissance 1" type="text"></Data>
+			<Data id="36" name="Valeur_Adresse" label="Valeur Adresse" type="text"></Data>
+			<Data id="37" name="Valeur_Complement_adresse" label="Valeur complément adresse" type="text"></Data>
+			<Data id="38" name="Valeur_CP" label="Valeur CP" type="text"></Data>
+			<Data id="39" name="Valeur_Ville" label="Valeur_Ville" type="text"></Data>
+			<Data id="40" name="Valeur_Prenom_2" label="Valeur Prénom 2" type="text"></Data>
+			<Data id="41" name="Valeur_Nom2" label="Valeur Nom 2" type="text"></Data>
+			<Data id="42" name="Valeur_Date_Naissance_2" label="Valeur Date naissance 2" type="text"></Data>
+			<Data id="43" name="Valeur_Lieu_Naissance_2" label="Valeur Lieu naissance 2" type="text"></Data>
+			<Data id="44" name="Valeur_Date_debut_concubinage" label="Valeur_Date_debut_concubinage" type="text"></Data>
+			<Data id="45" name="Valeur_Commune_Declaration" label="Valeur_Commune_Declaration" type="text"></Data>
+			<Data id="46" name="Valeur_Date_Declaration" label="Valeur_Date_Declaration" type="text"></Data>
+			<Data id="63" name="Valeur_Ne_e_1" label="Valeur Né ou née 1" type="text"></Data>
+			<Data id="64" name="Valeur_Ne_e_2" label="Valeur Né ou née 2" type="text"></Data>
+		</DataGroup>
+		<Data id="47" name="Nom" label="Nom" type="text"></Data>
+		<Data id="48" name="SexeUn" label="Sexe Concubin 1" type="choice">
+			<Choices>
+				<Choice id="1" value="Madame" label="Madame"></Choice>
+				<Choice id="2" value="Monsieur" label="Monsieur"></Choice>
+			</Choices>
+		</Data>
+		<Data id="49" name="DateDeNaissance1" label="Date de naissance concubin 1" type="date"></Data>
+		<Data id="50" name="LieuDeNaissance1" label="Lieu De Naissance concubin 1" type="text"></Data>
+		<Data id="51" name="Adresse" label="Adresse" type="text"></Data>
+		<Data id="52" name="Complement_Adresse" label="Complément d'adresse" type="text"></Data>
+		<Data id="53" name="CodePostal" label="Code postal" type="integer" min="1000" max="99000"></Data>
+		<Data id="54" name="Ville" label="Ville" type="text"></Data>
+		<Data id="55" name="Prenom2" label="Prénom concubin 2" type="text"></Data>
+		<Data id="56" name="Nom2" label="Nom concubin 2" type="text"></Data>
+		<Data id="57" name="Sexe_2" label="Sexe_concubin 2" type="choice">
+			<Choices>
+				<Choice id="1" value="Madame" label="Madame"></Choice>
+				<Choice id="2" value="Monsieur" label="Monsieur"></Choice>
+			</Choices>
+		</Data>
+		<Data id="58" name="DateDeNaissance2" label="Date de naissance concubin 2" type="date"></Data>
+		<Data id="59" name="LieuDeNaissance2" label="Lieu De Naissance concubin 2" type="text"></Data>
+		<Data id="60" name="Date_Debut_Concubinage" label="Date Debut Concubinage" type="date"></Data>
+		<Data id="61" name="Commune_Declaration" label="Commune de la déclaration" type="text"></Data>
+		<Data id="62" name="DateDuJour" label="Date du jour" type="date" default="today"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2&gt;REMPLIR&lt;br&gt; LA DÉCLARATION  &lt;br&gt;DE CONCUBINAGE&lt;/h2&gt; &lt;h3&gt;Vous pouvez personnaliser ce modèle et télécharger votre déclaration  prête à l'emploi.&lt;/h3&gt;" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Qui est le premier déclarant ?
+						]]></Legend>
+						<Field position="1" data="7" usage="input" newline="0" label="Prénom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="47" usage="input" newline="0" label="Nom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="48" usage="input" newline="0" label="Genre" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="49" usage="input" newline="0" label="Date de naissance (format : JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="50" usage="input" newline="0" label="Lieu de naissance" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Qui est le second déclarant ?
+						]]></Legend>
+						<Field position="1" data="55" usage="input" newline="0" label="Prénom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="56" usage="input" newline="0" label="Nom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="57" usage="input" newline="0" label="Genre" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="58" usage="input" newline="0" label="Date de naissance (Format JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="59" usage="input" newline="0" label="Lieu de naissance" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="60" usage="input" newline="0" label="Date du début du concubinage (Format JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Quelle est l'adresse commune ?
+						]]></Legend>
+						<Field position="1" data="51" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="52" usage="input" newline="0" label="Complément" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="53" usage="input" newline="0" label="Code postal" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="54" usage="input" newline="0" label="Ville" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="13">
+						<Legend><![CDATA[
+Où et quand est rédigée la déclaration ?
+						]]></Legend>
+						<Field position="1" data="61" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="62" usage="input" newline="0" label="Date (Format JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="14">
+						<Legend><![CDATA[
+partie 5
+						]]></Legend>
+						<Field position="1" data="9" usage="input" newline="0" label="cinq" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="6" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Veuillez relire votre lettre avant de la copier ou de la télécharger (boutons en bas). Ensuite, n'oubliez pas de la signer.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+#27
+#28
+#29
+#30
+
+<u>#10</u>
+
+#11
+#12
+#13
+#14
+#15
+#16
+#17
+#18
+#19
+#20
+#21
+#22
+#23
+
+<div align="right">
+#24
+#25
+</div>
+<div>
+<div style="width:50%;float:left;text-align:center;">#26</div>
+<div style="width:50%; margin-left:50%;text-align:center; ">#65</div>
+</div>
+<div>
+<div style="width:50%;float:left;text-align:center;">#66</div>
+<div style="width:50%; margin-left:50%;text-align:center; ">#67</div>
+</div>
+
+
+
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="9" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table id='table1'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;"   data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Declaration_de_concubinage::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier </button></td></table>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table  id='table2'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;"   data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Declaration_de_concubinage::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier</button></td>
+<td><div class="action_buttons2"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Declaration_de_concubinage::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div></td></tr></table>
+<div id="boutttelecharger"  class="action_buttons3"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Declaration_de_concubinage::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" what="submit" for="jumpToStep" uri="2" class="btn-default" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger la déclaration" template="pages:GenerateurAttestationMultiSignature.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#7)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non renseigné)">
+			<Conditions value="!defined(#50) || !defined(#7) || !defined(#47) || !defined(#49)">
+				<Connector type="any">
+					<Condition operand="LieuDeNaissance1" operator="blank"></Condition>
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="Nom" operator="blank"></Condition>
+					<Condition operand="DateDeNaissance1" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="6" name="setAttribute" target="content" data="6" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 non renseigné)">
+			<Conditions value="!defined(#7) || !defined(#47) || !defined(#49) || !defined(#50) || !defined(#55) || !defined(#56) || !defined(#58) || !defined(#59) || !defined(#60)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="Nom" operator="blank"></Condition>
+					<Condition operand="DateDeNaissance1" operator="blank"></Condition>
+					<Condition operand="LieuDeNaissance1" operator="blank"></Condition>
+					<Condition operand="Prenom2" operator="blank"></Condition>
+					<Condition operand="Nom2" operator="blank"></Condition>
+					<Condition operand="DateDeNaissance2" operator="blank"></Condition>
+					<Condition operand="LieuDeNaissance2" operator="blank"></Condition>
+					<Condition operand="Date_Debut_Concubinage" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="6" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage de la partie 4 (1, 2,3 et 4 non renseignés)">
+			<Conditions value="!defined(#7) || !defined(#47) || !defined(#49) || !defined(#50) || !defined(#55) || !defined(#56) || !defined(#58) || !defined(#59) || !defined(#51) || !defined(#53) || !defined(#54)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="Nom" operator="blank"></Condition>
+					<Condition operand="DateDeNaissance1" operator="blank"></Condition>
+					<Condition operand="LieuDeNaissance1" operator="blank"></Condition>
+					<Condition operand="Prenom2" operator="blank"></Condition>
+					<Condition operand="Nom2" operator="blank"></Condition>
+					<Condition operand="DateDeNaissance2" operator="blank"></Condition>
+					<Condition operand="LieuDeNaissance2" operator="blank"></Condition>
+					<Condition operand="Adresse" operator="blank"></Condition>
+					<Condition operand="CodePostal" operator="blank"></Condition>
+					<Condition operand="Ville" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="6" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="affichage du bouton suivant (tous les champs non rensegnés)">
+			<Conditions value="defined(#7) &amp;&amp; defined(#47) &amp;&amp; defined(#49) &amp;&amp; defined(#50) &amp;&amp; defined(#55) &amp;&amp; defined(#56) &amp;&amp; defined(#58) &amp;&amp; defined(#59) &amp;&amp; defined(#60) &amp;&amp; defined(#51) &amp;&amp; defined(#53) &amp;&amp; defined(#54) &amp;&amp; defined(#61)">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="Nom" operator="present"></Condition>
+					<Condition operand="DateDeNaissance1" operator="present"></Condition>
+					<Condition operand="LieuDeNaissance1" operator="present"></Condition>
+					<Condition operand="Prenom2" operator="present"></Condition>
+					<Condition operand="Nom2" operator="present"></Condition>
+					<Condition operand="DateDeNaissance2" operator="present"></Condition>
+					<Condition operand="LieuDeNaissance2" operator="present"></Condition>
+					<Condition operand="Date_Debut_Concubinage" operator="present"></Condition>
+					<Condition operand="Adresse" operator="present"></Condition>
+					<Condition operand="CodePostal" operator="present"></Condition>
+					<Condition operand="Ville" operator="present"></Condition>
+					<Condition operand="Commune_Declaration" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="2"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+				<Action id="4" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="1"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="4" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="TextValeurObjet">
+			<Conditions value="!defined(#1) &amp;&amp; (defined(#3) || !defined(#3))">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Connector type="any">
+						<Condition operand="afficherGC3" operator="present"></Condition>
+						<Condition operand="afficherGC3" operator="blank"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="10" value="'Déclaration de concubinage'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="TextValeurP1">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="11" value="concat(#32, concat(' ', concat(#33, concat(#63, concat(#34, concat(' à ', concat(#35, concat(', et ', concat(#40, concat(' ', concat(#41, concat(#64, concat(#42, concat(' à ', concat(#43, concat(', déclarons vivre maritalement depuis le ', concat(#44, '.')))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="TextValeurP5">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="12" value="'Notre adresse commune est :'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="TextValeurP2_Adresse">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="#36"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="TextValeurP3_Complement_Adresse">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="14" value="#37"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="TextValeurP4_CP_Ville cp nn rensigné">
+			<Conditions value="!defined(#1) &amp;&amp; !defined(#53)">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostal" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="15" value="concat(#38, concat(' ', #39))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="TextValeurP4_CP_Ville &gt;10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#53) &amp;&amp; #53 &gt;= 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostal" operator="present"></Condition>
+					<Condition operand="CodePostal" operator="&gt;=" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="15" value="concat(#38, concat(' ', #39))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="TextValeurP4_CP_Ville cp&lt;10000">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#53) &amp;&amp; #53 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CodePostal" operator="present"></Condition>
+					<Condition operand="CodePostal" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="15" value="concat(0,concat(#38, concat(' ', #39)))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="TextValeurPSIGNATURE">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="24" value="concat('Fait à ', concat(#45, concat(' , le ', #46)))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="text valeur Nom et prenom 1">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="concat(#32, concat(' ', #33))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="text valeur nom et prénom2">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="concat(#40, concat(' ', #41))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Remplir valeur prénom">
+			<Conditions value="defined(#7)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="ucfirst(#7)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Remplir valeur nom">
+			<Conditions value="defined(#47)">
+				<Condition operand="Nom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="upper(#47)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="'[Nom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="remplir valeur date naissance">
+			<Conditions value="defined(#49)">
+				<Condition operand="DateDeNaissance1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="concat(day(#49), concat(' ', fullmonth(#49)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="'[Date de naissance]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="remplir lieu de naissance">
+			<Conditions value="defined(#50)">
+				<Condition operand="LieuDeNaissance1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="ucfirst(#50)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="'[Lieu de naissance]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Remplir valeur prénom 2">
+			<Conditions value="defined(#55)">
+				<Condition operand="Prenom2" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="ucfirst(#55)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Remplir valeur nom 2">
+			<Conditions value="defined(#56)">
+				<Condition operand="Nom2" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="upper(#56)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="'[Nom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="remplir valeur date naissance 2">
+			<Conditions value="defined(#58)">
+				<Condition operand="DateDeNaissance2" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="concat(day(#58), concat(' ', fullmonth(#58)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="'[Date de naissance]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="remplir lieu de naissance 2">
+			<Conditions value="defined(#50)">
+				<Condition operand="LieuDeNaissance1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="ucfirst(#59)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="'[Lieu de naissance]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="remplir valeur date début concubinage">
+			<Conditions value="defined(#60)">
+				<Condition operand="Date_Debut_Concubinage" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="44" value="concat(day(#60), concat(' ', fullmonth(#60)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="44" value="'[Date du début du concubinage]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Né 1 non renseigné">
+			<Conditions value="!defined(#48)">
+				<Condition operand="SexeUn" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="', né(e) le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Né 2 non renseigné">
+			<Conditions value="!defined(#55)">
+				<Condition operand="Prenom2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="', né(e) le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Né(e) 1 Femme">
+			<Conditions value="defined(#48) &amp;&amp; #48 = 'Madame'">
+				<Connector type="all">
+					<Condition operand="SexeUn" operator="present"></Condition>
+					<Condition operand="SexeUn" operator="=" expression="Madame"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="', née le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Né(e) 1 Homme">
+			<Conditions value="defined(#48) &amp;&amp; #48 = 'Monsieur'">
+				<Connector type="all">
+					<Condition operand="SexeUn" operator="present"></Condition>
+					<Condition operand="SexeUn" operator="=" expression="Monsieur"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="', né le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Né(e) 2 Femme">
+			<Conditions value="defined(#57) &amp;&amp; #57 = 'Madame'">
+				<Connector type="all">
+					<Condition operand="Sexe_2" operator="present"></Condition>
+					<Condition operand="Sexe_2" operator="=" expression="Madame"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="', née le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Né(e) 2 Homme">
+			<Conditions value="defined(#57) &amp;&amp; #57 = 'Monsieur'">
+				<Connector type="all">
+					<Condition operand="Sexe_2" operator="present"></Condition>
+					<Condition operand="Sexe_2" operator="=" expression="Monsieur"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="', né le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="Remplir valeur adresse">
+			<Conditions value="defined(#51)">
+				<Condition operand="Adresse" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="#51"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="Remplir valeur CP si non renseigné">
+			<Conditions value="!defined(#53)">
+				<Condition operand="CodePostal" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="'[Code postal]'"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="#53"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="Remplir Valeur Commune">
+			<Conditions value="defined(#54)">
+				<Condition operand="Ville" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="ucfirst(#54)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="'[Ville]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Remplir Valeur Complément adresse">
+			<Conditions value="defined(#52)">
+				<Condition operand="Complement_Adresse" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="#52"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Remplir Valeur Commune déclaration">
+			<Conditions value="defined(#61)">
+				<Condition operand="Commune_Declaration" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="45" value="ucfirst(#61)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="45" value="'[Ville]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Remplir Valeur Date décalration">
+			<Conditions value="defined(#62)">
+				<Condition operand="DateDuJour" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="concat(day(#62), concat(' ', fullmonth(#62)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="'[Date]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+Mise en production 13/03/2019
+
+<h2>
+
+</h2>
+	]]></RelatedInformations>
+</Simulator>

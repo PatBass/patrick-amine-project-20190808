@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="aaa" label="aaa" category="aaa" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="Europe/Paris">
+	<Description edition="wysihtml"><![CDATA[
+
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="aa" label="aa" type="choice">
+			<Choices>
+				<Choice id="1" value="ss" label="ss" />
+				<Choice id="2" value="dd" label="dd" />
+				<Choice id="3" value="ff" label="ff" />
+				<Choice id="4" value="gg" label="gg" />
+			</Choices>
+		</Data>
+		<Data id="2" name="qqq" label="qqqq" type="multitext">
+			<Choices>
+				<Choice id="1" value="ss" label="ss" />
+				<Choice id="2" value="dd" label="dd" />
+				<Choice id="3" value="ff" label="ff" />
+				<Choice id="4" value="gg" label="gg" />
+			</Choices>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="rrr" label="rrr" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="p" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="aaaa" required="0" visibleRequired="0" colon="0" help="0" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+</Simulator>

@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="Infraction" label="Que risque-t-on en cas d'infraction routière ?" defaultView="particuliers" referer="/particuliers/vosdroits/R53432" dynamic="0" memo="0" locale="fr-FR" timezone="Europe/Paris">
+	<Description><![CDATA[
+Si vous ne respectez pas le Code de la route, vous commettez une infraction routière.
+Cette infraction peut être relevée par un agent (policier ou gendarme) ou par un dispositif automatique (radar).
+Une infraction entraîne généralement une sanction.
+
+Ce simulateur vous informe des sanctions que vous risquez. La liste des infractions n'est pas exhaustive, et le cas des infractions multiples n'est pas traité. Pour plus d'informations, consultez le dossier <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/N18918">infractions routières</a> sur service-public.fr.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="resultatlistedescategories" label="resultat liste des catégories" type="choice">
+			<Choices>
+				<Source id="1" valueColumn="id" labelColumn="Categorie_infraction"></Source>
+			</Choices>
+		</Data>
+		<Data id="2" name="resultat_donnee_alcool" label="resultat_donnee_alcool" type="choice">
+			<Choices>
+				<Source id="2" valueColumn="id" labelColumn="nom_infraction"></Source>
+			</Choices>
+		</Data>
+		<Data id="3" name="resultat_donnee_vitesse" label="resultat_donnee_vitesse" type="choice">
+			<Choices>
+				<Source id="3" valueColumn="id" labelColumn="nom_infraction"></Source>
+			</Choices>
+		</Data>
+		<Data id="4" name="resultat_donnee_autre" label="resultat_donnee_autre" type="choice">
+			<Choices>
+				<Source id="4" valueColumn="id" labelColumn="nom_infraction"></Source>
+			</Choices>
+		</Data>
+		<DataGroup id="1" name="Resultats_Infractions_Alcool" label="Resultats_Infractions_Alcool">
+			<Data id="5" name="Point1" label="Point1" type="text" source="5" index="'points'"></Data>
+			<Data id="6" name="Contravention1" label="Contravention1" type="text" source="5" index="'Contravention'">
+				<Description><![CDATA[
+Le montant de l'amende peut être parfois minoré ou majoré si vous la réglez plus ou moins rapidement. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F32803">Amendes</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="7" name="Delit1" label="Delit1" type="text" source="5" index="'Delit'">
+				<Description><![CDATA[
+Infraction jugée par le tribunal correctionnel et punie principalement d'une amende et d'une peine complémentaire (interdiction de conduire, peine de prison, stage par exemple).
+				]]></Description>
+			</Data>
+			<Data id="8" name="TIG1" label="TIG1" type="text" source="5" index="'TIG'">
+				<Description><![CDATA[
+Le travail d'intérêt général (TIG) est un travail non rémunéré, effectué sur décision de justice au bénéfice d'une association ou d'un service public. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1407">TIG sur service-public.fr </a>.
+				]]></Description>
+			</Data>
+			<Data id="9" name="Suspension1" label="Suspension1" type="text" source="5" index="'Suspension'">
+				<Description><![CDATA[
+La suspension du permis de conduire est une sanction prononcée par un préfet ou par un juge qui implique l'interdiction de conduire pendant une certaine durée. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F14836">Suspension administrative</a> ou <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21761">Suspension judiciaire</a> du permis de conduire sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="10" name="Interdiction1" label="Interdiction1" type="text" source="5" index="'Interdiction'"></Data>
+			<Data id="11" name="Annulation1" label="Annulation1" type="text" source="5" index="'Annulation'">
+				<Description><![CDATA[
+L'annulation du permis de conduire est une sanction prononcée par un juge qui implique l'interdiction de conduire certains véhicules. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21774">Annulation du permis de conduire sur service-public.fr</a>.
+				]]></Description>
+			</Data>
+			<Data id="12" name="Prison1" label="Prison1" type="text" source="5" index="'Prison'">
+				<Description><![CDATA[
+Le juge peut condammner l'auteur d'une infraction grave à une peine d'emprisonnement.
+				]]></Description>
+			</Data>
+			<Data id="13" name="Vehicule1" label="Vehicule1" type="text" source="5" index="'Vehicule'">
+				<Description><![CDATA[
+Le véhicule peut parfois être immobilisé, confisqué ou mis en fourrière. Pour en savoir plus, consultez les pages <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F12914">Immobilisation d'un véhicule </a>, <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21887">Confiscation du véhicule</a> ou <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F12918">Mise en fourrière d'un véhicule </a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="14" name="Stage1" label="Stage1" type="text" source="5" index="'Stage'">
+				<Description><![CDATA[
+Le juge peut imposer dans certains cas un stage en complément de la peine (ce stage ne permet pas de récupérer des points). Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F14208">Stage de sensibilisation à la sécurité routière</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="15" name="JourAmende1" label="JourAmende1" type="text" source="5" index="'JoursAmendes'">
+				<Description><![CDATA[
+Peine consistant pour le condamné à verser au Trésor une somme. Son montant global  résulte de la fixation par le juge d'une contribution quotidienne pendant un certain nombre de jours.
+				]]></Description>
+			</Data>
+			<Data id="16" name="Source1" label="Source1" type="text" source="5" index="'Source'"></Data>
+			<Data id="17" name="Source_legifrance1" label="Source_legifrance1" type="text" source="5" index="'Code_legi'"></Data>
+			<Data id="18" name="Source_Url1" label="Source_Url1" type="textarea" source="5" index="'Code_Url'"></Data>
+			<Data id="19" name="Permis_Probatoire1" label="Permis_Probatoire1" type="text" source="5" index="'Probatoire'"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="Resultats_Infractions_Vitesse" label="Resultats_Infractions_Vitesse">
+			<Data id="20" name="Point2" label="Point2" type="text" source="6" index="'points'"></Data>
+			<Data id="21" name="Contravention2" label="Contravention2" type="text" source="6" index="'Contravention'">
+				<Description><![CDATA[
+Le montant de l'amende peut être parfois minoré ou majoré si vous la réglez plus ou moins rapidement. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F32803">Amendes</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="22" name="Delit2" label="Delit2" type="text" source="6" index="'Delit'">
+				<Description><![CDATA[
+Infraction jugée par le tribunal correctionnel et punie principalement d'une amende et d'une peine complémentaire (interdiction de conduire, peine de prison, stage par exemple).
+				]]></Description>
+			</Data>
+			<Data id="23" name="TIG2" label="TIG2" type="text" source="6" index="'TIG'">
+				<Description><![CDATA[
+Le travail d'intérêt général (TIG) est un travail non rémunéré, effectué sur décision de justice au bénéfice d'une association ou d'un service public. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1407">TIG sur service-public.fr </a>.
+				]]></Description>
+			</Data>
+			<Data id="24" name="Suspension2" label="Suspension2" type="text" source="6" index="'Suspension'">
+				<Description><![CDATA[
+La suspension du permis de conduire est une sanction prononcée par un préfet ou par un juge qui implique l'interdiction de conduire pendant une certaine durée. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F14836">Suspension administrative</a> ou <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21761">Suspension judiciaire</a> du permis de conduire sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="25" name="Interdiction2" label="Interdiction2" type="text" source="6" index="'Interdiction'"></Data>
+			<Data id="26" name="Annulation2" label="Annulation2" type="text" source="6" index="'Annulation'">
+				<Description><![CDATA[
+L'annulation du permis de conduire est une sanction prononcée par un juge qui implique l'interdiction de conduire certains véhicules. Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21774">Annulation du permis de conduire sur service-public.fr</a>.
+				]]></Description>
+			</Data>
+			<Data id="27" name="Prison2" label="Prison2" type="text" source="6" index="'Prison'">
+				<Description><![CDATA[
+Le juge peut condammner l'auteur d'une infraction grave à une peine d'emprisonnement.
+				]]></Description>
+			</Data>
+			<Data id="28" name="Vehicule2" label="Vehicule2" type="text" source="6" index="'Vehicule'">
+				<Description><![CDATA[
+Le véhicule peut parfois être immobilisé, confisqué ou mis en fourrière. Pour en savoir plus, consultez les pages <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F12914">Immobilisation d'un véhicule </a>, <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F21887">Confiscation du véhicule</a> ou <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F12918">Mise en fourrière d'un véhicule </a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="29" name="Stage2" label="Stage2" type="text" source="6" index="'Stage'">
+				<Description><![CDATA[
+Le juge peut imposer dans certains cas un stage en complément de la peine (ce stage ne permet pas de récupérer des points).Pour en savoir plus, consultez la page <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F14208">Stage de sensibilisation à la sécurité routière</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="30" name="JourAmende2" label="JourAmende2" type="text" source="6" index="'JoursAmendes'">
+				<Description><![CDATA[
+Peine consistant pour le condamné à verser au Trésor une somme. Son montant global  résulte de la fixation par le juge d'une contribution quotidienne pendant un certain nombre de jours.
+				]]></Description>
+			</Data>
+			<Data id="31" name="Source2" label="Source2" type="text" source="6" index="'Source'"></Data>
+			<Data id="32" name="Source_legifrance2" label="Source_legifrance2" type="text" source="6" index="'Code_legi'"></Data>
+			<Data id="33" name="Source_Url2" label="Source_Url2" type="textarea" source="6" index="'Code_Url'"></Data>
+			<Data id="34" name="Permis_Probatoire2" label="Permis_Probatoire2" type="text" source="6" index="'Probatoire'"></Data>
+		</DataGroup>
+		<DataGroup id="3" name="Resultats_Infractions3" label="Resultats_Infractions3">
+			<Data id="35" name="Point3" label="Point3" type="text" source="7" index="'points'"></Data>
+			<Data id="36" name="Contravention3" label="Contravention3" type="text" source="7" index="'Contravention'">
+				<Description><![CDATA[
+Le montant de l'amende peut être parfois minoré ou majoré si vous la réglez plus ou moins rapidement. Pour en savoir plus, consultez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F32803" target="blank" title="Amendes">Amendes</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="37" name="Delit3" label="Delit3" type="text" source="7" index="'Delit'">
+				<Description><![CDATA[
+Infraction jugée par le tribunal correctionnel et punie principalement d'une amende et d'une peine complémentaire (interdiction de conduire, peine de prison, stage par exemple).
+				]]></Description>
+			</Data>
+			<Data id="38" name="TIG3" label="TIG3" type="text" source="7" index="'TIG'">
+				<Description><![CDATA[
+Le travail d'intérêt général (TIG) est un travail non rémunéré, effectué sur décision de justice au bénéfice d'une association ou d'un service public. Pour en savoir plus, consultez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F1407" target="blank" title="Travail d'intérêt général">TIG sur service-public.fr </a>.
+				]]></Description>
+			</Data>
+			<Data id="39" name="Suspension3" label="Suspension3" type="text" source="7" index="'Suspension'">
+				<Description><![CDATA[
+La suspension du permis de conduire est une sanction prononcée par un préfet ou par un juge qui implique l'interdiction de conduire pendant une certaine durée. Pour en savoir plus, consultez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F14836" target="blank" title="Suspension administrative du permis de conduire">Suspension administrative</a> ou <a href="https://www.service-public.fr/particuliers/vosdroits/F21761" target="blank" title="Suspension judiciaire du permis de conduire">Suspension judiciaire</a> du permis de conduire sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="40" name="Interdiction3" label="Interdiction3" type="text" source="7" index="'Interdiction'"></Data>
+			<Data id="41" name="Annulation3" label="Annulation3" type="text" source="7" index="'Annulation'">
+				<Description><![CDATA[
+L'annulation du permis de conduire est une sanction prononcée par un juge qui implique l'interdiction de conduire certains véhicules. Pour en savoir plus, consultez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F21774" target="blank" title="Annulation du permis de conduire">Annulation du permis de conduire sur service-public.fr</a>.
+				]]></Description>
+			</Data>
+			<Data id="42" name="Prison3" label="Prison3" type="text" source="7" index="'Prison'">
+				<Description><![CDATA[
+Le juge peut condammner l'auteur d'une infraction grave à une peine d'emprisonnement.
+				]]></Description>
+			</Data>
+			<Data id="43" name="Vehicule3" label="Vehicule3" type="text" source="7" index="'Vehicule'">
+				<Description><![CDATA[
+Le véhicule peut parfois être immobilisé, confisqué ou mis en fourrière. Pour en savoir plus, consultez les pages <a href="https://www.service-public.fr/particuliers/vosdroits/F12914" target="blank" title="Immobilisation d'un véhicule">Immobilisation d'un véhicule </a>, <a href="https://www.service-public.fr/particuliers/vosdroits/F21887" target="blank" title="Confiscation du véhicule">Confiscation du véhicule</a> ou <a href="https://www.service-public.fr/particuliers/vosdroits/F12918" target="blank" title="Mise en fourrière d'un véhicule">Mise en fourrière d'un véhicule </a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="44" name="Stage3" label="Stage3" type="text" source="7" index="'Stage'">
+				<Description><![CDATA[
+Le juge peut imposer dans certains cas un stage en complément de la peine (ce stage ne permet pas de récupérer des points). Pour en savoir plus, consultez la page <a href="https://www.service-public.fr/particuliers/vosdroits/F14208" target="blank" title="Stage de sensibilisation à la sécurité routière">Stage de sensibilisation à la sécurité routière</a> sur service-public.fr.
+				]]></Description>
+			</Data>
+			<Data id="45" name="JourAmende3" label="JourAmende3" type="text" source="7" index="'JoursAmendes'">
+				<Description><![CDATA[
+Peine consistant pour le condamné à verser au Trésor une somme. Son montant global  résulte de la fixation par le juge d'une contribution quotidienne pendant un certain nombre de jours.
+				]]></Description>
+			</Data>
+			<Data id="46" name="Source3" label="Source3" type="text" source="7" index="'Source'"></Data>
+			<Data id="47" name="Source_legifrance3" label="Source_legifrance3" type="text" source="7" index="'Code_legi'"></Data>
+			<Data id="48" name="Id3" label="Id3" type="integer" source="7" index="'id'"></Data>
+			<Data id="49" name="Source_Url3" label="Source_Url3" type="textarea" source="7" index="'Code_Url'"></Data>
+			<Data id="50" name="Permis_Probatoire3" label="Permis_Probatoire3" type="text" source="7" index="'Probatoire'"></Data>
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="etape1" label="etape1" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panneau1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+<b>Sélectionnez une catégorie d'infraction</b>
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="2" usage="input" newline="0" prompt="Sélectionnez une infraction ou tapez un mot-clé" required="0" visibleRequired="0" colon="0" help="0" widget="AutocompletionListbox">
+							<PreNote><![CDATA[
+<b>Sélectionnez une infraction ou tapez un mot-clé</b>
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="3" usage="input" newline="0" prompt="Sélectionnez une infraction ou tapez un mot-clé" required="0" visibleRequired="0" colon="0" help="0" widget="AutocompletionListbox">
+							<PreNote><![CDATA[
+<b>Sélectionnez une infraction ou tapez un mot-clé</b>
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="4" usage="input" newline="0" prompt="Sélectionnez une infraction ou tapez un mot-clé" required="0" visibleRequired="0" colon="0" help="0" widget="AutocompletionListbox">
+							<PreNote><![CDATA[
+<b>Sélectionnez une infraction ou tapez un mot-clé</b>
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Pour cette infraction, vous risquez
+						]]></Legend>
+						<Field position="1" data="5" usage="output" newline="0" label="Un retrait sur votre permis de" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="6" usage="output" newline="0" label="Une contravention de " required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="7" usage="output" newline="0" label="Ce délit entraîne une amende de " required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="8" usage="output" newline="0" label="Peine de travail d'intérêt général" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="9" usage="output" newline="0" label="Suspension de votre permis pour" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="10" usage="output" newline="0" label="Interdiction de conduire pour" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="11" usage="output" newline="0" label="Annulation du permis de conduire" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="12" usage="output" newline="0" label="Peine de prison de" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="13" usage="output" newline="0" label="Véhicule :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="14" usage="output" newline="0" label="Obligation :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="11" data="15" usage="output" newline="0" label="Peine de jour-amende" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Pour cette infraction, vous risquez
+						]]></Legend>
+						<Field position="1" data="20" usage="output" newline="0" label="Un retrait sur votre permis de" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="21" usage="output" newline="0" label="Une contravention de " required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="22" usage="output" newline="0" label="Ce délit entraîne une amende de" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="23" usage="output" newline="0" label="Peine de travail d'intérêt général" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="24" usage="output" newline="0" label="Suspension de votre permis pour" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="25" usage="output" newline="0" label="Interdiction de conduire pour" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="26" usage="output" newline="0" label="Annulation du permis de conduire" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="27" usage="output" newline="0" label="Peine de prison de" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="28" usage="output" newline="0" label="Véhicule :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="29" usage="output" newline="0" label="Obligation :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="11" data="30" usage="output" newline="0" label="Peine de jour-amende" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="4">
+						<Legend><![CDATA[
+Pour cette infraction, vous risquez
+						]]></Legend>
+						<Field position="1" data="35" usage="output" newline="0" label="Un retrait sur votre permis de" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="36" usage="output" newline="0" label="Une contravention de " required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="37" usage="output" newline="0" label="Ce délit entraîne une amende de" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="38" usage="output" newline="0" label="Peine de travail d'intérêt général" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="39" usage="output" newline="0" label="Suspension de votre permis pour" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="40" usage="output" newline="0" label="Interdiction de conduire pour" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="41" usage="output" newline="0" label="Annulation du permis de conduire" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="42" usage="output" newline="0" label="Peine de prison de" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="43" usage="output" newline="0" label="Véhicule :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="44" usage="output" newline="0" label="Obligation :" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="11" data="45" usage="output" newline="0" label="Peine de jour-amende" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="5" name="lien" label="">
+						<Chapter id="1" name="Liens_pages" label="">
+							<Section id="1" name="Ss_permis" label="">
+								<Content><![CDATA[
+* Pour plus d'information, consultez la page sur la <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F17698" title="conduite sans permis - Nouvelle fenêtre">conduite sans permis</a> sur service-public.fr
+								]]></Content>
+							</Section>
+							<Section id="2" name="Ss_Assurance" label="">
+								<Content><![CDATA[
+* Pour plus d'information, consultez la page sur la <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F34829">conduite sans assurance</a> sur service-public.fr
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="2" name="Permis_probatoire" label="">
+							<Section id="1" name="Stage" label="">
+								<Content><![CDATA[
+<span class="glyphicon">&#xe107;</span> Si vous avez un permis probatoire, vous devrez obligatoirement suivre un stage de sensibilisation à la sécurité routière (à vos frais).
+								]]></Content>
+							</Section>
+							<Section id="2" name="Perte_Permis" label="">
+								<Content><![CDATA[
+<span class="glyphicon">&#xe107;</span> Si vous avez un permis probatoire et que vous n'avez que 6 points, cette infraction entraîne la perte de votre permis de conduire.
+								]]></Content>
+							</Section>
+						</Chapter>
+						<Chapter id="3" name="code" label="">
+							<Section id="1" name="Source1" label="">
+								<Content><![CDATA[
+<span id="source-label" class="source-label">Source :</span> <a target="_blank" rel="nofollow" href="#18">#16</a>
+								]]></Content>
+							</Section>
+							<Section id="2" name="Source2" label="">
+								<Content><![CDATA[
+<span id="source-label" class="source-label">Source :</span> <a target="_blank" rel="nofollow" href="#33">#31</a>
+								]]></Content>
+							</Section>
+							<Section id="3" name="Source3" label="">
+								<Content><![CDATA[
+<span id="source-label" class="source-label">Source :</span> <a target="_blank" rel="nofollow" href="#49">#46</a>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="Nouveau" label="Sélectionner une autre infraction" what="reset" for="newSimulation" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="Infraction_donnees" label="Liste des catégories" request="SELECT id, categorie_infraction as Categorie_infraction FROM categorie" returnType="assocArray"></Source>
+		<Source id="2" datasource="Infraction_donnees" label="liste_des_infractions_par_alcool" request="SELECT nom_infraction, cat_infraction, id FROM detail_infraction WHERE cat_infraction = 1" returnType="assocArray"></Source>
+		<Source id="3" datasource="Infraction_donnees" label="liste_des_infractions_vitesse" request="SELECT nom_infraction, cat_infraction, id, points FROM detail_infraction WHERE cat_infraction = 2" returnType="assocArray"></Source>
+		<Source id="4" datasource="Infraction_donnees" label="liste_des_infractions_par_autre" request="SELECT nom_infraction, cat_infraction, id FROM detail_infraction WHERE cat_infraction = 3" returnType="assocArray"></Source>
+		<Source id="5" datasource="Infraction_donnees" label="SanctionAlcool" request="SELECT id, points, contravention as Contravention, delit as Delit, tig as TIG, suspension as Suspension, interdiction as Interdiction, annulation as Annulation, prison as Prison, vehicule as Vehicule, stage as Stage, source as Source, code_legi as Code_legi, code_url as Code_Url, probatoire as Probatoire, joursamendes as JoursAmendes FROM detail_infraction WHERE id = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="paraAlccol" data="2"></Parameter>
+		</Source>
+		<Source id="6" datasource="Infraction_donnees" label="SanctionVitesse" request="SELECT id, points, contravention as Contravention, delit as Delit, tig as TIG, suspension as Suspension, interdiction as Interdiction, annulation as Annulation, prison as Prison, vehicule as Vehicule, stage as Stage, source as Source, code_legi as Code_legi, code_url as Code_Url, probatoire as Probatoire, joursamendes as JoursAmendes FROM detail_infraction WHERE id = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="paraVitesse" data="3"></Parameter>
+		</Source>
+		<Source id="7" datasource="Infraction_donnees" label="SanctionAutre" request="SELECT id, points, contravention as Contravention, delit as Delit, tig as TIG, suspension as Suspension, interdiction as Interdiction, annulation as Annulation, prison as Prison, vehicule as Vehicule, stage as Stage, source as Source, code_legi as Code_legi, code_url as Code_Url, probatoire as Probatoire, joursamendes as JoursAmendes FROM detail_infraction WHERE id = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="paraAutre" data="4"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Affiche liste Alcool">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Affiche liste Vitesse">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Affiche liste Autres">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 3">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="3"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage resultat alcool drogue">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="3"></Action>
+				<Action id="3" name="unsetAttribute" target="content" data="4"></Action>
+				<Action id="4" name="setAttribute" target="content" data="16" value="ucfirst(#16)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="affichage resultat vitesse">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="2"></Action>
+				<Action id="3" name="unsetAttribute" target="content" data="4"></Action>
+				<Action id="4" name="setAttribute" target="content" data="31" value="ucfirst(#31)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="affichage resultat autre">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 3">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="3"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="3"></Action>
+				<Action id="3" name="unsetAttribute" target="content" data="2"></Action>
+				<Action id="4" name="setAttribute" target="content" data="46" value="ucfirst(#46)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="affichage sanction alcool">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1 &amp;&amp; defined(#2)">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="1"></Condition>
+					<Condition operand="resultat_donnee_alcool" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Affiche sanction vitesse">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#3)">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="2"></Condition>
+					<Condition operand="resultat_donnee_vitesse" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Affiche sanction autres">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 3 &amp;&amp; defined(#4)">
+				<Connector type="all">
+					<Condition operand="resultatlistedescategories" operator="present"></Condition>
+					<Condition operand="resultatlistedescategories" operator="=" expression="3"></Condition>
+					<Condition operand="resultat_donnee_autre" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Masque champs point alcool vide">
+			<Conditions value="!defined(#5)">
+				<Condition operand="Point1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Masque champs point vitesse vide">
+			<Conditions value="!defined(#20)">
+				<Condition operand="Point2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Masque champs point Autres vide">
+			<Conditions value="!defined(#35)">
+				<Condition operand="Point3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Masque champs Contravention alcool vide">
+			<Conditions value="!defined(#6)">
+				<Condition operand="Contravention1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Masque champs Contravention vitesse vide">
+			<Conditions value="!defined(#21)">
+				<Condition operand="Contravention2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Masque champs Contravention Autres vide">
+			<Conditions value="!defined(#36)">
+				<Condition operand="Contravention3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Masque champs Delit alcool vide">
+			<Conditions value="!defined(#7)">
+				<Condition operand="Delit1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Masque champs Delit vitesse vide">
+			<Conditions value="!defined(#22)">
+				<Condition operand="Delit2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Masque champs Delit Autres vide">
+			<Conditions value="!defined(#37)">
+				<Condition operand="Delit3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Masque champs TIG alcool vide">
+			<Conditions value="!defined(#8)">
+				<Condition operand="TIG1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Masque champs TIG vitesse vide">
+			<Conditions value="!defined(#23)">
+				<Condition operand="TIG2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Masque champs TIG Autres vide">
+			<Conditions value="!defined(#38)">
+				<Condition operand="TIG3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Masque champs Suspension alcool vide">
+			<Conditions value="!defined(#9)">
+				<Condition operand="Suspension1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Masque champs Suspension vitesse vide">
+			<Conditions value="!defined(#24)">
+				<Condition operand="Suspension2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Masque champs Suspension Autres vide">
+			<Conditions value="!defined(#39)">
+				<Condition operand="Suspension3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Masque champs Interdiction alcool vide">
+			<Conditions value="!defined(#10)">
+				<Condition operand="Interdiction1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Masque champs Interdiction vitesse vide">
+			<Conditions value="!defined(#25)">
+				<Condition operand="Interdiction2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Masque champs Interdiction Autres vide">
+			<Conditions value="!defined(#40)">
+				<Condition operand="Interdiction3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Masque champs Annulation alcool vide">
+			<Conditions value="!defined(#11)">
+				<Condition operand="Annulation1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="7"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="7"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Masque champs Annulation vitesse vide">
+			<Conditions value="!defined(#26)">
+				<Condition operand="Annulation2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="7"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="7"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Masque champs Annulation Autres vide">
+			<Conditions value="!defined(#41)">
+				<Condition operand="Annulation3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="7"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="7"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Masque champs Prison alcool vide">
+			<Conditions value="!defined(#12)">
+				<Condition operand="Prison1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="8"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="Masque champs Prison vitesse vide">
+			<Conditions value="!defined(#27)">
+				<Condition operand="Prison2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="8"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="Masque champs Prison Autres vide">
+			<Conditions value="!defined(#42)">
+				<Condition operand="Prison3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="8"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="Masque champs Vehicule alcool vide">
+			<Conditions value="!defined(#13)">
+				<Condition operand="Vehicule1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Masque champs Véhicule vitesse vide">
+			<Conditions value="!defined(#28)">
+				<Condition operand="Vehicule2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Masque champs vehicule Autres vide">
+			<Conditions value="!defined(#43)">
+				<Condition operand="Vehicule3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Masque champs Stage alcool vide">
+			<Conditions value="!defined(#14)">
+				<Condition operand="Stage1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="10"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="10"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="Masque champs Stage vitesse vide">
+			<Conditions value="!defined(#29)">
+				<Condition operand="Stage2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="10"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="10"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="Masque champs Stage Autres vide">
+			<Conditions value="!defined(#44)">
+				<Condition operand="Stage3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="10"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="10"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="Affiche bouton réinitialiser">
+			<Conditions value="defined(#31) || defined(#16) || defined(#46)">
+				<Connector type="any">
+					<Condition operand="Source2" operator="present"></Condition>
+					<Condition operand="Source1" operator="present"></Condition>
+					<Condition operand="Source3" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="Nouveau"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="Nouveau"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="RoulerSansPermis">
+			<Conditions value="defined(#4) &amp;&amp; defined(#48) &amp;&amp; #48 = 36">
+				<Connector type="all">
+					<Condition operand="resultat_donnee_autre" operator="present"></Condition>
+					<Condition operand="Id3" operator="present"></Condition>
+					<Condition operand="Id3" operator="=" expression="36"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="1" section="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="1" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="RoulerSansAssurance">
+			<Conditions value="defined(#4) &amp;&amp; defined(#48) &amp;&amp; #48 = 35">
+				<Connector type="all">
+					<Condition operand="resultat_donnee_autre" operator="present"></Condition>
+					<Condition operand="Id3" operator="present"></Condition>
+					<Condition operand="Id3" operator="=" expression="35"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="1" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="1" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="Permis_Probatoire">
+			<Conditions value="(#19 = 'S' || #34 = 'S' || #50 = 'S') &amp;&amp; (defined(#19) || defined(#34) || defined(#50))">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="Permis_Probatoire1" operator="=" expression="'S'"></Condition>
+						<Condition operand="Permis_Probatoire2" operator="=" expression="'S'"></Condition>
+						<Condition operand="Permis_Probatoire3" operator="=" expression="'S'"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="Permis_Probatoire1" operator="present"></Condition>
+						<Condition operand="Permis_Probatoire2" operator="present"></Condition>
+						<Condition operand="Permis_Probatoire3" operator="present"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="1"></Action>
+				<Action id="2" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="Permis-Probatoire_Perte">
+			<Conditions value="(#19 = 'P' || #34 = 'P' || #50 = 'P') &amp;&amp; (defined(#19) || defined(#34) || defined(#50))">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="Permis_Probatoire1" operator="=" expression="'P'"></Condition>
+						<Condition operand="Permis_Probatoire2" operator="=" expression="'P'"></Condition>
+						<Condition operand="Permis_Probatoire3" operator="=" expression="'P'"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="Permis_Probatoire1" operator="present"></Condition>
+						<Condition operand="Permis_Probatoire2" operator="present"></Condition>
+						<Condition operand="Permis_Probatoire3" operator="present"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="2"></Action>
+				<Action id="2" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="2" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Affiche bloc URL1">
+			<Conditions value="defined(#16)">
+				<Condition operand="Source1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="1"></Action>
+				<Action id="2" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="2"></Action>
+				<Action id="3" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Affiche bloc URL2">
+			<Conditions value="defined(#31)">
+				<Condition operand="Source2" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="2"></Action>
+				<Action id="2" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="1"></Action>
+				<Action id="3" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Affiche bloc URL3">
+			<Conditions value="defined(#46)">
+				<Condition operand="Source3" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="3"></Action>
+				<Action id="2" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="1"></Action>
+				<Action id="3" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="5" chapter="3" section="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="48" name="R48" label="Masque Jour Amende Alcool vide">
+			<Conditions value="!defined(#15)">
+				<Condition operand="JourAmende1" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="11"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="49" name="R49" label="Masque Jour Amende Vitesse vide">
+			<Conditions value="!defined(#30)">
+				<Condition operand="JourAmende2" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="11"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="50" name="R50" label="Masque Jour Amende Autre vide">
+			<Conditions value="!defined(#45)">
+				<Condition operand="JourAmende3" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="11"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+<div>Pour vérifier les éléments, possibilité d'aller sur le site du Natinf du ministère de la justice :</div><div><u><a target="_blank" rel="nofollow" href="https://natinf.srj.justice.ader.gouv.fr/">https://natinf.srj.justice.ader.gouv.fr/</a></u>
+
+</div>
+	]]></RelatedInformations>
+</Simulator>

@@ -1,0 +1,193 @@
+@import "common.css";
+
+.step-container {
+	margin-top: -3em;
+}
+.simulator-breadcrumb {
+	margin: 2em;
+}
+.step-page .field-container .listbox {
+	max-width: 90%;
+}
+.step-page .field-container .listbox ~ .btn-help {
+	margin: -2.5em 0.5em 0;
+}
+.step-page .input-group ~ .btn-help {
+	padding: 0;
+}
+.step-page .form-group[data-expanded=true]:not(.underlabel) .input-group ~ .btn-help {
+	margin-top: -1.5em;
+}
+
+.step-page label, .step-page .label {
+    font-weight: bold;
+    width: auto;
+}
+.step-page .explanation {
+	margin-top: 0;
+	width: auto;
+	color: #000;
+}
+.step-page .section-content.with-annotations::after {
+	border: none;
+	position: static;
+}
+.step-page .section-content {
+	border: none;
+	background: transparent;
+}
+.step-page .blockinfo-chapters {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.step-page .blockinfo-label {
+	border: none;
+}
+.step-page .blockinfo-container,
+.step-page .blockinfo-chapter-sections {
+	padding: 0;
+	margin: 0;
+}
+.step-page .section-container .section-label h2 {
+	font-size: 1em;
+	margin-left: .5em;
+	margin-top: .5em;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.step-page .section-container th {
+	text-align: left;
+	padding-left: .5em;
+}
+.step-page .section-container td {
+	text-align: right;
+	padding-right: .5em;
+	width: 10%;
+}
+.step-page .collapse-expand-all-tools {
+	display: none;
+}
+.step-page .section-container tr:nth-child(even) {
+	background: #ECECEC
+}
+.step-page .section-container tr:nth-child(odd) {
+	background: #FFF
+}
+.step-page .chapter-container {
+	border: 1px solid #CCC;
+	border-radius: 4px;
+}
+.step-page ul.nav-tabs li {
+	padding: 0;
+}
+
+#informationsVousConcernant-panel-1-blockinfo-2 .blockinfo-chapters,
+#leDefunt-panel-1-blockinfo-2 .blockinfo-chapters {
+	float: none;
+	clear: both;
+	margin: 1em 0;
+	padding: 1em;
+	color: #fff;
+	background: #0b6ba8;
+	border-radius: 8px;
+}
+#informationsVousConcernant-panel-1-blockinfo-2 .chapter-container,
+#leDefunt-panel-1-blockinfo-2 .chapter-container {
+	border: none;
+}
+#informationsVousConcernant-panel-1-blockinfo-2 .section-content ,
+#leDefunt-panel-1-blockinfo-2 .section-content {
+	text-align: center;
+	font-size: 1.8em;
+	font-weight: bold;
+}
+#informationsVousConcernant-panel-1-blockinfo-3-chapter-1-section-1 .section-content ul {
+	list-style-type: inherit;
+	margin-left: 1em;
+}
+#step1 .fieldset-container > legend,
+#step2 .fieldset-container > legend {
+	display: none;
+}
+#qualiteDefunt-container label.choice {
+	display: block;
+	float: none;
+}
+#step3 #actifPassif-panel-1-fieldset-1 > legend,
+#step3 #actifPassif-panel-2-fieldset-1 > legend {
+	display: none;
+}
+#step3 .field-container label,
+#step3 .field-container span.label {
+	width: 75%;
+}
+#step3 #modeSaisieActifs-container label,
+#step3 #modeSaisieActifs-container span.label,
+#step3 #biensTaxables-container label,
+#step3 #biensTaxables-container span.label,
+#step3 #modeSaisieDettes-container label,
+#step3 #modeSaisieDettes-container span.label,
+#step3 #dettesPersonnelles-container label,
+#step3 #dettesPersonnelles-container span.label {
+	width: auto;
+}
+#step3 .field-container input[type=money] {
+	text-align: right;
+}
+#step3 div.field-container[data-type=money] span.output {
+	width: 8em;
+	text-align: right;
+	font-weight: bold;
+	font-size: 1em;
+}
+#occupationResidencePrincipale-container fieldset label {
+	width: 3.5em !important;
+}
+#step3 #occupationResidencePrincipale-container .post-note,
+#step3 #fraisEnterrement-container .post-note {
+	text-align: right;
+	padding-right: 4em;
+}
+#step3 .section-content {
+	text-align: right;
+	padding-right: 3em;
+}
+#step3 .chapter-container {
+	border: none;
+}
+#step3 .blockinfo-container {
+	margin-top: -5em;
+}
+#step4 .fieldset.disposition-grid {
+	margin-top: -1em;
+}
+#step4 .fieldset.disposition-grid h3 {
+	color: #000;
+	font-size: 1em;
+	margin-bottom: 1em;
+}
+#step4 p.mention-asterisk{
+	display: none;
+}
+#step4 .grid {
+	margin-top: -1em;
+}
+#step4 .grid td {
+	text-align: right;
+	padding-right: 1em;
+}
+#step4 #droitsdonationDefinitifs-container {
+	text-align: center;
+	font-size: 2em;
+}
+#step4 #droitsdonationDefinitifs-container span {
+	float: none;
+	color: #0b6ba8;
+}
+#step4 .foot-note {
+	text-align: left;
+}
+#step4 .foot-note a {
+	color: #fff;
+}

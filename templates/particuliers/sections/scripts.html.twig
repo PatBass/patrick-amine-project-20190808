@@ -1,0 +1,38 @@
+		<!--  JavaScript  -->
+		<esi:remove>
+		<script type="text/javascript">
+		var metaTag = document.getElementsByTagName('meta');
+		for (var i=0; i < metaTag.length; i++) {
+			if (metaTag[i].getAttribute("name")=='resources_path') {
+				var resources_path = metaTag[i].content;
+				metaTag[i].content = "{{ path }}" + resources_path;
+			} else if (metaTag[i].getAttribute("name")=='audience') {
+				var audience = metaTag[i].content;
+				metaTag[i].content = "{{ path }}/" + audience;
+			}
+		} 
+		</script>
+		 <script type="text/javascript" src="{{ path }}/resources/v-fcfdbb50f0/web/js/lib/require.js"></script>
+		 <script type="text/javascript" src="{{ path }}/resources/v-fcfdbb50f0/web/js/lib/common.js"></script>
+		</esi:remove>
+		<esi:include src="/esi/particuliers/javascripts"></esi:include>
+		
+		<esi:include src="/esi/particuliers/marquage?{{ marquage }}"></esi:include>
+		
+                <script src="{{ asset('assets/particuliers/static/js/patch.accessibilite.dila.js') }}"></script>
+		<script type="text/javascript">
+		$.noConflict();
+		jQuery(document).ready(function(){
+			$('input.listbox-input').listbox('theme', 'blue');			
+			$('input.date').datepicker('theme', 'blue');			
+			$('input.date').datepicker('inputFormat', ["d/M/y","d-M-y","d.M.y","ddMMy","dd/MM/y"]);
+			{% if step.id > 1 %}
+			$('.step-container').find(':input:visible').first().focus();
+			{% else %}
+			$('html body').find(':input:visible').first().focus();
+			window.scrollTo(0, 0);
+			{% endif %}
+		});
+		var ad_slots = {}; {# pas de pubs #}
+		</script>
+

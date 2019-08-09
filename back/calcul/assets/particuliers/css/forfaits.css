@@ -1,0 +1,542 @@
+@charset "UTF-8";
+
+.step-page div.input-group {
+	display: inline-block;
+}
+
+/*********************************************************
+ *                                                       *
+ * Définition des styles du simulateur (partie centrale) *
+ *                                                       *
+ *********************************************************/
+.step-page {
+  overflow: hidden; }
+
+.step-container {
+  overflow: hidden;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  background: #ececec; }
+
+.field-container {
+  overflow: hidden;
+  margin: 0.5em 0 !important; }
+
+/*********************************************************
+ * Texte de présentation du simulateur(sous le titre)   *
+ *********************************************************/
+
+article > p:not(:last-child) {
+  margin-top: 0;
+  margin-bottom: 0; 
+  text-align: justify; }
+article > p:nth-last-child(5) {
+  margin-bottom: 1.25em; }
+
+/***************************************************************
+ * Fil d'ariane du déroulement des Ã©tapes :                  *
+ ***************************************************************/
+.simulator-breadcrumb {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 0; }
+
+.simulator-breadcrumb ol {
+  display: table;
+  padding: 0;
+  width: 100%; }
+
+.simulator-breadcrumb li {
+  display: block; }
+
+.simulator-breadcrumb li p {
+  position: relative;
+  display: block;
+  margin: 0 0 0.1em;
+  padding: 1em 0.3em 1em 3em;
+  height: 50px;
+  text-decoration: none;
+  color: #000;
+  background: #ececec; }
+
+.simulator-breadcrumb li p span {
+  display: inline-block;
+  vertical-align: middle; }
+
+.simulator-breadcrumb li p span:first-child {
+  font-size: 1.2em; }
+
+.simulator-breadcrumb li.current.current p {
+  color: #fff;
+  background: #0b6ba8; }
+
+.simulator-breadcrumb li.current p:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 25px solid #fff; }
+
+.simulator-breadcrumb li:last-child p {
+  margin: 0; }
+
+@media (min-width: 37em) {
+  .simulator-breadcrumb li p {
+    margin: 0 10px 0 0;
+    padding: 15px 5px;
+    height: 50px;
+    text-align: center; }
+  .simulator-breadcrumb li {
+    display: table-cell; }
+  .simulator-breadcrumb li:first-child p:before {
+    display: none; }
+  .simulator-breadcrumb li:last-child p:after {
+    height: 100%;
+    border: 0;
+    background: #0b6ba8; }
+  .simulator-breadcrumb li.current:last-child p:after {
+    background: #fff; }
+  .simulator-breadcrumb li p:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: -24px;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid #ececec;
+    z-index: 1; }
+  .simulator-breadcrumb li.current p:after {
+    border-left-color: #0b6ba8; }
+  .simulator-breadcrumb li p:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid #fff; } }
+
+/*********************************************************
+ * Texte de description de l'étape                       *
+ * en dessous du fil d'ariane                            *
+ *********************************************************/
+.step-page .step-description {
+  margin-bottom: 1.5em; }
+
+.step-page .step-description p {
+  margin: 0;
+  padding: 0; }
+
+.step-page .mention-asterisk {
+  margin: 0 0 1em;
+  padding: 0; }
+
+.step-page .mention-asterisk .asterisk {
+  color: #c22222; }
+
+#step4 p.mention-asterisk{
+  display: none; }
+
+.step-page .foot-notes {
+  float: none;
+  clear: both;
+  margin: 1em 0;
+  padding: 1em;
+  color: #fff;
+  background: #0b6ba8; }
+
+.step-page .foot-note {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center; }
+  .step-page .foot-note p {
+    margin: 0; }
+
+/*********************************************************
+ * Champs des formulaires                                *
+ *********************************************************/
+
+.step-page fieldset,
+.step-page div.fieldset {
+  margin-top: 0;
+  margin-bottom: 1.5em; }
+
+.step-page legend,
+.step-page .legend {
+  margin-bottom: 0.8em;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.step-page .fieldset-container legend {
+  margin: 0 -1em;
+  padding: 1em;
+  width: 120%;
+  background: #ececec; }
+
+.step-page .legend p {
+  margin-bottom: 0; }
+
+.step-page #choix-fieldset-2 legend {
+  text-align: center; }
+
+.step-page input {
+  height: 1.3em; }
+
+.step-page input[type=text],
+.step-page input[type=date],
+.step-page input[class=date],
+.step-page input[type=number],
+.step-page input[type=money] {
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-right: 0.5em;
+  padding-left: 0.2em;
+  height: auto;
+  line-height: 2em;
+  color: #0b6ba8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff; }
+
+.step-page input.has-error {
+  font-weight: normal;
+  border: 1px solid #c60000;
+  background-color: #f5dedb; }
+  
+.step-page .select2-hidden-accessible {
+  display: none; }
+
+.step-page .select2-container--default {
+  width: 100% !important; }
+
+.step-page select,
+.step-page .select2-container--default .select2-selection__rendered,
+.select2-container--default .select2-results__option {
+ color: #0b6ba8; }
+
+.step-page select {
+  height: 2em; }
+
+.step-page input[type=money] {
+  width: 8em;
+  max-width: 8em;
+  font-size: 1em; }
+
+.step-page input[class=date],
+.step-page input[type=date],
+.step-page input[class~=date].has-error,
+.step-page input[type=date].has-error {
+  width: 6.2em;
+  max-width: 6.2em !important; }
+
+.step-page input[type=text] {
+  max-width: 10em; }
+
+.step-page input[type=number] {
+  max-width: 3.5em;
+  /* padding:.5em .1em .5em .4em; */
+  /* pb IE, OPERA, Safari et Chrome si padding*/ }
+
+.step-page input[type=submit],
+.step-page input[type=reset] {
+  height: auto; }
+
+.step-page input[disabled=disabled] {
+  border: 0; }
+
+.step-page .choice input[type=radio] {
+  margin: 0 0.4em 0 0;
+  display: inline-block;
+  vertical-align: bottom; }
+
+.step-page .output {
+  display: inline-block;
+  padding: 0 0.1em;
+  vertical-align: baseline; }
+
+#step4 span[id=montantIm],
+#step4 span[id=cumul] {
+  margin-top: 0.66em;
+  font-size: 1.2em !important; }
+
+.step-page label,
+.step-page .label,
+.step-page input {
+  display: inline-block; }
+#facturePayee-container label {
+  float: left; }
+	
+.step-page label,
+.step-page .label {
+  padding: 0 0 0.3em;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #000;
+  text-align: left; }
+
+#step4 label,
+#step4 .label {
+  width: 21em;
+  min-width: 21em; }
+
+.step-page label.choice {
+  margin-right: 1.2em;
+  padding: 0;
+  width: auto;
+  min-width: 1em;
+  font-weight: normal;
+  text-align: left; }
+
+#typeAcheteurPublic-container label {
+  text-align: left; }
+
+.step-page .post-note {
+  position: relative;
+  clear: both;
+  margin: 0;
+  padding-top: 0;
+  width: 100%;
+  font-size: 0.7em !important; }
+
+.step-page .has-error {
+  font-weight: bold;
+  color: #c22222; }
+
+.step-page div.has-error {
+  clear: both;
+  text-align: center; }
+
+.step-page fieldset div.has-error {
+  text-align: right; }
+
+.step-page .emphasized {
+  font-weight: bold;
+  color: #0b6ba8; }
+
+.step-page .explanation {
+  float: right;
+  margin-top: 0.95em;
+  width: 12em;
+  font-weight: bold;
+  color: #0b6ba8; }
+
+.step-page br {
+  clear: both; }
+
+.clearer {
+  float: none;
+  clear: both;
+  margin: 0;
+  padding: 0; }
+
+/*********************************************************
+ * Date-picker                                           *
+ *********************************************************/
+.date-picker-control {
+  vertical-align: baseline; }
+
+.date-picker-control:link,
+.date-picker-control:visited {
+  margin: 0 0.2em; }
+
+/*********************************************************
+ * Bouton aide                                           *
+ *********************************************************/
+.step-page .btn-help {
+  margin: 0 0.5em;
+  width: 20px;
+  height: 20px;
+  font-size: 1.4em;
+  vertical-align: sub;
+  border: none; }
+
+.date-picker-control + .btn-help {
+  margin-top: -0.3em; }
+
+.step-page .help-panel {
+  clear: both; }
+  .step-page .help-panel:before, .step-page .help-panel:after {
+    display: none; }
+
+/*********************************************************
+ * Money symbol                                          *
+ *********************************************************/
+span.money-symbol {
+  display: inline-block;
+  vertical-align: baseline; }
+
+#montantPrincipalTTC-container .output span.money-symbol,
+.step-page .output span.money-symbol {
+  margin-top: 0; }
+
+/*********************************************************
+ * Panneau d'aide déroulant sous chaque champ            *
+ *********************************************************/
+.help-panel p {
+  margin-bottom: 0.5em;
+  width: 534px;
+  width: 100%;
+  font-size: 0.9em !important; }
+
+.help-panel {
+  margin-top: 0.7em;
+  padding: 0.4em;
+  border: 1px solid #cccccc;
+  background: white; }
+
+.help-panel dt {
+  display: none; }
+
+/*********************************************************
+ * Boutons d'action et de navigation dans le simulateur  *
+ *********************************************************/
+.action_buttons {
+  float: right;
+  margin: 1em 0 0;
+  text-align: center; }
+
+.action_buttons input {
+  display: inline-block;
+  margin: 0 0 1em 1em;
+  font-size: 1.2em; }
+
+.action_buttons input[name=effacer] {
+  text-transform: uppercase; }
+
+/*********************************************************
+ * Grid                                                  *
+ *********************************************************/
+.step-page div.grid {
+  display: table;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse; }
+
+.grid-header {
+  color: #fff;
+  background: #0b6ba8; }
+
+.step-page div.grid .grid-header > div {
+  border-right-color: #fff;
+  border-left-color: #fff; }
+
+.step-page div.grid > div {
+  display: table-row; }
+
+.step-page div.grid > div:nth-child(2n) {
+  background: #fff; }
+
+.step-page div.grid > div > div {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #cccccc; }
+
+.step-page div.grid > div:first-child div:not(:first-child) {
+  font-weight: bold;
+  text-align: center; }
+
+.step-page div.grid > div:first-child div:nth-child(2) {
+  width: 110px; }
+
+.step-page div.grid > div:first-child div:nth-child(3) {
+  margin-right: 50px;
+  width: 72px; }
+
+.step-page div.grid > div:first-child div:nth-child(4) {
+  width: 50px; }
+
+.step-page div.grid > div:first-child div:nth-child(5),
+.step-page div.grid > div:first-child div:nth-child(6) {
+  width: 60px; }
+
+.step-page div.grid > div:not(:first-child) div {
+  font-weight: normal; }
+
+.step-page div.grid > div:not(:first-child) div > span.output {
+  padding-bottom: 9px; }
+
+.step-page div.grid > div:not(:first-child) div:nth-child(5),
+.step-page div.grid > div:not(:first-child) div:nth-child(6) {
+  padding-bottom: 2px;
+  padding-left: 8px; }
+
+.espace-pro .grid-header,
+.espace-pro .step-page .foot-notes,
+.espace-pro .simulator-breadcrumb li.current.current p,
+.espace-pro .simulator-breadcrumb li:last-child p:after {
+  background: #a63950; }
+
+.espace-pro .simulator-breadcrumb li.current p:after {
+  border-left-color: #a63950; }
+
+.espace-pro .step-page input[type=text],
+.espace-pro .step-page input[type=date],
+.espace-pro .step-page input[class=date],
+.espace-pro .step-page input[type=number],
+.espace-pro .step-page input[type=money],
+.espace-pro .step-page select,
+.espace-pro .step-page .select2-container--default .select2-selection__rendered,
+.espace-pro .select2-container--default .select2-results__option,
+.espace-pro .step-page .emphasized,
+.espace-pro .step-page .explanation {
+  color: #a63950; }
+.espace-pro .select2-container--default .select2-results__option--highlighted[aria-selected] {
+   background-color: #a63950;
+    color: #fff;
+  }
+.espace-asso .grid-header,
+.espace-asso .step-page .foot-notes,
+.espace-asso .simulator-breadcrumb li.current.current p,
+.espace-asso .simulator-breadcrumb li:last-child p:after {
+  background: #0D803B; }
+
+.espace-asso .simulator-breadcrumb li.current p:after {
+  border-left-color: #0D803B; }
+
+.espace-asso .step-page input[type=text],
+.espace-asso .step-page input[type=date],
+.espace-asso .step-page input[class=date],
+.espace-asso .step-page input[type=number],
+.espace-asso .step-page input[type=money],
+.espace-asso .step-page select,
+.espace-asso .step-page .select2-container--default .select2-selection__rendered,
+.espace-asso .select2-container--default .select2-results__option,
+.espace-asso .step-page .emphasized,
+.espace-asso .step-page .explanation {
+  color: #0D803B; }
+
+.espace-annuaire .grid-header,
+.espace-annuaire .step-page .foot-notes,
+.espace-annuaire .simulator-breadcrumb li.current.current p,
+.espace-annuaire .simulator-breadcrumb li:last-child p:after {
+  background: #586d84; }
+
+.espace-annuaire .simulator-breadcrumb li.current p:after {
+  border-left-color: #586d84; }
+
+.espace-annuaire .step-page input[type=text],
+.espace-annuaire .step-page input[type=date],
+.espace-annuaire .step-page input[class=date],
+.espace-annuaire .step-page input[type=number],
+.espace-annuaire .step-page input[type=money],
+.espace-annuaire .step-page select,
+.espace-annuaire .step-page .select2-container--default .select2-selection__rendered,
+.espace-annuaire .select2-container--default .select2-results__option,
+.espace-annuaire .step-page .emphasized,
+.espace-annuaire .step-page .explanation {
+  color: #586d84; }
+
+@media (min-width: 37em) {
+  .step-page label,
+  .step-page .label {
+    padding-right: 10px;
+    width: 50%;
+    text-align: right; } }
+
+/*# sourceMappingURL=simulateur.css.map */

@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="ActeCautionnement" label="Acte de caution solidaire (ou simple) pour une location" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce modèle permet de personnaliser un <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/glossaire/R51564">acte de cautionnement à durée déterminée ou indéterminée au profit d'un locataire</a> pour un bail d'habitation d'un logement dans le secteur privé.
+Pour plus d'informations, consulter notre page sur <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31267">la caution du locataire</a>.
+A savoir : depuis le  25 novembre 2018 (loi Élan), il n'est plus nécessaire de porter d'autres mentions manuscrites que votre signature elle-même.
+Le document est rédigé au fur et à mesure de vos réponses. Une fois complété, vous pouvez le télécharger au format PDF ou bien le copier d'un clic.
+Vous pourrez alors l'imprimer, puis le signer.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1'  data-xiti-name='Particuliers::Services_en_ligne_et_formulaires::Acte_de_caution_solidaire_ou_simple::demarrer' data-xiti-type='action' onclick=&quot;toggle_1a5div(this,'Prenom','Commencer','Fermer','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13','14'); return false;&quot;&gt;Commencer &lt;span class='glyphicon glyphicon-menu-down'  &gt;&lt;/span&gt;&lt;/button&gt;  "></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherCG5" label="afficherCG5" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="7" name="Prenom" label="Prénom" type="text"></Data>
+		<Data id="8" name="NomCaution" label="Nom de la caution" type="text"></Data>
+		<Data id="9" name="GenreCaution" label="Genre de la caution" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Madame"></Choice>
+				<Choice id="2" value="2" label="Monsieur"></Choice>
+			</Choices>
+		</Data>
+		<Data id="10" name="DateNaissanceCaution" label="Date de naissance de la caution" type="date"></Data>
+		<Data id="11" name="LieuNaissanceCaution" label="Lieu de naissance de la caution" type="text"></Data>
+		<Data id="12" name="AdresseCaution" label="Adresse de la caution" type="text"></Data>
+		<Data id="13" name="CPCaution" label="CP de la caution" type="integer" min="1000" max="99999"></Data>
+		<Data id="14" name="CommuneCaution" label="Commune de la caution" type="text"></Data>
+		<Data id="15" name="TypeCaution" label="Type de caution" type="choice">
+			<Description><![CDATA[
+<b>Caution solidaire</b>
+Dès le 1er impayé, le propriétaire peut exiger de la caution le paiement de la dette du locataire, sans même avoir préalablement réclamé le paiement des dettes au locataire.
+
+<b>Caution simple</b>
+En cas d’impayés, le propriétaire est obligé de réclamer préalablement le paiement de ses dettes au locataire. Si, malgré cette démarche, le locataire ne paie pas, le propriétaire peut s’adresser à la caution.
+<b> </b>
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="simple" label="simple"></Choice>
+				<Choice id="2" value="solidaire" label="solidaire"></Choice>
+			</Choices>
+		</Data>
+		<Data id="16" name="DureeEngagement" label="Durée de l'engagement" type="choice">
+			<Description><![CDATA[
+<b>Engagement à durée déterminée</b>
+La caution ne peut pas résilier son engagement avant le terme inscrit dans l’acte de caution. Toutefois, l’acte de caution peut prévoir que la survenue de certains événements (décès de la caution par exemple) mette fin prématurément à l’engagement de la caution.
+En effet, si l’acte de caution ne prévoit pas que le décès de la caution met fin à son engagement, alors les héritiers de la caution sont automatiquement redevables des dettes locatives qui étaient déjà nées au moment du décès (mais pas de celles nées postérieurement au décès).
+
+<b>Engagement à durée indéterminée</b>
+La caution peut résilier son engagement à tout moment, mais cette résiliation ne prendra effet qu’à l’échéance du bail en cours. L’engagement se poursuivra jusqu’au terme du bail en cours au moment de la résiliation par la caution.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="indéterminée" label="indéterminée"></Choice>
+				<Choice id="2" value="déterminée" label="déterminée"></Choice>
+			</Choices>
+		</Data>
+		<Data id="17" name="DureeDetermineeEngagement" label="Durée déterminée de l'engagement" type="text"></Data>
+		<Data id="18" name="PrenomLocataire" label="Prénom du locataire" type="text"></Data>
+		<Data id="19" name="NomLocataire" label="Nom du locataire" type="text"></Data>
+		<Data id="20" name="PrenomBailleur" label="Prénom du bailleur" type="text"></Data>
+		<Data id="21" name="NomBailleur" label="Nom du bailleur" type="text"></Data>
+		<Data id="22" name="AdresseBailleur" label="Adresse du bailleur" type="text"></Data>
+		<Data id="23" name="CPBailleur" label="CP du bailleur" type="integer" min="1000" max="99999"></Data>
+		<Data id="24" name="CommuneBailleur" label="Commune du bailleur" type="text"></Data>
+		<Data id="25" name="AdresseLocation" label="Adresse du logement loué" type="text"></Data>
+		<Data id="26" name="CPLocation" label="CP de la location" type="integer" min="1000" max="999999"></Data>
+		<Data id="27" name="CommuneLocation" label="Commune de la location" type="text"></Data>
+		<Data id="28" name="MontantLoyerLettres" label="Montant du loyer en toutes lettres" type="text"></Data>
+		<Data id="29" name="MontantLoyerChiffres" label="Montant du loyer en chiffres" type="money"></Data>
+		<Data id="30" name="PeriodeVersement" label="Période de versement du loyer" type="choice">
+			<Choices>
+				<Choice id="1" value="mois" label="mois"></Choice>
+				<Choice id="2" value="trimestre" label="trimestre"></Choice>
+				<Choice id="3" value="an" label="an"></Choice>
+			</Choices>
+		</Data>
+		<Data id="31" name="DateRevisionJJMM" label="DateRevisionJJMM" type="text">
+			<Description><![CDATA[
+Si la date de révision n'est pas indiquée spécifiquement dans votre bail, alors renseigner la date de signature de celui-ci (format JJ/MM).
+			]]></Description>
+		</Data>
+		<Data id="32" name="DateRevisionMois" label="Date de révision (mois)" type="choice">
+			<Choices>
+				<Choice id="1" value="janvier" label="janvier"></Choice>
+				<Choice id="2" value="février" label="février"></Choice>
+				<Choice id="3" value="mars" label="mars"></Choice>
+				<Choice id="4" value="avril" label="avril"></Choice>
+				<Choice id="5" value="mai" label="mai"></Choice>
+				<Choice id="6" value="juin" label="juin"></Choice>
+				<Choice id="7" value="juillet" label="juillet"></Choice>
+				<Choice id="8" value="août" label="août"></Choice>
+				<Choice id="9" value="septembre" label="septembre"></Choice>
+				<Choice id="10" value="octobre" label="octobre"></Choice>
+				<Choice id="11" value="novembre" label="novembre"></Choice>
+				<Choice id="12" value="décembre" label="décembre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="33" name="DatePeriodeReferenceIRL" label="Date de la période de référence de l'IRL" type="choice">
+			<Description><![CDATA[
+Ces éléments figurent sur le bail.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1er trimestre" label="1er trimestre"></Choice>
+				<Choice id="2" value="2e trimestre" label="2e trimestre"></Choice>
+				<Choice id="3" value="3e trimestre" label="3e trimestre"></Choice>
+				<Choice id="4" value="4e trimestre" label="4e trimestre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="34" name="AnneeReferenceIRL" label="AnneeReferenceIRL" type="integer" min="2018" max="2030"></Data>
+		<Data id="35" name="NombreExemplaires" label="Nombre d'exemplaires" type="integer">
+			<Description><![CDATA[
+Indiquer le nombre de parties prenantes à l'acte (bailleur, locataire, caution...).
+			]]></Description>
+		</Data>
+		<Data id="36" name="LieuActe" label="Lieu de l'acte" type="text"></Data>
+		<Data id="37" name="DateActe" label="Date de l'acte" type="date" default="today"></Data>
+		<DataGroup id="1" name="Groupededonneetextessaisis" label="Groupe de données textes saisis">
+			<Data id="38" name="Donnee1objet" label="Donnée objet : objet" type="text"></Data>
+			<Data id="39" name="donnee1" label="Donnée 1" type="text"></Data>
+			<Data id="40" name="donnee2" label="donnée 2" type="text"></Data>
+			<Data id="41" name="donnee3" label="donnée 3" type="text"></Data>
+			<Data id="42" name="donnee4" label="Donnée 4" type="text"></Data>
+			<Data id="43" name="donnee5" label="Donnée 5" type="text"></Data>
+			<Data id="44" name="donnee6" label="Donnée 6" type="text"></Data>
+			<Data id="45" name="donnee7" label="donnée 7" type="text"></Data>
+			<Data id="46" name="donnee8" label="Donnée 8" type="text"></Data>
+			<Data id="47" name="donnee9" label="Donnée 9" type="text"></Data>
+			<Data id="48" name="donnee10" label="Donnée 10" type="text"></Data>
+			<Data id="49" name="donnee11" label="donnée 11" type="text"></Data>
+			<Data id="50" name="donnee12" label="Donnée 12" type="text"></Data>
+			<Data id="51" name="donnee13" label="Donnée 13" type="text"></Data>
+			<Data id="52" name="donnee14" label="Donnée 14 signature" type="text"></Data>
+			<Data id="53" name="donnee15" label="Donnée 15 signature 2" type="text"></Data>
+			<Data id="54" name="donnee16" label="Donnée 16 signature 3" type="text"></Data>
+			<Data id="55" name="entete1" label="Donnée entete1" type="text"></Data>
+			<Data id="56" name="entete2" label="Donnée entete2" type="text"></Data>
+			<Data id="57" name="entete3" label="Donnée entete3" type="text"></Data>
+			<Data id="58" name="entete4" label="Donnée entete4" type="text"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="valeursdeschamps" label="valeurs des champs">
+			<Data id="59" name="ValeurPrenomCaution" label="ValeurPrenomCaution" type="text"></Data>
+			<Data id="60" name="ValeurNomCaution" label="ValeurNomCaution" type="text"></Data>
+			<Data id="61" name="ValeurDateNaissanceCaution" label="ValeurDateNaissanceCaution" type="text"></Data>
+			<Data id="62" name="ValeurLieuNaissanceCaution" label="ValeurLieuNaissanceCaution" type="text"></Data>
+			<Data id="63" name="ValeurNationaliteCaution" label="ValeurNationaliteCaution" type="text"></Data>
+			<Data id="64" name="ValeurAdresseCaution" label="ValeurAdresseCaution" type="text"></Data>
+			<Data id="65" name="ValeurCPCaution" label="ValeurCPCaution" type="text"></Data>
+			<Data id="66" name="ValeurCommuneCaution" label="ValeurCommuneCaution" type="text"></Data>
+			<Data id="67" name="ValeurTypeCaution" label="ValeurTypeCaution" type="text"></Data>
+			<Data id="68" name="ValeurDureeCaution" label="ValeurDureeCaution" type="text"></Data>
+			<Data id="69" name="ValeurDateFinEngagement" label="ValeurDateFinEngagement" type="text"></Data>
+			<Data id="70" name="ValeurPrenomLocataire" label="ValeurPrenomLocataire" type="date"></Data>
+			<Data id="71" name="ValeurNomLocataire" label="ValeurNomLocataire" type="text"></Data>
+			<Data id="72" name="ValeurPrenomBailleur" label="ValeurPrenomBailleur" type="text"></Data>
+			<Data id="73" name="ValeurNomBailleur" label="ValeurNomBailleur" type="text"></Data>
+			<Data id="74" name="ValeurAdresseBailleur" label="ValeurAdresseBailleur" type="text"></Data>
+			<Data id="75" name="ValeurCPBailleur" label="ValeuCPBailleur" type="text"></Data>
+			<Data id="76" name="ValeurCommuneBailleur" label="ValeurCommuneBailleur" type="text"></Data>
+			<Data id="77" name="ValeurAdresseLogement" label="ValeurAdresseLogement" type="text"></Data>
+			<Data id="78" name="ValeurCPLogement" label="ValeurCPLogement" type="text"></Data>
+			<Data id="79" name="ValeurCommuneLogement" label="ValeurCommuneLogement" type="text"></Data>
+			<Data id="80" name="ValeurMontantLoyerLettres" label="Valeur du montant du loyer en lettres" type="text"></Data>
+			<Data id="81" name="ValeurMontantLoyer" label="ValeurMontantLoyer" type="text"></Data>
+			<Data id="82" name="ValeurPeriodeVersementLoyer" label="ValeurPeriodeVersementLoyer" type="text"></Data>
+			<Data id="83" name="ValeurDateRevisionLoyerJour" label="ValeurDateRevisionLoyerJour" type="text"></Data>
+			<Data id="84" name="ValeurDateRevisionMois" label="ValeurDateRevisionMois" type="text"></Data>
+			<Data id="85" name="ValeurPeriodeReferenceIRL" label="ValeurPeriodeReferenceIRL" type="text"></Data>
+			<Data id="86" name="ValeurAnneeReferenceIRL" label="ValeurAnneeReferenceIRL" type="date"></Data>
+			<Data id="87" name="ValeurNombreExemplaires" label="ValeurNombreExemplaires" type="text"></Data>
+			<Data id="88" name="ValeurLieuActe" label="ValeurLieuActe" type="text"></Data>
+			<Data id="89" name="ValeurDateActe" label="ValeurDateActe" type="text"></Data>
+			<Data id="90" name="ValeurSoussigneParagraphe1" label="ValeurSoussigneParagraphe1" type="text"></Data>
+			<Data id="91" name="ValeurNeParagraphe1" label="ValeurNeParagraphe1" type="text"></Data>
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2&gt;REMPLIR&lt;br&gt; L'ACTE  &lt;br&gt;DE CAUTION&lt;/h2&gt; &lt;h3&gt;Vous pouvez personnaliser ce modèle et télécharger votre acte prêt à l'emploi.&lt;/h3&gt;" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Qui se porte caution ?
+						]]></Legend>
+						<Field position="1" data="7" usage="input" newline="0" label="Prénom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="8" usage="input" newline="0" label="Nom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="9" usage="input" newline="0" label="Genre" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="10" usage="input" newline="0" label="Date de naissance (format : JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="11" usage="input" newline="0" label="Lieu de naissance" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="12" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="13" usage="input" newline="0" label="Code postal (ex : 31000)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="14" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Quelles sont les caractéristiques du cautionnement ?
+						]]></Legend>
+						<Field position="1" data="15" usage="input" newline="0" label="Type de caution" required="1" visibleRequired="0" colon="0" help="1" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="16" usage="input" newline="0" label="Durée de l'engagement" required="1" visibleRequired="0" colon="0" help="1" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="17" usage="input" newline="0" label="Préciser la durée (exemple : durée du bail, durée du bail et d'un renouvellement, durée de 3 ans, jusqu'au JJ/MM/AAAA)" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Qui sont le locataire et le bailleur ?
+						]]></Legend>
+						<Field position="1" data="18" usage="input" newline="0" label="Prénom du locataire" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="19" usage="input" newline="0" label="Nom du locataire" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="20" usage="input" newline="0" label="Prénom du bailleur" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="21" usage="input" newline="0" label="Nom du bailleur" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="22" usage="input" newline="0" label="Adresse du bailleur" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="23" usage="input" newline="0" label="Code postal du bailleur (ex : 36000)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="24" usage="input" newline="0" label="Commune du bailleur" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="13">
+						<Legend><![CDATA[
+Où se situe le logement loué et quelles sont les caractéristiques du loyer ?
+						]]></Legend>
+						<Field position="1" data="25" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="26" usage="input" newline="0" label="Code postal (ex : 21000)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="27" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="28" usage="input" newline="0" label="Montant du loyer (hors charges) en toutes lettres" prompt="Entrer le montant en toutes lettres" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="29" usage="input" newline="0" label="Montant du loyer (hors charges) en chiffres" required="1" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="30" usage="input" newline="0" label="Payable chaque :" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="31" usage="input" newline="0" label="Date de la révision (format : JJ/MM)" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="33" usage="input" newline="0" label="Date de la période de référence de l'IRL" required="1" visibleRequired="0" colon="0" help="1" widget="abListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="34" usage="input" newline="0" label="Année de référence de l'IRL" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="14">
+						<Legend><![CDATA[
+Où et quand est redigé l'acte ?
+						]]></Legend>
+						<Field position="1" data="36" usage="input" newline="0" label="Fait à (nom de la commune)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="37" usage="input" newline="0" label="Date de l'acte (format JJ/MM/AAAA) :" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="6" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Veuillez relire votre lettre avant de la copier ou de la télécharger (boutons en bas). Ensuite, n'oubliez pas de la signer.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+#55
+#56
+#57
+#58
+
+<u>#38</u>
+
+#39
+#40
+#41
+#42
+#43
+#44
+#45
+#46
+#47
+#48
+#49
+#50
+#51
+
+<div align="right">
+#52
+#53
+#54
+</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="9" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table id='table1'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Acte_de_caution_solidaire_ou_simple::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier </button></td></table>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table  id='table2'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Acte_de_caution_solidaire_ou_simple::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier</button></td>
+<td><div class="action_buttons2"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Acte_de_caution_solidaire_ou_simple::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger le document en PDF</button></div></td></tr></table>
+<div id="boutttelecharger"  class="action_buttons3"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Acte_de_caution_solidaire_ou_simple::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger le document en PDF</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" what="submit" for="jumpToStep" uri="2" class="btn-default" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger l'attestation" template="pages:GenerateurAttestation.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#7)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non renseigné)">
+			<Conditions value="!defined(#7) || !defined(#8) || !defined(#9) || !defined(#10) || !defined(#11) || !defined(#12) || !defined(#13) || !defined(#14)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="NomCaution" operator="blank"></Condition>
+					<Condition operand="GenreCaution" operator="blank"></Condition>
+					<Condition operand="DateNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="LieuNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="AdresseCaution" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="blank"></Condition>
+					<Condition operand="CommuneCaution" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="6" name="setAttribute" target="content" data="6" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 nn renseigné)">
+			<Conditions value="!defined(#7) || !defined(#8) || !defined(#9) || !defined(#10) || !defined(#11) || !defined(#12) || !defined(#13) || !defined(#14) || !defined(#15) || !defined(#16) || (defined(#16) &amp;&amp; !defined(#17) &amp;&amp; #16 = 'déterminée')">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="NomCaution" operator="blank"></Condition>
+					<Condition operand="GenreCaution" operator="blank"></Condition>
+					<Condition operand="DateNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="LieuNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="AdresseCaution" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="blank"></Condition>
+					<Condition operand="CommuneCaution" operator="blank"></Condition>
+					<Condition operand="TypeCaution" operator="blank"></Condition>
+					<Condition operand="DureeEngagement" operator="blank"></Condition>
+					<Connector type="all">
+						<Condition operand="DureeEngagement" operator="present"></Condition>
+						<Condition operand="DureeDetermineeEngagement" operator="blank"></Condition>
+						<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="6" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage partie4 (1 et 2 et 3 renseigné ) Logement loué et loyer">
+			<Conditions value="!defined(#7) || !defined(#8) || !defined(#9) || !defined(#10) || !defined(#11) || !defined(#12) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#18) || !defined(#19) || (defined(#16) &amp;&amp; !defined(#17) &amp;&amp; #16 = 'déterminée') || !defined(#20) || !defined(#21) || !defined(#22) || !defined(#23) || !defined(#24)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="NomCaution" operator="blank"></Condition>
+					<Condition operand="GenreCaution" operator="blank"></Condition>
+					<Condition operand="DateNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="LieuNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="AdresseCaution" operator="blank"></Condition>
+					<Condition operand="CommuneCaution" operator="blank"></Condition>
+					<Condition operand="TypeCaution" operator="blank"></Condition>
+					<Condition operand="DureeEngagement" operator="blank"></Condition>
+					<Condition operand="PrenomLocataire" operator="blank"></Condition>
+					<Condition operand="NomLocataire" operator="blank"></Condition>
+					<Connector type="all">
+						<Condition operand="DureeEngagement" operator="present"></Condition>
+						<Condition operand="DureeDetermineeEngagement" operator="blank"></Condition>
+						<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+					</Connector>
+					<Condition operand="PrenomBailleur" operator="blank"></Condition>
+					<Condition operand="NomBailleur" operator="blank"></Condition>
+					<Condition operand="AdresseBailleur" operator="blank"></Condition>
+					<Condition operand="CPBailleur" operator="blank"></Condition>
+					<Condition operand="CommuneBailleur" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="affichage partie5 (1 et 2 et 3 et 4 renseigné ) Lieu d'attestation">
+			<Conditions value="!defined(#7) || !defined(#8) || !defined(#9) || !defined(#10) || !defined(#11) || !defined(#12) || !defined(#13) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#18) || !defined(#19) || !defined(#20) || !defined(#21) || !defined(#22) || !defined(#23) || !defined(#24) || (defined(#16) &amp;&amp; !defined(#17) &amp;&amp; #16 = 'déterminée') || !defined(#25) || !defined(#26) || !defined(#27) || !defined(#29) || !defined(#30) || !defined(#31) || !defined(#33) || !defined(#34) || !defined(#28)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="NomCaution" operator="blank"></Condition>
+					<Condition operand="GenreCaution" operator="blank"></Condition>
+					<Condition operand="DateNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="LieuNaissanceCaution" operator="blank"></Condition>
+					<Condition operand="AdresseCaution" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="blank"></Condition>
+					<Condition operand="CommuneCaution" operator="blank"></Condition>
+					<Condition operand="TypeCaution" operator="blank"></Condition>
+					<Condition operand="DureeEngagement" operator="blank"></Condition>
+					<Condition operand="PrenomLocataire" operator="blank"></Condition>
+					<Condition operand="NomLocataire" operator="blank"></Condition>
+					<Condition operand="PrenomBailleur" operator="blank"></Condition>
+					<Condition operand="NomBailleur" operator="blank"></Condition>
+					<Condition operand="AdresseBailleur" operator="blank"></Condition>
+					<Condition operand="CPBailleur" operator="blank"></Condition>
+					<Condition operand="CommuneBailleur" operator="blank"></Condition>
+					<Connector type="all">
+						<Condition operand="DureeEngagement" operator="present"></Condition>
+						<Condition operand="DureeDetermineeEngagement" operator="blank"></Condition>
+						<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+					</Connector>
+					<Condition operand="AdresseLocation" operator="blank"></Condition>
+					<Condition operand="CPLocation" operator="blank"></Condition>
+					<Condition operand="CommuneLocation" operator="blank"></Condition>
+					<Condition operand="MontantLoyerChiffres" operator="blank"></Condition>
+					<Condition operand="PeriodeVersement" operator="blank"></Condition>
+					<Condition operand="DateRevisionJJMM" operator="blank"></Condition>
+					<Condition operand="DatePeriodeReferenceIRL" operator="blank"></Condition>
+					<Condition operand="AnneeReferenceIRL" operator="blank"></Condition>
+					<Condition operand="MontantLoyerLettres" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="14"></Action>
+				<Action id="2" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="14"></Action>
+				<Action id="2" name="setAttribute" target="content" data="5" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="affichage du bouton suivant (tous les champs non rensegnés)">
+			<Conditions value="defined(#7) &amp;&amp; defined(#8) &amp;&amp; defined(#9) &amp;&amp; defined(#10) &amp;&amp; defined(#11) &amp;&amp; defined(#12) &amp;&amp; defined(#13) &amp;&amp; defined(#14) &amp;&amp; defined(#15) &amp;&amp; defined(#18) &amp;&amp; defined(#19) &amp;&amp; defined(#20) &amp;&amp; defined(#21) &amp;&amp; defined(#22) &amp;&amp; defined(#23) &amp;&amp; defined(#24) &amp;&amp; defined(#25) &amp;&amp; defined(#26) &amp;&amp; defined(#27) &amp;&amp; defined(#29) &amp;&amp; defined(#30) &amp;&amp; defined(#31) &amp;&amp; defined(#33) &amp;&amp; defined(#36) &amp;&amp; defined(#37) &amp;&amp; (#16 = 'indéterminée' || (#16 = 'déterminée' &amp;&amp; defined(#17))) &amp;&amp; defined(#34) &amp;&amp; defined(#28)">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="NomCaution" operator="present"></Condition>
+					<Condition operand="GenreCaution" operator="present"></Condition>
+					<Condition operand="DateNaissanceCaution" operator="present"></Condition>
+					<Condition operand="LieuNaissanceCaution" operator="present"></Condition>
+					<Condition operand="AdresseCaution" operator="present"></Condition>
+					<Condition operand="CPCaution" operator="present"></Condition>
+					<Condition operand="CommuneCaution" operator="present"></Condition>
+					<Condition operand="TypeCaution" operator="present"></Condition>
+					<Condition operand="PrenomLocataire" operator="present"></Condition>
+					<Condition operand="NomLocataire" operator="present"></Condition>
+					<Condition operand="PrenomBailleur" operator="present"></Condition>
+					<Condition operand="NomBailleur" operator="present"></Condition>
+					<Condition operand="AdresseBailleur" operator="present"></Condition>
+					<Condition operand="CPBailleur" operator="present"></Condition>
+					<Condition operand="CommuneBailleur" operator="present"></Condition>
+					<Condition operand="AdresseLocation" operator="present"></Condition>
+					<Condition operand="CPLocation" operator="present"></Condition>
+					<Condition operand="CommuneLocation" operator="present"></Condition>
+					<Condition operand="MontantLoyerChiffres" operator="present"></Condition>
+					<Condition operand="PeriodeVersement" operator="present"></Condition>
+					<Condition operand="DateRevisionJJMM" operator="present"></Condition>
+					<Condition operand="DatePeriodeReferenceIRL" operator="present"></Condition>
+					<Condition operand="LieuActe" operator="present"></Condition>
+					<Condition operand="DateActe" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="DureeEngagement" operator="=" expression="indéterminée"></Condition>
+						<Connector type="all">
+							<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+							<Condition operand="DureeDetermineeEngagement" operator="present"></Condition>
+						</Connector>
+					</Connector>
+					<Condition operand="AnneeReferenceIRL" operator="present"></Condition>
+					<Condition operand="MontantLoyerLettres" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="2"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+				<Action id="4" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="1"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="4" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="TextValeurObjet">
+			<Conditions value="!defined(#1) &amp;&amp; (defined(#3) || !defined(#3))">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Connector type="any">
+						<Condition operand="afficherGC3" operator="present"></Condition>
+						<Condition operand="afficherGC3" operator="blank"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="'Acte de cautionnement'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="remplir p2 par default">
+			<Conditions value="!defined(#13) || !defined(#23) || !defined(#26)">
+				<Connector type="any">
+					<Condition operand="CPCaution" operator="blank"></Condition>
+					<Condition operand="CPBailleur" operator="blank"></Condition>
+					<Condition operand="CPLocation" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.')))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="TextValeurP1">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="'Madame, Monsieur,'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="TexteValeurP2">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &gt;= 10000 &amp;&amp; #23 &gt;= 10000 &amp;&amp; #26 &gt;= 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPLocation" operator="&gt;=" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.')))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="TexteValeurP2 si cas 2  110">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &gt;= 10000 &amp;&amp; #23 &gt;= 10000 &amp;&amp; #26 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPLocation" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(0, concat(#78, concat(' ', concat(#79, '.'))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="TexteValeurP2 si cas 3 101">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &gt;= 10000 &amp;&amp; #23 &lt; 10000 &amp;&amp; #26 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPLocation" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(0, concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(0, concat(#78, concat(' ', concat(#79, '.')))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="TexteValeurP2 si cas 4 100">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &gt;= 10000 &amp;&amp; #23 &lt; 10000 &amp;&amp; (#26 &gt; 10000 || !defined(#26))">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&gt;=" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&lt;" expression="10000"></Condition>
+					<Connector type="any">
+						<Condition operand="CPLocation" operator="&gt;" expression="10000"></Condition>
+						<Condition operand="CPLocation" operator="blank"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(0, concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.'))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="TexteValeurP2 si cas 5  cp &lt; 10000 et autre non renseigné">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &lt; 10000 &amp;&amp; (!defined(#23) &amp;&amp; !defined(#26))">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&lt;" expression="10000"></Condition>
+					<Connector type="all">
+						<Condition operand="CPBailleur" operator="blank"></Condition>
+						<Condition operand="CPLocation" operator="blank"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(0, concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.'))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="TexteValeurP2 si cas 6 cp&lt;10000 et cp2&lt;10000 et cp3 non rensigné">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &lt; 10000 &amp;&amp; #23 &lt; 10000 &amp;&amp; (!defined(#26) || #26 &gt;= 10000)">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&lt;" expression="10000"></Condition>
+					<Connector type="any">
+						<Condition operand="CPLocation" operator="blank"></Condition>
+						<Condition operand="CPLocation" operator="&gt;=" expression="10000"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(0, concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(0, concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.')))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="TexteValeurP2 si cas 7 cp&lt;10000 et cp2&lt;10000 et cp3&lt;10000">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &lt; 10000 &amp;&amp; #23 &lt; 10000 &amp;&amp; #26 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPLocation" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(0, concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(0, concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(0, concat(#78, concat(' ', concat(#79, '.'))))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="TexteValeurP2 si cas 8 cp&lt;1000 et cp2&gt;10000 et cp3 non renseigné">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &lt; 10000 &amp;&amp; #23 &gt; 10000 &amp;&amp; (!defined(#26) || #26 &gt;= 10000)">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&gt;" expression="10000"></Condition>
+					<Connector type="any">
+						<Condition operand="CPLocation" operator="blank"></Condition>
+						<Condition operand="CPLocation" operator="&gt;=" expression="10000"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(0, concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(#78, concat(' ', concat(#79, '.'))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="TexteValeurP2 si cas 9 cp&lt;1000 et cp2 &gt;10000 et cp3 &lt;10000">
+			<Conditions value="!defined(#1) &amp;&amp; #13 &lt; 10000 &amp;&amp; #23 &gt; 10000 &amp;&amp; #26 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="CPCaution" operator="&lt;" expression="10000"></Condition>
+					<Condition operand="CPBailleur" operator="&gt;" expression="10000"></Condition>
+					<Condition operand="CPLocation" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat('Je ', concat(#90, concat(#59, concat(' ', concat(#60, concat(', ', concat(#91, concat('le ', concat(#61, concat(' à ', concat(#62, concat(', résidant à l\'adresse suivante : ', concat(#64, concat(', ', concat(0, concat(#65, concat(' ', concat(#66, concat(', déclare me porter caution ', concat(#67, concat(' de ', concat(#70, concat(' ', concat(#71, concat(' pour les obligations résultant du contrat qui lui a été consenti par le bailleur ', concat(#72, concat(' ', concat(#73, concat(' demeurant ', concat(#74, concat(', ', concat(#75, concat(' ', concat(#76, concat(' pour la location du logement situé : ', concat(#77, concat(', ', concat(0, concat(#78, concat(' ', concat(#79, '.')))))))))))))))))))))))))))))))))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Texte valeur P3">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="concat('J\'ai pris connaissance du montant du loyer de ', concat(#80, concat(' euros, soit ', concat(#81, concat(' euros par ', concat(#82, concat('. Il sera révisé annuellement tous les ', concat(#83, concat(' ', concat(#84, concat(' selon la variation de l\'indice de référence des loyers publié par l\'INSEE au ', concat(#85, concat(' ', concat(#86, '.'))) )))))))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="TexteValeurP4">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="concat('Je m\'engage à rembourser sur mes revenus et sur mes biens personnels les sommes dues par le locataire ', concat(#70, concat(' ', concat(#71, ' en cas de défaillance de ce dernier. Je confirme avoir une parfaite connaissance de la nature et de l\'étendue de mon engagement.'))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="TexteValeurP5">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="concat('Cet engagement pour une caution ', concat(#67, concat(' est valable pour une durée ', concat(#68, concat(' ', concat(#69, ' pour le paiement notamment des loyers, des indemnités d\'occupation, des charges, des réparations et dégradations locatives, des impôts et taxes et tous frais éventuels de procédure dus en vertu de ce bail.'))))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="TexteValeurP6">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="44" value="'Je reconnais également avoir pris connaissance de l\'avant-dernier alinéa de l\'article 22-1 de la loi du 6 juillet 1989 ainsi rédigé : « Lorsque le cautionnement d\'obligations résultant d\'un contrat de location conclu en application du présent titre ne comporte aucune indication de durée ou lorsque la durée du cautionnement est stipulée indéterminée, la caution peut le résilier unilatéralement. La résiliation prend effet au terme du contrat de location, qu\'il s\'agisse du contrat initial ou d\'un contrat reconduit ou renouvelé au cours duquel le bailleur reçoit notification de la résiliation. »'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="TexteValeurP7">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="' '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="TextValeurPSIGNATURE">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="52" value="concat('Fait à ', concat(#88, concat(', le ', concat(#89, '.'))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="TextValeurPSIGNATURE2">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="'  '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="TextValeurPSIGNATURE">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="concat(#59, concat(' ', #60))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Remplir valeur prénom">
+			<Conditions value="defined(#7)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="ucfirst(#7)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Remplir valeur nom">
+			<Conditions value="defined(#8)">
+				<Condition operand="NomCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="upper(#8)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'[Nom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="remplir si genre non renseigné">
+			<Conditions value="!defined(#9)">
+				<Condition operand="GenreCaution" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="90" value="'soussigné(e) '"></Action>
+				<Action id="2" name="setAttribute" target="content" data="91" value="'né(e) '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Remplir la valeur soussignée si genre = madame">
+			<Conditions value="#9 = 1 &amp;&amp; defined(#9)">
+				<Connector type="all">
+					<Condition operand="GenreCaution" operator="=" expression="1"></Condition>
+					<Condition operand="GenreCaution" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="90" value="'soussignée '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Remplir la valeur soussigné si genre = monsieur">
+			<Conditions value="#9 = 2 &amp;&amp; defined(#9)">
+				<Connector type="all">
+					<Condition operand="GenreCaution" operator="=" expression="2"></Condition>
+					<Condition operand="GenreCaution" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="90" value="'soussigné '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="remplir la valeur Née si genre = madame">
+			<Conditions value="defined(#9) &amp;&amp; #9 = 1">
+				<Connector type="all">
+					<Condition operand="GenreCaution" operator="present"></Condition>
+					<Condition operand="GenreCaution" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="91" value="'née le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="remplir valeur né si genre = monsieur">
+			<Conditions value="defined(#9) &amp;&amp; #9 = 2">
+				<Connector type="all">
+					<Condition operand="GenreCaution" operator="present"></Condition>
+					<Condition operand="GenreCaution" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="91" value="'né le '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="remplir valeur date de naissance">
+			<Conditions value="defined(#10)">
+				<Condition operand="DateNaissanceCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="concat(day(#10), concat(' ', fullmonth(#10)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="'[date de naissance]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Remplir lieu de naissance de la caution">
+			<Conditions value="defined(#11)">
+				<Condition operand="LieuNaissanceCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="ucfirst(#11)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="62" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Affichage Date de fin d'engagement de la caution">
+			<Conditions value="defined(#16) &amp;&amp; #16 = 'déterminée'">
+				<Connector type="all">
+					<Condition operand="DureeEngagement" operator="present"></Condition>
+					<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Remplir Adresse caution">
+			<Conditions value="defined(#12)">
+				<Condition operand="AdresseCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="#12"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="'[adresse de la caution]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="Remplir CP caution si pas renseigné">
+			<Conditions value="defined(#13)">
+				<Condition operand="CPCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="#13"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="'[CP]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="Remplir Commune Caution">
+			<Conditions value="defined(#14)">
+				<Condition operand="CommuneCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="ucfirst(#14)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="Remplir¨Prénom locataire">
+			<Conditions value="defined(#18)">
+				<Condition operand="PrenomLocataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="70" value="ucfirst(#18)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="70" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="remplir Nom locataire">
+			<Conditions value="defined(#19)">
+				<Condition operand="NomLocataire" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="71" value="ucfirst(#19)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="71" value="'[Nom du locataire]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="Remplir Prénom du bailleur">
+			<Conditions value="defined(#20)">
+				<Condition operand="PrenomBailleur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="72" value="ucfirst(#20)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="72" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="Remplir Nom bailleur">
+			<Conditions value="defined(#21)">
+				<Condition operand="NomBailleur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="73" value="ucfirst(#21)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="73" value="'[Nom du bailleur]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="Remplir adresse bailleur">
+			<Conditions value="defined(#22)">
+				<Condition operand="AdresseBailleur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="74" value="#22"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="74" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Remplir CP bailleur si non renseigné">
+			<Conditions value="defined(#23)">
+				<Condition operand="CPBailleur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="75" value="#23"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="75" value="'[CP]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Remplir Commune bailleur">
+			<Conditions value="defined(#24)">
+				<Condition operand="CommuneBailleur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="76" value="ucfirst(#24)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="76" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Remplir adresse logement">
+			<Conditions value="defined(#25)">
+				<Condition operand="AdresseLocation" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="77" value="#25"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="77" value="'[adresse du logement loué]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="48" name="R48" label="Remplir CP Logement loué si non renseigné">
+			<Conditions value="!defined(#26)">
+				<Condition operand="CPLocation" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="78" value="'[CP]'"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="78" value="#26"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="49" name="R49" label="Remplir Commune logement loué">
+			<Conditions value="defined(#27)">
+				<Condition operand="CommuneLocation" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="79" value="ucfirst(#27)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="79" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="50" name="R50" label="Remplir type de caution">
+			<Conditions value="defined(#15)">
+				<Condition operand="TypeCaution" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="67" value="#15"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="67" value="'[simple/solidaire]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="51" name="R51" label="Remplir Durée de l'engagement">
+			<Conditions value="defined(#16)">
+				<Condition operand="DureeEngagement" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="68" value="#16"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="68" value="'[indéterminée/déterminée] ([précision de la durée si déterminée]) '"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="52" name="R52" label="Remplir précision durée si déterminée">
+			<Conditions value="defined(#17) &amp;&amp; #16 = 'déterminée'">
+				<Connector type="all">
+					<Condition operand="DureeDetermineeEngagement" operator="present"></Condition>
+					<Condition operand="DureeEngagement" operator="=" expression="déterminée"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="69" value="concat('(', concat(#17, ')'))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="53" name="R53" label="Remplir montant du loyer en toutes lettres">
+			<Conditions value="defined(#28)">
+				<Condition operand="MontantLoyerLettres" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="80" value="#28"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="80" value="'[montant du loyer en toutes lettres]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="54" name="R54" label="Remplir Montant du loyer">
+			<Conditions value="defined(#29)">
+				<Condition operand="MontantLoyerChiffres" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="81" value="#29"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="81" value="'[montant du loyer en chiffres]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="55" name="R55" label="Remplir Période de versement">
+			<Conditions value="defined(#30)">
+				<Condition operand="PeriodeVersement" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="82" value="#30"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="82" value="'[mois/trimestre/an]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="56" name="R56" label="Remplir date de révision du loyer ">
+			<Conditions value="defined(#31)">
+				<Condition operand="DateRevisionJJMM" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="83" value="#31"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="83" value="'[date de révision JJ/MM]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="57" name="R57" label="Remplir date de période de référence IRL">
+			<Conditions value="defined(#33)">
+				<Condition operand="DatePeriodeReferenceIRL" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="85" value="#33"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="85" value="'[date de période de référence de l\'IRL indiquée sur le bail]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="58" name="R58" label="Remplir Annee IRL">
+			<Conditions value="defined(#34)">
+				<Condition operand="AnneeReferenceIRL" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="#34"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="'[année]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="59" name="R59" label="RemplirNombre d'exemplaires">
+			<Conditions value="defined(#35)">
+				<Condition operand="NombreExemplaires" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="87" value="#35"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="87" value="'[nombre de parties à l\'acte]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="60" name="R60" label="Remplir Lieu de l'acte">
+			<Conditions value="defined(#36)">
+				<Condition operand="LieuActe" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="88" value="ucfirst(#36)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="88" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="61" name="R61" label="Remplir date de l'acte">
+			<Conditions value="defined(#37)">
+				<Condition operand="DateActe" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="89" value="concat(day(#37), concat(' ', fullmonth(#37)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="89" value="'[date]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="62" name="R62" label="Remplir année référence IRL">
+			<Conditions value="defined(#34)">
+				<Condition operand="AnneeReferenceIRL" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="#34"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="'[année]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+<h2>
+
+</h2> <h3>
+
+</h3>
+	]]></RelatedInformations>
+</Simulator>

@@ -1,0 +1,208 @@
+/*********************************************************
+ *                                                       *
+ * Définition des styles du simulateur (partie centrale) *
+ *                                                       *
+ *********************************************************/
+#colonne2 {margin:0 auto; text-align:left; float:none; width:100%;}
+#colonne2 #core {margin:20px 0; padding:10px 20px; }
+#colonne2 h2 {border-bottom:2px solid #fff;}
+#colonne2 p {font-size:1.2em; line-height:1.5em;}
+#contenu div.nopub {width:650px !important;}
+
+#titrePage { font-size: 1.75em; color: #197671; font-weight: bold;}
+/*********************************************************
+ * Texte de présentation du simulateur(sous le titre)    *
+ *********************************************************/
+#core div.intro{margin-bottom:1.5em;}
+#core div.intro p {text-align: justify;}
+#core div.intro p:first-child {color: #D83A89; font-weight: bold;}
+
+.step-page {
+	background: url(../images/cube.jpg) no-repeat bottom right;
+}
+
+.step-page .foot-notes {
+	border: 2px solid #008080;
+	background: #E0E0E0;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-top: 0em;
+    clear: both;
+    float: none;
+}
+.step-page .foot-note{
+	text-align:center;
+}
+#foot-note-2, #foot-note-11, #foot-note-20, #foot-note-21{
+	margin-top:1.5em;
+}
+#foot-note-3, #foot-note-4, #foot-note-5, #foot-note-6, #foot-note-7, #foot-note-8, #foot-note-9, 
+#foot-note-12, #foot-note-13, #foot-note-14, #foot-note-15, #foot-note-16, #foot-note-17, #foot-note-18 {
+	color: #CC0066;
+	font-weight: bold;
+}
+/*********************************************************
+ * Champs des formulaires                                *
+ *********************************************************/
+body {
+	text-align: left;
+}
+
+.step-page fieldset, .step-page div.fieldset {
+	margin-top:0;
+	border: 1px solid #e2f1ff;
+	margin-bottom: 25px;
+	padding: 10px 14px;
+	font-size: 1.1em;
+}
+.step-page fieldset legend, .step-page div.legend{
+	display:none;
+}
+.step-page textarea {
+	width:30.8em;
+	font:1em/1.5em Arial,Helvetica,sans-serif;
+}
+.step-page input {
+	height:1.3em;
+}
+.step-page input[type=text], .step-page input[type=date], .step-page input[class=date], .step-page input[type=number], .step-page input[type=money] {
+	height:2em;
+	line-height:2em;
+	margin-right:.5em;
+	margin-top:.4em;
+	padding-left:.2em;
+	background-color:#fff;
+	border:1px solid #ccc;
+	box-shadow:0 1px 3px #ddd inset;
+	box-sizing:border-box;
+	color:#00529e;
+	border-radius:4px;
+}
+.step-page input.error{
+	border:1px solid #c60000;
+	background-color:#f5dedb;
+	font-weight:normal;
+}
+.step-page .select2-container .select2-choice, .step-page .select2-drop  {
+	color: #00529e !important;
+}
+.step-page select {
+	height: 2em;
+}
+.step-page input[type=money]  {
+	max-width: 8em;
+	width: 8em;
+	font-size:1em;
+	height:1.9em;
+}
+.step-page input[class=date], .step-page input[type=date] {
+	max-width: 6.2em !important;
+	width: 6.2em;
+}
+.step-page input[class~=date].error, .step-page input[type=date].error {
+	max-width: 5.2em !important;
+	width: 5.2em;
+}
+.step-page input[type=text]  {
+	max-width: 10em;
+}
+.step-page input[type=number]  {
+	max-width: 3.5em;
+	/* padding:.5em .1em .5em .4em; */ /* pb IE, OPERA, Safari et Chrome si padding*/
+}
+.step-page input[type=submit], .step-page input[type=reset] {
+	height:auto;
+}
+.step-page input[disabled=disabled]  {
+	border: 0;
+}
+.step-page .choice input[type=radio]{
+	margin:.8em .4em 0 0;
+}
+
+.step-page .output{
+	display:inline-block;
+	margin-top:.95em;
+}
+.step-page table {
+	width: 100%;
+}
+.step-page td {
+	padding-left: 2em;
+	padding-right: 2em;
+}
+.step-page thead th:not(:first-child) {
+	max-width: 2em;
+	text-align:center;
+}
+.step-page tbody th {
+	font-weight: normal;
+}
+.step-page label , .step-page .label , .step-page input{
+	display: block;
+	float: left;
+	margin-bottom: 2px;
+	line-height:3em;
+}
+.step-page label, .step-page .label {
+	text-align: right;
+	padding-right: 10px;
+	min-width: 31.5em;
+	width: 31.5em;
+}
+.step-page label.choice {
+	text-align: left;
+	min-width:1em;
+	width: auto;
+	font-weight:normal;
+	margin-right:1.2em;
+}
+
+.step-page .post-note {
+	clear: both;
+	position: relative;
+	top: -10px;
+	margin: 0;
+	padding-top: 0;
+	width:100%; 
+	font-size: 0.7em !important;
+}
+.step-page .error {
+	color: #c60000;
+	font-weight: bold;
+}
+.step-page div.error{
+	clear:both;
+	text-align:right;
+}
+.step-page .emphasized {
+	color: #00529e;
+	font-weight: bold;
+}
+.step-page .explanation {
+	color: #00529e;
+	font-weight: bold;
+	float:right;
+	width: 12em;
+	margin-top:.95em;
+}
+
+.step-page br  {
+	clear: both;
+}
+.clearer {
+    clear: both;
+    float: none;
+	padding:0;
+	margin:0;
+}
+table.pdf-footer {
+	width: 100%
+}
+table.pdf-footer td:first-child{
+	text-align: left;
+}
+table.pdf-footer td:last-child{
+	text-align: right;
+}

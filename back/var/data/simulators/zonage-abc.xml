@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="zonage-abc" label="Connaître la zone de sa commune : A, Abis, B1, B2 ou C" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce simulateur permet de connaître le type de zone (A, Abis, B1, B2 ou C) dont dépend le logement concerné.
+
+La zone détermine :
+
+• le revenu maximum pour avoir droit à un <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F869">logement social</a> (HLM) sauf en Outre-mer ;
+• le revenu maximum pour avoir droit au <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F10871">prêt à taux zéro</a> (PZT) ou au <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F22158">prêt d’accession sociale</a> (PAS) ;
+• pour un bailleur (bail d'habitation), le droit à une <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31151">réduction d’impôt</a> (dispositifs Duflot/Pinel) ;
+• pour le bailleur d'un logement conventionné avec l'Anah : le droit à une <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F34115">déduction fiscale sur les revenus fonciers</a>, le <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1626" title="Link: https://www.service-public.fr/particuliers/vosdroits/F1626">revenu maximum du futur locataire</a> sauf en Outre-mer, le <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F2541">loyer initial maximum</a>.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="commune" label="Code insee de la commune" type="text"></Data>
+		<Data id="2" name="zone" label="Zone de la commune" type="text" source="1" index="'zone'"></Data>
+		<Data id="3" name="nomCommune" label="Nom de la commune" type="text" source="1" index="'commune'"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="zonage" label="Zonage" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="zonagePanel" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Commune (nom ou code postal)" prompt="Saisir le nom de la ville ou son code postal" required="1" visibleRequired="0" colon="0" help="0" widget="geoAPILocalities">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="2" name="blocResultats" label="">
+						<Chapter id="1" name="chapitreResultats" label="">
+							<Section id="1" name="sectionResultats" label="">
+								<Content><![CDATA[
+#3 se situe en zone #2
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+<h2>Pour toute explication, consulter les fiches pratiques :</h2><ul><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F869" title="Logement social : conditions d'attribution - Nouvelle fenêtre">Logement social : conditions d'attribution</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F10871" title="Prêt à taux zéro (PTZ) - Nouvelle fenêtre">Prêt à taux zéro (PTZ)</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F22158" title="Prêt d'accession sociale (PAS) - Nouvelle fenêtre">Prêt d'accession sociale (PAS)</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31151" title="Réduction d'impôt pour investissement locatif (dispositifs Duflot/Pinel) - Nouvelle fenêtre">Réduction d'impôt pour investissement locatif (dispositifs Duflot/Pinel)</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F929" title="Congé donné par le bailleur - Nouvelle fenêtre">Congé donné par le bailleur</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F34115" title="Dispositif  &quot;Louer abordable&quot; de déduction des revenus fonciers - Nouvelle fenêtre">Dispositif  "Louer abordable" de déduction des revenus fonciers</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F2541" title="Le loyer d'un logement conventionné doit-il être plafonné ? - Nouvelle fenêtre">Le loyer d'un logement conventionné doit-il être plafonné ?</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1626" title="Le bailleur d'un logement conventionné Anah choisit-il librement son locataire ? - Nouvelle fenêtre">Le bailleur d'un logement conventionné Anah choisit-il librement son locataire ?</a></li></ul>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="zonage-commune" label="Zonage commune" request="SELECT commune, zone, preavis, frais FROM zonageCommunes WHERE codeInsee = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="insee" data="1"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="R1">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2)">
+				<Connector type="all">
+					<Condition operand="nomCommune" operator="present"></Condition>
+					<Condition operand="zone" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="2"></Action>
+				<Action id="2" name="showObject" target="footnote" step="1" footnote="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="2"></Action>
+				<Action id="2" name="hideObject" target="footnote" step="1" footnote="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+<div>Mise en production : octobre 2017.</div><div>Mise à jour le 20 juin 2018 (suppression de "ou la possibilité de donner congé à un locataire âgé au 3e alinéa du texte de présentation)</div><div>Modification du texte de présentation (harmonisation avec la page satellite + titre simulateur) : 26/10/2018</div><div>Modification du texte de présentation (exceptions Outre-mer) : 23/01/2019</div><div>
+
+</div>
+	]]></RelatedInformations>
+</Simulator>

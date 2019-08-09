@@ -1,0 +1,10 @@
+<!--  métadonnées -->
+<meta name="description" content="{{ step.simulator.label }}" />
+<meta name="author" content="Direction de l'Information Légale et Administrative" />
+<meta name="_csrf" content="{{ csrf_token('authenticate') }}" />
+<esi:remove>
+<meta name="audience" content="particuliers" />
+<meta name="annuaire_root" content="{{ path|replace({'www':'lannuaire'}) }}" />
+<meta name="sp_root" content="{{ path }}" />
+<meta name="_csrf_header" content="X-CSRF-TOKEN" />
+</esi:remove>    

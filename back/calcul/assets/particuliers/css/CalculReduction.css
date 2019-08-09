@@ -1,0 +1,130 @@
+@import "common.css";
+
+
+.step-page .section-content {
+	text-align: center;
+  	background-color: #E6E0F8;
+	padding: .5em;
+	height: 5em;
+  	width : auto;
+	position: relative;
+}
+
+.step-page .action_buttons button {
+  	background-color: #A9BCF5;
+	display: inline-block;
+	margin: 10px;
+	font-size: 1.5em;
+  	height: auto;
+}
+
+#PrixReduit-container, #PrixFinal-container{
+    background-color: #0b6ba8;
+    width: 370px;
+    position: relative;
+    left: 35%;
+   padding: 10px 0px 10px 5px;
+	color: #fff;
+	border-radius: 8px;
+	
+}
+#prixapresreduction2-container {
+	  background-color: #0b6ba8;
+    width: 320px;
+    position: relative;
+    left: 35%;
+   padding: 8px 0px 8px 4px;
+	color: #fff;
+	border-radius: 7px;
+}
+
+blockquote {
+
+    border-left: 0px solid #f2f2f2;
+}
+
+
+@media only screen and (max-width: 41.13em) {
+  
+  	blockquote {
+    padding: 0.75em 1.5em;
+    margin: 0 0 1.5em;
+   font-size: 14px;
+    border-left: 1px;
+}
+
+  
+	.form-horizontal .control-label {
+    text-align: left;
+}
+
+#PrixReduit-container, #PrixFinal-container{
+	  background-color: #0b6ba8;
+    width: 260px;
+    position: relative;
+    left: 10%;
+   padding: 10px 0px 10px 5px;
+	color: #fff;
+	border-radius: 8px;
+
+	
+}
+#prixapresreduction2-container {
+	  background-color: #0b6ba8;
+    width: 250px;
+    position: relative;
+    left: 10%;
+   padding: 8px 0px 8px 4px;
+	color: #fff;
+	border-radius: 7px;
+}	
+}
+
+
+
+#prixapresreduction2-label, #prixapresreduction2, #prixapresreduction2-money-symbol{
+	color: #fff;
+	margin-left: 12px;
+	font-size: 14px;
+}
+
+#PrixReduit-label, #PrixReduit, #PrixReduit-money-symbol, #PrixFinal-label, #PrixFinal, #PrixFinal-money-symbol{
+	color: #fff;
+	margin-left: 14px;
+	font-size: 18px;
+     margin-top: 2px;
+}
+
+div.pre-note{
+	display: none;
+}
+div#PrixReduit-container, div#prixapresreduction2-container, div#PrixFinal-container{
+	    display: hidden;
+}
+
+.simulator-breadcrumb {
+    display: none;
+height: 0em;
+}
+
+
+div#PrixReduit-container > div.pre-note, div#PrixFinal-container > div.pre-note, div#prixapresreduction2-container > div.pre-note, div#TauxReduction-container > div.pre-not, div#ValeurReduction-container > div.pre-note, div#Question_2e_Taux-container > div.pre-note, div#TauxReduction2-container > div.pre-note, div#ValeurReduction2-container > div.pre-note {
+                display: none;
+}
+.step-page .blockinfo-chapters, .step-page .section-annotations {
+    margin-bottom: 0.1em; 
+}
+.step-page fieldset, .step-page div.fieldset {
+    margin-top: 0;
+     margin-bottom: 0.1em; 
+}
+
+
+.step-page .blockinfo-chapters, .step-page .section-annotations {
+    display: none;
+}
+
+
+.step-page .output {
+    margin-top: 3px;
+}

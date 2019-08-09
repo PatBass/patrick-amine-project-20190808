@@ -1,0 +1,559 @@
+@import "common.css";
+
+
+
+
+/*********************************************************
+ *                                                       */
+.step-page input[type=text], .step-page input[type=date], .step-page input.date, .step-page input[type=number], .step-page input[type=money] {
+    min-width: 100%;
+}
+
+
+.step-page .form-group[data-type=choice]:not([data-expanded=true]) .input-group {
+    min-width: 100%;
+}
+/*********************************************************
+ *                                                       */
+
+
+
+
+
+
+/*********************************************************
+ *                                                       *
+ * Définition des styles du simulateur (partie centrale) *
+ *                                                       *
+ *********************************************************/
+@media (min-width: 60em) {
+	.col-main {
+		float: left;
+		margin-left: 17.0387%;
+		margin-right: 2.232%;
+		width: 65.9227%;
+	}
+}
+.step-container {
+	padding: 0em 0 0em;
+	margin-bottom: 1.5em;
+	background: #fff;
+}
+@media (max-width: 37em) {
+	.step-container {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+}
+.field-container {
+	margin: 0 0.5em 0 0 !important;
+}
+article > h1 {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #ccc;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 0;
+    color: #0b6ba8;
+    font-family: roboto_light,Arial,sans-serif;
+    font-size: 1.6em;
+    margin: 0 0 1em;
+    padding: 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*********************************************************
+ * Texte de présentation du simulateur(sous le titre)   *
+ *********************************************************/
+article > p:not(:last-child) {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+article > p:nth-last-child(5) {
+	margin-bottom: 1.25em;
+}
+article p a[target=_blank]:after {
+	content: "\e60c";
+    font-family: "fonticon";
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-transform: none;
+	text-decoration: none;
+}
+article > ul {
+	list-style: initial !important;
+	margin-left: 1.5em;
+}
+article > ul ul {
+	list-style: circle !important;
+}
+
+/***************************************************************
+ * Fil d'ariane du déroulement des Ã©tapes :                  *
+ ***************************************************************/
+.simulator-breadcrumb {
+	display: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 0;
+}
+.simulator-breadcrumb ol {
+	display: table;
+	padding: 0;
+	width: 100%;
+}
+.simulator-breadcrumb li p {
+	position: relative;
+	display: block;
+	margin: 0 0 0 0;
+	padding: 0px 0px 0px 0px;
+	height: 2px;
+	text-decoration: none;
+	color: #000;
+	background: #ececec;
+}
+.simulator-breadcrumb li p:first-child {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.simulator-breadcrumb li p:last-child {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.simulator-breadcrumb li {
+	display: table-cell;
+}
+.simulator-breadcrumb li:first-child p:before {
+	display: none;
+}
+.simulator-breadcrumb li:last-child p {
+	margin: 0;
+}
+.simulator-breadcrumb li:last-child p:after {
+	height: 100%;
+	border: 0;
+	background: #0b6ba8;
+}
+.simulator-breadcrumb li.current.current p {
+	color: #fff;
+	background: #0b6ba8;
+}
+.simulator-breadcrumb li.current:last-child p:after {
+	background: #fff;
+}
+.simulator-breadcrumb li p:after {
+	position: absolute;
+	content: '';
+	top: 0;
+	right: -24px;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-left: 25px solid #ececec;
+	z-index: 1;
+}
+.simulator-breadcrumb li.current p:after {
+	border-left-color: #0b6ba8;
+}
+.simulator-breadcrumb li p:before {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-left: 25px solid #fff;
+}
+.simulator-breadcrumb li p span {
+	display: inline-block;
+	vertical-align: middle;
+}
+.simulator-breadcrumb li p span:first-child {
+	font-size: 2.6em;
+	font-weight: bold;
+}
+@media (max-width: 37em) {
+	.simulator-breadcrumb li:not(.current) p span:nth-child(2) {
+		display: none;
+	}
+	.simulator-breadcrumb li p span:first-child {
+		margin-left: .5em;
+	}
+	.simulator-breadcrumb li p {
+		padding-left: 15px;
+	}
+	.simulator-breadcrumb li:first-child p {
+		text-align: left;
+	}
+}
+
+/*********************************************************
+ * Texte de description de l'étape                       *
+ * en dessous du fil d'ariane                            *
+ *********************************************************/
+.step-page .step-description {
+	margin-bottom: 1.5em;
+}
+.step-page .step-description p {
+	margin: 0 0 .8em 0;
+	padding: 0;
+    border-bottom: 3px solid;
+    color: #0b6ba8;
+    width: 100%;
+}
+.step-page .mention-asterisk {
+	margin: 0 0 1em;
+	padding: 0;
+}
+.step-page .mention-asterisk .asterisk, .step-page label .asterisk {
+	color: #c22222;
+}
+.step-page label .asterisk:nth-child(2) {
+	display: none;
+}
+.step-page .foot-notes {
+	float: none;
+	clear: both;
+	margin: 1em 0;
+	padding: 1em;
+	color: #fff;
+	background: #0b6ba8;
+	border-radius: 8px;
+}
+.step-page .foot-note {
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: center;
+}
+.step-page .foot-note p {
+	margin: 0;
+}
+
+/*********************************************************
+ * Champs des formulaires                                *
+ *********************************************************/
+.step-page .form-group  .input-group {
+	display: inline-table;
+}
+.step-page .form-group[data-type=date]  .input-group {
+	max-width: 5.5em;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+	width: 5.5em; /* useful only for safari < 5.1 */
+}
+.step-page fieldset,
+.step-page div.fieldset {
+	margin-top: 0;
+	margin-bottom: 1.5em;
+}
+.step-page .input-group fieldset {
+	display: inline-block;
+	margin-bottom: 0;
+	    margin-top: -20px;
+}
+.step-page legend,
+.step-page .legend {
+	margin-bottom: 0.8em;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.step-page .fieldset legend, .step-page .fieldset .legend {
+    color: #0b6ba8;
+    margin-bottom: 0.8em;
+}
+.step-page .fieldset-container legend {
+    color: #0b6ba8;
+    margin-bottom: 0.8em;
+}
+.step-page .legend p {
+	margin-bottom: 0;
+}
+
+.step-page input {
+	height: 1.3em;
+}
+.step-page input[type=text] {
+	z-index: 0;
+	  position: initial;
+}
+.step-page input[type=date],
+.step-page input.date,
+.step-page input[type=number],
+.step-page input[type=money] {
+	box-sizing: border-box;
+	margin-top: 0;
+	margin-right: 0.5em;
+	padding-left: 0.2em;
+	height: auto;
+	line-height: 2em;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+}
+.step-page .form-group[data-type=date] .input-group.has-error,
+.step-page .form-group:not([data-type=date]) input.has-error {
+	font-weight: normal;
+	border: 1px solid #c60000 !important;
+	background-color: #f5dedb !important;
+}
+.step-page .form-group[data-type=date] .input-group.has-error * {
+	background-color: #f5dedb !important;
+}
+.step-page input[type=money] {
+	width: 8em;
+	max-width: 8em;
+	font-size: 1em;
+}
+.step-page input.date {
+	border: medium none;
+	width: 6.2em;
+	max-width: 6.2em !important;
+}
+.step-page input[type=date] {
+	width: 10em;
+	max-width: 10em !important;
+}
+.step-page a.datepicker-button.blue {
+    background-color: #fff;
+    color: #0b6ba8;
+	border: none;
+}
+.step-page input[type=text] {
+	max-width: 10em;
+}
+.step-page input[type=number] {
+	max-width: 3.5em;
+	/* padding:.5em .1em .5em .4em; */
+	/* pb IE, OPERA, Safari et Chrome si padding*/
+}
+.step-page input[type=submit],
+.step-page input[type=reset] {
+	height: auto;
+}
+.step-page input[disabled=disabled] {
+	border: 0;
+}
+.step-page .listbox {
+	width: 90%;
+}
+.step-page .modal-body .listbox {
+    width: 90%;
+}
+.step-page a[data-toggle=modal] {
+	cursor: pointer;
+}
+.step-page .choice input[type=radio] {
+	margin: 0 0.4em 0 0;
+	display: inline-block;
+	vertical-align: bottom;
+}
+.step-page .field-container .input-group + .unit {
+	margin-top: -1.7em;
+	padding: 0;
+	display: inline-block;
+	vertical-align: middle;
+}
+.step-page .output {
+	display: inline-block;
+	padding: 0 0.1em;
+	vertical-align: baseline;
+}
+.step-page label,
+.step-page .label,
+.step-page input {
+	display: inline-block;
+	float: left;
+}
+.step-page label,
+.step-page .label {
+	padding: 0 0 0.3em;
+	width: 100%;
+	font-size: 1em;
+	font-weight: bold;
+	color: #000;
+	text-align: left;
+	white-space:  normal;
+}
+.step-page label.choice {
+	margin-top: 0.6em;
+	margin-right: 1.2em;
+	padding: 0;
+	width: auto;
+	min-width: 1em;
+	font-weight: normal;
+	text-align: left;
+}
+.step-page .form-group.underlabel[data-expanded=true]  .input-group  label.choice {
+    margin-top: 0;
+}
+.step-page label:not(.choice),
+.step-page .label {
+	padding-right: 10px;
+	text-align: left;
+}
+.step-page .form-group:not(.underlabel) label:not(.choice),
+.step-page .label {
+	/*width: 65% !important;*/
+	width: 100% !important;
+
+}
+.step-page .form-group[data-type=choice]:not([data-expanded=true])  .input-group,
+.step-page .form-group[data-type=department]  .input-group {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+}
+.step-page .form-group[data-type=choice]  .input-group > div,
+.step-page .form-group[data-type=department]  .input-group > div {
+    border: none;
+}
+.step-page .listbox .input-group,
+.step-page .listbox-edit {
+    border: none;
+    cursor: pointer;
+}
+.step-page .listbox .listbox-edit {
+	color: #000;
+}
+.listbox.default .listbox-item:hover {
+    background-color: #0b6ba8;
+	color: #fff;
+}
+.step-page .form-group[data-type=choice] a.listbox-button,
+.step-page .form-group[data-type=department] a.listbox-button {
+    background-color: #fff;
+    border: none;
+    color: #0b6ba8;
+    cursor: pointer;
+}
+.step-page .form-group[data-type=choice] a.listbox-button span,
+.step-page .form-group[data-type=department] a.listbox-button span {
+    border: 1px solid;
+    border-radius: 4px;
+	padding: .4em;
+}
+.step-page .form-group[data-type=choice] .input-group:hover a.listbox-button span,
+.step-page .form-group[data-type=department] .input-group:hover a.listbox-button span {
+    background-color: #0b6ba8;
+    color: #fff;
+    border-radius: 4px;
+}
+.step-page  ul.listbox-items {
+	max-height: 25em; 
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.step-page .form-group[data-type=date] a.datepicker-button span {
+    border: 1px solid;
+    border-radius: 4px;
+	padding: .4em;
+}
+.step-page .form-group[data-type=date] a.datepicker-button:hover span {
+    background-color: #0b6ba8;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.step-page .has-error {
+	font-weight: bold;
+	color: #c22222;
+}
+.step-page div.has-error {
+	clear: both;
+	text-align: center;
+}
+.step-page fieldset div.has-error {
+	text-align: right;
+}
+
+.step-page .emphasized {
+	font-weight: bold;
+	color: #0b6ba8;
+}
+.step-page .explanation {
+	float: right;
+	margin-top: 0.95em;
+	width: 12em;
+	font-weight: bold;
+	color: #0b6ba8;
+}
+.clearer {
+	float: none;
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+.listbox .listbox-item:before {
+	content: "" !important;
+}
+
+div#Departement-container > div.pre-note {
+                display: none;
+}
+
+div#DatesVacances-panel-1-fieldset-2{
+	margin-top: -20px;
+}
+
+span#Vacances1, span#Vacances2, span#Vacances3, span#Vacances4, span#Vacances5, span#Vacances6, span#Vacances7, span#Vacances8, span#Vacances9, span#Vacances10, span#Vacances11, span#Vacances12, span#Vacances13{
+/*	float: left;
+	margin-left: 6px; */
+}
+
+
+	.step-page .blockinfo-chapters, .step-page .section-content, .step-page .section-annotations {
+    border: 0px solid #ccc;
+    border-radius: 3px;
+}
+
+
+div#DatesVacances-panel-1-blockinfo-3-chapter-1-section-1-content{
+float: none;
+ clear: both;
+ color: #fff; 
+ background: #0b6ba8; 
+ border-radius: 8px; 
+  text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+	 border: 1px solid #0b6ba8;
+	 padding: 12px 12px 12px 12px;	
+}
+.fiche-item .fiche-item-content {
+    padding: 0em 0em 0; 
+}
+
+
+.step-page .grid:not(.datepicker-calendar) tbody th { 
+/* masquer la premier colonne  
+    border-right: 1px solid #fff;
+    border-top-left-radius: 8px; */
+	
+   display: none;
+}
+
+.step-page .grid-header th:first-child {
+   display: none;
+}
+
+th#DatesVacances-panel-1-grid-2-col1 {
+	 border-top-left-radius: 8px; 
+}
+.step-page th, .step-page td {
+	border: 1px solid #cccccc; 
+}
+
+tr#DatesVacances-panel-1-fieldset-2-fieldrow-1, tr#DatesVacances-panel-1-fieldset-2-fieldrow-2, tr#DatesVacances-panel-1-fieldset-2-fieldrow-3, tr#DatesVacances-panel-1-fieldset-2-fieldrow-4, tr#DatesVacances-panel-1-fieldset-2-fieldrow-5, tr#DatesVacances-panel-1-fieldset-2-fieldrow-6, tr#DatesVacances-panel-1-fieldset-2-fieldrow-7, tr#DatesVacances-panel-1-fieldset-2-fieldrow-8, tr#DatesVacances-panel-1-fieldset-2-fieldrow-9, tr#DatesVacances-panel-1-fieldset-2-fieldrow-10, tr#DatesVacances-panel-1-fieldset-2-fieldrow-11, tr#DatesVacances-panel-1-fieldset-2-fieldrow-12, tr#DatesVacances-panel-1-fieldset-2-fieldrow-13 {
+	border-left: 1px solid #cccccc; 
+}
+
+div#DatesVacances-panel-1-blockinfo-4-chapter-1-section-1-content{
+	background-color: #fff;
+}

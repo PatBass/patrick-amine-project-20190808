@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/*!
+   _|_|_|    _|_|_|    _|_|    _|      _|  _|_|_|    _|_|_|
+ _|        _|        _|    _|  _|_|  _|_|  _|    _|    _|
+   _|_|    _|        _|_|_|_|  _|  _|  _|  _|_|_|      _|
+       _|  _|        _|    _|  _|      _|  _|          _|
+ _|_|_|      _|_|_|  _|    _|  _|      _|  _|        _|_|_|
+
+Système de CSS adaptables et modulaires du Pôle internet
+*/
+.styleguide.color { position: relative; display: inline-block; width: 8em; height: 8em; margin: 0 0.5em 0.5em 0; }
+
+.color:after { position: absolute; left: 0; right: 0; padding: 0.4em; content: attr(class); color: #fff; }
+
+.gray-darkest { background: #333; }
+
+.gray-darker { background: #757575; }
+
+.gray-dark { background: #d9d9d9; }
+
+.gray { background: #cccccc; }
+
+.gray-light { background: #ececec; }
+
+.gray-lighter { background: #f2f2f2; }
+
+.gray-light:after, .gray-lighter:after, .gray-lightest:after { color: #757575; }
+
+.brand-primary { background: #0b6ba8; }
+
+.brand-success { background: #ddeed6; }
+
+.brand-warning { background: #bc5b00; }
+
+.brand-danger { background: #f1ddde; }
+
+.brand-info { background: #5bc0de; }
+
+.test-size { background-color: #757575; margin-bottom: 10px; }
+
+.test-size:before { position: absolute; z-index: 11; color: #fff; content: attr(class); }
+
+.size10em { width: 10em; height: 10em; }
+
+.size-px { width: 140px; height: 140px; }
+
+.test-padding { margin-bottom: 10px; }
+
+.padding-base-vertical { padding-top: 6px; padding-bottom: 6px; }
+
+.padding-base-horizontal { padding-right: 12px; padding-left: 12px; }
+
+.padding-large-vertical { padding-top: 8px; padding-bottom: 8px; }
+
+.padding-large-horizontal { padding-right: 28px; padding-left: 28px; }
+
+.padding-small-vertical { padding-top: 5px; padding-bottom: 5px; }
+
+.padding-small-horizontal { padding-right: 10px; padding-left: 10px; }
+
+.padding-xs-vertical { padding-top: 1px; padding-bottom: 1px; }
+
+.padding-xs-horizontal { padding-right: 5px; padding-left: 5px; }
+
+/*
+.line-height-large           {$line-height-large;}
+.line-height-small           {$line-height-small;}
+
+*/
+.test-border-radius { margin-bottom: 10px; }
+
+.border-radius-base { border-radius: 4px; }
+
+.border-radius-large { border-radius: 6px; }
+
+.border-radius-small { border-radius: 3px; }
+
+/*# sourceMappingURL=scampi.css.map */

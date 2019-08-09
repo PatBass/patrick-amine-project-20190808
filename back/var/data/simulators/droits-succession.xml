@@ -1,0 +1,1893 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="droits-succession" label="Simulateur de calcul des droits de succession" defaultView="particuliers" referer="" dynamic="0" memo="0">
+	<Description><![CDATA[
+Ce simulateur permet d'estimer les droits de succession, suite au décès d’un proche, en fonction du montant hérité et du lien de parenté. Pour réaliser cette simulation, il faut estimer la valeur nette de la succession et le montant de la part vous revenant. Attention : le règlement d’une succession peut nécessiter de faire établir par un notaire des actes générant d'autres frais.
+Si vous souhaitez des informations :
+
+<ul><li>sur les biens à déclarer, vous pouvez consulter <a target="_blank" rel="nofollow" href="http://bofip.impots.gouv.fr/bofip/3365-PGP">les bulletins officiels des finances publiques</a></li><li>sur l’ordre et les droits des héritiers, vous pouvez consulter les pages relatives à ce sujet sur <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/N173">Service-Public.fr</a> </li><li>sur les dettes déductibles de l’actif héréditaire, vous pouvez consulter le <a target="_blank" rel="nofollow" href="http://bofip.impots.gouv.fr/bofip/3452-PGP.html">bulletin officiel des finances publiques</a></li></ul>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="liendeparentetmp" label="liendeparentetmp" type="choice">
+			<Description><![CDATA[
+Il n'est pas tenu compte du lien de parenté résultant de l'adoption simple : les droits de succession sont alors déterminés en fonction du lien de parenté naturelle ou au tarif entre personnes non parentes. Toutefois, il existe des exceptions pour lesquelles l’adopté bénéficie du régime fiscal des transmissions en ligne directe et notamment :
+
+<ul><li>les enfants issus d’un premier mariage du conjoint de l’adoptant ;</li><li>les adoptés mineurs au moment du décès de l’adoptant ;</li><li>les adoptés majeurs qui ont reçu de l’adoptant des secours et soins non interrompus au titre d’une prise en charge continue et principale, soit dans leur minorité et pendant 5 ans au moins, soit dans leur minorité et leur majorité et pendant 10 ans au moins. </li></ul>Les adoptés ayant fait l’objet d’une adoption plénière bénéficient du régime fiscal des transmissions en ligne directe.
+			]]></Description>
+			<Choices>
+				<Source id="1" valueColumn="id" labelColumn="lien_parente" />
+			</Choices>
+		</Data>
+		<Data id="2" name="lienParente" label="Lien de parenté" type="choice">
+			<Choices>
+				<Source id="1" valueColumn="id" labelColumn="lien_parente" />
+			</Choices>
+		</Data>
+		<Data id="3" name="renonciationParent" label="Renonciation parent ?" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="4" name="vieAvecDefunt5Ans" label="Vie avec le défunt pendant 5 ans" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="5" name="celibataireVeufDivorceSepare" label="Célibataire, veuf, divorcé ou séparé de corps" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="6" name="plusDe50AnsouInfirmite" label="Plus de 50 ans ou atteint d'une infirmité" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="7" name="exoQualiteHeritier" label="Exonération liée à la qualité de l'héritier" type="boolean" />
+		<Data id="8" name="situationHandicap" label="Situation de handicap" type="choice">
+			<Description><![CDATA[
+Les droits de mutation des héritiers incapables de travailler dans des conditions normales de rentabilité, en raison d'une infirmité physique ou mentale, congénitale ou acquise bénéficient d’un abattement  de 159 325 €.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="9" name="nbEnfantsHeritier" label="Nombre d'enfants de l'héritier" type="integer" default="0">
+			<Description><![CDATA[
+Pour les successions ouvertes avant le 1er janvier 2017, une réduction est appliquée sur les frais de succession dus par les héritiers ayant au moins 3 enfants à raison de 610 € par enfant à partir du 3ème si la succession est en ligne directe ou entre époux ou à raison de 305 € par enfant à partir du 3ème pour les autres successions.
+			]]></Description>
+		</Data>
+		<Data id="10" name="mutileDeGuerre" label="Mutilé de guerre" type="choice">
+			<Description><![CDATA[
+Les droits de mutation dus par les mutilés de guerre frappés d'une invalidité d’au moins 50 % sont réduits de moitié dans la limite de 305 €.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="11" name="qualiteDefunt" label="Qualité du défunt" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="victime de guerre ou d'acte de terrorisme" />
+				<Choice id="2" value="2" label="militaire décédé en opération extérieure ou au cours d'une opération de sécurité intérieure ou décédé suite à des blessures reçues durant de telles opérations" />
+				<Choice id="3" value="3" label="sapeur-pompier, policier, gendarme ou agent des douanes, cité à l'ordre de la Nation,  décédé en service ou suite à des blessures reçues en service" />
+				<Choice id="4" value="0" label="aucun de ces trois cas" />
+			</Choices>
+		</Data>
+		<Data id="12" name="exoQualiteDefunt" label="Exonération liée à la qualité du défunt" type="boolean" />
+		<Data id="13" name="dateOuvertureSuccession" label="Date d'ouverture de la succession" type="date">
+			<Description><![CDATA[
+La date d’ouverture de la succession correspond à la date du décès. En cas de disparition d’une personne dans des circonstances de nature à mettre sa vie en danger et lorsque le corps n'a pas été retrouvé, la date d’ouverture de la succession est la date du décès fixée par le jugement déclaratif de décès.
+			]]></Description>
+		</Data>
+		<Data id="14" name="domicileDefuntEnFrance" label="Domicile défunt  en france" type="choice">
+			<Description><![CDATA[
+Sont considérées comme ayant leur domicile fiscal en France :
+
+<ul><li>les personnes qui ont en France leur foyer ou le lieu de leur séjour principal ; </li><li>celles qui exercent en France une activité professionnelle, salariée ou non, à moins qu'elles ne justifient que cette activité y est exercée à titre accessoire ; </li><li>celles qui ont en France le centre de leurs intérêts économiques. </li></ul>
+Sont également considérés comme ayant leur domicile fiscal en France les agents de l'Etat qui exercent leurs fonctions ou sont chargés de mission dans un pays étranger et qui ne sont pas soumis dans ce pays à un impôt personnel sur l'ensemble de leurs revenus.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="15" name="domicileHeritierEnFrance" label="Domicile héritier en france" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="16" name="montantActifSuccessoral" label="Montant de l'actif successoral" type="money">
+			<Description><![CDATA[
+Le montant de la succession correspond à l’actif net. Celui-ci est égal à l’actif brut imposable (c’est-à-dire la valeur des biens composant la succession) déduction faite des dettes déductibles laissées par le défunt.
+Certains biens bénéficient d’une exonération totale ou partielle de droits de succession (réversion de rente viagère entre époux ou entre héritiers en ligne directe, contrat de travail à salaire différé, logement acheté selon un pacte tontinier, …). Ils ne doivent alors pas être pris en compte dans l’actif brut ou être pris en compte déduction faite de l’exonération dont ils font l’objet. Si vous souhaitez des précisions sur les exonérations, vous pouvez consulter les pages 10 à 13 de la <a target="_blank" rel="nofollow" href="https://www.impots.gouv.fr/portail/files/formulaires/2705-sd/2017/2705-sd_45.pdf#%5B%7B%22num%22%3A30%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22XYZ%22%7D%2C67.4%2C766.5%2C0%5D">notice n° 2705-NOT-SD</a>
+ou le <a target="_blank" rel="nofollow">bulletin officiel des Finances publique</a>
+Les principales dettes déductibles de l’actif sont :
+
+<ul><li>les frais de dernière maladie non encore remboursés ;</li><li>les frais d'enterrement dans la limite de 1 500 € sans justificatif ;</li><li>les frais de reconstitution du titre de propriété d'immeubles ou de droits immobiliers pour lesquels le droit de propriété du défunt n'a pas été constaté avant son décès, mis à la charge des héritiers ; </li><li>les indemnités de préavis et de licenciement des personnels de maison sous contrat de travail conclu avec le défunt ;</li><li>les rentes et indemnités versées ou dues au défunt en réparation de dommages corporels liés à un accident ou à une maladie ;</li><li>certains impôts : impôt sur le revenu, impôts locaux, impôt sur la fortune (ISF). Vous pouvez déduire les impôts de l'année précédant le décès et effectuer la régularisation après réception des avis d'imposition de l'année du décès. Vous pouvez aussi calculer vous-mêmes les impôts dus l'année du décès au moyen du simulateur disponible sur le site <a target="_blank" rel="nofollow" href="https://www3.impots.gouv.fr/simulateur/calcul_impot/2017/index.htm" title="Link: http://bofip.impots.gouv.fr/bofip/2327-PGP">impots.gouv.fr</a> </li></ul>
+			]]></Description>
+		</Data>
+		<Data id="17" name="actifNet" label="Actif net imposable" type="money" content="max(0, #16)" />
+		<Data id="18" name="degreParente" label="Degré de parenté" type="integer" source="2" index="'degre_parente'" />
+		<Data id="19" name="ligneFamiliale" label="Ligne Familiale" type="integer" source="2" index="'ligne_familiale'" />
+		<Data id="20" name="ligneFamilialeEnClair" label="Ligne familiale en clair" type="choice" content="#19">
+			<Choices>
+				<Choice id="1" value="0" label="Ligne collatérale" />
+				<Choice id="2" value="1" label="Ligne directe" />
+			</Choices>
+		</Data>
+		<Data id="21" name="abattement" label="Abattement" type="money" source="2" index="'abattement'" />
+		<Data id="22" name="abattementHandicape" label="Abattement handicapé" type="money" />
+		<Data id="23" name="abattementFinal" label="Abattement final" type="money" />
+		<Data id="24" name="actifNetMoinsAbattement" label="Actif net moins abattement" type="money" content="max(0, #17 - #23)" />
+		<DataGroup id="1" name="tranche1" label="Tranche 1">
+			<Data id="25" name="partTaxable1" label="Part taxable 1" type="money" source="4" index="'part_taxable'" />
+			<Data id="26" name="partTaxee1" label="Part taxée 1" type="money" />
+			<Data id="27" name="bareme1" label="Barème tranche 1" type="percent" source="4" index="'bareme'" />
+			<Data id="28" name="droitsSuccessionTranche1" label="Droits succession Tranche 1" type="money" />
+			<Data id="29" name="actifNetMoinsPartTaxable1" label="Actif net moins part taxable 1" type="money" />
+		</DataGroup>
+		<DataGroup id="2" name="tranche2" label="Tranche 2">
+			<Data id="30" name="partTaxable2" label="Part taxable 2" type="money" source="5" index="'part_taxable'" />
+			<Data id="31" name="partTaxee2" label="Part taxée 2" type="money" />
+			<Data id="32" name="bareme2" label="Barème tranche 2" type="percent" source="5" index="'bareme'" />
+			<Data id="33" name="droitsSuccessionTranche2" label="Droits succession Tranche 2" type="money" />
+			<Data id="34" name="actifNetMoinsPartTaxable2" label="Actif net moins part taxable 2" type="money" />
+		</DataGroup>
+		<DataGroup id="3" name="tranche3" label="Tranche 3">
+			<Data id="35" name="partTaxable3" label="Part taxable 3" type="money" source="6" index="'part_taxable'" />
+			<Data id="36" name="partTaxee3" label="Part taxée 3" type="money" />
+			<Data id="37" name="bareme3" label="Barème tranche 3" type="percent" source="6" index="'bareme'" />
+			<Data id="38" name="droitsSuccessionTranche3" label="Droits succession Tranche 3" type="money" />
+			<Data id="39" name="actifNetMoinsPartTaxable3" label="Actif net moins part taxable 3" type="money" />
+		</DataGroup>
+		<DataGroup id="4" name="tranche4" label="Tranche 4">
+			<Data id="40" name="partTaxable4" label="Part taxable 4" type="money" source="7" index="'part_taxable'" />
+			<Data id="41" name="partTaxee4" label="Part taxée 4" type="money" />
+			<Data id="42" name="bareme4" label="Barème tranche 4" type="percent" source="7" index="'bareme'" />
+			<Data id="43" name="droitsSuccessionTranche4" label="Droits succession Tranche 4" type="money" />
+			<Data id="44" name="actifNetMoinsPartTaxable4" label="Actif net moins part taxable 4" type="money" />
+		</DataGroup>
+		<DataGroup id="5" name="tranche5" label="Tranche 5">
+			<Data id="45" name="partTaxable5" label="Part taxable 5" type="money" source="8" index="'part_taxable'" />
+			<Data id="46" name="partTaxee5" label="Part taxée 5" type="money" />
+			<Data id="47" name="bareme5" label="Barème tranche 5" type="percent" source="8" index="'bareme'" />
+			<Data id="48" name="droitsSuccessionTranche5" label="Droits succession Tranche 5" type="money" />
+			<Data id="49" name="actifNetMoinsPartTaxable5" label="Actif net moins part taxable 5" type="money" />
+		</DataGroup>
+		<DataGroup id="6" name="tranche6" label="Tranche 6">
+			<Data id="50" name="partTaxable6" label="Part taxable 6" type="money" source="9" index="'part_taxable'" />
+			<Data id="51" name="partTaxee6" label="Part taxée 6" type="money" />
+			<Data id="52" name="bareme6" label="Barème tranche 6" type="percent" source="9" index="'bareme'" />
+			<Data id="53" name="droitsSuccessionTranche6" label="Droits succession Tranche 6" type="money" />
+			<Data id="54" name="actifNetMoinsPartTaxable6" label="Actif net moins part taxable 6" type="money" />
+		</DataGroup>
+		<DataGroup id="7" name="tranche7" label="Tranche 7">
+			<Data id="55" name="partTaxable7" label="Part taxable 7" type="money" source="10" index="'part_taxable'" />
+			<Data id="56" name="partTaxee7" label="Part taxée 7" type="money" />
+			<Data id="57" name="bareme7" label="Barème tranche 7" type="percent" source="10" index="'bareme'" />
+			<Data id="58" name="droitsSuccessionTranche7" label="Droits succession Tranche 7" type="money" />
+		</DataGroup>
+		<Data id="59" name="droitsSuccessionBareme" label="Droits de succession issu de l'application du barème" type="money" content="max(0, round(#28 + #33 + #38 + #43 + #48 + #53 + #58))" />
+		<Data id="60" name="reductionPourChargeFamiliale" label="Réduction pour charge familiale" type="money" />
+		<Data id="61" name="reductionMutileDeGuerre" label="Réduction mutilé de guerre" type="money" />
+		<Data id="62" name="droitsSuccessionApresReduction" label="Droits de succession après réduction pour charge familiale" type="money" content="max(0, #59 - #60)" />
+		<Data id="63" name="droitsSuccessionDefinitifs" label="Droits de sucession définitifs" type="money" content="#62 - #61" />
+		<Data id="64" name="nbEnfantsRepresentes" label="Nombre d'enfants représentés" type="integer" min="1">
+			<Description><![CDATA[
+Si vous héritez d'un grand-parent du fait du décès ou de la renonciation de votre parent, l’abattement personnel dont ce dernier aurait bénéficié sera à partager entre les frères et sœurs.
+			]]></Description>
+		</Data>
+		<Data id="65" name="abattementpersonnel" label="Abattement personnel" type="number" />
+		<Data id="66" name="DroitsSuccessionDefinitifsMinimum" label="Droits de succession définitifs minimum" type="money" content="#62 - #61">
+			<Description><![CDATA[
+Minimum de perception prévu à l'article 674 du Code général des impôts.
+
+<a target="_blank" rel="nofollow" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006310182&amp;cidTexte=LEGITEXT000006069577">https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006310182&amp;cidTexte=LEGITEXT000006069577</a>
+			]]></Description>
+		</Data>
+		<Data id="67" name="EntretienPupille" label="Entretien Pupille 5 ans" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="informationsVousConcernant" label="Vous" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Informations vous concernant
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panneauInformationsVousConcernant" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Quel est votre lien de parenté avec le défunt ?" prompt="Selectionnez votre lien de parenté" required="1" visibleRequired="0" colon="0" help="1" />
+						<Field position="2" data="3" usage="input" newline="0" label="Héritez-vous de votre grand parent du fait du décès ou de la renonciation de votre parent ?" required="0" visibleRequired="1" colon="0" help="0" expanded="1" />
+						<Field position="3" data="4" usage="input" newline="0" label="Avez-vous constamment vécu avec le défunt durant les 5 années ayant précédé son décès ?" required="0" visibleRequired="1" colon="0" help="0" expanded="1" />
+						<Field position="4" data="5" usage="input" newline="0" label="Etes-vous célibataire, veuf(ve), divorcé(e) ou séparé(e) de corps ?" required="0" visibleRequired="1" colon="0" help="0" expanded="1" />
+						<Field position="5" data="6" usage="input" newline="0" label="Avez-vous plus de 50 ans ou êtes-vous atteint d'un handicap vous mettant dans l'impossibilité de travailler?" required="0" visibleRequired="1" colon="0" underlabel="1" help="0" expanded="1" />
+						<Field position="6" data="64" usage="input" newline="0" label="Combien d'enfants, vous compris, héritent de ce parent ?" required="0" visibleRequired="1" colon="0" help="1">
+							<PreNote><![CDATA[
+Si vous héritez de votre grand-parent du fait du décès ou de la renonciation de votre parent, l'abattement personnel de ce dernier sera à partager entre tous les frères et sœurs.
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="8" usage="input" newline="0" label="Etes-vous en situation de handicap ?" required="0" visibleRequired="1" colon="0" help="1" expanded="1" />
+						<Field position="8" data="10" usage="input" newline="0" label="Etes-vous mutilé de guerre (50% au moins d'invalidité) ?" required="0" visibleRequired="1" colon="0" help="1" expanded="1" />
+						<Field position="9" data="13" usage="input" newline="0" label="Date d'ouverture de la succession (format : JJ/MM/AAAA) " required="0" visibleRequired="1" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="9" usage="input" newline="0" label="Combien avez-vous d'enfants ?" required="0" visibleRequired="1" colon="0" help="1" />
+					</FieldSet>
+					<BlockInfo id="2" name="blocExoneration" label="">
+						<Chapter id="1" name="chapitreExoneration" label="">
+							<Section id="1" name="sectionExonerationSansDepot" label="">
+								<Content><![CDATA[
+Vous êtes exonéré de droits de succession
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="suivant" label="Suivant" what="submit" for="nextStep" class="btn-primary" />
+			</ActionList>
+		</Step>
+		<Step id="2" name="leDefunt" label="Le défunt" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Informations concernant le défunt
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panneauLeDefunt" label="">
+					<FieldSet id="1">
+						<Field position="1" data="11" usage="input" newline="0" label="Le défunt était-il dans l'un des cas suivants" required="0" visibleRequired="1" help="0" expanded="1" />
+						<Field position="2" data="67" usage="input" newline="0" label="Le défunt a-t-il pourvu à votre entretien pendant 5 ans au moins alors que vous étiez mineur ?" required="0" visibleRequired="1" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="14" usage="input" newline="0" label="Le domicile fiscal du défunt était-il en France ?" required="1" visibleRequired="0" colon="0" help="1" expanded="1" />
+						<Field position="4" data="15" usage="input" newline="0" label="Etiez-vous domicilié en France au jour du décès et pendant 6 années au cours des 10 dernières années ?" required="0" visibleRequired="1" colon="0" help="0" expanded="1" />
+					</FieldSet>
+					<BlockInfo id="2" name="blocExoneration" label="Exonération">
+						<Chapter id="1" name="chapitreExoneration" label="">
+							<Section id="1" name="sectionExonerationSansDepot" label="">
+								<Content><![CDATA[
+Vous êtes exonéré de droits de succession
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="suivant" label="Suivant" what="submit" for="nextStep" class="btn-primary" />
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" />
+			</ActionList>
+		</Step>
+		<Step id="3" name="actifPassif" label="Montant de &lt;br/> la succession" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Montant de votre part de la succession
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="actif" label="Actif">
+					<FieldSet id="1">
+						<Field position="1" data="16" usage="input" newline="0" label="Montant de votre part de la succession" required="0" visibleRequired="1" colon="0" help="1" />
+					</FieldSet>
+					<BlockInfo id="2" name="biensDefuntBlocInfo" label="">
+						<Chapter id="1" name="biensDefuntChapitre" label="">
+							<Section id="1" name="ensembleBiensDefuntSection" label="">
+								<Content><![CDATA[
+Comptabiliser l'ensemble des biens, qu'ils soient en France ou à l'étranger
+								]]></Content>
+							</Section>
+							<Section id="2" name="biensDefuntFranceSection" label="">
+								<Content><![CDATA[
+Ne prendre en compte que les biens du défunt situés en France
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="suivant" label="Suivant" what="submit" for="nextStep" class="btn-primary" />
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" />
+			</ActionList>
+		</Step>
+		<Step id="4" name="droitsDeSuccession" label="Droits de &lt;br/> succession" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Droits de succession
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panneauDroitsDeSuccession" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Informations saisies
+						]]></Legend>
+						<Field position="1" data="1" usage="output" newline="0" label="Votre lien de parenté avec le défunt" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="67" usage="output" newline="0" label="Entretien du pupille par le défunt" required="0" visibleRequired="0" help="0" />
+						<Field position="3" data="3" usage="output" newline="0" label="Vous héritez de votre grand parent du fait du décès ou de la renonciation de votre parent" required="0" visibleRequired="0" colon="0" help="0" />
+						<Field position="4" data="64" usage="output" newline="0" label="Nombre d'enfants héritant du grand-parent à la place de leur parent" required="0" visibleRequired="0" colon="0" help="1" />
+						<Field position="5" data="8" usage="output" newline="0" label="Situation de handicap" required="0" visibleRequired="0" help="0" />
+						<Field position="6" data="10" usage="output" newline="0" label="Mutilé de guerre" required="0" visibleRequired="0" help="0" />
+						<Field position="7" data="9" usage="output" newline="0" label="Nombre d'enfants" required="0" visibleRequired="0" help="0" />
+						<Field position="8" data="13" usage="output" newline="0" label="Date d'ouverture de la succession" required="0" visibleRequired="0" help="0" />
+						<Field position="9" data="14" usage="output" newline="0" label="Domicile fiscal du défunt en France" required="0" visibleRequired="0" help="0" />
+						<Field position="10" data="15" usage="output" newline="0" label="Vous étiez domicilé en France au jour du décès" required="0" visibleRequired="0" help="0" />
+						<Field position="11" data="16" usage="output" newline="0" label="Montant de votre part de la succession" required="0" visibleRequired="0" help="0" />
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Résultats de la simulation
+						]]></Legend>
+						<Field position="1" data="17" usage="output" newline="0" label="Actif net imposable" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="23" usage="output" newline="0" label="Abattement" required="0" visibleRequired="0" colon="0" help="0" />
+						<Field position="3" data="24" usage="output" newline="0" label="Actif net imposable après abattement" required="0" visibleRequired="0" colon="0" help="0" />
+					</FieldSet>
+					<FieldSet id="3" disposition="grid">
+						<Legend><![CDATA[
+Application du barème
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="partTaxee" type="money" label="Tranche" />
+							<Column id="2" name="bareme" type="percent" label="Barème" />
+							<Column id="3" name="droitsSuccession" type="money" label="Droits de succession" />
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="1" colon="0">
+							<Field position="1" data="26" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="27" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="28" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="2" datagroup="2" label="2" colon="0">
+							<Field position="1" data="31" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="32" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="33" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="3" datagroup="3" label="3" colon="0">
+							<Field position="1" data="36" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="37" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="38" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="4" datagroup="4" label="4" colon="0">
+							<Field position="1" data="41" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="42" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="43" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="5" datagroup="5" label="5" colon="0">
+							<Field position="1" data="46" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="47" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="48" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="6" datagroup="6" label="6" colon="0">
+							<Field position="1" data="51" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="52" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="53" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+						<FieldRow id="7" datagroup="7" label="7" colon="0">
+							<Field position="1" data="56" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="2" data="57" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+							<Field position="3" data="58" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="4">
+						<Field position="1" data="59" usage="output" newline="0" label="Droits de succession avant réduction" required="0" visibleRequired="0" help="0" />
+						<Field position="2" data="60" usage="output" newline="0" label="Réduction des droits pour charge familiale" required="0" visibleRequired="0" help="0" />
+						<Field position="3" data="61" usage="output" newline="0" label="Réduction des droits en raison de la mutilation de guerre" required="0" visibleRequired="0" help="0" />
+						<Field position="4" data="63" usage="output" newline="0" label="Droits de succession estimés" required="0" visibleRequired="0" help="0" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" />
+				<Action name="recommencer" label="Nouvelle simulation" what="submit" for="newSimulation" class="btn-primary" />
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+Il ne peut être perçu des droits d'un montant de moins de 25 € aussi le minimum de perception de 25 € s'applique dans votre cas.
+				]]></FootNote>
+				<FootNote id="2"><![CDATA[
+Attention : ce montant ne tient pas compte des <b>frais de notaire</b>. <div>En outre, si le défunt vous avait accordé une donation, son montant peut être réintégré pour calculer les droits de succession. </div><div>Si vous souhaitez des précisions, vous pouvez consulter la page relative à ce sujet sur <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F32272">Service-Public.fr</a>
+</div>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="droits-succession" label="Liens de parenté" request="SELECT id, lien_parente FROM lien_parente WHERE id != 16 ORDER BY ordreaffichage" returnType="assocArray" />
+		<Source id="2" datasource="droits-succession" label="infosHeritier" request="SELECT degre_parente, ligne_familiale, abattement FROM lien_parente WHERE id = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="idHeritier" data="2" />
+		</Source>
+		<Source id="3" datasource="droits-succession" label="bareme" request="SELECT bareme FROM bareme WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND debut_tranche &lt;= %3$f AND (fin_tranche >= %3$f OR fin_tranche IS NULL)" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+			<Parameter type="columnValue" origin="data" name="actifNet" data="17" />
+		</Source>
+		<Source id="4" datasource="droits-succession" label="Tranche 1 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="5" datasource="droits-succession" label="Tranche 2 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 2" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="6" datasource="droits-succession" label="Tranche 3 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 3" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="7" datasource="droits-succession" label="Tranche 4 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 4" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="8" datasource="droits-succession" label="Tranche 5 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 5" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="9" datasource="droits-succession" label="Tranche 6 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 6" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+		<Source id="10" datasource="droits-succession" label="Tranche 7 du barème progressif" request="SELECT part_taxable, bareme FROM bareme2 WHERE ligne_familiale = %1$d AND debut_degre &lt;= %2$d AND fin_degre >= %2$d AND tranche = 7" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ligneFamiliale" data="19" />
+			<Parameter type="columnValue" origin="data" name="degreParente" data="18" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Condition d'affichage bouton Suivant de l'Etape 1 Vous">
+			<Conditions value="!defined(#2) || #2 = 1 || (#2 = 10 &amp;&amp; (!defined(#4) || !defined(#5) || !defined(#6))) || (#2 = 5 &amp;&amp; !defined(#3)) || (#2 = 5 &amp;&amp; #3 = 2 &amp;&amp; !defined(#64))">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="lienParente" operator="=" expression="1" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Condition operand="celibataireVeufDivorceSepare" operator="blank" />
+							<Condition operand="plusDe50AnsouInfirmite" operator="blank" />
+						</Connector>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="5" />
+						<Condition operand="renonciationParent" operator="blank" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="5" />
+						<Condition operand="renonciationParent" operator="=" expression="2" />
+						<Condition operand="nbEnfantsRepresentes" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="suivant" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="action" step="1" action="suivant" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Condition d'affichage renonciation et nombre de représentés">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 5">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="5" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="3" />
+				<Action id="3" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="3" />
+				<Action id="4" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4" />
+				<Action id="5" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="5" />
+				<Action id="6" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Condition d'affichage combien d'enfants représentés">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 5 &amp;&amp; defined(#3) &amp;&amp; #3 = 2">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="5" />
+					<Condition operand="renonciationParent" operator="present" />
+					<Condition operand="renonciationParent" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="6" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="11" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="6" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="11" />
+				<Action id="3" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Condition d'affichage si frère sœur">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="3" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4" />
+				<Action id="3" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Condition d'affichage si frère soeur et vie 5 ans avec défunt">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10 &amp;&amp; defined(#4) &amp;&amp; #4 = 2">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Condition operand="vieAvecDefunt5Ans" operator="present" />
+					<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Condition d'affichage si frère soeur vie 5 ans avec défunt non marital">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10 &amp;&amp; defined(#4) &amp;&amp; #4 = 2 &amp;&amp; defined(#5) &amp;&amp; #5 = 2">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Condition operand="vieAvecDefunt5Ans" operator="present" />
+					<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="present" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Condition d'affichage si frère sœur etc et infirmité">
+			<Conditions value="defined(#2) &amp;&amp; (#2 = 1 || (#2 = 10 &amp;&amp; defined(#4) &amp;&amp; #4 = 2 &amp;&amp; defined(#5) &amp;&amp; #5 = 2 &amp;&amp; defined(#6) &amp;&amp; #6 = 2))">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Connector type="any">
+						<Condition operand="lienParente" operator="=" expression="1" />
+						<Connector type="all">
+							<Condition operand="lienParente" operator="=" expression="10" />
+							<Condition operand="vieAvecDefunt5Ans" operator="present" />
+							<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+							<Condition operand="celibataireVeufDivorceSepare" operator="present" />
+							<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+							<Condition operand="plusDe50AnsouInfirmite" operator="present" />
+							<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="2" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="7" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="7" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Condition d'affichage si exonération héritier">
+			<Conditions value="#7">
+				<Condition operand="exoQualiteHeritier" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="suivant" />
+				<Action id="2" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Condition d'affichage frère et sœur et rien d'autre">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10 &amp;&amp; ((defined(#4) &amp;&amp; #4 = 1) || (defined(#5) &amp;&amp; #5 = 1) || (defined(#6) &amp;&amp; #6 = 1))">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="vieAvecDefunt5Ans" operator="present" />
+							<Condition operand="vieAvecDefunt5Ans" operator="=" expression="1" />
+						</Connector>
+						<Connector type="all">
+							<Condition operand="celibataireVeufDivorceSepare" operator="present" />
+							<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="1" />
+						</Connector>
+						<Connector type="all">
+							<Condition operand="plusDe50AnsouInfirmite" operator="present" />
+							<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="1" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="2" />
+				<Action id="2" name="showObject" target="action" step="1" action="suivant" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Condition d affichage situation handicap Etape 1 Vous">
+			<Conditions value="!defined(#2) || !defined(#19) || #7 || (#2 = 10 &amp;&amp; (!defined(#4) || (#4 = 2 &amp;&amp; #5 = 2))) || (#2 = 5 &amp;&amp; !defined(#3))">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="ligneFamiliale" operator="blank" />
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+							</Connector>
+						</Connector>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="5" />
+						<Condition operand="renonciationParent" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="7" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Condition d'affichage mutilé de guerre Etape 1 Vous">
+			<Conditions value="!defined(#2) || #7 || (#2 = 10 &amp;&amp; (!defined(#4) || (#4 = 2 &amp;&amp; !defined(#5)) || (#4 = 2 &amp;&amp; #5 = 2 &amp;&amp; !defined(#6)))) || !defined(#8)">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="blank" />
+							</Connector>
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+								<Condition operand="plusDe50AnsouInfirmite" operator="blank" />
+							</Connector>
+						</Connector>
+					</Connector>
+					<Condition operand="situationHandicap" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="8" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="8" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Condition d'affichage date d'ouverture de la succession Etape 1 Vous">
+			<Conditions value="!defined(#2) || #7 || (#2 = 10 &amp;&amp; (!defined(#4) || (#4 = 2 &amp;&amp; !defined(#5)) || (#4 = 2 &amp;&amp; #5 = 2 &amp;&amp; #6 = 2) || (#4 = 2 &amp;&amp; #5 = 2 &amp;&amp; #6 = 1 &amp;&amp; !defined(#10)))) || (!defined(#8) &amp;&amp; #2 != 10) || (!defined(#10) &amp;&amp; #2 != 10) || (!defined(#8) &amp;&amp; #2 = 10 &amp;&amp; #4 = 1) || (!defined(#10) &amp;&amp; #2 = 10 &amp;&amp; (defined(#8) || defined(#6))) || (#2 = 10 &amp;&amp; #4 = 2 &amp;&amp; #5 = 1 &amp;&amp; !defined(#8))">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="blank" />
+							</Connector>
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+								<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="2" />
+							</Connector>
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+								<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="1" />
+								<Condition operand="mutileDeGuerre" operator="blank" />
+							</Connector>
+						</Connector>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="situationHandicap" operator="blank" />
+						<Condition operand="lienParente" operator="!=" expression="10" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mutileDeGuerre" operator="blank" />
+						<Condition operand="lienParente" operator="!=" expression="10" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="situationHandicap" operator="blank" />
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Condition operand="vieAvecDefunt5Ans" operator="=" expression="1" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mutileDeGuerre" operator="blank" />
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="situationHandicap" operator="present" />
+							<Condition operand="plusDe50AnsouInfirmite" operator="present" />
+						</Connector>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+						<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="1" />
+						<Condition operand="situationHandicap" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="9" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="9" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Condition d'affichage Combien d'enfants Etape 1 et Mutilé Etape 4">
+			<Conditions value="!defined(#2) || #7 || (#2 = 10 &amp;&amp; (!defined(#4) || (#4 = 2 &amp;&amp; !defined(#5)) || (#4 = 2 &amp;&amp; #5 = 2 &amp;&amp; !defined(#6)))) || !defined(#8) || !defined(#10) || !defined(#13) || (defined(#13) &amp;&amp; #13 >= 01/01/2017)">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="blank" />
+							</Connector>
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+								<Condition operand="plusDe50AnsouInfirmite" operator="blank" />
+							</Connector>
+						</Connector>
+					</Connector>
+					<Condition operand="situationHandicap" operator="blank" />
+					<Condition operand="mutileDeGuerre" operator="blank" />
+					<Condition operand="dateOuvertureSuccession" operator="blank" />
+					<Connector type="all">
+						<Condition operand="dateOuvertureSuccession" operator="present" />
+						<Condition operand="dateOuvertureSuccession" operator=">=" expression="01/01/2017" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="10" />
+				<Action id="2" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="10" />
+				<Action id="2" name="showObject" target="field" step="4" panel="1" fieldset="1" field="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Condition d'affichage bouton Suivant Etape 1">
+			<Conditions value="!defined(#2) || #7 || (#2 = 10 &amp;&amp; (!defined(#4) || (#4 = 2 &amp;&amp; !defined(#5)) || (#4 = 2 &amp;&amp; #5 = 2 &amp;&amp; !defined(#6)))) || !defined(#13) || (defined(#13) &amp;&amp; #13 &lt; 01/01/2017 &amp;&amp; !defined(#9)) || (#2 = 5 &amp;&amp; !defined(#3)) || (!defined(#8) &amp;&amp; #2 != 10) || (!defined(#10) &amp;&amp; #2 != 10)">
+				<Connector type="any">
+					<Condition operand="lienParente" operator="blank" />
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="10" />
+						<Connector type="any">
+							<Condition operand="vieAvecDefunt5Ans" operator="blank" />
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="blank" />
+							</Connector>
+							<Connector type="all">
+								<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+								<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+								<Condition operand="plusDe50AnsouInfirmite" operator="blank" />
+							</Connector>
+						</Connector>
+					</Connector>
+					<Condition operand="dateOuvertureSuccession" operator="blank" />
+					<Connector type="all">
+						<Condition operand="dateOuvertureSuccession" operator="present" />
+						<Condition operand="dateOuvertureSuccession" operator="&lt;" expression="01/01/2017" />
+						<Condition operand="nbEnfantsHeritier" operator="blank" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="5" />
+						<Condition operand="renonciationParent" operator="blank" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="situationHandicap" operator="blank" />
+						<Condition operand="lienParente" operator="!=" expression="10" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mutileDeGuerre" operator="blank" />
+						<Condition operand="lienParente" operator="!=" expression="10" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="suivant" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="action" step="1" action="suivant" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Condition d'affichage Domicile fiscal du défunt Etape 2 Le défunt">
+			<Conditions value="!defined(#11) || #12 || (#2 = 14 &amp;&amp; !defined(#67))">
+				<Connector type="any">
+					<Condition operand="qualiteDefunt" operator="blank" />
+					<Condition operand="exoQualiteDefunt" operator="isTrue" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="14" />
+						<Condition operand="EntretienPupille" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="3" />
+				<Action id="2" name="unsetAttribute" target="content" data="14" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="2" panel="1" fieldset="1" field="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Condition d'affichage Domicilié en France ? Etape 2 Le défunt">
+			<Conditions value="#7 || !defined(#13) || !defined(#14) || #14 = 1 || (#2 = 14 &amp;&amp; !defined(#67))">
+				<Connector type="any">
+					<Condition operand="exoQualiteHeritier" operator="isTrue" />
+					<Condition operand="dateOuvertureSuccession" operator="blank" />
+					<Condition operand="domicileDefuntEnFrance" operator="blank" />
+					<Condition operand="domicileDefuntEnFrance" operator="=" expression="1" />
+					<Connector type="all">
+						<Condition operand="lienParente" operator="=" expression="14" />
+						<Condition operand="EntretienPupille" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="4" />
+				<Action id="2" name="unsetAttribute" target="content" data="15" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="field" step="2" panel="1" fieldset="1" field="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Condition d'affichage bouton Suivant Etape 2">
+			<Conditions value="#12 || !defined(#13) || !defined(#14) || (#14 = 2 &amp;&amp; !defined(#15))">
+				<Connector type="any">
+					<Condition operand="exoQualiteDefunt" operator="isTrue" />
+					<Condition operand="dateOuvertureSuccession" operator="blank" />
+					<Condition operand="domicileDefuntEnFrance" operator="blank" />
+					<Connector type="all">
+						<Condition operand="domicileDefuntEnFrance" operator="=" expression="2" />
+						<Condition operand="domicileHeritierEnFrance" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="action" step="2" action="suivant" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="action" step="2" action="suivant" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Condition d'affichage Bloc d'info exonération Etape 2">
+			<Conditions value="#12">
+				<Condition operand="exoQualiteDefunt" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="2" panel="1" blockinfo="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="2" panel="1" blockinfo="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Conditions d'affichage Comptabiliser ensemble des biens Etape 3">
+			<Conditions value="#14 = 1 || #15 = 1">
+				<Connector type="any">
+					<Condition operand="domicileDefuntEnFrance" operator="=" expression="1" />
+					<Condition operand="domicileHeritierEnFrance" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="3" panel="1" blockinfo="2" chapter="1" section="1" />
+				<Action id="2" name="hideObject" target="section" step="3" panel="1" blockinfo="2" chapter="1" section="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="section" step="3" panel="1" blockinfo="2" chapter="1" section="2" />
+				<Action id="2" name="hideObject" target="section" step="3" panel="1" blockinfo="2" chapter="1" section="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Exonération liée à qualité défunt">
+			<Conditions value="defined(#11) &amp;&amp; #11 != 0">
+				<Connector type="all">
+					<Condition operand="qualiteDefunt" operator="present" />
+					<Condition operand="qualiteDefunt" operator="!=" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="12" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="12" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Valeur Actif net imposable si pas d'abattement">
+			<Conditions value="!defined(#21)">
+				<Condition operand="abattement" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="#17" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Calcul droits de succession Tranche 1 si Barème 1 non renseigné">
+			<Conditions value="!defined(#27)">
+				<Condition operand="bareme1" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Calcul Droits de succession Tranche 1 si part taxable 1 sup à actif net">
+			<Conditions value="defined(#27) &amp;&amp; (!defined(#25) || #25 >= #24)">
+				<Connector type="all">
+					<Condition operand="bareme1" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable1" operator="blank" />
+						<Condition operand="partTaxable1" operator=">=" expression="#24" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="#24 * #27 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="29" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="26" value="#24" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Calcul Droits de succession tranche 1 si part taxable 1 inf à actif net">
+			<Conditions value="defined(#27) &amp;&amp; defined(#25) &amp;&amp; #25 &lt; #24">
+				<Connector type="all">
+					<Condition operand="bareme1" operator="present" />
+					<Condition operand="partTaxable1" operator="present" />
+					<Condition operand="partTaxable1" operator="&lt;" expression="#24" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="#25 * #27 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="29" value="max(0,#24 - #25)" />
+				<Action id="3" name="setAttribute" target="content" data="26" value="#25" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Calcul Droits de succession Tranche 2 si Barème 2 non renseigné">
+			<Conditions value="!defined(#32)">
+				<Condition operand="bareme2" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Calcul Droits de succession Tranche 2 si part taxable 2 sup à actif net">
+			<Conditions value="defined(#32) &amp;&amp; (!defined(#30) || #30 >= #29)">
+				<Connector type="all">
+					<Condition operand="bareme2" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable2" operator="blank" />
+						<Condition operand="partTaxable2" operator=">=" expression="#29" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="#29 * #32 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="34" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="31" value="#29" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Calcul Droits de succession Tranche 2 si part taxable inf à actif net">
+			<Conditions value="defined(#32) &amp;&amp; defined(#30) &amp;&amp; #30 &lt; #29">
+				<Connector type="all">
+					<Condition operand="bareme2" operator="present" />
+					<Condition operand="partTaxable2" operator="present" />
+					<Condition operand="partTaxable2" operator="&lt;" expression="#29" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="#30 * #32 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="34" value="max(0,#29 - #30)" />
+				<Action id="3" name="setAttribute" target="content" data="31" value="#30" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Calcul Droits de succession Tranche 3 si Barème 3 non renseigné">
+			<Conditions value="!defined(#37)">
+				<Condition operand="bareme3" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Calcul Droits de succession si part taxable 3 sup à actif net 2">
+			<Conditions value="defined(#37) &amp;&amp; (!defined(#35) || #35 >= #34)">
+				<Connector type="all">
+					<Condition operand="bareme3" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable3" operator="blank" />
+						<Condition operand="partTaxable3" operator=">=" expression="#34" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="#34 * #37 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="39" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="36" value="#34" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Calcul Droits de succession Tranche 3 si part taxable 3 inf à actif net">
+			<Conditions value="defined(#37) &amp;&amp; defined(#35) &amp;&amp; #35 &lt; #34">
+				<Connector type="all">
+					<Condition operand="bareme3" operator="present" />
+					<Condition operand="partTaxable3" operator="present" />
+					<Condition operand="partTaxable3" operator="&lt;" expression="#34" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="38" value="#35 * #37 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="39" value="max(0,#34 - #35)" />
+				<Action id="3" name="setAttribute" target="content" data="36" value="#35" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Calcul Droits de succession 4 si barème tranche 4 non renseigné">
+			<Conditions value="!defined(#42)">
+				<Condition operand="bareme4" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="Calcul Droits de succession Tranche 4 si part taxable 4 sup à actif net 3">
+			<Conditions value="defined(#42) &amp;&amp; (!defined(#40) || #40 >= #39)">
+				<Connector type="all">
+					<Condition operand="bareme4" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable4" operator="blank" />
+						<Condition operand="partTaxable4" operator=">=" expression="#39" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="#39 * #42 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="44" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="41" value="#39" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="Calcul Droits de succession Tranche 4 si part taxable 4 sup à actif net 3">
+			<Conditions value="defined(#42) &amp;&amp; defined(#40) &amp;&amp; #40 &lt; #39">
+				<Connector type="all">
+					<Condition operand="bareme4" operator="present" />
+					<Condition operand="partTaxable4" operator="present" />
+					<Condition operand="partTaxable4" operator="&lt;" expression="#39" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="#40 * #42 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="44" value="max(0,#39 - #40)" />
+				<Action id="3" name="setAttribute" target="content" data="41" value="#40" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="Calcul Droits de succession Tranche 5 si Barème tranche 5 non renseigné">
+			<Conditions value="!defined(#47)">
+				<Condition operand="bareme5" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Calcul Droits de succession Tranche 5 si part taxable 5 sup à actif net 4">
+			<Conditions value="defined(#47) &amp;&amp; (!defined(#45) || #45 >= #44)">
+				<Connector type="all">
+					<Condition operand="bareme5" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable5" operator="blank" />
+						<Condition operand="partTaxable5" operator=">=" expression="#44" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="#44 * #47 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="49" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="46" value="#44" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Calcul Droits de succession Tranche 5 si part taxable 5 inf à actif 4">
+			<Conditions value="defined(#47) &amp;&amp; defined(#45) &amp;&amp; #45 &lt; #44">
+				<Connector type="all">
+					<Condition operand="bareme5" operator="present" />
+					<Condition operand="partTaxable5" operator="present" />
+					<Condition operand="partTaxable5" operator="&lt;" expression="#44" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="#45 * #47 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="49" value="max(0,#44 - #45)" />
+				<Action id="3" name="setAttribute" target="content" data="46" value="#45" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Calcul Droits de succession Tranche 6 si Barème tranche 6 non renseigné">
+			<Conditions value="!defined(#52)">
+				<Condition operand="bareme6" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="Calcul Droits de succession Tranche 6 si part taxable 6 sup à actif net 5">
+			<Conditions value="defined(#52) &amp;&amp; (defined(#50) || #50 >= #49)">
+				<Connector type="all">
+					<Condition operand="bareme6" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable6" operator="present" />
+						<Condition operand="partTaxable6" operator=">=" expression="#49" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="#49 * #52 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="54" value="0" />
+				<Action id="3" name="setAttribute" target="content" data="51" value="#49" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="Calcul Droits de succession Tranche 6 si part taxable 6 inf à actif net 5">
+			<Conditions value="defined(#52) &amp;&amp; defined(#50) &amp;&amp; #50 &lt; #49">
+				<Connector type="all">
+					<Condition operand="bareme6" operator="present" />
+					<Condition operand="partTaxable6" operator="present" />
+					<Condition operand="partTaxable6" operator="&lt;" expression="#49" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="#50 * #52 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="54" value="max(0,#49 - #50)" />
+				<Action id="3" name="setAttribute" target="content" data="51" value="#50" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="Calcul Droits de succession Tranche 6 si Barème tranche 7 non renseigné">
+			<Conditions value="!defined(#57)">
+				<Condition operand="bareme7" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="Calcul Part taxable 7 si Actif net 6 sup à 0">
+			<Conditions value="defined(#57) &amp;&amp; defined(#54) &amp;&amp; #54 > 0">
+				<Connector type="all">
+					<Condition operand="bareme7" operator="present" />
+					<Condition operand="actifNetMoinsPartTaxable6" operator="present" />
+					<Condition operand="actifNetMoinsPartTaxable6" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="#54" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="Calcul Droits de succession Tranche 7 si part taxable 7 sup à actif net 6">
+			<Conditions value="defined(#57) &amp;&amp; (defined(#55) || #55 >= #54)">
+				<Connector type="all">
+					<Condition operand="bareme7" operator="present" />
+					<Connector type="any">
+						<Condition operand="partTaxable7" operator="present" />
+						<Condition operand="partTaxable7" operator=">=" expression="#54" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="#54 * #57 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="56" value="#54" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="Calcul Droits de succession Tranche 7 si part taxable 7 inf à actif net 6">
+			<Conditions value="defined(#57) &amp;&amp; defined(#55) &amp;&amp; #55 &lt; #54">
+				<Connector type="all">
+					<Condition operand="bareme7" operator="present" />
+					<Condition operand="partTaxable7" operator="present" />
+					<Condition operand="partTaxable7" operator="&lt;" expression="#54" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="#55 * #57 / 100" />
+				<Action id="2" name="setAttribute" target="content" data="56" value="#55" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="Condition d'affichage d'Application du barème si Tranche 1 ">
+			<Conditions value="defined(#28) &amp;&amp; #28 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche1" operator="present" />
+					<Condition operand="droitsSuccessionTranche1" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Condition d'affichage d'Application du barème si Tranche 2 ">
+			<Conditions value="defined(#33) &amp;&amp; #33 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche2" operator="present" />
+					<Condition operand="droitsSuccessionTranche2" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Condition d'affichage d'Application du barème si Tranche 3">
+			<Conditions value="defined(#38) &amp;&amp; #38 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche3" operator="present" />
+					<Condition operand="droitsSuccessionTranche3" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Condition d'affichage d'Application du barème si Tranche 4 ">
+			<Conditions value="defined(#43) &amp;&amp; #43 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche4" operator="present" />
+					<Condition operand="droitsSuccessionTranche4" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="48" name="R48" label="Condition d'affichage d'Application du barème si Tranche 5 ">
+			<Conditions value="defined(#48) &amp;&amp; #48 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche5" operator="present" />
+					<Condition operand="droitsSuccessionTranche5" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="49" name="R49" label="Condition d'affichage d'Application du barème si Tranche 6">
+			<Conditions value="defined(#53) &amp;&amp; #53 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche6" operator="present" />
+					<Condition operand="droitsSuccessionTranche6" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="50" name="R50" label="Condition d'affichage d'Application du barème si Tranche 7">
+			<Conditions value="defined(#58) &amp;&amp; #58 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionTranche7" operator="present" />
+					<Condition operand="droitsSuccessionTranche7" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="4" panel="1" fieldset="3" fieldrow="7" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="51" name="R51" label="Condition d'affichage d'Application du barème ">
+			<Conditions value="defined(#59) &amp;&amp; #59 > 0">
+				<Connector type="all">
+					<Condition operand="droitsSuccessionBareme" operator="present" />
+					<Condition operand="droitsSuccessionBareme" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="4" panel="1" fieldset="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="4" panel="1" fieldset="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="52" name="R52" label="Date succession avant 2017 ligne familiale 1">
+			<Conditions value="#13 &lt; 01/01/2017 &amp;&amp; #9 > 2 &amp;&amp; #19 = 1">
+				<Connector type="all">
+					<Condition operand="dateOuvertureSuccession" operator="&lt;" expression="01/01/2017" />
+					<Condition operand="nbEnfantsHeritier" operator=">" expression="2" />
+					<Condition operand="ligneFamiliale" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="(#9 - 2) * 610" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="53" name="R53" label="Date succession avant 2017 ligne familiale 2">
+			<Conditions value="#13 &lt; 01/01/2017 &amp;&amp; #9 > 2 &amp;&amp; #19 = 0">
+				<Connector type="all">
+					<Condition operand="dateOuvertureSuccession" operator="&lt;" expression="01/01/2017" />
+					<Condition operand="nbEnfantsHeritier" operator=">" expression="2" />
+					<Condition operand="ligneFamiliale" operator="=" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="(#9 - 2) * 305" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="54" name="R54" label="Date succession après 2017 nombre d'enfants inférieur à 3">
+			<Conditions value="#13 >= 01/01/2017 || #9 &lt;= 2">
+				<Connector type="any">
+					<Condition operand="dateOuvertureSuccession" operator=">=" expression="01/01/2017" />
+					<Condition operand="nbEnfantsHeritier" operator="&lt;=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="55" name="R55" label="Calcul mutilé de guerre">
+			<Conditions value="#10 = 2">
+				<Condition operand="mutileDeGuerre" operator="=" expression="2" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="min(305, #62 / 2)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="56" name="R56" label="Calcul réduction mutilé de guerre">
+			<Conditions value="!defined(#10) || #10 = 1">
+				<Connector type="any">
+					<Condition operand="mutileDeGuerre" operator="blank" />
+					<Condition operand="mutileDeGuerre" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="0" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="57" name="R57" label="Condition d'affichage de Vous étiez domicilié en France">
+			<Conditions value="defined(#14) &amp;&amp; #14 = 2">
+				<Connector type="all">
+					<Condition operand="domicileDefuntEnFrance" operator="present" />
+					<Condition operand="domicileDefuntEnFrance" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="1" field="10" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="10" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="58" name="R58" label="Condition d'affichage de Réduction des droits pour charge familiale">
+			<Conditions value="defined(#60) &amp;&amp; #60 > 0">
+				<Connector type="all">
+					<Condition operand="reductionPourChargeFamiliale" operator="present" />
+					<Condition operand="reductionPourChargeFamiliale" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="4" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="4" field="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="59" name="R59" label="Condition d'affichage Réduction mutilé de guerre">
+			<Conditions value="defined(#61) &amp;&amp; #61 > 0">
+				<Connector type="all">
+					<Condition operand="reductionMutileDeGuerre" operator="present" />
+					<Condition operand="reductionMutileDeGuerre" operator=">" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="4" field="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="4" field="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="60" name="R60" label=" Affichage droits de succession avant réduction charge famille et mutilé">
+			<Conditions value="(defined(#60) &amp;&amp; #60 > 0) || (defined(#61) &amp;&amp; #61 > 0)">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="reductionPourChargeFamiliale" operator="present" />
+						<Condition operand="reductionPourChargeFamiliale" operator=">" expression="0" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="reductionMutileDeGuerre" operator="present" />
+						<Condition operand="reductionMutileDeGuerre" operator=">" expression="0" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="4" field="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="4" field="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="61" name="R61" label="Calcul abattement personnel">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 5 &amp;&amp; defined(#3) &amp;&amp; #3 = 2 &amp;&amp; defined(#64) &amp;&amp; #64 >= 1">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="5" />
+					<Condition operand="renonciationParent" operator="present" />
+					<Condition operand="renonciationParent" operator="=" expression="2" />
+					<Condition operand="nbEnfantsRepresentes" operator="present" />
+					<Condition operand="nbEnfantsRepresentes" operator=">=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="100000 / #64" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="65" value="#21" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="62" name="R62" label="Valeur abattement handicapé">
+			<Conditions value="defined(#8) &amp;&amp; #8 = 2">
+				<Connector type="all">
+					<Condition operand="situationHandicap" operator="present" />
+					<Condition operand="situationHandicap" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="22" value="159325" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="22" value="0" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="63" name="R63" label="Abattement final">
+			<Conditions value="defined(#2)">
+				<Condition operand="lienParente" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="#65 + #22" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="64" name="R64" label="Non affichage handicap quand frere soeur 50 oui oui non">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10 &amp;&amp; #4 = 2 &amp;&amp; #5 = 2 &amp;&amp; #6 = 1 &amp;&amp; defined(#4) &amp;&amp; defined(#5) &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+					<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="1" />
+					<Condition operand="vieAvecDefunt5Ans" operator="present" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="present" />
+					<Condition operand="plusDe50AnsouInfirmite" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="7" />
+				<Action id="2" name="showObject" target="field" step="1" panel="1" fieldset="1" field="8" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="65" name="R65" label="affichage date oui oui non frere">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 10 &amp;&amp; #4 = 2 &amp;&amp; #5 = 2 &amp;&amp; #6 = 1 &amp;&amp; defined(#10)">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+					<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="1" />
+					<Condition operand="mutileDeGuerre" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="9" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="66" name="R66" label="mettre situation handicap à non dans le cas frere + oui + oui">
+			<Conditions value="#2 = 10 &amp;&amp; #4 = 2 &amp;&amp; #5 = 2 &amp;&amp; #6 = 1">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="=" expression="10" />
+					<Condition operand="vieAvecDefunt5Ans" operator="=" expression="2" />
+					<Condition operand="celibataireVeufDivorceSepare" operator="=" expression="2" />
+					<Condition operand="plusDe50AnsouInfirmite" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="default" data="8" value="1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="67" name="R67" label="Affichage avertissement arrière petit-enfant represente parent">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 7">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="7" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="data" data="1" value="Avertissement : lorsque vous héritez d'un arrière-grand-parent du fait du décès ou de la renonciation de votre parent, vous pouvez bénéficier sous conditions de l'abattement dont ce dernier aurait bénéficié. Cet abattement est alors à partager entre frères et sœurs. Ce simulateur ne prend pas en compte ce cas." />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="68" name="R68" label="Affichage avertissement neveu nièce représentant parent">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 11">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="11" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="data" data="1" value="Avertissement : lorsque vous héritez d'un oncle ou d'une tante du fait du décès ou de la renonciation de votre parent, vous pouvez bénéficier sous conditions de l'abattement dont ce dernier aurait bénéficié. Cet abattement est alors à partager entre frères et sœurs. Ce simulateur ne prend pas en compte ce cas." />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="69" name="R69" label="mettre min a 25 ">
+			<Conditions value="#66 > 0 &amp;&amp; #66 &lt;= 25">
+				<Connector type="all">
+					<Condition operand="DroitsSuccessionDefinitifsMinimum" operator=">" expression="0" />
+					<Condition operand="DroitsSuccessionDefinitifsMinimum" operator="&lt;=" expression="25" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="25" />
+				<Action id="2" name="showObject" target="footnote" step="4" footnote="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="footnote" step="4" footnote="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="70" name="R70" label="condition affichage entretien pupille etape 2 le défunt">
+			<Conditions value="defined(#11) &amp;&amp; #11 = 0 &amp;&amp; defined(#2) &amp;&amp; (#2 = 14 || #2 = 16)">
+				<Connector type="all">
+					<Condition operand="qualiteDefunt" operator="present" />
+					<Condition operand="qualiteDefunt" operator="=" expression="0" />
+					<Condition operand="lienParente" operator="present" />
+					<Connector type="any">
+						<Condition operand="lienParente" operator="=" expression="14" />
+						<Condition operand="lienParente" operator="=" expression="16" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="2" panel="1" fieldset="1" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="2" panel="1" fieldset="1" field="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="71" name="R71" label="abattement pupille non entretenu">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 14 &amp;&amp; defined(#67) &amp;&amp; #67 = 2">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Condition operand="lienParente" operator="=" expression="14" />
+					<Condition operand="EntretienPupille" operator="present" />
+					<Condition operand="EntretienPupille" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="2600" />
+				<Action id="2" name="setAttribute" target="content" data="25" value="999999999" />
+				<Action id="3" name="setAttribute" target="content" data="26" value="123456" />
+				<Action id="4" name="setAttribute" target="content" data="27" value="1234567" />
+				<Action id="5" name="setAttribute" target="content" data="28" value="12345678" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="72" name="R72" label="condition affichage information saisie pupille etape4">
+			<Conditions value="defined(#2) &amp;&amp; (#2 = 14 || #2 = 16)">
+				<Connector type="all">
+					<Condition operand="lienParente" operator="present" />
+					<Connector type="any">
+						<Condition operand="lienParente" operator="=" expression="14" />
+						<Condition operand="lienParente" operator="=" expression="16" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="4" panel="1" fieldset="1" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="4" panel="1" fieldset="1" field="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="73" name="R73" label="remplir lien de parenté par époux partenaire">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 1">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="74" name="R74" label="saisir enfant">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="2" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="75" name="R75" label="saisir père mère">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 3">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="3" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="3" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="76" name="R76" label="saisir grand parent">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 4">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="4" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="4" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="77" name="R77" label="saisir petit-fils">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 5">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="5" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="5" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="78" name="R78" label="saisir arrière grand parent">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 6">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="6" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="6" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="79" name="R79" label="saisir arrière petit fils">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 7">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="7" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="7" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="80" name="R80" label="saisir cousin ">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 12">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="12" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="12" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="81" name="R81" label="saisir frère ou soeur">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 10">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="10" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="10" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="82" name="R82" label="saisir neuveau ou niece">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 11">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="11" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="11" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="83" name="R84" label="saisir pupille 1">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 14 &amp;&amp; (!defined(#67) || #67 = 1)">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="14" />
+					<Connector type="any">
+						<Condition operand="EntretienPupille" operator="blank" />
+						<Condition operand="EntretienPupille" operator="=" expression="1" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="14" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="84" name="R84" label="saisir pupille 2 non">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 14 &amp;&amp; (defined(#67) &amp;&amp; #67 = 2)">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="14" />
+					<Connector type="all">
+						<Condition operand="EntretienPupille" operator="present" />
+						<Condition operand="EntretienPupille" operator="=" expression="2" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="16" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="85" name="R85" label="saisir autre">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 15">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="15" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="15" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="86" name="R86" label="saisir oncle tante">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 17">
+				<Connector type="all">
+					<Condition operand="liendeparentetmp" operator="present" />
+					<Condition operand="liendeparentetmp" operator="=" expression="17" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="2" value="17" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+<div>Mise en prod : mai 2017</div><div>Mise à jour en mars 2018 (création d'une donnée "nombre d'enfants représenté" dans le cas d'un petit-enfant héritant du grand-parent à la place de leur parent pour partage de l'abattement de ce parent entre enfants)
+
+</div><div>Mise à jour 17 juillet 2018 (avertissement représentation neveu/nièce et arrière-petit-fils)</div><div>Mise à jour 29 octobre 2018 (minimum de droits 25 €, ajout entretien pupille par le défunt, ajout oncle/tante)
+
+</div><div>
+
+</div>
+	]]></RelatedInformations>
+</Simulator>

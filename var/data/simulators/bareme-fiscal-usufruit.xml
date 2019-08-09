@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="bareme-fiscal-usufruit" label="Simulateur : barème fiscal de l'usufruit et de la nue-propriété" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+La <b>pleine propriété</b> d'un bien comprend les droits d'utiliser ce bien ou de le louer pour en tirer des revenus ainsi que les droits de le vendre, le donner, le léguer, le détruire, etc..
+Cette pleine propriété peut être partagée (on dit "démembrée") entre usufruit et nue-propriété. L'<b>usufruit</b> est le droit d'utiliser ce bien et d'en tirer des revenus sans en être propriétaire. La <b>nue-propriété</b> est le fait d'en avoir la propriété mais sans le droit de l'utiliser ou d'en tirer des revenus.
+La valeur du bien doit parfois être répartie entre l'usufruitier et les nu-propriétaires. C'est le cas avec les donations et successions. La répartition entre usufruit et nue-propriété est alors prévue par un barème fiscal établi en fonction de l'âge de l'usufruitier.
+<b>A savoir</b> : le "démembrement" du droit de propriété peut concerner un seul bien ou, en cas de succession, un actif successoral. Dans ce dernier cas, la valeur respective de l'usufruit et de la nue-propriété se calcule sur un actif net, diminuée des dettes et après prise en compte d'éventuelles exonérations.
+<i><b>Attention </b>: ce barème s'applique en cas d'usufruit viager (à vie) et non pas temporaire. Un droit d'usage et d'habitation viager, plus limité qu'un usufruit, n'est par ailleurs évalué qu'à 60 % de la valeur de l'usufruit viager. Enfin ce simulateur ne traite pas du cas de l'IFI régi par des dispositions spécifiques.</i>
+
+<i> </i>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="ageusufuitier" label="Age révolu de l'usufruitier" type="integer" min="0" unit="ans">
+			<Description><![CDATA[
+L'âge révolu est l'âge au dernier anniversaire.
+			]]></Description>
+		</Data>
+		<Data id="2" name="ValeurBien" label="Valeur du bien non démembré " type="money" min="0">
+			<Description><![CDATA[
+Dans le cas d'une succession, le montant à retenir est celui de l'actif net des dettes
+.
+			]]></Description>
+		</Data>
+		<Data id="3" name="PourcentUsufruit" label="pourcentage usufruit" type="percent" source="1" index="'PourcentUsufruit'"></Data>
+		<Data id="4" name="valeurUsufruit" label="valeur calculée de l'usufruit" type="money" content="#2 * #3 / 100"></Data>
+		<Data id="5" name="pourcentnuepropriete" label="pourcentage nue-propriété " type="percent" source="2" index="'PourcentNuepropriete'"></Data>
+		<Data id="6" name="valeurnuepropriete" label="Valeur calculée de la nue-propriété" type="money" content="#5 * #2 / 100">
+			<Description><![CDATA[
+A partager entre les nu-propriétaires s'il y en a plusieurs (par exemple : plusieurs enfants héritiers du défunt dans une succession)
+			]]></Description>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="Saisievaleurs" label="saisie montant et âge " template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Saisie de la valeur du bien (ou des biens) et de l'âge de l'usufruitier
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="PanneauSaisie" label="">
+					<FieldSet id="1">
+						<Field position="1" data="2" usage="input" newline="0" label="Montant à répartir" required="1" visibleRequired="0" help="1" widget="AutoMoneyFormat"></Field>
+						<Field position="2" data="1" usage="input" newline="0" label="Âge révolu de l'usufruitier" required="1" visibleRequired="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="calculer" label="Calculer" what="submit" for="nextStep" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="calculerresultats" label="Résultats" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description><![CDATA[
+Informations saisies
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panneau1etape2" label="">
+					<FieldSet id="1">
+						<Field position="1" data="2" usage="output" newline="0" label="Valeur globale des biens  " required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="2" data="1" usage="output" newline="0" label="Age de l'usufruitier (en années) " required="0" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Valeur fiscale de l'usufruit et de la nue-propriété
+						]]></Legend>
+						<Field position="1" data="3" usage="output" newline="0" label="Usufruit en % de la valeur des biens" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="2" data="4" usage="output" newline="0" label="Valeur fiscale de l'usufruit" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="3" data="5" usage="output" newline="0" label="Nue-propriété en % de la valeur des biens" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="4" data="6" usage="output" newline="0" label="Valeur fiscale de la nue-propriété" required="0" visibleRequired="0" colon="0" help="1"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="recommencer" label="Recommencer" what="submit" for="priorStep" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+<h2>Pour en savoir plus :
+</h2>
+<ul><li>
+<a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F17456">
+Successions : bien imposables et principales exonérations</a></li>
+<li>
+<a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F10203">
+Donations : bien imposables et principales exonérations</a></li>
+<li>
+<a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/R47789">
+Simulateur des droits de succession</a></li>
+</ul>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="PourcentUsufruit" label="Pourcentage usufruit" request="SELECT pourcentusufruit as PourcentUsufruit FROM BaremeUsufruit WHERE DebutTranche &lt;= %1$d AND FinTranche &gt;= %1$d" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="AgeUsufruitier" data="1"></Parameter>
+		</Source>
+		<Source id="2" datasource="PourcentUsufruit" label="Pourcentage nue-propriété" request="SELECT pourcentnuepropriete as PourcentNuepropriete FROM BaremeUsufruit WHERE DebutTranche &lt;= %1$d AND FinTranche &gt;= %1$d" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="ageusufruitier" data="1"></Parameter>
+		</Source>
+	</Sources>
+	<RelatedInformations><![CDATA[
+Date de 1re mise en production : décembre 2017.
+1re mise à jour : amélioration liens hypertexte de la note de bas de page de l'étape 2  (25 juin 2018)
+2e mise à jour : remplacer ISF par IFI (corrigé le 30 août, mise en prod 3 septembre 2018)
+3e mise à jour : ajout "révolu" (libellé du champ + descriptif de la donnée pour aide) pour notion d'âge révolu
+	]]></RelatedInformations>
+</Simulator>

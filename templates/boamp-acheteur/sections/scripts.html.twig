@@ -1,0 +1,71 @@
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/transition.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/dropdown.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/collapse.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/modal.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/tab.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/alert.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap/bootstrap-accessibility.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/functions.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/alert.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/modal.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/dropdown.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/tab.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/bootstrap-a11y/collapse-aw.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/anchor_focus.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/misc.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/select2/select2.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/select2/select2_locale_fr.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/modal-mots.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/map.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/jquery.collapsed-list.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/jquery.swap-image.js"></script>
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/jquery.cookie.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('input.listbox-input').listbox('theme', 'maroon');			
+	$('input.date').datepicker('theme', 'maroon');			
+	$('input.date').datepicker('inputFormat', ["d/M/y","d-M-y","d.M.y","ddMMy","dd/MM/y"]);
+	{% if step.id > 1 %}
+	$('.step-container').find(':input:visible').first().focus();
+	{% else %}
+	$('html body').find(':input:visible').first().focus();
+	window.scrollTo(0, 0);
+	{% endif %}
+});
+var ad_slots={
+	"revive_slot1":{
+		ad_url:function(slot){return autopromo(slot);},
+		ad_parameters:{refpub:'728x90',zoneid:2}
+	},
+	"revive_slot2":{
+		ad_url: function(slot){return autopromo(slot);},
+		ad_parameters:{refpub:'300x250',zoneid:1}
+	}
+};
+</script>
+<script src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/asyncad.min.js"></script>
+<!-- DEBUT XITI ANALYZER NX -->
+<script type="text/javascript">
+<!--
+xtnv = document;        //parent.document or top.document or document         
+xtsd = "https://logs2";
+xtsite = "517208";
+xtn2 = "2";        // level 2 site ID
+xtpage = "simulateurs::{{ step.simulator.name|replace({'-': '_'}) }}";        //page name (with the use of :: to create chapters)
+xtdi = "";        //implication degree
+xt_multc = "";		//all the xi indicators (like "&x1=...&x2=....&x3=...")
+xt_an = "10";        //user ID
+xt_ac = "10";        //category ID
+//do not modify below
+
+if(window.xtparam!=null){window.xtparam+="&amp;ac="+xt_ac+"&amp;an="+xt_an+xt_multc;}
+else{window.xtparam="&amp;ac="+xt_ac+"&amp;an="+xt_an+xt_multc;};
+
+//-->
+</script>
+<script src="{{ asset('assets/particuliers/static/js/patch.accessibilite.dila.js') }}"></script>    
+<script type="text/javascript" src="https://www.boamp.fr/extension/dilaboamp/design/dilaboamp/javascript/xtcore.js"></script>
+<noscript>
+<img width="1" height="1" alt="" src="https://logs2.xiti.com/hit.xiti?s=517208&amp;s2=2&amp;p=simulateurs::{{ step.simulator.name|replace({'-': '_'}) }}&amp;di=&amp;an=10&amp;ac=10" />
+</noscript>
+<!-- FIN XITI-->

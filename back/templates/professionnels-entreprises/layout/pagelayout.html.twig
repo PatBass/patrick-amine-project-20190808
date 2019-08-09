@@ -1,0 +1,51 @@
+{% extends 'base/layout/pagelayout.html.twig' %}
+
+{% set marquage = "name=" ~ step.simulator.label|replace({' ': '_'})|url_encode ~ "_-_etape_" ~ step.id ~ "&chapter1=Services_en_ligne_et_formulaires&chapter2=Services_en_ligne_et_formulaires_accueil&chapter3=Tous_les_simulateurs&chapter4=Simulateur_module_de_calcul&chapter5=Simulateur_module_de_calcul_-_etape_" ~ step.id ~ "&section=pro&typePage=simulateur&arboTypePage=simulateur&idContenu=" ~ step.simulator.name|replace({' ': '_'})|url_encode  %}
+
+{% block doctype %}
+<!DOCTYPE html>
+{% endblock %}
+
+{% block html %}{{ parent() }}{% endblock %}
+
+{% block title %}service-public.fr{% endblock %}
+
+{% block metas %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<esi:remove>    
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<![endif]-->    
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% include 'professionnels-entreprises/sections/meta.html.twig' %}
+</esi:remove>    
+{% endblock %}
+
+{% block hscripts %}
+<esi:remove>    
+<script type="text/javascript" src="{{ asset('assets/base/js/libs/modernizr.min.js') }}"></script>
+<!--[if lt IE 9]>
+<script src="{{ asset('assets/base/js/html5shiv.min.js') }}"></script>
+<script src="{{ asset('assets/base/js/respond.min.js') }}"></script>
+<![endif]-->    
+</esi:remove>
+{% endblock %}
+
+{% block bodyclass %}espace-pro{% if ua.isiOS %} iOS{% elseif ua.isAndroidOS %} androidOS{% endif %}{% endblock %}
+
+{% block styles %}
+{% include 'professionnels-entreprises/sections/styles.html.twig' %}
+<esi:include src="/esi/particuliers/head"></esi:include>    
+{% include 'professionnels-entreprises/sections/favicon.html.twig' %}
+{{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+  {% include 'professionnels-entreprises/sections/header.html.twig' %}
+  {% block content %}{% endblock %}
+  {% include 'professionnels-entreprises/sections/footer.html.twig' %}
+  {% block scripts %}
+	{{ parent() }}{% include 'professionnels-entreprises/sections/scripts.html.twig' %}
+  {% endblock %}
+{% endblock %}

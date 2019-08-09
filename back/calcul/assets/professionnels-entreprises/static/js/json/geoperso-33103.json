@@ -1,0 +1,148 @@
+[
+  {
+    "nom":"Castelmoron-d'Albret",
+    "insee":"33103",
+    "departmentCode":null,
+    "organismes":[
+      {
+        "nom":"Préfecture de la Gironde",
+        "editeurSource":"Services de l'État : Gironde",
+        "externalId":"prefecture-33063-01",
+        "inseeCode":"33063",
+        "dateMiseAjour":"27-11-2014,23:00",
+        "pivotLocal":"prefecture",
+        "openingDaysDTO":null,
+        "serviceDTOs":[
+          {
+            "centreAppelDTO":null,
+            "dateMiseAjour":"27-11-2014,23:00",
+            "commentaire":"<p><strong>Entrée rue Claude BONNIER <br />33000 BORDEAUX<br />Transport : TRAM Ligne A - Arrêt Mériadeck</strong></p><p class=\"info\">Retrouvez tous nos formulaires sur&amp;#160;<a title=\"http://www.gironde.gouv.fr/Demarches-administratives/Etrangers\" href=\"http://www.gironde.gouv.fr/Demarches-administratives/Etrangers\"> www.gironde.gouv.fr </a></p>",
+            "nom":"Service de l'immigration et de l'intégration - Section séjour",
+            "pointAcceuilPhysiqueDTO":
+              {
+                "adresseDTOList":[
+                  {
+                    "nom":"Bordeaux Cedex",
+                    "label":"Esplanade Charles de Gaulle\nCS 41 397\n",
+                    "lignes":[
+                      "Esplanade Charles de Gaulle",
+                      "CS 41 397"
+                    ],
+                    "numeroVoie":null,
+                    "typeVoie":null,
+                    "complement":null,
+                    "type":"physique",
+                    "pays":null,
+                    "codePostal":"33077",
+                    "accessibility":"",
+                    "accessibilityType":"DEM",
+                    "longitude":-0.584679,
+                    "latitude":44.837826,
+                    "precision":6
+                  },
+                  {
+                    "nom":"Bordeaux Cedex",
+                    "label":"Esplanade Charles de Gaulle\nDASP/Service de l'immigration et de l'intégration Pôle étrangers - Section séjour\nCS 41 397\n",
+                    "lignes":[
+                      "Esplanade Charles de Gaulle",
+                      "DASP/Service de l'immigration et de l'intégration Pôle étrangers - Section séjour",
+                      "CS 41 397"
+                    ],
+                    "numeroVoie":null,
+                    "typeVoie":null,
+                    "complement":null,
+                    "type":"postale",
+                    "pays":null,
+                    "codePostal":"33077",
+                    "accessibility":null,
+                    "accessibilityType":null,
+                    "longitude":0.0,
+                    "latitude":0.0,
+                    "precision":0
+                  }
+                ],
+                "openingDaysDTOs":[
+                  {
+                    "from":"lundi",
+                    "to":"vendredi",
+                    "note":"uniquement sur rendez vous\r",
+                    "openingHours":[
+                      {
+                        "from":"08:30",
+                        "to":"12:30"
+                      }
+                    ]
+                  },
+                  {
+                    "from":"lundi",
+                    "to":"vendredi",
+                    "note":"uniquement sur convocation\r",
+                    "openingHours":[
+                      {
+                        "from":"13:30",
+                        "to":"14:45"
+                      }
+                    ]
+                  },
+                  {
+                    "from":"lundi",
+                    "to":"jeudi",
+                    "note":"accueil téléphonique au 05 56 90 60 60",
+                    "openingHours":[
+                      {
+                        "from":"09:00",
+                        "to":"11:00"
+                      }
+                    ]
+                  }
+                ],
+                "coordonneesNumDTO":
+                  {
+                    "telephone":"05 56 90 60 60",
+                    "coutTelephone":null,
+                    "fax":null,
+                    "url":"http://www.gironde.gouv.fr",
+                    "email":null,
+                    "versionMobile":null
+                  }
+              },
+              "serviceEnLigneDTO":null
+          }
+        ],
+        "adresseDTOs":[
+          {
+            "nom":"Bordeaux Cedex",
+            "label":"2, Esplanade Charles de Gaulle\nCS 41397\n",
+            "lignes":[
+              "2, Esplanade Charles de Gaulle",
+              "CS 41397"
+            ],
+            "numeroVoie":null,
+            "typeVoie":null,
+            "complement":null,
+            "type":"géopostale",
+            "pays":null,
+            "codePostal":"33077",
+            "accessibility":"",
+            "accessibilityType":"DEM",
+            "longitude":-0.584911,
+            "latitude":44.838,
+            "precision":6
+          }
+        ],
+        "commentaire":null,
+        "mailEditeur":null,
+        "idPresta":"100",
+        "coordonneesNumDTO":
+          {
+            "telephone":"+33 5 56 90 60 60",
+            "coutTelephone":null,
+            "fax":null,
+            "url":"http://www.gironde.gouv.fr",
+            "email":"prefecture@gironde.gouv.fr",
+            "versionMobile":null
+          }
+      }
+    ]
+  }
+]

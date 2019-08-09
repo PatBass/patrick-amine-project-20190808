@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="AttestationHonneur" label="Attestation sur l'honneur" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce service vous permet de personnaliser le modèle d'attestation sur l'honneur.
+
+Le document est rédigé au fur et à mesure de vos réponses. Une fois complété, vous pouvez copier le texte ou bien télécharger un PDF de votre attestation.
+
+Vous pourrez alors l'imprimer et le signer. La signature doit en effet être obligatoirement manuscrite.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1' data-xiti-name='Particuliers::Services_en_ligne_et_formulaires::Attestation_sur_l_honneur::demarrer' data-xiti-type='action' onclick=&quot;toggle_1a5div(this,'Prenom','Commencer','Fermer','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13'); return false;&quot;&gt;Commencer &lt;span class='glyphicon glyphicon-menu-down'  &gt;&lt;/span&gt;&lt;/button&gt;  "></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="Prenom" label="Prénom" type="text"></Data>
+		<Data id="7" name="name" label="Nom" type="text"></Data>
+		<Data id="8" name="AdresseExp" label="AdresseExp" type="text"></Data>
+		<Data id="9" name="Sexe_hebergeant" label="Sexe_hebergeant" type="choice">
+			<Choices>
+				<Choice id="1" value="Madame" label="Madame"></Choice>
+				<Choice id="2" value="Monsieur" label="Monsieur"></Choice>
+			</Choices>
+		</Data>
+		<Data id="10" name="DateDeNaissance" label="Date de naissance" type="date"></Data>
+		<Data id="11" name="LieuDeNaissance" label="Lieu De Naissance" type="text"></Data>
+		<Data id="12" name="CodePostalExpediteur" label="Code postal Expéditeur" type="integer" min="1000" max="99000"></Data>
+		<Data id="13" name="VilleExp" label="Ville expéditeur" type="text"></Data>
+		<Data id="14" name="FaitsAttestation" label="FaitsAttestation" type="textarea"></Data>
+		<Data id="15" name="personneaccueilliePrenom" label="2prenom" type="text"></Data>
+		<Data id="16" name="personneaccueillienom" label="2 nom" type="text"></Data>
+		<Data id="17" name="Sexe_heberge" label="Sexe_heberge" type="choice">
+			<Choices>
+				<Choice id="1" value="Monsieur" label="Monsieur"></Choice>
+				<Choice id="2" value="Madame" label="Madame"></Choice>
+			</Choices>
+		</Data>
+		<Data id="18" name="personneAccueillieDTN" label="2 date de naissance" type="date"></Data>
+		<Data id="19" name="personneaccueillieLieuDeNaissance" label="2 Lieu de naissance" type="text"></Data>
+		<Data id="20" name="PersonneaccuillieDateApenagement" label="2 date aménagement" type="date"></Data>
+		<Data id="21" name="Adresse" label="3adresse" type="text"></Data>
+		<Data id="22" name="3CP" label="3CP" type="integer" min="1000" max="99999"></Data>
+		<Data id="23" name="Commune" label="3 Commune" type="text"></Data>
+		<Data id="24" name="laDateDuJour" label="3 jour" type="date" default="today"></Data>
+		<DataGroup id="1" name="Groupededonneetextessaisis" label="Groupe de données textes saisis">
+			<Data id="25" name="Donnee1objet" label="Donnée objet : objet" type="text"></Data>
+			<Data id="26" name="donnee1" label="Donnée 1" type="text"></Data>
+			<Data id="27" name="donnee2" label="donnée 2" type="text"></Data>
+			<Data id="28" name="donnee3" label="donnée 3" type="text"></Data>
+			<Data id="29" name="donnee4" label="Donnée 4" type="text"></Data>
+			<Data id="30" name="donnee5" label="Donnée 5" type="text"></Data>
+			<Data id="31" name="donnee6" label="Donnée 6" type="text"></Data>
+			<Data id="32" name="donnee7" label="donnée 7" type="text"></Data>
+			<Data id="33" name="donnee8" label="Donnée 8" type="text"></Data>
+			<Data id="34" name="donnee9" label="Donnée 9" type="text"></Data>
+			<Data id="35" name="donnee10" label="Donnée 10" type="text"></Data>
+			<Data id="36" name="donnee11" label="donnée 11" type="text"></Data>
+			<Data id="37" name="donnee12" label="Donnée 12" type="text"></Data>
+			<Data id="38" name="donnee13" label="Donnée 13" type="text"></Data>
+			<Data id="39" name="donnee14" label="Donnée 14 signature" type="text"></Data>
+			<Data id="40" name="donnee15" label="Donnée 15 signature 2" type="text"></Data>
+			<Data id="41" name="donnee16" label="Donnée 16 signature 3" type="text"></Data>
+			<Data id="59" name="entete1" label="Donnée entete1" type="text"></Data>
+			<Data id="60" name="entete2" label="Donnée entete2" type="text"></Data>
+			<Data id="61" name="entete3" label="Donnée entete3" type="text"></Data>
+			<Data id="62" name="entete4" label="Donnée entete4" type="text"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="valeursdeschamps" label="valeurs des champs">
+			<Data id="42" name="ValeurPrenom" label="Valeur Prénom" type="text"></Data>
+			<Data id="43" name="ValeurNom" label="Valeur Nom" type="text"></Data>
+			<Data id="44" name="ValeurDateDeNaissance" label="Valeur Date de naissance" type="text"></Data>
+			<Data id="45" name="ValeurLieuDeNaissance" label="Valeur Lieu De Naissance" type="text"></Data>
+			<Data id="46" name="ValeurAdresseExp" label="ValeurAdresseExp" type="text"></Data>
+			<Data id="47" name="ValeurCodePostalExpediteur" label="Valeur Code postal Expéditeur" type="text"></Data>
+			<Data id="48" name="ValeurVilleExp" label="Valeur Ville expéditeur" type="text"></Data>
+			<Data id="49" name="Valeur2personneaccueilliePrenom" label="valeur 2prenom" type="text"></Data>
+			<Data id="50" name="Valeur2personneaccueillienom" label="Valeur 2 nom" type="text"></Data>
+			<Data id="51" name="Valeur2personneAccueillieDTN" label="Valeur 2 date de naissance" type="text"></Data>
+			<Data id="52" name="Valeur2personneaccueillieLieuDeNaissance" label="Valeur 2 Lieu de naissance" type="text"></Data>
+			<Data id="53" name="Valeur2PersonneaccuillieDateApenagement" label="Valeur 2 date aménagement" type="text"></Data>
+			<Data id="54" name="Valeur3Adresse" label="Valeur 3 Adresse" type="text"></Data>
+			<Data id="55" name="Valeur3CP" label="valeur 3CP" type="text"></Data>
+			<Data id="56" name="Valeur3Commune" label="Valeur 3 Commune" type="text"></Data>
+			<Data id="57" name="Valeur3laDateDuJour" label="Valeur 3 laDateDuJour" type="text"></Data>
+			<Data id="58" name="ValeurFaitsAttestation" label="ValeurFaitsAttestation" type="textarea"></Data>
+		</DataGroup>
+		<Data id="63" name="Valeursousigne" label="Valeur sousigné" type="text"></Data>
+		<Data id="64" name="prefixeCP" label="prefixe CP" type="text"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2&gt;REMPLIR&lt;br&gt; L'ATTESTATION  &lt;br&gt;SUR L'HONNEUR&lt;/h2&gt; &lt;h3&gt;Vous pouvez personnaliser ce modèle et télécharger votre attestation  prête à l'emploi.&lt;/h3&gt;" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Quelles sont les coordonnées de la personne qui rédige l'attestation ?
+						]]></Legend>
+						<Field position="1" data="6" usage="input" newline="0" label="Prénom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="7" usage="input" newline="0" label="Nom" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="9" usage="input" newline="0" label="Genre" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="8" usage="input" newline="0" label="Adresse" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="12" usage="input" newline="0" label="Code postal (ex : 33000)" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="13" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Quels sont les faits ou les circonstances à attester ?
+						]]></Legend>
+						<Field position="1" data="14" usage="input" label="Décrivez les faits ou les circonstances que vous attestez :" required="1" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Où et quand est rédigée l'attestation ?
+						]]></Legend>
+						<Field position="1" data="24" usage="input" newline="0" label="Date de l'attestation (format : JJ/MM/AAAA)" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="23" usage="input" newline="0" label="Fait à (nom de la commune)" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="5" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Veuillez relire votre attestation avant de la copier ou de la télécharger (boutons en bas). Ensuite, n'oubliez pas de la signer.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+#59
+#60
+#61
+#62
+
+<u>#25</u>
+
+#26
+#27
+#28
+#29
+#30
+#31
+#32
+#33
+#34
+#35
+#36
+#37
+#38
+
+<div align="right">
+#39
+#40
+#41
+</div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="9" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table id='table1'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Attestation_sur_l_honneur::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier </button></td></table>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<table  id='table2'><tr><td><button id="bouttoncopier" class="btn" onclick="copyClipboard('ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content','ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content'); return false;" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Attestation_sur_l_honneur::copier_presse_papier" data-xiti-type="action">
+Copier le texte dans le presse-papier</button></td>
+<td><div class="action_buttons2"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Attestation_sur_l_honneur::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div></td></tr></table>
+<div id="boutttelecharger"  class="action_buttons3"><button class="btn " type="submit" name="DeplacerFocus"  data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::Attestation_sur_l_honneur::Telecharger_la_lettre_en_pdf" data-xiti-type="download"> Télécharger la lettre en PDF</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" what="submit" for="jumpToStep" uri="2" class="btn-default" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger l'attestation" template="pages:GenerateurAttestation.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="7" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#6)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non renseigné)">
+			<Conditions value="!defined(#6) || !defined(#7) || !defined(#8) || !defined(#8) || !defined(#12) || !defined(#13)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="name" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 nn renseigné)">
+			<Conditions value="!defined(#6) || !defined(#7) || !defined(#8) || !defined(#12) || !defined(#13) || !defined(#14)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="name" operator="blank"></Condition>
+					<Condition operand="AdresseExp" operator="blank"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+					<Condition operand="FaitsAttestation" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage du bouton suivant (tous les champs non rensegnés)">
+			<Conditions value="defined(#6) &amp;&amp; defined(#7) &amp;&amp; defined(#8) &amp;&amp; defined(#12) &amp;&amp; defined(#13) &amp;&amp; defined(#14) &amp;&amp; defined(#23) &amp;&amp; defined(#24)">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="name" operator="present"></Condition>
+					<Condition operand="AdresseExp" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="VilleExp" operator="present"></Condition>
+					<Condition operand="FaitsAttestation" operator="present"></Condition>
+					<Condition operand="Commune" operator="present"></Condition>
+					<Condition operand="laDateDuJour" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="2"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+				<Action id="4" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="DeplacerFocus"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="4" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+				<Action id="5" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Remplir valeur prénom">
+			<Conditions value="defined(#6)">
+				<Condition operand="Prenom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="ucfirst(#6)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="'[Prénom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Remplir valeur nom">
+			<Conditions value="defined(#7)">
+				<Condition operand="name" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="upper(#7)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="'[Nom]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="remplir valeur adresse exp">
+			<Conditions value="defined(#8)">
+				<Condition operand="AdresseExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="#8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="remplir valeur code postal">
+			<Conditions value="defined(#12)">
+				<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="47" value="#12"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="47" value="'[Code postal]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="remplir valeur commune">
+			<Conditions value="defined(#13)">
+				<Condition operand="VilleExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="ucfirst(#13)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="remplir valeur faits attestation">
+			<Conditions value="!defined(#14)">
+				<Condition operand="FaitsAttestation" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="'[Faits ou circonstances à attester]'"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="#14"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="remplir commune">
+			<Conditions value="defined(#23)">
+				<Condition operand="Commune" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="ucfirst(#23)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="'[Commune]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="remplir le jour d'attestation">
+			<Conditions value="defined(#24)">
+				<Condition operand="laDateDuJour" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="concat(day(#24), concat(' ', fullmonth(#24)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="57" value="'[Date]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="TextValeurObjet">
+			<Conditions value="!defined(#1) &amp;&amp; (defined(#3) || !defined(#3))">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Connector type="any">
+						<Condition operand="afficherGC3" operator="present"></Condition>
+						<Condition operand="afficherGC3" operator="blank"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="25" value="'Attestation sur l\'honneur'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Si genre non renseigné">
+			<Conditions value="!defined(#1) &amp;&amp; !defined(#9) &amp;&amp; !defined(#17)">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="Sexe_hebergeant" operator="blank"></Condition>
+					<Condition operand="Sexe_heberge" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="'Je soussigné(e)'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Si genre = monsieur ">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#9) &amp;&amp; #9 = 'Monsieur'">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="Sexe_hebergeant" operator="present"></Condition>
+					<Condition operand="Sexe_hebergeant" operator="=" expression="Monsieur"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="'Je soussigné'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Si genre = madame">
+			<Conditions value="!defined(#1) &amp;&amp; defined(#9) &amp;&amp; #9 = 'Madame'">
+				<Connector type="all">
+					<Condition operand="personnaliser" operator="blank"></Condition>
+					<Condition operand="Sexe_hebergeant" operator="present"></Condition>
+					<Condition operand="Sexe_hebergeant" operator="=" expression="Madame"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="'Je soussignée'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Remplir première ligne entête">
+			<Conditions value="defined(#6) &amp;&amp; defined(#7)">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="name" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="concat(ucfirst(#6), concat(' ', upper(#7)))"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="'[Prénom] [NOM]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Remplir 2e ligne entête">
+			<Conditions value="defined(#8)">
+				<Condition operand="AdresseExp" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="#8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'[Adresse]'"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Remplir 3e ligne entête">
+			<Conditions value="!defined(#12) || !defined(#13)">
+				<Connector type="any">
+					<Condition operand="CodePostalExpediteur" operator="blank"></Condition>
+					<Condition operand="VilleExp" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="'[Code postal] [Commune]'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Valeur donnée entete 3 si code postal et commune rensigné et cp&gt;10000">
+			<Conditions value="defined(#12) &amp;&amp; defined(#13) &amp;&amp; #12 &gt; 9999">
+				<Connector type="all">
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="VilleExp" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&gt;" expression="9999"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="concat(#12, concat(' ', #48))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Valeur donnée entete 3 si code postal et commune rensegné et cp &lt; 10000">
+			<Conditions value="defined(#12) &amp;&amp; defined(#13) &amp;&amp; #12 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="VilleExp" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="''"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="valeur prefixe CP si code postal et commune rensigné et cp&gt;10000">
+			<Conditions value="defined(#12) &amp;&amp; #12 &gt; 9999">
+				<Connector type="all">
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&gt;" expression="9999"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="''"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="valeur prefixe CP si code postal et commune rensegné et cp &lt; 10000">
+			<Conditions value="defined(#12) &amp;&amp; #12 &lt; 10000">
+				<Connector type="all">
+					<Condition operand="CodePostalExpediteur" operator="present"></Condition>
+					<Condition operand="CodePostalExpediteur" operator="&lt;" expression="10000"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="textvaleur P1">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="concat(#63, concat(' ', concat(#42, concat(' ', concat(#43, concat(' ', concat('demeurant ', concat(#46, concat(', ', concat(#64, concat(#47, concat(' ', concat(#48, ' atteste sur l\'honneur que :') ) ) ) )) ) ) ) ) ) ))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="TextValeur P2">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="27" value="#58"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="remplir entete 3">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="61" value="concat(#64, concat(#47, concat(' ', #48)))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="TextValeurP4">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="29" value="'Fait pour servir et valoir ce que de droit.'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="textVqleurP5">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="30" value="'  '"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="TextValeurPSIGNATURE">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="39" value="concat('Fait à ', concat(' ', concat(#56, concat(',', concat(' le ', #57)))))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="text valeur signature2">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="40" value="concat(#42, concat(' ', #43))"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="text valeur signature3">
+			<Conditions value="!defined(#1)">
+				<Condition operand="personnaliser" operator="blank"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

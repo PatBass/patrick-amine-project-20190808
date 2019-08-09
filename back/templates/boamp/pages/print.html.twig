@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+    <title>{{ step.simulator.label }} - Boamp.fr</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-language" content="fr-FR" />
+    <meta http-equiv="Content-language" content="fr-FR" />
+    <meta name="author" content="DILA, Direction de l'Information Légale et Administrative" />
+    <meta name="copyright" content="DILA, Direction de l'Information Légale et Administrative" />
+    <meta name="description" content="Boamp.fr est le site officiel facilitant l'accès des entreprises à la commande publique. Il permet le repérage et la veille gratuite des appels d'offre des marchés publics de l'État, des régions, des départements, des communes et de leurs établissements. Il facilite également la compréhension des marchés publics par la mise à disposition de fiches pratiques didactiques. Simulateur d'aide au choix d'un forfait BOAMP" />
+    <meta name="keywords" content="marches publics, appel d'offre, avis d'attribution, mapa, delegation de service public, resultat de marche, intention de conclure, annonce legale" />
+    <link rel='stylesheet' type='text/css' href="{{ asset('assets/base/css/g6k.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/boamp/css/all.css') }}" />
+    <link rel='stylesheet' type='text/css' href="{{ asset('assets/boamp/css/forfaits-pdf.css') }}" />
+</head>
+<body class="noScript ">
+    <div class="wrap">
+        <div>
+            <div id="header">
+                <div id="logo">
+                    <p>
+                        <a href="http://www.boamp.fr/" title="Boamp.fr">
+                            <img src="{{ asset('assets/boamp/images/marianne.png') }}" alt="" />
+                            <img src="{{ asset('assets/boamp/images/boamp.png') }}" alt="BOAMP.fr - Bulletin oficiel des annonces des marchés publics" />
+                        </a>
+                    </p>
+                    <div class="clearer"></div>
+                </div>
+                <div class="clearer"></div>
+            </div>
+        </div>
+        <div id="main">
+            <div id="contenu">
+                <div id="blocTitrePage">
+                    <h1 id="titrePage">
+                        {{ step.simulator.label }}
+                    </h1>
+                </div>
+                <div class="standard nopub">
+                    <div id="colonne2">
+                        <div id="core">
+                            <div class="accueilSite">
+                                <div id="step1" class="step-page">
+                                    <form method="post" action="#main" enctype="multipart/form-data" id="g6k_form">
+                                        <div class="fieldset" id="choix-fieldset-1">
+                                            <table class="grid" id="choix-grid-1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>&#xA0;</th>
+                                                        <th>MAPA inf. 90 K€</th>
+                                                        <th>Marchés nationaux</th>
+                                                        <th>Marchés européens</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Nombre d'avis initiaux</th>
+                                                        <td>
+                                                            <div id="nbAvisInitiauxMapa-container" class="field-container">
+                                                                <input type="number" id="nbAvisInitiauxMapa" name="nbAvisInitiauxMapa" value="{{ data.nbAvisInitiauxMapa }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisInitiauxNational-container" class="field-container">
+                                                                <input type="number" id="nbAvisInitiauxNational" name="nbAvisInitiauxNational" value="{{ data.nbAvisInitiauxNational }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisInitiauxEuropeen-container" class="field-container">
+                                                                <input type="number" id="nbAvisInitiauxEuropeen" name="nbAvisInitiauxEuropeen" value="{{ data.nbAvisInitiauxEuropeen }}" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nombre d'avis de résultats de marché</th>
+                                                        <td>
+                                                            <div id="nbAvisResultatsMapa-container" class="field-container">
+                                                                <input type="number" id="nbAvisResultatsMapa" name="nbAvisResultatsMapa" value="{{ data.nbAvisResultatsMapa }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisResultatsNational-container" class="field-container">
+                                                                <input type="number" id="nbAvisResultatsNational" name="nbAvisResultatsNational" value="{{ data.nbAvisResultatsNational }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisResultatsEuropeen-container" class="field-container">
+                                                                <input type="number" id="nbAvisResultatsEuropeen" name="nbAvisResultatsEuropeen" value="{{ data.nbAvisResultatsEuropeen }}" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nombre d'avis d'intention de conclure</th>
+                                                        <td>
+                                                            <div id="nbAvisIntentionConclureMapa-container" class="field-container">
+                                                                <input type="number" id="nbAvisIntentionConclureMapa" name="nbAvisIntentionConclureMapa" value="{{ data.nbAvisIntentionConclureMapa }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisIntentionConclureNational-container" class="field-container">
+                                                                <input type="number" id="nbAvisIntentionConclureNational" name="nbAvisIntentionConclureNational" value="{{ data.nbAvisIntentionConclureNational }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisIntentionConclureEuropeen-container" class="field-container">
+                                                                <input type="number" id="nbAvisIntentionConclureEuropeen" name="nbAvisIntentionConclureEuropeen" value="{{ data.nbAvisIntentionConclureEuropeen }}" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nombre d'avis rectificatifs</th>
+                                                        <td>
+                                                            <div id="nbAvisRectificatifsMapa-container" class="field-container">
+                                                                <input type="number" id="nbAvisRectificatifsMapa" name="nbAvisRectificatifsMapa" value="{{ data.nbAvisRectificatifsMapa }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisRectificatifsNational-container" class="field-container">
+                                                                <input type="number" id="nbAvisRectificatifsNational" name="nbAvisRectificatifsNational" value="{{ data.nbAvisRectificatifsNational }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisRectificatifsEuropeen-container" class="field-container">
+                                                                <input type="number" id="nbAvisRectificatifsEuropeen" name="nbAvisRectificatifsEuropeen" value="{{ data.nbAvisRectificatifsEuropeen }}" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nombre d'avis d'annulation</th>
+                                                        <td>
+                                                            <div id="nbAvisAnnulationMapa-container" class="field-container">
+                                                                <input type="number" id="nbAvisAnnulationMapa" name="nbAvisAnnulationMapa" value="{{ data.nbAvisAnnulationMapa }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisAnnulationNational-container" class="field-container">
+                                                                <input type="number" id="nbAvisAnnulationNational" name="nbAvisAnnulationNational" value="{{ data.nbAvisAnnulationNational }}" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div id="nbAvisAnnulationEuropeen-container" class="field-container">
+                                                                <input type="number" id="nbAvisAnnulationEuropeen" name="nbAvisAnnulationEuropeen" value="{{ data.nbAvisAnnulationEuropeen }}" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="foot-notes">
+                                            <div id="foot-note-1" class="foot-note"> Sur la base de votre estimation, voici le(s) forfait(s) le(s) plus adapté(s) à vos besoins</div>
+											{% if data.AvisMapaNational and data.AvisMapaNationalUP > 0 -%}
+                                            <div id="foot-note-2" class="foot-note"><strong>MAPA < 90 K€ / Marchés Nationaux ({{ data.AvisMapaNationalUP }} UP) :</strong></div>
+											{% endif %}
+											{% if data.nbForfait7MapaNational > 0 -%}
+                                            <div id="foot-note-3" class="foot-note">{{ data.nbForfait7MapaNational }} forfait(s) de {{ data.nbUPForfait7 }} UP / 12 mois + {{ data.nbUPOffertsForfait7 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait6MapaNational > 0 -%}
+                                            <div id="foot-note-4" class="foot-note">{{ data.nbForfait6MapaNational }} forfait(s) de {{ data.nbUPForfait6 }} UP / 12 mois + {{ data.nbUPOffertsForfait6 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait5MapaNational > 0 -%}
+                                            <div id="foot-note-5" class="foot-note">{{ data.nbForfait5MapaNational }} forfait(s) de {{ data.nbUPForfait5 }} UP / 12 mois + {{ data.nbUPOffertsForfait5 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait4MapaNational > 0 -%}
+                                            <div id="foot-note-6" class="foot-note">{{ data.nbForfait4MapaNational }} forfait(s) de {{ data.nbUPForfait4 }} UP / 12 mois + {{ data.nbUPOffertsForfait4 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait3MapaNational > 0 -%}
+                                            <div id="foot-note-7" class="foot-note">{{ data.nbForfait3MapaNational }} forfait(s) de {{ data.nbUPForfait3 }} UP / 12 mois + {{ data.nbUPOffertsForfait3 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait2MapaNational > 0 -%}
+                                            <div id="foot-note-8" class="foot-note">{{ data.nbForfait2MapaNational }} forfait(s) de {{ data.nbUPForfait2 }} UP / 12 mois + {{ data.nbUPOffertsForfait2 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbForfait1MapaNational > 0 -%}
+                                            <div id="foot-note-9" class="foot-note">{{ data.nbForfait1MapaNational }} forfait(s) de {{ data.nbUPForfait1 }} UP / 12 mois + {{ data.nbUPOffertsForfait1 }} UP offertes</div>
+											{% endif %}
+											{% if data.nbComplementMapaNational > 0 -%}
+                                            <div id="foot-note-10" class="foot-note"> complété de {{ data.nbComplementMapaNational }} unité(s) de publication à la demande </div>
+											{% endif %}
+											{% if data.AvisEuropeen and data.AvisEuropeenUP > 0 -%}
+                                            <div id="foot-note-11" class="foot-note"> <strong>UE ({{ data.AvisEuropeenUP }} UP) :</strong> </div>
+											{% endif %}
+											{% if data.nbForfait7Europeen > 0 -%}
+                                            <div id="foot-note-12" class="foot-note">{{ data.nbForfait7Europeen }} forfait(s) de {{ data.nbUPForfait7 }} UP / 12 mois + {{ data.nbUPOffertsForfait7 }} UP offertes </div>
+											{% endif %}
+ 											{% if data.nbForfait6Europeen > 0 -%}
+                                            <div id="foot-note-13" class="foot-note">{{ data.nbForfait6Europeen }} forfait(s) de {{ data.nbUPForfait6 }} UP / 12 mois + {{ data.nbUPOffertsForfait6 }} UP offertes </div>
+											{% endif %}
+											{% if data.nbForfait5Europeen > 0 -%}
+                                            <div id="foot-note-14" class="foot-note">{{ data.nbForfait5Europeen }} forfait(s) de {{ data.nbUPForfait5 }} UP / 12 mois + {{ data.nbUPOffertsForfait5 }} UP offertes </div>
+											{% endif %}
+											{% if data.nbForfait4Europeen > 0 -%}
+                                            <div id="foot-note-15" class="foot-note">{{ data.nbForfait4Europeen }} forfait(s) de {{ data.nbUPForfait4 }} UP / 12 mois + {{ data.nbUPOffertsForfait4 }} UP offertes </div>
+											{% endif %}
+											{% if data.nbForfait3Europeen > 0 -%}
+                                            <div id="foot-note-16" class="foot-note">{{ data.nbForfait3Europeen }} forfait(s) de {{ data.nbUPForfait3 }} UP / 12 mois + {{ data.nbUPOffertsForfait3 }} UP offertes </div>
+											{% endif %}
+											{% if data.nbForfait2Europeen > 0 -%}
+                                            <div id="foot-note-17" class="foot-note">{{ data.nbForfait2Europeen }} forfait(s) de {{ data.nbUPForfait2 }} UP / 12 mois + {{ data.nbUPOffertsForfait2 }} UP offertes </div>
+											{% endif %}
+											{% if data.nbForfait1Europeen > 0 -%}
+                                            <div id="foot-note-18" class="foot-note">{{ data.nbForfait1Europeen }} forfait(s) de {{ data.nbUPForfait1 }} UP / 12 mois + {{ data.nbUPOffertsForfait1 }} UP offertes </div>
+											{% endif %}
+                                            <div id="foot-note-19" class="foot-note"> complété de {{ data.nbComplementEuropeen }} unité(s) de publication à la demande </div>
+                                            <div id="foot-note-20" class="foot-note"> Soit un total de <strong>{{ data.AvisPrixForfaitHT }}</strong> euros HT. </div>
+                                            <div id="foot-note-21" class="foot-note"> En choisissant ce(s) forfait(s), vous bénéficiez de <strong>{{ data.pourcentRemise }}</strong>% de remise sur le tarif de base et vos avis rectificatifs/annulations sont offerts. </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- end of accueilSite -->
+                        </div>
+                        <!-- end of core -->
+                    </div>
+                    <!-- end colonne2 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

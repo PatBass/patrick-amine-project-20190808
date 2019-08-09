@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="zones" label="Simulateur du zonage de votre commune : 1, 1 bis, 2 ou 3" defaultView="particuliers" referer="https://www.service-public.fr/particuliers/vosdroits/F1317" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce simulateur vous permet de connaître la zone géographique (1, 1 bis, 2 ou 3) dont dépend le logement concerné. Cette zone détermine pour partie le plafond de ressources permettant de percevoir une allocation logement (APL, ALF, ALS)  ou une réduction du loyer de solidarité (RLS) pour les locataires d'un logement social (HLM). Le plafond de ressources est également fixé en fonction de la composition de votre foyer.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="communeInsee" label="Code Insee de la commune" type="text"></Data>
+		<Data id="2" name="zone" label="Zone de la commune" type="text" source="1" index="'zoneGeographique'"></Data>
+		<Data id="3" name="nomCommune" label="Nom de la commune" type="text" source="1" index="'nomCommune'"></Data>
+		<Data id="4" name="zoneAffichee" label="Zone affichée" type="integer"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="zonage" label="Zonage" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="zonagePanel" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Commune (nom ou code postal)" prompt="Saisir le nom de la ville ou son code postal" required="1" visibleRequired="0" colon="0" help="0" widget="geoAPILocalities">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="2" name="blocResultats" label="">
+						<Chapter id="1" name="chapitreResultats" label="">
+							<Section id="1" name="sectionResultats" label="">
+								<Content><![CDATA[
+#3 se situe en zone #4
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+<h2>Pour tout complément d'information, consulter les fiches pratiques :</h2><ul><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1317" title="Loyer d'un logement social - Nouvelle fenêtre"> Loyer d'un logement social </a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F12006" title="Aide personnalisée au logement (APL) - Nouvelle fenêtre"> Aide personnalisée au logement (APL) </a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F13132" title="Allocation de logement familiale (ALF) - Nouvelle fenêtre"> Allocation de logement familiale (ALF) </a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1280" title="Allocation de logement sociale (ALS) - Nouvelle fenêtre"> Allocation de logement sociale (ALS) </a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31864" title="Quelles sont les différences entre les allocations logement ? - Nouvelle fenêtre">  Quelles sont les différences entre les allocations logement ?</a></li></ul><ul></ul>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="UnDeuxTroisZonage" label="Zonage" request="SELECT nomcommune as nomCommune, zonegeographique as zoneGeographique FROM UnDeuxTroisZonage WHERE codeInsee = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Inseeutilisateur" data="1"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Affichage résultat">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2)">
+				<Connector type="all">
+					<Condition operand="nomCommune" operator="present"></Condition>
+					<Condition operand="zone" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="footnote" step="1" footnote="1"></Action>
+				<Action id="2" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="2"></Action>
+				<Action id="2" name="hideObject" target="footnote" step="1" footnote="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Affichage zone 01 en 1">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 01">
+				<Connector type="all">
+					<Condition operand="zone" operator="present"></Condition>
+					<Condition operand="zone" operator="=" expression="01"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Affichage zone 01 bis en 1 bis">
+			<Conditions value="defined(#2) &amp;&amp; #2 = '01 bis'">
+				<Connector type="all">
+					<Condition operand="zone" operator="present"></Condition>
+					<Condition operand="zone" operator="=" expression="'01 bis'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="'1 bis'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Affichage zone 02 en 2">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 2">
+				<Connector type="all">
+					<Condition operand="zone" operator="present"></Condition>
+					<Condition operand="zone" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Affichage zone 03 en 3">
+			<Conditions value="defined(#2) &amp;&amp; #2 = 03">
+				<Connector type="all">
+					<Condition operand="zone" operator="present"></Condition>
+					<Condition operand="zone" operator="=" expression="03"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="3"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+<div>Mise en prod 21 juin 2018</div><div>Mise à jour 17 juillet 2018 (amélioration
+du référencement par ajout des mots « logement social », « HLM »
+
+dans le texte de présentation)
+
+</div>
+	]]></RelatedInformations>
+</Simulator>

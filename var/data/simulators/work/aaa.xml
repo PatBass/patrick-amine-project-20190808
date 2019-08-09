@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="aaa" label="aaa" category="aaa" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="Europe/Paris">
+	<Description edition="wysihtml"><![CDATA[
+
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="qqq" label="qqqq" type="multitext">
+			<Choices>
+				<Choice id="1" value="aaa" label="aaa" />
+				<Choice id="2" value="bbb" label="bbb" />
+				<Choice id="3" value="ccc" label="ccc" />
+				<Choice id="4" value="ddd" label="ddd" />
+				<Choice id="5" value="eee" label="eee" />
+				<Choice id="6" value="fff" label="fff" />
+			</Choices>
+		</Data>
+		<Data id="2" name="qqq1" label="qqqq" type="multitext">
+			<Choices>
+				<Choice id="1" value="aaa" label="aaa" />
+				<Choice id="2" value="bbb" label="bbb" />
+				<Choice id="3" value="ccc" label="ccc" />
+				<Choice id="4" value="ddd" label="ddd" />
+				<Choice id="5" value="eee" label="eee" />
+				<Choice id="6" value="fff" label="fff" />
+			</Choices>
+		</Data>
+		<Data id="3" name="aa" label="aa" type="choice">
+			<Choices>
+				<Choice id="1" value="aaaaaa1" label="aaaaaa1" />
+				<Choice id="2" value="bbbbbb2" label="bbbbbb2" />
+				<Choice id="3" value="cccccc3" label="cccccc3" />
+				<Choice id="4" value="dddddd4" label="dddddd4" />
+				<Choice id="5" value="eeeeee5" label="eeeeee5" />
+				<Choice id="6" value="ffffff6" label="ffffff6" />
+			</Choices>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="rrr" label="rrr" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="p" label="">
+					<FieldSet id="1">
+						<Field position="1" data="3" usage="input" newline="0" label="aaaa" required="0" visibleRequired="0" colon="0" help="0" />
+						<Field position="2" data="2" usage="input" newline="0" label="bbb" required="0" visibleRequired="0" colon="0" help="0" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="upload" label="upload" shape="button" what="submit" for="nextStep" location="bottom" />
+			</ActionList>
+		</Step>
+		<Step id="2" name="et3" label="et3" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="p1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="3" usage="input" newline="0" label="aa" required="0" visibleRequired="0" colon="0" help="0" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="revenir" label="revenir" shape="button" what="submit" for="priorStep" location="bottom" />
+			</ActionList>
+		</Step>
+		<Step id="3" name="e2" label="e2" template="pages:aaa.print.html.twig" output="downloadablePDF" dynamic="1">
+			<Panels>
+				<Panel id="1" name="p1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="2" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0" />
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="Infraction_donnees" label="eee" request="SELECT id, categorie_infraction as Categorie_infraction FROM categorie" returnType="assocArray" />
+	</Sources>
+</Simulator>

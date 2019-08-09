@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+	<head>
+	<title>la Saisie guidée service public</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="fr" />
+    <link rel='stylesheet' type='text/css' href="{{ asset('assets/particuliers/css/style-pdf.css') }}" />
+	</head>
+<body>
+<div class="step-page">
+	<div class="foot-notes">
+        <div  class="AlignerAgauche">
+			<p>{{ data.valeurprenom1 }} {{ data.valeurnom1 }}<br>
+			{{ data.ValeurAdresseExp }}<br>
+			{% if (data.ValeurComplementAdresseExp != '') and (data.ValeurComplementAdresseExp != ' ') %}{{ data.ValeurComplementAdresseExp }}<br>{% endif %}
+			{{ data.ValeurCodePostal }} {{ data.ValeurVilleExp }}
+			{% if (data.sup11 != '') and (data.sup11 != ' ') %}<br>{{ data.sup11 }}{% endif %}
+			{% if (data.sup12 != '') and (data.sup12 != ' ') %}<br>{{ data.sup12 }}{% endif %}
+			{% if (data.sup13 != '') and (data.sup13 != ' ') %}<br>{{ data.sup13 }}{% endif %}</p>
+		</div>
+		<div  class="AlignerAdroite2">
+			<p>{% if (data.ValeurNomSocieteDest != '') and (data.ValeurNomSocieteDest != ' ') %}{{ data.ValeurNomSocieteDest }}<br>{% endif %}
+			{% if (data.valeurNometfonctiondudestinataire != '') and (data.valeurNometfonctiondudestinataire != ' ') %}{{ data.valeurNometfonctiondudestinataire }}<br>{% endif %}
+			{% if (data.ValeurAdresseDestinataire != '') and (data.ValeurAdresseDestinataire != ' ') %}{{ data.ValeurAdresseDestinataire }}<br>{% endif %}
+			{% if (data.ValeurComplementAdresseDest != '') and (data.ValeurComplementAdresseDest != ' ') %}{{ data.ValeurComplementAdresseDest }}<br>{% endif %}
+			{{ data.ValeurCodePostalDest }} {{ data.ValeurVilleDest }}
+			{% if (data.sup21 != '') and (data.sup21 != ' ') %}<br>{{ data.sup21 }}{% endif %}
+			{% if (data.sup22 != '') and (data.sup22 != ' ') %}<br>{{ data.sup22 }}{% endif %}
+			{% if (data.sup23 != '') and (data.sup23 != ' ') %}<br>{{ data.sup23 }}{% endif %}</p>
+		</div>
+		
+		<div class="AlignerAdroite2">
+			<p>À {{ data.ValeurFaitANomVille }}, le {{ data.ValeurJourDateJour }} {{ data.ValeurMoisAnneeDateJour }}
+			{% if (data.sup31 != '') and (data.sup31 != ' ') %}<br>{{ data.sup31 }}{% endif %}
+			{% if (data.sup32 != '') and (data.sup32 != ' ') %}<br>{{ data.sup32 }}{% endif %}
+			{% if (data.sup33 != '') and (data.sup33 != ' ') %}<br>{{ data.sup33 }}{% endif %}</p>
+		</div>
+		<div  class="AlignerAgauche">
+		{% if (data.Donnee1objet != '') and (data.Donnee1objet != ' ') %}<p>{{ data.Donnee1objet }}</p>{% endif %}
+		</div>
+		<div class="AlignerAgauche">
+			{% if (data.donnee2personnalisation != '') and (data.donnee2personnalisation != ' ') %}<p>{{ data.donnee2personnalisation }},</p>{% endif %}
+			
+			{% if (data.donnee3 != '') and (data.donnee3 != ' ') %}<p>{{ data.donnee3 }}</p>{% endif %}
+			{% if (data.donnee4 != '') and (data.donnee4 != ' ') %}<p>{{ data.donnee4 }}</p>{% endif %}
+			{% if (data.donnee5 != '') and (data.donnee5 != ' ') %}<p>{{ data.donnee5 }}</p>{% endif %}
+			{% if (data.donnee6 != '') and (data.donnee6 != ' ') %}<p>{{ data.donnee6 }}</p>{% endif %}
+			{% if (data.donnee7 != '') and (data.donnee7 != ' ') %}<p>{{ data.donnee7 }}</p>{% endif %}
+			{% if (data.donnee8 != '') and (data.donnee8 != ' ') %}<p>{{ data.donnee8 }}</p>{% endif %}
+			{% if (data.donnee9 != '') and (data.donnee9 != ' ') %}<p>{{ data.donnee9 }}</p>{% endif %}
+			{% if (data.donnee10 != '') and (data.donnee10 != ' ') %}<p>{{ data.donnee10 }}</p>{% endif %}
+			{% if (data.donnee11 != '') and (data.donnee11 != ' ') %}<p>{{ data.donnee11 }}</p>{% endif %}
+			{% if (data.donnee12 != '') and (data.donnee12 != ' ') %}<p>{{ data.donnee12 }}</p>{% endif %}
+			{% if (data.donnee13 != '') and (data.donnee13 != ' ') %}<p>{{ data.donnee13 }}</p>{% endif %}		
+		</div>
+		<div  class="AlignerAdroite2">
+			<br><br><p>{{ data.signature }}<br><br><br>
+			<font color="#e4e1e1">...........................</font></p>
+		</div>
+</div>				
+</body>
+</html>
+{# https://www.eslot.fr/sites/default/files/inline-images/position%20adresse%20lettre%20courrier.png    AlignerMilieu  <strong> #}
+
+

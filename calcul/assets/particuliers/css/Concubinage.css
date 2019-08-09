@@ -1,0 +1,481 @@
+@import "common.css";
+
+
+#personnaliser_1, #lienSuivant_1  { /* masquer les bouton radio de personaliser */
+position: absolute !important;
+  clip: rect(0, 0, 0, 0); 
+    height: 1px;
+    width: 1px;
+    border: 0;
+    visibility: none;   
+}
+
+#FaitsAttestation{ /*style de la zone de text*/
+min-width:100%;
+height:100px;
+border:1px solid #44317c;
+background-color: #fff;
+
+}
+
+
+
+
+#validertexte /*style du boutton valider */
+ {
+height: 25px;
+float: right;
+padding: 4px 14px 4px 14px;
+font-weight: 800;
+color: #000;
+
+}
+
+
+
+
+label#FaitsAttestation-label {
+
+    text-align: center;
+	width: 100%;
+
+}
+
+
+#ModelLettre-panel-1-fieldset-1, #ModelLettre-panel-1-fieldset-2, #ModelLettre-panel-1-fieldset-3, #ModelLettre-panel-1-fieldset-14, #ModelLettre-panel-1-fieldset-13, #ModelLettre-panel-1-fieldset-6, #ModelLettre-panel-1-blockinfo-8-chapter-1-section-1-content, #ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content{ /* masquer au demarrage les 3blocks */
+ display: none;  
+}
+
+#ModelLettre-panel-1-fieldset-6{
+margin-left: 30%;	
+}
+
+
+#ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content { /*style d champ obligatoire */
+    color: #000;
+    text-align: center;
+	background-color: #dddddd;
+}
+
+.step-page .action_buttons2 button, .step-page .action_buttons3 button { /* bouton style */
+    color: #fff;
+    background-color: #44317c !important;
+    border-color: #44317c;
+    display: inline-block;
+    font-size: 1.2em;
+    margin-left: 0%;
+    padding: 7px 27px 7px 27px;
+}
+
+#ModelLettre-panel-1-blockinfo-6-chapter-1-section-1-content{
+    background-color: #fff;
+    padding: 0em 0em 0em 0em;
+}
+
+
+
+#afficherGC2-container, #afficherGC3-container, #afficherGC4-container, #afficherBoutonSuivant-container {
+	display: none;
+}
+
+/* **************************************** */
+
+
+
+@media (min-width: 37em)  {
+#personnaliser-container, #ModifierSaisie-container { 
+/*le div entier de personnaliser en version non mobile*/
+	display: flex;
+	lex-direction: row;
+	justify-content: space-between;
+    border: 1px solid #44317c;
+    border-radius: 3px;
+    background-color: #44317c;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    visibility: none;
+
+}
+
+#masquer-container{
+display: none;	
+}
+
+}
+@media (max-width: 37em)  {
+#personnaliser-container, #ModifierSaisie-container { /*le div entier en version mobile*/
+	
+	justify-content: space-between;
+    border: 1px solid #44317c;
+    border-radius: 3px;
+    background-color: #44317c;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+
+}
+#masquer-container{
+	display:none;
+}
+}
+
+
+.step-page label.choice { /*  text boutton personnaliser  */
+    margin-top: 0.1em;
+    margin-right: 1.2em;
+	margin-left: 1.2em;
+    padding: 0;
+     width: auto; 
+    min-width: 1em;
+     font-weight: normal; 
+     text-align: right; 
+    font-weight: 600;
+	color: #44317c;
+	font-weight:700;
+	font-size: 14px;
+		text-align: left;
+
+}
+
+
+
+#personnaliser-label, #masquer-label, #ModifierSaisie-label{ /*text explicatif en haut*/
+color: #fff;
+text-align: left;
+}
+
+.step-page label.choice:hover{ /*text boutton personnaliser*/
+color: #000;
+cursor: pointer;
+}
+
+/* #personnaliser, #masquer { */
+
+ /*boutton personaliser*/
+#boutt1 {
+background-color: #fff;
+    border-color: #fff;
+	border: 10px;
+	color:#44317c;
+	padding: 0.5em;
+	font-weight:700;
+	border-radius: 4px;
+	
+  width: 11.2em;
+  height: 2.6em;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  margin-top: .3em;
+  white-space: inherit;
+  padding: 10px 10px 10px 10px; 
+margin-right:1px;  
+}
+
+#boutt2 {
+background-color: #eae6f7;
+    border-color: #fff;
+	border: 10px;
+	color:#44317c;
+	padding: 0.5em;
+	font-weight:700;
+	border-radius: 4px;
+	
+  width: 11.2em;
+  height: 2.6em;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  margin-top: .3em;
+  white-space: inherit;
+  padding: 10px 10px 10px 10px;  
+
+  
+}
+
+
+
+#boutt1:hover { 
+    background-color: #eae6f7;
+	cursor: pointer;
+}
+#boutt2:hover { 
+    background-color: #fff;
+	cursor: pointer;
+}
+h2, .h2 {
+    font-size: 24px;
+    color: #fff; 
+}
+h3, .h3 {
+   font-size: 16px;
+     color: #fff; 
+}
+h5, .h5 {
+   font-family: "roboto_regular", Arial, sans-serif;
+   font-size: 0.875em;
+text-align:center;	
+color: #414856;  
+}
+
+div#adroitediv, .alignertextadroite {
+   text-align: right; 
+   font-size: 1em; 
+   font-family: "roboto_regular", Arial, sans-serif; font-weight: 400;
+
+}
+
+div#centrerdiv  { /* alignement du titre */
+  margin-left: 300px;
+   font-size: 1em; 
+   font-family: "roboto_regular", Arial, sans-serif; font-weight: 400;
+}
+
+@media (max-width: 37em)  { 
+div#adroitediv, .alignertextadroite {
+   text-align: left; 
+   font-size: 1em; 
+   font-family: "roboto_regular", Arial, sans-serif; font-weight: 400;
+
+}
+
+div#centrerdiv  { /* alignement du titre */
+  margin-left: 0px;
+   font-size: 1em; 
+   font-family: "roboto_regular", Arial, sans-serif; font-weight: 400;
+}
+}
+
+
+
+@media (max-width: 62em) {
+	.form-horizontal .control-label {
+     text-align: left; 
+}
+
+.step-page .form-group[data-type=date] .input-group {
+    max-width: 14em;
+
+    width: 14em;
+}
+
+
+}
+
+.step-page input[type=text] {
+   width:14em !important;
+   max-width: 14em;
+}
+.pre-note{
+	height: 50px;
+	display: none;
+}
+
+.step-page .fieldset-container legend {
+    border-bottom: 3px solid;
+    color: #44317c;
+    margin: 0 0 0.8em;
+    padding: 0;
+    width: 100%;
+}
+
+.step-page .blockinfo-chapters, .step-page .section-content, .step-page .section-annotations {
+    border: 0px #fff;
+    border-radius: 3px;
+	    margin-bottom: 10px;
+
+}
+
+
+
+div#ModelLettre-panel-1-blockinfo-7-chapter-1-section-1-content {
+    border: 2px solid #ccc;
+    border-radius: 3px;
+	    margin-bottom: 10px;
+		background-color: #fff;
+		white-space: pre-wrap;
+
+}
+
+
+div#ModelLettre-panel-1-blockinfo-9-chapter-1-section-1-content {
+    border: 0px solid #fff;
+    border-radius: 3px;
+	    margin-bottom: 10px;
+		background-color: #fff;
+
+}
+
+div#ModelLettre-panel-1-blockinfo-11-chapter-1-section-1-content {
+    border: 0px solid #fff;
+    border-radius: 3px;
+	    margin-bottom: 10px;
+		background-color: #fff;
+
+		
+
+}
+
+
+
+
+label#lienSuivant-label {
+	    color: red;
+    text-align: center;
+	width: 100%;
+	background-color: #ccc;
+}
+
+
+div#ModeleLettre-panel-1-blockinfo-5-chapter-1-section-1-content{
+	background-color: #fff;
+	padding: 0em 0em 0em 0em;
+}
+
+.fiche-item .fiche-item-content {
+   padding: 0em 0em 0em 0em;
+}
+
+
+.step-page fieldset, .step-page div.fieldset {
+    margin-top: 0;
+    margin-bottom: 0em;
+}
+.step-page .action_buttons {
+    margin: 0em 0 0;
+    text-align: center;
+	visibility: hidden;
+}
+
+.simulator-breadcrumb {
+    display: none;
+height: 0em;
+}
+
+input#ModifierSaisie_1{
+	visibility: hidden;
+}
+
+
+.step-page .action_buttons2 button {
+
+  color: #fff;
+    background-color: #44317c !important;
+    border-color: #44317c;
+	display: inline-block;
+    font-size: 1.2em;
+	margin-left: 20%;
+	padding: 7px 27px 7px 27px;
+
+}
+
+#ModelLettre-panel-1-blockinfo-8-chapter-1-section-1-content{ /* msg text de champ oblogatoires */
+  color: red;
+  text-align: center;
+}
+ 
+.step-page .action_buttons [name=DeplacerFocus]{
+visibility: hidden;
+}
+.step-page .action_buttons [name=Corriger]{
+	visibility: hidden;
+}
+.step-page .action_buttons [name=TelechargerPDF]{
+	  color: #44317c;
+    background-color: #fff !important;
+    border-color: #44317c;
+	display: inline-block;
+    font-size: 1.2em;
+
+	padding: 7px 27px 7px 27px;
+}
+
+
+div#ModelLettre-panel-1-blockinfo-12-chapter-1-section-1-content { /* style du confoirmation de cipie de text */
+            background-color: #ccc;
+			margin: 1px 0px 1px 0px;
+			text-align:center;
+			width: auto;
+			opacity: 0;
+			transition: all 4s linear;
+			border: 0px;
+			    border: 0px solid #fff;
+    border-radius: 3px;
+	
+        }
+
+
+
+.step-page droitetext{ /* alignement du titre */
+font-style: normal;
+  text-decoration: underline;
+  text-align: right;
+  color: red;
+}
+
+.step-page td {
+    text-align: right;
+    vertical-align: middle;
+    border: 0px;
+}
+
+
+@media (max-width: 37em)  { /*version mobile alignement du titre*/
+ centrertext  {
+	 margin-left: 1%;
+ }
+}
+
+.step-page input[type=number] {
+    min-width: 14em;
+}
+
+
+
+#boutt2{
+	display:none;
+}
+
+.step-page table  {
+    width: 0%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.step-page .form-group .input-group {
+    display: table; /* probleme alignement des radio */
+}
+
+div#FaitsAttestation-container > div.input-group {
+    display: table; /*pour mettre la zone de etxt a 100% */
+	width :100%;
+}
+
+
+
+.btn-help {/* aligner lke bouton d aide a droite */
+
+    float: right;
+	position: relative;
+}
+
+
+@media (min-width: 37em)  {
+div#boutttelecharger {
+	display: none;
+} 
+}
+@media (max-width: 37em)  { /*version mobile*/
+
+#table2, #table1 { /* tableau qui contient le lien de copier */
+	display: none;
+}
+
+}
+
+.step-page div.has-error { /* alignement correcte du msg derreur */
+    clear: initial;
+    text-align: center;
+}
+
+#step1{
+	padding: 0em 0em 0em 0em;	
+}

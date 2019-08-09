@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="GenerateurDeTwig" label="GenerateurDeTwig" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Generateur de Twig
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<DataGroup id="1" name="groupededonne" label="groupe de donnée 1">
+			<Data id="1" name="premieredonnee" label="donnée 1" type="text"></Data>
+			<Data id="2" name="deuxiemeDonnee" label="donnée 2" type="text"></Data>
+			<Data id="3" name="troisiemeDonnee" label="donnée 3" type="text"></Data>
+			<Data id="4" name="quatriemeDonnee" label="donnée 4" type="text"></Data>
+			<Data id="5" name="cinquiemeDonnee" label="donnée 5" type="text"></Data>
+			<Data id="6" name="sixiemeDonnee" label="donnée 6" type="text"></Data>
+			<Data id="7" name="septiemeDonnee" label="donnée 7" type="text"></Data>
+			<Data id="8" name="huitiemeDonnee" label="donnée 8" type="text"></Data>
+			<Data id="9" name="neuviemeDonnee" label="donnée 9" type="text"></Data>
+			<Data id="10" name="dixiemeDonnee" label="donnée 10" type="text"></Data>
+			<Data id="11" name="onziemedonnee" label="donnée 11" type="text"></Data>
+			<Data id="12" name="deuziemeDonnee" label="donnée 12" type="text"></Data>
+			<Data id="13" name="treiziemeDonnee" label="donnée 13" type="text"></Data>
+			<Data id="14" name="quatorziemeDonnee" label="donnée 14" type="text"></Data>
+			<Data id="15" name="quinziemeemeDonnee" label="donnée 15" type="text"></Data>
+			<Data id="16" name="seixiemeDonnee" label="donnée 16" type="text"></Data>
+			<Data id="17" name="dixseptiemeDonnee" label="donnée 17" type="text"></Data>
+			<Data id="18" name="dixhuitiemeDonnee" label="donnée 18" type="text"></Data>
+			<Data id="19" name="dixneufiemeDonnee" label="donnée 19" type="text"></Data>
+			<Data id="20" name="vingtiemeDonnee" label="donnée 20" type="text"></Data>
+			<Data id="21" name="vingtetuniemeDonnee" label="donnée 21" type="text"></Data>
+			<Data id="22" name="vingtdeuxemeDonnee" label="donnée 22" type="text"></Data>
+			<Data id="23" name="vingttroisemeDonnee" label="donnée 23" type="text"></Data>
+			<Data id="24" name="vingtquatreiemeDonnee" label="donnée 24" type="text"></Data>
+			<Data id="25" name="vingtcinqiemeDonnee" label="donnée 25" type="text"></Data>
+			<Data id="26" name="vingtsixiemeDonnee" label="donnée 26" type="text"></Data>
+			<Data id="27" name="vingtseptiemeDonnee" label="donnée 27" type="text"></Data>
+			<Data id="28" name="vingthuitiemeDonnee" label="donnée 28" type="text"></Data>
+			<Data id="29" name="vingtneufemeDonnee" label="donnée 29" type="text"></Data>
+			<Data id="30" name="trentiemeDonnee" label="donnée 30" type="text"></Data>
+			<Data id="31" name="premiereTypologie" label="Typologie 1" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="32" name="deuxiemeTypologiee" label="Typologie 2" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="33" name="troisiemeTypologiee" label="Typologie 3" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="34" name="quatriemeTypologiee" label="Typologie 4" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="35" name="cinquiemeTypologiee" label="Typologie 5" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="36" name="sixiemeTypologiee" label="Typologie 6" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="37" name="septiemeTypologiee" label="Typologie 7" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="38" name="huitiemeTypologiee" label="Typologie 8" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="39" name="neuviemeTypologiee" label="Typologie 9" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="40" name="dixiemeTypologiee" label="Typologie 10" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="41" name="onziemeTypologiee" label="Typologie 11" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="42" name="deuziemeTypologiee" label="Typologie 12" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="43" name="treiziemeTypologiee" label="Typologie 13" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="44" name="quatorziemeTypologiee" label="Typologie 14" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="45" name="quinziemeemeTypologiee" label="Typologie 15" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="46" name="seixiemeTypologiee" label="Typologie 16" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="47" name="dixseptiemeTypologiee" label="Typologie 17" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="48" name="dixhuitiemeTypologiee" label="Typologie 18" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="49" name="dixneufiemeTypologiee" label="Typologie 19" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="50" name="vingtiemeTypologiee" label="Typologie 20" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Text Normal"></Choice>
+					<Choice id="2" value="2" label="Date"></Choice>
+					<Choice id="3" value="3" label="Code postal"></Choice>
+					<Choice id="4" value="4" label="Téléphone"></Choice>
+					<Choice id="5" value="5" label="Case à cocher même ligne"></Choice>
+					<Choice id="6" value="6" label="Case à cocher deux lignes ligne"></Choice>
+					<Choice id="7" value="7" label="Text uniquement taille normal"></Choice>
+					<Choice id="8" value="8" label="Text uniquement taille moyenne"></Choice>
+					<Choice id="9" value="9" label="Text uniquement taille petite"></Choice>
+					<Choice id="10" value="10" label="adresse"></Choice>
+				</Choices>
+			</Data>
+			<Data id="51" name="vingtetuniemeTypologiee" label="Typologie 21" type="text"></Data>
+			<Data id="52" name="vingtdeuxemeTypologiee" label="Typologie 22" type="text"></Data>
+			<Data id="53" name="vingttroisemeTypologiee" label="Typologie 23" type="text"></Data>
+			<Data id="54" name="vingtquatreiemeTypologiee" label="Typologie 24" type="text"></Data>
+			<Data id="55" name="vingtcinqiemeTypologiee" label="Typologie 25" type="text"></Data>
+			<Data id="56" name="vingtsixiemeTypologiee" label="Typologie 26" type="text"></Data>
+			<Data id="57" name="vingtseptiemeTypologiee" label="Typologie 27" type="text"></Data>
+			<Data id="58" name="vingthuitiemeTypologiee" label="Typologie 28" type="text"></Data>
+			<Data id="59" name="vingtneufemeTypologiee" label="Typologie 29" type="text"></Data>
+			<Data id="60" name="trentiemeTypologiee" label="Typologie 30" type="text"></Data>
+			<Data id="61" name="premierTitre" label="Titre 1" type="text"></Data>
+			<Data id="62" name="deuxiemTitre" label="Titre 2" type="text"></Data>
+			<Data id="63" name="troisiemTitre" label="Titre 3" type="text"></Data>
+			<Data id="64" name="quatriemTitre" label="Titre 4" type="text"></Data>
+			<Data id="65" name="cinquiemTitre" label="Titre 5" type="text"></Data>
+			<Data id="66" name="sixiemTitre" label="Titre 6" type="text"></Data>
+			<Data id="67" name="septiemTitre" label="Titre 7" type="text"></Data>
+			<Data id="68" name="huitiemTitre" label="Titre 8" type="text"></Data>
+			<Data id="69" name="neuviemTitre" label="Titre 9" type="text"></Data>
+			<Data id="70" name="dixiemTitre" label="Titre 10" type="text"></Data>
+			<Data id="71" name="onziemTitre" label="Titre 11" type="text"></Data>
+			<Data id="72" name="deuziemTitre" label="Titre 12" type="text"></Data>
+			<Data id="73" name="treiziemTitre" label="Titre 13" type="text"></Data>
+			<Data id="74" name="quatorziemTitre" label="Titre 14" type="text"></Data>
+			<Data id="75" name="quinziemeemTitre" label="Titre 15" type="text"></Data>
+			<Data id="76" name="seixiemTitre" label="Titre 16" type="text"></Data>
+			<Data id="77" name="dixseptiemTitre" label="Titre 17" type="text"></Data>
+			<Data id="78" name="dixhuitiemTitre" label="Titre 18" type="text"></Data>
+			<Data id="79" name="dixneufiemTitre" label="Titre 19" type="text"></Data>
+			<Data id="80" name="vingtiemTitre" label="Titre 20" type="text"></Data>
+			<Data id="81" name="vingtetuniemTitre" label="Titre 21" type="text"></Data>
+			<Data id="82" name="vingtdeuxemTitre" label="Titre 22" type="text"></Data>
+			<Data id="83" name="vingttroisemTitre" label="Titre 23" type="text"></Data>
+			<Data id="84" name="vingtquatreiemTitre" label="Titre 24" type="text"></Data>
+			<Data id="85" name="vingtcinqiemTitre" label="Titre 25" type="text"></Data>
+			<Data id="86" name="vingtsixiemTitre" label="Titre 26" type="text"></Data>
+			<Data id="87" name="vingtseptiemTitre" label="Titre 27" type="text"></Data>
+			<Data id="88" name="vingthuitiemTitre" label="Titre 28" type="text"></Data>
+			<Data id="89" name="vingtneufemTitre" label="Titre 29" type="text"></Data>
+			<Data id="90" name="trentiemTitre" label="Titre 30" type="text"></Data>
+			<Data id="91" name="premierEmplacement" label="Emplacement 1" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="92" name="deuxiemEmplacement" label="Emplacement 2" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="93" name="troisiemEmplacement" label="Emplacement 3" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="94" name="quatriemEmplacement" label="Emplacement 4" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="95" name="cinquiemEmplacement" label="Emplacement 5" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="96" name="sixiemEmplacement" label="Emplacement 6" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="97" name="septiemEmplacement" label="Emplacement 7" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="98" name="huitiemEmplacement" label="Emplacement 8" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="99" name="neuviemEmplacement" label="Emplacement 9" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="100" name="dixiemEmplacement" label="Emplacement 10" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="101" name="onziemEmplacement" label="Emplacement 11" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="102" name="deuziemEmplacement" label="Emplacement 12" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="103" name="treiziemEmplacement" label="Emplacement 13" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="104" name="quatorziemEmplacement" label="Emplacement 14" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="105" name="quinziemeemEmplacement" label="Emplacement 15" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="106" name="seixiemEmplacement" label="Emplacement 16" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="107" name="dixseptiemEmplacement" label="Emplacement 17" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="108" name="dixhuitiemEmplacement" label="Emplacement 18" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="109" name="dixneufiemEmplacement" label="Emplacement 19" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="110" name="vingtiemEmplacement" label="Emplacement 20" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="ligne entière"></Choice>
+					<Choice id="2" value="2" label="A Gauche : deux par ligne"></Choice>
+					<Choice id="3" value="3" label="A Droite : deux par ligne"></Choice>
+					<Choice id="4" value="4" label="A Droite : deux par ligne (apres une date ou un cp)"></Choice>
+				</Choices>
+			</Data>
+			<Data id="111" name="vingtetuniemEmplacement" label="Emplacement 21" type="text"></Data>
+			<Data id="112" name="vingtdeuxemEmplacement" label="Emplacement 22" type="text"></Data>
+			<Data id="113" name="vingttroisemEmplacement" label="Emplacement 23" type="text"></Data>
+			<Data id="114" name="vingtquatreiemEmplacement" label="Emplacement 24" type="text"></Data>
+			<Data id="115" name="vingtcinqiemEmplacement" label="Emplacement 25" type="text"></Data>
+			<Data id="116" name="vingtsixiemEmplacement" label="Emplacement 26" type="text"></Data>
+			<Data id="117" name="vingtseptiemEmplacement" label="Emplacement 27" type="text"></Data>
+			<Data id="118" name="vingthuitiemEmplacement" label="Emplacement 28" type="text"></Data>
+			<Data id="119" name="vingtneufemEmplacement" label="Emplacement 29" type="text"></Data>
+			<Data id="120" name="trentiemEmplacement" label="Emplacement 30" type="text"></Data>
+			<Data id="121" name="PartieConcernee" label="PartieConcernee" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="css"></Choice>
+					<Choice id="2" value="2" label="header"></Choice>
+					<Choice id="3" value="3" label="Partie 1 Nom Prénom"></Choice>
+				</Choices>
+			</Data>
+			<Data id="122" name="style" label="style" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="style blocs"></Choice>
+					<Choice id="2" value="2" label="style tableau"></Choice>
+				</Choices>
+			</Data>
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="etape1" label="etape1" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="Panneau1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="121" usage="input" newline="0" label="Quelle est la partie concernée ? " required="0" visibleRequired="0" colon="0" help="0" widget="abListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="122" usage="input" newline="0" label="quel est le style ?" required="0" visibleRequired="0" colon="0" help="0" widget="abListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2" disposition="grid">
+						<Columns>
+							<Column id="1" name="colonne1" type="text" label="Nom de la donnée"></Column>
+							<Column id="2" name="colonne2" type="text" label="Titre sur Cerfa"></Column>
+							<Column id="3" name="colonne3" type="text" label="Type"></Column>
+							<Column id="4" name="position" type="text" label="Position"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="1" colon="0">
+							<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="61" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="31" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="91" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="1" label="2" colon="0">
+							<Field position="1" data="2" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="62" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="32" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="92" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="1" label="3" colon="0">
+							<Field position="1" data="3" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="63" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="33" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="93" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="1" label="4" colon="0">
+							<Field position="1" data="4" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="64" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="34" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="94" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="1" label="5" colon="0">
+							<Field position="1" data="5" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="65" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="35" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="95" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="6" datagroup="1" label="6" colon="0">
+							<Field position="1" data="6" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="66" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="36" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="96" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="7" datagroup="1" label="7" colon="0">
+							<Field position="1" data="7" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="67" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="37" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="97" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="8" datagroup="1" label="8" colon="0">
+							<Field position="1" data="8" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="68" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="38" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="98" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="9" datagroup="1" label="9" colon="0">
+							<Field position="1" data="9" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="69" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="39" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="99" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="10" datagroup="1" label="10" colon="0">
+							<Field position="1" data="10" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="70" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="40" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="4" data="100" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="generer" label="Générer" what="submit" for="nextStep" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="twig" label="twig" template="pages:CerfatestGenaration.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="panneau1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+</Simulator>

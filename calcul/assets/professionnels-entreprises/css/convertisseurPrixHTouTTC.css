@@ -1,0 +1,102 @@
+@import "common.css";
+
+.step-page .mention-asterisk {
+	display: none;
+}
+
+.simulator-breadcrumb ol {
+	display: none;
+}
+.step-page ul.nav.nav-tabs li {
+	padding-left: 0;
+}
+.step-page ul.nav.nav-tabs li:before {
+	content: '';
+}
+.step-page .step-panel-container > p.collapse-expand-all-tools {
+	display: none;
+}
+
+.step-page .blockinfo-label h2 {
+	border: 0;
+	border-bottom: 3px solid;
+	margin: 0 0 0.8em 0;
+	padding: 0;
+	font-family: "roboto_bold",Arial,sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: inherit;
+	color: #a63950;
+	width: 100%;
+}
+.step-page .chapter-container {
+	margin-bottom: 0;
+	border: 0;
+}
+.step-page .chapter-container:not(:first-child) {
+	border-top: 1px solid #ccc;
+}
+.step-page .btn-collapse:after {
+	top: 0;
+}
+.step-page .chapter-label h3 {
+	font-size: 1em;
+}
+.step-page .chapter-label h3 span {
+	font-size: 1.42857em;
+	font-weight: normal;
+}
+.step-page .chapter-label:hover h3 span {
+	color: #a63950;
+}
+.step-page .chapter-label h3 button:focus {
+	color: #414856;
+}
+.step-page .section-label h2 {
+	padding: .6em;
+	text-align: center;
+	background-color: #e7e7e7;
+	margin: 0;
+}
+.step-page .section-content {
+	background: #fff;
+	border: 0;
+	margin: 0;
+}
+.step-page .section-annotations {
+	background: #fff;
+}
+.step-page .section-content.with-annotations {
+	width: 50%;
+	border-right: 1px solid #ccc;
+}
+.step-page .section-content.with-annotations:after {
+	border-left: 25px solid #fff;
+}
+.step-page .section-container {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 1em;
+	background: linear-gradient(to right bottom, #ddd, #fff);
+}
+.espace-pro .step-page .foot-notes {
+	color: #000;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+.step-page .foot-note {
+	font-size: 1em;
+	font-weight: normal;
+	text-align: left;
+}
+article a[target=_blank]:not([rel~=noopener]):after {
+	content: "\e60c";
+	font-family: "fonticon";
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1;
+	text-transform: none;
+	text-decoration: none;
+}

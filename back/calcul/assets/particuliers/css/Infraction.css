@@ -1,0 +1,40 @@
+@import "common.css?version=4.2.20";
+
+.step-page input[type=text], .step-page input[type=date], .step-page input.date, .step-page input[type=number], .step-page input[type=money] {
+    min-width: 100%;
+}
+
+
+.step-page .form-group[data-type=choice]:not([data-expanded=true]) .input-group {
+    min-width: 100%;
+}
+
+.simulator-breadcrumb {
+    display: none;
+}
+
+
+élément {
+    max-width: 250px;
+}
+
+.step-page label, .step-page .label {
+
+    padding-right: 10px;
+    width: 30%;
+    text-align: right;
+    font-weight: bold;
+    text-align: left;
+
+}
+
+.step-page .blockinfo-chapters, .step-page .section-annotations .blockinfo-chapters  {
+    border: 0px;
+}
+
+
+.step-page input[type=text] {
+	max-width: 10em;
+	z-index: 0;
+  position: initial;
+}

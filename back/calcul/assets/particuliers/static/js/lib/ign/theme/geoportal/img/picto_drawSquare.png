@@ -1,0 +1,265 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html  lang="fr">
+<head>
+		<meta charset="utf-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  		 <link rel="shortcut icon" type="image/x-icon" href="/themes/api/img/ign_favicon.ico">
+		<link rel="stylesheet" media="all" type="text/css" href="/js/jqtransformplugin/jqtransform.css" />
+        <link rel="stylesheet" type="text/css" href="/themes/api/css/jquery.qtip.min.css" />
+		<link rel="stylesheet" type="text/css" href="/themes/api/css/style.css" />
+		<link rel="stylesheet" media="all" type="text/css" href="/themes/api/css/api.css" />
+        <link rel="stylesheet" media="all" type="text/css" href="/themes/api/css/rubriques.css" />
+		<link rel="stylesheet" media="all" type="text/css" href="/js/fancybox/jquery.fancybox-1.3.4.css" />
+		<!--[if IE 6]>
+        <link rel="stylesheet" media="all" type="text/css" href="/themes/api/css/ie.css" />
+    	<![endif]-->
+   
+		<script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.qtip.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.8.13.custom.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.moodular.js"></script>
+		<script type="text/javascript" src="/js/jquery.moodular.controls.js"></script>
+		<script type="text/javascript" src="/js/jquery.moodular.effects.js"></script>
+        <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        <script type="text/javascript" src="/js/jquery.waterwheelCarousel.min.js"></script>
+        <script type="text/javascript" src="/js/jqzoom/jquery.jqzoom.js"></script>
+        <script type="text/javascript" src="/js/jqtransformplugin/jquery.jqtransform.js"></script>
+		<script type="text/javascript" src="/js/commun.js"></script>
+		<script type="text/javascript" src="/js/api-ign.js"></script>		
+
+  		<script type="text/javascript" src="/js/raphaeljs/raphael-min.js"></script>
+		<script type="text/javascript" src="/js/raphaeljs/raphael_linechart.js"></script>  
+		<meta name="description" content="">
+		<title>IGN - API Geoportail</title>
+		<base href="http://api.ign.fr/" />
+</head>
+<body class="api" onload="loadPiwikTimeout();">
+	<div id="design"><div id="page">
+
+    
+<!-- top-header -->
+
+<div id="header">
+	<div id="ban-header" class="clearfix">
+		<div class="logo">
+			<a href="/accueil">IGN</a>
+		</div>
+		<div class="liens-droite">
+			<a href="/jsp/site/Portal.jsp?page=myapi&action=createkey" id="header-clef">OBTENIR UNE CLEF<br />DE
+				D&Eacute;VELOPPEMENT
+			</a><span class="clear">&nbsp;</span> 
+			<a href="/moncompte/login" id="header-compte">MON COMPTE</a><span class="clear">&nbsp;</span>
+<a href="/moncompte/login" id="header-inscrire">Connexion</a>
+			<span class="clear">&nbsp;</span>
+
+		</div>
+	</div>
+	<!-- ban-header -->
+	<div id="menu" class="clearfix">
+		<ul>
+			<li><a href="/presentation"><span>PRESENTATION</span></a></li>
+			<li><a href="/tutoriel"><span>DOCUMENTATION</span></a></li>
+			<li><a href="/galerie"><span>GALERIE</span></a></li>
+			<li class="sans-style dernier"><a href="/blog"><span>BLOG</span></a></li>
+		</ul>
+	</div>
+	<!-- menu -->
+	<span class="clear">&nbsp;</span>
+	<div id="header-recherche">
+		<form action="jsp/site/Portal.jsp" method="get">
+			<div class="hide"><input type="hidden" name="page" value="search" /></div>
+			<fieldset class="clearfix">
+				<label for="query"></label>
+				<input type="text" name="query" id="query" class="champs-texte"
+					placeholder="Rechercher par mots cl&eacute;s" title="Rechercher par mots cl&eacute;s" />
+				<input type="submit" value="RECHERCHER" class="btn-submit" />
+			</fieldset>
+		</form>
+	</div>
+	<!-- header-recherche -->
+</div>
+    
+<div id="content" class="clearfix marge">
+                                                                        <div class="bloc-gauche no-marge">
+  <div class="img_content"><img src="themes/api/img/api/main_img.png" />
+    <div class="top">
+      <h2>Débuter avec l'api
+      </h2>
+      <p>Découvrez l'univers des services en ligne de l'IGN...
+      </p>
+    </div>
+    <div class="bottom">
+      <div class="gauche">
+        <p> <a href="./presentation" class="fleche">Pourquoi l'API</a>
+        </p>
+        <p> <a href="./jsp/site/Portal.jsp?page=myapi&action=createkey" class="fleche">Votre clef de développement</a>
+        </p>
+      </div>
+      <div class="droite">
+        <p> <a href="./tutoriel" class="fleche">Débuter avec l'API</a>
+        </p>
+        <p> <a href="./tech-docs-js/fr/" class="fleche">Documentation technique</a>
+        </p>
+      </div>
+    </div>
+  </div>
+ <p style="margin-top:12px; margin-left:25px;">Abonnez-vous aux articles du blog <a href="http://api.ign.fr/plugins/rss/rss/blog.xml"><img style="position:relative; top:4px;" src="http://api.ign.fr/images/local/skin/feed.png" /></a></p>  
+</div>
+        
+        
+        
+        
+        
+        
+<div class="bloc-droit">
+  <h3><a href="./services#web" class="btn">L'api pour le WEB</a>
+  </h3> <a href="./services?tab=#web"></a>
+  <p><a href="./services?tab=#web"></a><a href="./services#web">Utilisez simplement les données du Géoportail pour enrichir votre site internet d'une cartographie interactive grâce à des bibliothèques JavaScript ou Flash.</a>
+  </p>
+  <h3><a href="./services#sig" class="btn">L'API pour SIG</a>
+  </h3> <a href="./services#sig">
+  <p>Les web services IGN proposent une diffusion dématérialisée, sous forme de flux des données géographiques de l’IGN, directement intégrable dans votre SIG compatible.
+  </p></a>
+  <h3><a href="./services#mobile" class="btn">L'API pour mobile</a>
+  </h3> <a href="./services#mobile">
+  <p>Amenez les flux du Géoportail directement au cœur de vos applications mobiles grand public.
+  </p></a>
+</div>
+
+ <span class="clear">&nbsp;</span>
+ <div class="bloc-plein marge">
+<div class="bloc-gauche">
+  <h2>Besoin d'aide ?
+  </h2>
+  <div class="liste-horizontale">
+    <div class="bloc">
+      <h3>Tutoriels
+      </h3>
+      <p>Un ensemble de ressources pour mieux utiliser l'API Géoportail.
+        <br />
+      </p> <a class="fleche" href="./tutoriel">En savoir plus</a>
+    </div>
+    <div class="bloc">
+      <h3>Forum
+      </h3>
+      <p>Besoin d'une aide ou d'un conseil, rendez-vous sur le forum Géoportail.
+      </p> <a target="_blank" class="fleche" href="http://www.developpez.net/forums/f1255/applications/sig-systeme-dinformation-geographique/ign-api-geoportail/">En savoir plus</a>
+    </div>
+    <div class="bloc dernier">
+      <h3>Formations
+      </h3>
+      <p>L'ENSG propose des formations permettant de...
+      </p> <a class="fleche" href="./formations">En savoir plus</a>
+    </div>
+  </div>
+</div>
+<div class="h2">
+  <h2>Événements
+  </h2>
+</div>
+<div class="actu">
+  <p>
+    <br /><a target="_blank" href="http://www.ign.fr/institut/liste-d-actualites-institut"> <img class="ombre" src="http://api.ign.fr/document?id=241&amp;id_attribute=64" height="73" /> </a>
+    <br /><a target="_blank" href="http://www.ign.fr/institut/liste-d-actualites-institut"> </a>
+  </p>
+  <p><a target="_blank" href="http://www.ign.fr/institut/liste-d-actualites-institut"><strong>Retrouvez tous les actualités&nbsp; de l'IGN &gt;&gt;</strong> </a>
+  </p>
+</div>
+
+</div>
+</div><!-- content -->
+
+<div id="footer" class="footer2 clearfix">
+            <div class="bloc bloc1"><a href="http://www.ign.fr/"><img src="themes/api/img/design/ico/rep1.png" alt="Site de l'Institut National de l'Information Géographique et Forestière" /></a><a href="http://www.developpement-durable.gouv.fr/" target="_blank"><img src="themes/api/img/design/ico/rep2.png" alt="Le ministère de lEcologie, du Développement durable, des Transports et du Logement" /> </a>
+</div><a href="http://www.ign.fr/institut/adresses-ign" target="_blank"> </a>
+<div class="bloc bloc2"><a href="http://www.ign.fr/institut/adresses-ign" target="_blank"> </a>
+  <ul>
+    <li> <strong>IGN</strong></li>
+    <li>73 avenue de Paris</li>
+    <li>94165 <span style="font-size: smaller">SAINT-MANDÉ CEDEX</span>
+    <br /></li>
+    <li>Tél : 01 43 98 80 00</li>
+    <li><a target="_blank" href="http://www.ign.fr/institut/adresses-lign">Toutes nos adresses</a></li>
+  </ul>
+</div>
+<div class="bloc bloc3">
+  <ul>
+    <li><strong>L'IGN a pour vocation</strong></li>
+    <li>de décrire la surface du territoire national</li>
+    <li>et de l'occupation de son sol, d'élaborer</li>
+    <li>et de mettre à jour l'inventaire permanent</li>
+    <li>des ressources forestières nationales.</li>
+    <li> <a href="http://www.ign.fr/">Découvrir l'Institut</a></li>
+  </ul>
+</div>
+<div class="bloc bloc4">
+  <ul>
+    <li> <strong>Accès directs</strong></li>
+    <li> <a href="http://www.ign.fr/institut/espace-presse-institut">Espace presse</a></li>
+    <li> <a href="http://www.ign.fr/institut/marches-publics">Marchés publics</a></li>
+  </ul>
+</div>
+<div class="bloc dernier">
+  <ul>
+    <li>
+    <h4>© 2012 IGN
+    </h4></li>
+    <li> <a href="./mentions-legales">Mentions légales</a></li>
+    <li> <a href="http://api.ign.fr/faq">Foire aux questions</a></li>
+    <li> <a href="./map">Plan du site</a></li>
+    <li> <a href="http://api.ign.fr/adresses">Nous écrire</a></li>
+  </ul>
+</div>
+        
+
+</div><!-- footer -->
+
+
+
+   
+
+</div></div>
+   
+    <!-- Piwik -->
+	<script language="javascript">
+    	function loadPiwikScript(sScriptSrc) {
+    		var oBody = document.getElementsByTagName('body')[0];
+    		var oScript = document.createElement('script');
+    		oScript.type = 'text/javascript';
+    		oScript.src = '/js/include/piwikApiIgn.js';
+    		oBody.appendChild(oScript);
+    	}
+    	function loadPiwikTimeout() {
+    		window.setTimeout(loadPiwikScript, 1);
+    	}
+    </script>
+ 	<noscript><p><img src="http://piwik.ign.fr/piwik/piwik.php?idsite=20" style="border:0;" alt="" /></p></noscript>
+ 	<!-- End Piwik Code -->
+	
+  </body>
+</html>
+
+
+

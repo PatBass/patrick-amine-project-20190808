@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="AST" label="Autorisation de sortie du territoire (AST)" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Ce service vous permet de renseigner les informations devant figurer sur le formulaire Cerfa 15646*01 et de télécharger le formulaire complété et prêt à l'emploi. Ce formulaire doit être accompagné  de la photocopie d'une pièce d'identité du parent signataire. Aucun déplacement en mairie ou en préfecture n'est nécessaire.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1'  onclick=&quot;toggle_1a5div(this,'Nom','Personnaliser','Personnaliser','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13'); return false;&quot;&gt;Personnaliser &lt;span class='glyphicon glyphicon-menu-down'  &gt;&lt;/span&gt;&lt;/button&gt;  "></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non"></Choice>
+				<Choice id="2" value="2" label="Oui"></Choice>
+			</Choices>
+		</Data>
+		<Data id="6" name="Nom" label="Nom" type="text"></Data>
+		<Data id="7" name="Prenom" label="Prénom" type="text"></Data>
+		<Data id="8" name="Datedenaissance" label="Date de naissance" type="date"></Data>
+		<Data id="9" name="lieudenaissance" label="Lieu de naissance" type="text"></Data>
+		<Data id="10" name="pays" label="pays de naissance" type="text"></Data>
+		<Data id="11" name="personneaccueillieNom" label="Nom 2" type="text"></Data>
+		<Data id="12" name="NomUsage2" label="Nom d'usage2" type="text"></Data>
+		<Data id="13" name="personneaccueilliePrenom" label="Prenom 2" type="text"></Data>
+		<Data id="14" name="personneaccueillieDTN" label="Date de naissance 2" type="date"></Data>
+		<Data id="15" name="personneaccueillieLieuDeNaissance" label="lieu de naissance 2" type="text"></Data>
+		<Data id="16" name="PaysdeNaissance" label="Pays de Naissance 2" type="text"></Data>
+		<Data id="17" name="Nationalite2" label="Nationalité 2" type="text"></Data>
+		<Data id="18" name="QialiteTitre" label="Qualité au titre 2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Père"></Choice>
+				<Choice id="2" value="2" label="Mère"></Choice>
+				<Choice id="3" value="3" label="Autre (préciser)"></Choice>
+			</Choices>
+		</Data>
+		<Data id="19" name="autreTitre" label="Autre Titre à préciser 2" type="text"></Data>
+		<Data id="20" name="AdresseNum" label="Adresse N° 2" type="text"></Data>
+		<Data id="21" name="AdresseBisTer" label="Adresse (bis, ter) 2" type="text"></Data>
+		<Data id="22" name="AdresseTypeVoie" label="Adresse Type de voie 2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Rue"></Choice>
+				<Choice id="2" value="2" label="Avenue"></Choice>
+				<Choice id="3" value="3" label="Boulevard"></Choice>
+				<Choice id="4" value="4" label="Allée"></Choice>
+				<Choice id="5" value="5" label="Place"></Choice>
+				<Choice id="6" value="6" label="Route"></Choice>
+				<Choice id="7" value="7" label="Centre"></Choice>
+				<Choice id="8" value="8" label="Ctre Cial"></Choice>
+				<Choice id="9" value="9" label="Immeuble"></Choice>
+				<Choice id="10" value="10" label="Impasse"></Choice>
+				<Choice id="11" value="11" label="Lieu-dit"></Choice>
+				<Choice id="12" value="12" label="Lotissement"></Choice>
+				<Choice id="13" value="13" label="Passage"></Choice>
+				<Choice id="14" value="14" label="Résidence"></Choice>
+				<Choice id="15" value="15" label="Résidence privée"></Choice>
+				<Choice id="16" value="16" label="Rond-Point"></Choice>
+				<Choice id="17" value="17" label="Square"></Choice>
+				<Choice id="18" value="18" label="Village"></Choice>
+				<Choice id="19" value="19" label="Z.A"></Choice>
+				<Choice id="20" value="20" label="Z.A.C"></Choice>
+				<Choice id="21" value="21" label="Z.A.D"></Choice>
+				<Choice id="22" value="22" label="Z.I"></Choice>
+			</Choices>
+		</Data>
+		<Data id="23" name="AdresseNomDeVoie" label="Adresse Nom de la voie 2" type="text"></Data>
+		<Data id="24" name="CodePostal" label="Code Postal 2" type="integer" min="10000" max="99999"></Data>
+		<Data id="25" name="Commune" label="Commune2" type="text"></Data>
+		<Data id="26" name="Pays" label="Pays2" type="text"></Data>
+		<Data id="27" name="Telephone" label="Téléphone 2" type="integer"></Data>
+		<Data id="28" name="Courriel" label="Courriel 2" type="text"></Data>
+		<Data id="29" name="DureeAutorisation" label="Durée de l'autorisation 3" type="date"></Data>
+		<Data id="30" name="Datesignature" label="Date de signature 3" type="date">
+			<Description><![CDATA[
+description
+			]]></Description>
+		</Data>
+		<Data id="31" name="TypeDeDocument" label="Type de document 3" type="choice">
+			<Description><![CDATA[
+Il s'agit du document d'identité de la personne dépositaire de l'autorité parentale. La photocopie de ce document doit être jointe à l'attestation de sortie du territoire.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Carte nationale d'identité"></Choice>
+				<Choice id="2" value="2" label="Passeport"></Choice>
+				<Choice id="3" value="3" label="Autre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="32" name="Autre3" label="Autre type de document 3" type="text"></Data>
+		<Data id="33" name="DateDeDelivrance" label="Délivré le 3" type="date"></Data>
+		<Data id="34" name="AutoriteDeDelivrance" label="Autorité De Délivrance 3" type="text"></Data>
+		<DataGroup id="1" name="groupededonneevaleursaisie" label="groupededonneevaleursaisie">
+			<Data id="35" name="valeurprenom1" label="Valeur Prénom" type="text"></Data>
+		</DataGroup>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2&gt;AUTORISATION DE SORTIE DU TERRITOIRE (AST)&lt;/h2&gt; &lt;h3&gt;D’UN MINEUR NON ACCOMPAGNÉ PAR UN TITULAIRE DE L’AUTORITÉ PARENTALE&lt;/h3&gt;" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="1">
+						<Legend><![CDATA[
+1. PERSONNE MINEURE AUTORISÉE À SORTIR DU TERRITOIRE FRANÇAIS
+						]]></Legend>
+						<Field position="1" data="6" usage="input" newline="0" label="Nom (figurant sur l’acte de naissance)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="7" usage="input" newline="0" label="Prénom(s)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="8" usage="input" newline="0" label="Né(e) le (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="9" usage="input" newline="0" label="à (lieu de naissance)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="10" usage="input" newline="0" label="Pays de naissance" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+2. TITULAIRE DE L’AUTORITÉ PARENTALE, SIGNATAIRE DE L’AUTORISATION
+						]]></Legend>
+						<Field position="1" data="11" usage="input" newline="0" label="Nom (figurant sur l’acte de naissance)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="12" usage="input" newline="0" label="Nom d’usage (ex. nom d’épouse/d’époux)" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="13" usage="input" newline="0" label="Prénom(s)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="14" usage="input" newline="0" label="Né(e) le (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="15" usage="input" newline="0" label="à (lieu de naissance)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="16" usage="input" newline="0" label="Pays de naissance" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="17" usage="input" newline="0" label="Nationalité" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="18" usage="input" newline="0" label="Qualité au titre de laquelle la personne exerce l’autorité parentale (cocher la case)" required="1" visibleRequired="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="19" usage="input" newline="0" label="Merci de préciser le champ Autre" required="0" visibleRequired="1" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="11" data="20" usage="input" newline="0" label="Adresse N°" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="12" data="21" usage="input" newline="0" label="Répétition dans la voie (bis, ter)" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="13" data="22" usage="input" newline="0" label="Type de voie" required="1" visibleRequired="0" help="0" widget="abListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="14" data="23" usage="input" newline="0" label="Nom de la voie" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="15" data="24" usage="input" newline="0" label="Code postal" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="16" data="25" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="17" data="26" usage="input" newline="0" label="Pays" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="18" data="27" usage="input" newline="0" label="Téléphone (recommandé)" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="19" data="28" usage="input" newline="0" label="Courriel (recommandé)" required="0" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+3. Autres Informations
+						]]></Legend>
+						<Field position="1" data="29" usage="input" newline="0" label="La présente autorisation est valable jusqu’au  (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="30" usage="input" newline="0" label="Signature du titulaire de l’autorité parentale (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="1" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="31" usage="input" newline="0" label="Type de document (cocher la case) " required="1" visibleRequired="0" help="1" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="32" usage="input" newline="0" label="Autre type de document " required="0" visibleRequired="1" help="0" explanation="Il s'agit du document d'identité dont une photocopie doit être jointe à l'attestation de sortie du territoire">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="33" usage="input" newline="0" label="Délivré(e) le (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="0" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="34" usage="input" newline="0" label="Par (autorité de délivrance)" required="1" visibleRequired="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="13">
+						<Legend><![CDATA[
+a supprimer
+						]]></Legend>
+						<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" widget="abListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="5" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Veuillez relire votre lettre avant de la copier ou de la télécharger (boutons en bas). Ensuite, n'oubliez pas de la signer.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+<div class="action_buttons3"><button class="btn " type="submit" name="DeplacerFocus"> Télécharger la lettre en PDF</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="14" name="lienpdfviege" label="">
+						<Chapter id="1" name="pdfvierge" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Vous pouvez également <a href="https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15646.do">télécharger une exemplaire vierge du formulaire Cerfa 15646*01</a> et le renseigner manuellement
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" what="submit" for="jumpToStep" uri="2" class="btn-default" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger l'attestation" template="pages:CerfaV2.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="6" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#6)">
+				<Condition operand="Nom" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1"></Action>
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="14"></Action>
+				<Action id="3" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="14"></Action>
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="8"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non rensigné)">
+			<Conditions value="!defined(#7) || !defined(#6) || !defined(#8) || !defined(#9)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="Nom" operator="blank"></Condition>
+					<Condition operand="Datedenaissance" operator="blank"></Condition>
+					<Condition operand="lieudenaissance" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+				<Action id="5" name="setAttribute" target="content" data="5" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="setAttribute" target="content" data="2" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 nn renseigné)">
+			<Conditions value="!defined(#7) || !defined(#6) || !defined(#8) || !defined(#9) || !defined(#11) || !defined(#13) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#17) || !defined(#18) || (defined(#18) &amp;&amp; #18 = 3 &amp;&amp; !defined(#19)) || !defined(#23) || !defined(#24) || !defined(#25) || !defined(#26)">
+				<Connector type="any">
+					<Condition operand="Prenom" operator="blank"></Condition>
+					<Condition operand="Nom" operator="blank"></Condition>
+					<Condition operand="Datedenaissance" operator="blank"></Condition>
+					<Condition operand="lieudenaissance" operator="blank"></Condition>
+					<Condition operand="personneaccueillieNom" operator="blank"></Condition>
+					<Condition operand="personneaccueilliePrenom" operator="blank"></Condition>
+					<Condition operand="personneaccueillieDTN" operator="blank"></Condition>
+					<Condition operand="personneaccueillieLieuDeNaissance" operator="blank"></Condition>
+					<Condition operand="PaysdeNaissance" operator="blank"></Condition>
+					<Condition operand="Nationalite2" operator="blank"></Condition>
+					<Condition operand="QialiteTitre" operator="blank"></Condition>
+					<Connector type="all">
+						<Condition operand="QialiteTitre" operator="present"></Condition>
+						<Condition operand="QialiteTitre" operator="=" expression="3"></Condition>
+						<Condition operand="autreTitre" operator="blank"></Condition>
+					</Connector>
+					<Condition operand="AdresseNomDeVoie" operator="blank"></Condition>
+					<Condition operand="CodePostal" operator="blank"></Condition>
+					<Condition operand="Commune" operator="blank"></Condition>
+					<Condition operand="Pays" operator="blank"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="1"></Action>
+				<Action id="3" name="setAttribute" target="content" data="5" value="1"></Action>
+				<Action id="4" name="setAttribute" target="content" data="4" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="2" name="setAttribute" target="content" data="3" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage de la partie 4   (1 ou 2 ou 3 non renseigné)">
+			<Conditions value="#7 != 01/01/2010">
+				<Condition operand="Prenom" operator="!=" expression="01/01/2010"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="13"></Action>
+				<Action id="2" name="setAttribute" target="content" data="4" value="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="afficher le bouton suivant">
+			<Conditions value="defined(#7) &amp;&amp; defined(#6) &amp;&amp; defined(#8) &amp;&amp; defined(#9) &amp;&amp; defined(#11) &amp;&amp; defined(#13) &amp;&amp; defined(#14) &amp;&amp; defined(#15) &amp;&amp; defined(#16) &amp;&amp; defined(#17) &amp;&amp; defined(#18) &amp;&amp; (defined(#18) &amp;&amp; (#18 != 3 || defined(#19))) &amp;&amp; defined(#23) &amp;&amp; defined(#24) &amp;&amp; defined(#25) &amp;&amp; defined(#26) &amp;&amp; defined(#29) &amp;&amp; defined(#30) &amp;&amp; defined(#33) &amp;&amp; defined(#34) &amp;&amp; (defined(#31) &amp;&amp; (#31 != 3 || defined(#32)))">
+				<Connector type="all">
+					<Condition operand="Prenom" operator="present"></Condition>
+					<Condition operand="Nom" operator="present"></Condition>
+					<Condition operand="Datedenaissance" operator="present"></Condition>
+					<Condition operand="lieudenaissance" operator="present"></Condition>
+					<Condition operand="personneaccueillieNom" operator="present"></Condition>
+					<Condition operand="personneaccueilliePrenom" operator="present"></Condition>
+					<Condition operand="personneaccueillieDTN" operator="present"></Condition>
+					<Condition operand="personneaccueillieLieuDeNaissance" operator="present"></Condition>
+					<Condition operand="PaysdeNaissance" operator="present"></Condition>
+					<Condition operand="Nationalite2" operator="present"></Condition>
+					<Condition operand="QialiteTitre" operator="present"></Condition>
+					<Connector type="all">
+						<Condition operand="QialiteTitre" operator="present"></Condition>
+						<Connector type="any">
+							<Condition operand="QialiteTitre" operator="!=" expression="3"></Condition>
+							<Condition operand="autreTitre" operator="present"></Condition>
+						</Connector>
+					</Connector>
+					<Condition operand="AdresseNomDeVoie" operator="present"></Condition>
+					<Condition operand="CodePostal" operator="present"></Condition>
+					<Condition operand="Commune" operator="present"></Condition>
+					<Condition operand="Pays" operator="present"></Condition>
+					<Condition operand="DureeAutorisation" operator="present"></Condition>
+					<Condition operand="Datesignature" operator="present"></Condition>
+					<Condition operand="DateDeDelivrance" operator="present"></Condition>
+					<Condition operand="AutoriteDeDelivrance" operator="present"></Condition>
+					<Connector type="all">
+						<Condition operand="TypeDeDocument" operator="present"></Condition>
+						<Connector type="any">
+							<Condition operand="TypeDeDocument" operator="!=" expression="3"></Condition>
+							<Condition operand="Autre3" operator="present"></Condition>
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="2" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10"></Action>
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Condition affichage autre qualité de titre">
+			<Conditions value="defined(#18) &amp;&amp; #18 = 3">
+				<Connector type="all">
+					<Condition operand="QialiteTitre" operator="present"></Condition>
+					<Condition operand="QialiteTitre" operator="=" expression="3"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="9"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="19"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Condition affichage autre type de documents">
+			<Conditions value="defined(#31) &amp;&amp; #31 = 3">
+				<Connector type="all">
+					<Condition operand="TypeDeDocument" operator="present"></Condition>
+					<Condition operand="TypeDeDocument" operator="=" expression="3"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="3" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="3" field="4"></Action>
+				<Action id="2" name="unsetAttribute" target="content" data="32"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

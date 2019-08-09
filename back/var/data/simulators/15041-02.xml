@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="15041-02" label="15041-02 – Candidature à l'élection des représentants au parlement européen" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description edition="manual"><![CDATA[
+Ce service vous permet de remplir le formulaire de déclaration de candidature à l'élection des représentants au Parlement européen.
+
+Le document est rédigé au fur et à mesure de vos réponses. Une fois complété, vous pourrez télécharger le formulaire automatiquement renseigné.
+
+Vous pourrez alors l'imprimer, le signer et le joindre à votre dossier.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="personnaliser" label="afficher le detail" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="&lt;button id='boutt1' data-xiti-name='Particuliers::Services_en_ligne_et_formulaires::15041-02::demarrer' data-xiti-type='action'   onclick=&quot;toggle_1a5div(this,'NomDeNaissance','commencer','Fermer','1','2','3','ModelLettre-panel-1-blockinfo-10-chapter-1-section-1-content','13','14'); return false;&quot;>commencer &lt;span class='glyphicon glyphicon-menu-down'  >&lt;/span>&lt;/button>  " />
+			</Choices>
+		</Data>
+		<Data id="2" name="afficherGC2" label="afficherGC2" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="3" name="afficherGC3" label="afficherGC3" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="4" name="afficherGC4" label="afficherGC4" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="5" name="afficherGC5" label="afficherGC5" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="6" name="afficherBoutonSuivant" label="afficherBoutonSuivant" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Non" />
+				<Choice id="2" value="2" label="Oui" />
+			</Choices>
+		</Data>
+		<Data id="7" name="NomDeNaissance" label="Nom de naissance" type="text" />
+		<Data id="8" name="Prenom" label="Prénom" type="text">
+			<Description edition="manual"><![CDATA[
+Veuillez indiquer vos prénoms dans l'ordre figurant sur votre acte de naissance.
+			]]></Description>
+		</Data>
+		<Data id="9" name="NomSurBulletin" label="Nom Sur Bulletin" type="text">
+			<Description edition="manual"><![CDATA[
+Nom de naissance ou nom d’usage. Le nom indiqué sera celui publié et affiché dans chaque bureau de vote.
+			]]></Description>
+		</Data>
+		<Data id="10" name="prenomsurbulletin" label="Prénom sur le bulletin" type="text">
+			<Description edition="manual"><![CDATA[
+Veuillez indiquer le prénom usuel qui figurera sur les bulletins de vote. A défaut, seul le premier prénom de votre acte de naissance devra figurer sur les bulletins de vote
+			]]></Description>
+		</Data>
+		<Data id="11" name="Sexe" label="Sexe" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Masculin" />
+				<Choice id="2" value="2" label="Féminin" />
+			</Choices>
+		</Data>
+		<Data id="12" name="DateDeNaissance" label="Date de naissance" type="date">
+			<Description edition="manual"><![CDATA[
+Les candidats doivent avoir 18 ans révolus le jour du scrutin
+			]]></Description>
+		</Data>
+		<Data id="13" name="CommuneNaissance" label="Commune de naissance" type="text" />
+		<Data id="14" name="TypeAdresse" label="Type adresse" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Dans un département français" />
+				<Choice id="2" value="2" label="Dans une collectivité d'Outre-mer" />
+				<Choice id="3" value="3" label="Dans un autre pays" />
+			</Choices>
+		</Data>
+		<Data id="15" name="detailadresse" label="Détail adresse" type="text" />
+		<Data id="16" name="Nationnalite" label="Nationnalité" type="text" />
+		<Data id="17" name="Profession" label="2Profession" type="text">
+			<Description edition="manual"><![CDATA[
+Pour les fonctionnaires, indiquer l’intitulé exact du poste occupé
+			]]></Description>
+		</Data>
+		<Data id="18" name="CSP" label="2CSP" type="text" />
+		<Data id="19" name="RepresentantAuParlement" label="2RepresentantAuParlement" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Oui" />
+				<Choice id="2" value="2" label="Non" />
+			</Choices>
+		</Data>
+		<Data id="20" name="EtiquettePolitique" label="2Etiquette Politique" type="text">
+			<Description edition="manual"><![CDATA[
+Cette mention n’est pas obligatoire. Le candidat peut indiquer la mention « sans étiquette ». S’il laisse la rubrique vide, le candidat sera considéré comme « sans étiquette »
+			]]></Description>
+		</Data>
+		<Data id="21" name="adresseN" label="3 Adresse n" type="integer" />
+		<Data id="22" name="adresseBis" label="3 adresse Bis" type="text" />
+		<Data id="23" name="adresseTypeVoie" label="3Adresse Type Voie" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Rue" />
+				<Choice id="2" value="2" label="Avenue" />
+				<Choice id="3" value="3" label="Boulevard" />
+				<Choice id="4" value="4" label="Allée" />
+				<Choice id="5" value="5" label="Place" />
+				<Choice id="6" value="6" label="Route" />
+				<Choice id="7" value="7" label="Centre" />
+				<Choice id="8" value="8" label="Ctre Cial" />
+				<Choice id="9" value="9" label="Immeuble" />
+				<Choice id="10" value="10" label="Impasse" />
+				<Choice id="11" value="11" label="Lieu-dit" />
+				<Choice id="12" value="12" label="Lotissement" />
+				<Choice id="13" value="13" label="Passage" />
+				<Choice id="14" value="14" label="Résidence" />
+				<Choice id="15" value="15" label="Résidence privée" />
+				<Choice id="16" value="16" label="Rond-Point" />
+				<Choice id="17" value="17" label="Square" />
+				<Choice id="18" value="18" label="Village" />
+				<Choice id="19" value="19" label="Z.A" />
+				<Choice id="20" value="20" label="Z.A.C" />
+				<Choice id="21" value="21" label="Z.A.D" />
+				<Choice id="22" value="22" label="Z.I" />
+			</Choices>
+		</Data>
+		<Data id="24" name="adresseNomVoie" label="3AdresseNomVoie" type="text" />
+		<Data id="25" name="adresseEtageEscalierImmeuble" label="3 Adresse Etage Escalier Immeuble" type="text">
+			<Description edition="manual"><![CDATA[
+Étage, escalier, appartement - Immeuble, Bâtiment
+			]]></Description>
+		</Data>
+		<Data id="26" name="adresseLieuBPcommune" label="3 Lieu-dit, boîte postale, commune déléguée" type="text">
+			<Description edition="manual"><![CDATA[
+Lieu dit, boîte postale, commune déléguée
+			]]></Description>
+		</Data>
+		<Data id="27" name="CP_Hebergement" label="3CP" type="integer" min="1000" max="99999">
+			<Description edition="manual"><![CDATA[
+[Nomenclature intégrée directement dans le champ « N° CSP correspondant »]
+			]]></Description>
+		</Data>
+		<Data id="28" name="Commune" label="3 Commune" type="text" />
+		<Data id="29" name="Pays" label="3Pays" type="text" />
+		<Data id="30" name="telephone" label="3 téléphone" type="integer">
+			<Description edition="manual"><![CDATA[
+L’indication d’un numéro de téléphone est fortement recommandée afin que le ministère de l’intérieur puisse vous contacter au cas où votre déclaration serait incomplète
+			]]></Description>
+		</Data>
+		<Data id="31" name="courrier" label="3Courrier" type="text">
+			<Description edition="manual"><![CDATA[
+L’indication d’un courriel est fortement recommandée afin que le ministère de l’intérieur puisse vous contacter au cas où votre déclaration serait incomplète
+			]]></Description>
+		</Data>
+		<Data id="32" name="NomResponsableListe" label="4 Nom du responsable de liste" type="text" />
+		<Data id="33" name="PrenomRespListe" label="4 Prénom du responsable de la liste" type="text" />
+		<Data id="34" name="electiondanscirconscription" label="5 election dans circonscription de" type="text">
+			<Description edition="manual"><![CDATA[
+Lorsque l’élection s’effectue dans une circonscription outre-mer, le nom de la section est précisé par la mention « section de » à la suite du nom de la circonscription.
+			]]></Description>
+		</Data>
+		<Data id="35" name="nomdeliste" label="5 nom de liste" type="text" />
+		<Data id="36" name="datesignature" label="5 date signature" type="date" default="today" />
+		<DataGroup id="1" name="Groupededonneetextessaisis" label="Groupe de données textes saisis">
+			<Data id="37" name="Donnee1objet" label="Donnée objet : objet" type="text" />
+			<Data id="38" name="donnee1" label="Donnée 1" type="text" />
+			<Data id="39" name="donnee2" label="donnée 2" type="text" />
+			<Data id="40" name="donnee3" label="donnée 3" type="text" />
+			<Data id="41" name="donnee4" label="Donnée 4" type="text" />
+			<Data id="42" name="donnee5" label="Donnée 5" type="text" />
+			<Data id="43" name="donnee6" label="Donnée 6" type="text" />
+			<Data id="44" name="donnee7" label="donnée 7" type="text" />
+			<Data id="45" name="donnee8" label="Donnée 8" type="text" />
+			<Data id="46" name="donnee9" label="Donnée 9" type="text" />
+			<Data id="47" name="donnee10" label="Donnée 10" type="text" />
+			<Data id="48" name="donnee11" label="donnée 11" type="text" />
+			<Data id="49" name="donnee12" label="Donnée 12" type="text" />
+			<Data id="50" name="donnee13" label="Donnée 13" type="text" />
+			<Data id="51" name="donnee14" label="Donnée 14 signature" type="text" />
+			<Data id="52" name="donnee15" label="Donnée 15 signature 2" type="text" />
+			<Data id="53" name="donnee16" label="Donnée 16 signature 3" type="text" />
+			<Data id="54" name="entete1" label="Donnée entete1" type="text" />
+			<Data id="55" name="entete2" label="Donnée entete2" type="text" />
+			<Data id="56" name="entete3" label="Donnée entete3" type="text" />
+			<Data id="57" name="entete4" label="Donnée entete4" type="text" />
+		</DataGroup>
+		<DataGroup id="2" name="valeursdeschamps" label="valeurs des champs">
+			<Data id="58" name="ValeurPrenom" label="Valeur Prénom" type="text" />
+			<Data id="59" name="ValeurNom" label="Valeur Nom" type="text" />
+			<Data id="60" name="ValeurDateDeNaissance" label="Valeur Date de naissance" type="text" />
+			<Data id="61" name="ValeurLieuDeNaissance" label="Valeur Lieu De Naissance" type="text" />
+			<Data id="62" name="ValeurCodePostalExpediteur" label="Valeur Code postal Expéditeur" type="text" />
+			<Data id="63" name="ValeurVilleExp" label="Valeur Ville expéditeur" type="text" />
+			<Data id="64" name="Valeur2personneaccueilliePrenom" label="valeur 2prenom" type="text" />
+			<Data id="65" name="Valeur2personneaccueillienom" label="Valeur 2 nom" type="text" />
+			<Data id="66" name="Valeur2personneAccueillieDTN" label="Valeur 2 date de naissance" type="text" />
+			<Data id="67" name="Valeur2personneaccueillieLieuDeNaissance" label="Valeur 2 Lieu de naissance" type="text" />
+			<Data id="68" name="Valeur2PersonneaccuillieDateApenagement" label="Valeur 2 date aménagement" type="text" />
+			<Data id="69" name="Valeur3Adresse" label="Valeur 3 Adresse" type="text" />
+			<Data id="70" name="Valeur3CP" label="valeur 3CP" type="text" />
+			<Data id="71" name="Valeur3Commune" label="Valeur 3 Commune" type="text" />
+			<Data id="72" name="Valeur3laDateDuJour" label="Valeur 4 laDateDuJour" type="text" />
+			<Data id="73" name="Valeur4Commune" label="Valeur4Commune" type="text" />
+		</DataGroup>
+		<Data id="74" name="2CSPFamille" label="2CSP Famille" type="choice">
+			<Choices>
+				<Source id="1" valueColumn="CodeFamille" labelColumn="Familles" />
+			</Choices>
+		</Data>
+		<Data id="75" name="2CSPMetier" label="2CSP Métier" type="choice">
+			<Choices>
+				<Source id="3" valueColumn="csp" labelColumn="rubrique" />
+			</Choices>
+		</Data>
+		<Data id="76" name="datedenaissanceannee" label="Date de naissance année" type="integer" />
+		<Data id="77" name="datedenaissancemois" label="Date de naissance mois" type="integer" />
+		<Data id="78" name="datedenaissancejour" label="Date de naissance jour" type="integer" />
+	</DataSet>
+	<Steps>
+		<Step id="1" name="ModelLettre" label="Modèle de lettre" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="ModeleLettre" label="">
+					<FieldSet id="4">
+						<Field position="1" data="1" usage="input" newline="0" label="&lt;h2>REMPLIR&lt;br> LE FORMULAIRE  &lt;br>N°15041*02&lt;/h2> &lt;h3>Vous pouvez remplir ce formulaire en ligne, le télécharger et l'imprimer en vue de la déclaration de candidature au ministère.&lt;/h3>" required="0" visibleRequired="0" colon="0" help="0" expanded="1" widget="copiertext">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="8" name="blocInfoChampsObligatoires" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content edition="manual"><![CDATA[
+* Merci de saisir tous les champs pour pouvoir afficher la lettre
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="1">
+						<Legend edition="manual"><![CDATA[
+IDENTITÉ (étape 1/5)﻿
+						]]></Legend>
+						<Field position="1" data="7" usage="input" newline="0" label="Nom de naissance" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="8" usage="input" newline="0" label="Prénom(s)" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="9" usage="input" newline="0" label="Nom figurant sur le bulletin de vote" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="10" usage="input" newline="0" label="Prénom figurant sur le bulletin de vote" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="11" usage="input" newline="0" label="Sexe" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="12" usage="input" newline="0" label="Né(e) le (format JJ/MM/AAAA)" required="1" visibleRequired="0" help="1" widget="abDatepicker">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="13" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="14" usage="input" newline="0" label="Cette commune se situe" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="15" usage="input" newline="0" label="Nom du département, de la collectivité, ou du pays" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="16" usage="input" newline="0" label="Nationalité" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend edition="manual"><![CDATA[
+SITUATION (étape 2/5)
+						]]></Legend>
+						<Field position="1" data="17" usage="input" newline="0" label="Profession" required="1" visibleRequired="0" colon="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="74" usage="input" newline="0" label="Choisissez votre famille professionnelle" required="1" visibleRequired="0" help="0" widget="abListbox">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="75" usage="input" newline="0" label="Choisissez votre métier" required="1" visibleRequired="0" help="0" widget="abListbox">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="19" usage="input" newline="0" label="Etes-vous actuellement représentant au Parlement européen" required="1" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="20" usage="input" newline="0" label="Etiquette politique déclarée" required="0" visibleRequired="0" colon="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend edition="manual"><![CDATA[
+COORDONNÉES
+(étape 3/5)
+						]]></Legend>
+						<Field position="1" data="21" usage="input" newline="0" label="Adresse Numéro" required="0" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="22" usage="input" newline="0" label="Répétition dans la voie (bis, ter..)" required="0" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="23" usage="input" newline="0" label="Type de voie" required="0" visibleRequired="0" help="0" widget="abListbox">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="24" usage="input" newline="0" label="Nom de voie" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="25" usage="input" newline="0" label="Complément d'adresse (1)" required="0" visibleRequired="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="6" data="26" usage="input" newline="0" label="Complément d'adresse (2)" required="0" visibleRequired="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="7" data="27" usage="input" newline="0" label="Code postal" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="8" data="28" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="9" data="29" usage="input" newline="0" label="Pays (si hors France) " required="0" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="10" data="30" usage="input" newline="0" label="Téléphone (recommandé) " required="0" visibleRequired="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="11" data="31" usage="input" newline="0" label="Courriel (recommandé)" required="0" visibleRequired="0" help="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="13">
+						<Legend edition="manual"><![CDATA[
+IDENTITE DU CANDIDAT TÊTE DE LISTE (étape 4/5)
+						]]></Legend>
+						<Field position="1" data="32" usage="input" newline="0" label="Nom du candidat tête de liste" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="33" usage="input" newline="0" label="Prénom du candidat tête de liste" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="14">
+						<Legend edition="manual"><![CDATA[
+AUTRES INFORMATIONS (étape 5/5)
+						]]></Legend>
+						<Field position="1" data="35" usage="input" newline="0" label="Titre de la liste" required="1" visibleRequired="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="36" usage="input" newline="0" label="Date de signature" required="1" visibleRequired="0" help="0" widget="abDatepicker">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="2" usage="output" newline="0" label="afficherGC2" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="output" newline="0" label="afficherGC3" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="4" usage="output" newline="0" label="afficherGC4" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="6" usage="output" newline="0" label="afficherbouttonsuivant" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="10" name="blocInfotelechargement" label="">
+						<Chapter id="1" name="champitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content edition="manual"><![CDATA[
+Merci de relire le formulaire rempli. N'oubliez pas de le signer avant de le transmettre.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="11" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content edition="manual"><![CDATA[
+<div class="action_buttons2"><button class="btn " type="submit" name="DeplacerFocus" data-xiti-name="Particuliers::Services_en_ligne_et_formulaires::15041-02::Telecharger_le_formulaire_en_pdf" data-xiti-type="download"> Télécharger le formulaire rempli</button></div>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="LettreType1" label="">
+						<Chapter id="1" name="LettreType1" label="">
+							<Section id="1" name="LettreType1" label="">
+								<Content edition="manual"><![CDATA[
+Le texte est copié, cliquez sur (ctrl/cmd + v) pour le coller sur votre éditeur de texte.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="15" name="TelechargerCerfaVierge" label="">
+						<Chapter id="1" name="TelechargerCerfaVierge" label="">
+							<Section id="1" name="TelechargerCerfaVierge" label="">
+								<Content edition="manual"><![CDATA[
+Vous pouvez également imprimer <a target="_self" href="https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15041.do">un exemplaire vierge du formulaire Cerfa n°15041*02</a> pour le compléter de manière manuscrite.
+								]]></Content>
+							</Section>
+							<Section id="2" name="AttentionCandidats" label="">
+								<Content edition="manual"><![CDATA[
+<b>A l'attention des candidats têtes de liste (ou de leur mandataire)</b> : pour être recevable, votre formulaire de déclaration de candidature n° 15041*02 doit impérativement être accompagné d'un document rappelant :
+<ol><li>le titre de la liste ;</li><li>sa composition complète dans l'ordre de présentation en indiquant, après leur numéro de position, les noms, prénom(s) et sexe de chacun des 79 candidats qui composent la liste. </li></ol>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="DeplacerFocus" label="Télécharger le PDF" shape="button" what="submit" for="jumpToStep" uri="2" location="bottom" class="btn-default" />
+			</ActionList>
+		</Step>
+		<Step id="2" name="DownloadPDF" label="Télécharger l'attestation" template="pages:CEEdynamique02.print.html.twig" output="downloadablePDF">
+			<Panels>
+				<Panel id="1" name="DownloadPDF" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" widget="abListbox">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="CEECSP" label="CSP Famille" request="SELECT id, codefamille as CodeFamille, familles as Familles FROM FamillesCSP" returnType="assocArray" />
+		<Source id="2" datasource="CEECSP" label="CSP métier" request="SELECT id, rubrique FROM detailcsp" returnType="assocArray" />
+		<Source id="3" datasource="CEECSP" label="CSP METIER RESULTAT" request="SELECT id, rubrique, code_famille, csp FROM detailcsp WHERE code_famille = '%1$s'" returnType="assocArray">
+			<Parameter type="columnValue" origin="data" name="para" data="74" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="affichage de la partie 1">
+			<Conditions value="defined(#8)">
+				<Condition operand="Prenom" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="1" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="affichage de la partie 2 (1 non renseigné)">
+			<Conditions value="!defined(#7) || !defined(#9) || !defined(#8) || !defined(#11) || !defined(#12) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#13) || !defined(#10)">
+				<Connector type="any">
+					<Condition operand="NomDeNaissance" operator="blank" />
+					<Condition operand="NomSurBulletin" operator="blank" />
+					<Condition operand="Prenom" operator="blank" />
+					<Condition operand="Sexe" operator="blank" />
+					<Condition operand="DateDeNaissance" operator="blank" />
+					<Condition operand="TypeAdresse" operator="blank" />
+					<Condition operand="detailadresse" operator="blank" />
+					<Condition operand="Nationnalite" operator="blank" />
+					<Condition operand="CommuneNaissance" operator="blank" />
+					<Condition operand="prenomsurbulletin" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2" />
+				<Action id="2" name="setAttribute" target="content" data="2" value="1" />
+				<Action id="3" name="setAttribute" target="content" data="3" value="1" />
+				<Action id="4" name="setAttribute" target="content" data="4" value="1" />
+				<Action id="5" name="setAttribute" target="content" data="6" value="1" />
+				<Action id="6" name="setAttribute" target="content" data="5" value="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2" />
+				<Action id="2" name="setAttribute" target="content" data="2" value="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="affichage de la partie 3 (1 et 2 nn renseigné)">
+			<Conditions value="!defined(#7) || !defined(#9) || !defined(#8) || !defined(#11) || !defined(#12) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#17) || !defined(#18) || !defined(#19) || !defined(#13) || !defined(#10)">
+				<Connector type="any">
+					<Condition operand="NomDeNaissance" operator="blank" />
+					<Condition operand="NomSurBulletin" operator="blank" />
+					<Condition operand="Prenom" operator="blank" />
+					<Condition operand="Sexe" operator="blank" />
+					<Condition operand="DateDeNaissance" operator="blank" />
+					<Condition operand="TypeAdresse" operator="blank" />
+					<Condition operand="detailadresse" operator="blank" />
+					<Condition operand="Nationnalite" operator="blank" />
+					<Condition operand="Profession" operator="blank" />
+					<Condition operand="CSP" operator="blank" />
+					<Condition operand="RepresentantAuParlement" operator="blank" />
+					<Condition operand="CommuneNaissance" operator="blank" />
+					<Condition operand="prenomsurbulletin" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3" />
+				<Action id="2" name="setAttribute" target="content" data="3" value="1" />
+				<Action id="3" name="setAttribute" target="content" data="6" value="1" />
+				<Action id="4" name="setAttribute" target="content" data="4" value="1" />
+				<Action id="5" name="setAttribute" target="content" data="5" value="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3" />
+				<Action id="2" name="setAttribute" target="content" data="3" value="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="affichage partie4 (1 et 2 et 3 renseigné ) Lieu d'attestation">
+			<Conditions value="!defined(#7) || !defined(#9) || !defined(#8) || !defined(#11) || !defined(#12) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#17) || !defined(#18) || !defined(#19) || !defined(#24) || !defined(#27) || !defined(#28) || !defined(#13) || !defined(#10)">
+				<Connector type="any">
+					<Condition operand="NomDeNaissance" operator="blank" />
+					<Condition operand="NomSurBulletin" operator="blank" />
+					<Condition operand="Prenom" operator="blank" />
+					<Condition operand="Sexe" operator="blank" />
+					<Condition operand="DateDeNaissance" operator="blank" />
+					<Condition operand="TypeAdresse" operator="blank" />
+					<Condition operand="detailadresse" operator="blank" />
+					<Condition operand="Nationnalite" operator="blank" />
+					<Condition operand="Profession" operator="blank" />
+					<Condition operand="CSP" operator="blank" />
+					<Condition operand="RepresentantAuParlement" operator="blank" />
+					<Condition operand="adresseNomVoie" operator="blank" />
+					<Condition operand="CP_Hebergement" operator="blank" />
+					<Condition operand="Commune" operator="blank" />
+					<Condition operand="CommuneNaissance" operator="blank" />
+					<Condition operand="prenomsurbulletin" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="13" />
+				<Action id="2" name="setAttribute" target="content" data="4" value="1" />
+				<Action id="3" name="setAttribute" target="content" data="5" value="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="13" />
+				<Action id="2" name="setAttribute" target="content" data="4" value="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="affichage partie5 (1 et 2 et 3 et 4 renseigné ) Lieu d'attestation">
+			<Conditions value="!defined(#7) || !defined(#9) || !defined(#8) || !defined(#11) || !defined(#12) || !defined(#13) || !defined(#14) || !defined(#15) || !defined(#16) || !defined(#17) || !defined(#18) || !defined(#19) || !defined(#24) || !defined(#27) || !defined(#28) || !defined(#32) || !defined(#33) || !defined(#10)">
+				<Connector type="any">
+					<Condition operand="NomDeNaissance" operator="blank" />
+					<Condition operand="NomSurBulletin" operator="blank" />
+					<Condition operand="Prenom" operator="blank" />
+					<Condition operand="Sexe" operator="blank" />
+					<Condition operand="DateDeNaissance" operator="blank" />
+					<Condition operand="CommuneNaissance" operator="blank" />
+					<Condition operand="TypeAdresse" operator="blank" />
+					<Condition operand="detailadresse" operator="blank" />
+					<Condition operand="Nationnalite" operator="blank" />
+					<Condition operand="Profession" operator="blank" />
+					<Condition operand="CSP" operator="blank" />
+					<Condition operand="RepresentantAuParlement" operator="blank" />
+					<Condition operand="adresseNomVoie" operator="blank" />
+					<Condition operand="CP_Hebergement" operator="blank" />
+					<Condition operand="Commune" operator="blank" />
+					<Condition operand="NomResponsableListe" operator="blank" />
+					<Condition operand="PrenomRespListe" operator="blank" />
+					<Condition operand="prenomsurbulletin" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="14" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="14" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="affichage du bouton suivant (tous les champs non rensegnés)">
+			<Conditions value="defined(#7) &amp;&amp; defined(#9) &amp;&amp; defined(#8) &amp;&amp; defined(#11) &amp;&amp; defined(#12) &amp;&amp; defined(#14) &amp;&amp; defined(#15) &amp;&amp; defined(#16) &amp;&amp; defined(#17) &amp;&amp; defined(#19) &amp;&amp; defined(#24) &amp;&amp; defined(#27) &amp;&amp; defined(#28) &amp;&amp; defined(#32) &amp;&amp; defined(#33) &amp;&amp; defined(#13) &amp;&amp; defined(#35) &amp;&amp; defined(#36) &amp;&amp; defined(#10)">
+				<Connector type="all">
+					<Condition operand="NomDeNaissance" operator="present" />
+					<Condition operand="NomSurBulletin" operator="present" />
+					<Condition operand="Prenom" operator="present" />
+					<Condition operand="Sexe" operator="present" />
+					<Condition operand="DateDeNaissance" operator="present" />
+					<Condition operand="TypeAdresse" operator="present" />
+					<Condition operand="detailadresse" operator="present" />
+					<Condition operand="Nationnalite" operator="present" />
+					<Condition operand="Profession" operator="present" />
+					<Condition operand="RepresentantAuParlement" operator="present" />
+					<Condition operand="adresseNomVoie" operator="present" />
+					<Condition operand="CP_Hebergement" operator="present" />
+					<Condition operand="Commune" operator="present" />
+					<Condition operand="NomResponsableListe" operator="present" />
+					<Condition operand="PrenomRespListe" operator="present" />
+					<Condition operand="CommuneNaissance" operator="present" />
+					<Condition operand="nomdeliste" operator="present" />
+					<Condition operand="datesignature" operator="present" />
+					<Condition operand="prenomsurbulletin" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="2" />
+				<Action id="2" name="showObject" target="action" step="1" action="DeplacerFocus" />
+				<Action id="3" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="10" />
+				<Action id="4" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="11" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="6" value="1" />
+				<Action id="2" name="hideObject" target="action" step="1" action="DeplacerFocus" />
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="10" />
+				<Action id="4" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="11" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="affichage du detail type adresse">
+			<Conditions value="defined(#14)">
+				<Condition operand="TypeAdresse" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="9" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="9" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Mettre 2CSP sur la valeur choisir">
+			<Conditions value="defined(#2)">
+				<Condition operand="afficherGC2" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="18" value="#75" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="remplir nom fugurant">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="9" value="'POURROY DE L\'AUBERIVIÈRE DE QUINSONAS-OUDINOT DE REGGIO'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="remplir prénom">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="'JEAN JACQUES JÉRÔME PIERRE GERMAIN'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="remplir date naissance">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="12" value="'06/02/1980'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="remplir commune">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="'SAINT-REMY-EN-BOUZEMONT-SAINT-GENEST-ET-ISSON'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="remplir nationalité">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="16" value="'FRANÇAISE'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="remplir dep ou collectivité ou pays">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="15" value="'94'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="remplir profession">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="17" value="'CREATIVE GLOBAL INTELLIGENCE  EMERGING SOCIAL MEDIA RELATIONS DIRECTOR'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="remplir etiquette">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="20" value="'ALTERNATIVE POUR UN PROGRAMME RÉPUBLICAIN,ÉCOLOGISTE ET SOCIALISTE'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="remplir nom de voie">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="24" value="'SAINT-GERMAIN-DE-TALLEVENDELA-LANDE-VAUMONT'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="remplir code postal">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="27" value="'21587'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="remplir commune">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="28" value="'commune'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="remplir nom responsable de la liste">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="'TRAM VIHN TAN TAN GAPREGASSAM'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="remplir prenom responsable de la liste">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="' MARIE-JULIETTE TAN'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="remplir titre de la liste">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="' ALTERNATIVE POUR UN PROGRAMME RÉPUBLICAIN, ÉCOLOGISTE ET SOCIALISTE'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="remplir date de la signature">
+			<Conditions value="#7 = 'g6k'">
+				<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="'22/02/2019'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="remplir prenom bulletin">
+			<Conditions value="defined(#7) &amp;&amp; #7 = 'g6k'">
+				<Connector type="all">
+					<Condition operand="NomDeNaissance" operator="present" />
+					<Condition operand="NomDeNaissance" operator="=" expression="'g6k'" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="10" value="'JÉRÔME PIERRE GERMAIN JEAN JACQUES '" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="regle date de naissance">
+			<Conditions value="defined(#12)">
+				<Condition operand="DateDeNaissance" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="76" value="year(#12)" />
+				<Action id="2" name="setAttribute" target="content" data="77" value="month(#12)" />
+				<Action id="3" name="setAttribute" target="content" data="78" value="day(#12)" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="erreur date">
+			<Conditions value="defined(#12) &amp;&amp; (#76 > 2001 || (#76 = 2001 &amp;&amp; #77 > 5) || (#76 = 2001 &amp;&amp; #77 = 5 &amp;&amp; #78 > 24))">
+				<Connector type="all">
+					<Condition operand="DateDeNaissance" operator="present" />
+					<Connector type="any">
+						<Condition operand="datedenaissanceannee" operator=">" expression="2001" />
+						<Connector type="all">
+							<Condition operand="datedenaissanceannee" operator="=" expression="2001" />
+							<Condition operand="datedenaissancemois" operator=">" expression="5" />
+						</Connector>
+						<Connector type="all">
+							<Condition operand="datedenaissanceannee" operator="=" expression="2001" />
+							<Condition operand="datedenaissancemois" operator="=" expression="5" />
+							<Condition operand="datedenaissancejour" operator=">" expression="24" />
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="12" value="Les candidats doivent avoir 18 ans révolus le jour du scrutin" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations edition="manual"><![CDATA[
+etape  1 : changer le libéllé du groupe de champs 4 panneau 1 de l'étape 1 : garder la structure :
+
+g
+
+<h2>grand
+titre
+
+</h2> <h3>petit titre petit titre</h3>etape 2 : laisser le widget copie text
+etape 3:
+
+changer les 3 titres sur les groupes de champs 1,2 et 3
+
+etape 4 : mise en page sur bloc ionfo 7 sinon la faiure via xml a la fin
+	]]></RelatedInformations>
+</Simulator>

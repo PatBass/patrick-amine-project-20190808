@@ -1,0 +1,1961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="gratification-stagiaire" label="Simulateur de calcul de la gratification minimale d'un stagiaire" defaultView="professionnels-entreprises" referer="https://www.service-public.fr/professionnels-entreprises/vosdroits/R40280" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Un employeur qui accueille un stagiaire doit lui verser une gratification horaire minimale lorsque, au cours d'une même année d'enseignement, la durée de présence effective du stagiaire dans l'organisme d'accueil est supérieure à 308 heures.
+
+Afin de calculer le montant de la gratification, l'organisme d'accueil doit décompter le <strong>nombre d'heures de présence effective du stagiaire.</strong>
+
+Dans certaines branches professionnelles, le montant de la gratification peut être supérieur au montant minimum légal. L'employeur doit le vérifier dans la <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F2395">convention collective</a>.
+
+Ce simulateur permet de calculer :
+
+<ul><li>le montant de la gratification minimale due pour chaque mois du stage (gratification mensuelle),</li><li>le montant total de la gratification due pour toute la durée du stage (gratification totale),</li><li>le montant mensuel à verser en cas de lissage de la gratification sur la totalité de la durée du stage (gratification mensuelle lissée).</li></ul>Seules les gratifications supérieures au montant minimum légal sont soumises aux cotisations sociales.
+
+Pour plus d’informations, voir <a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F20559">Stages : les obligations de l'employeur</a> et <a target="_blank" rel="nofollow" href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131">Gratification minimale d'un stagiaire</a>
+
+<strong></strong>La fonction d'impression n'est proposée que lorsque la durée du stage est comprise entre 308 et 924 heures (durée maximale d'un stage).<strong></strong>
+
+<strong>En cas d'utilisation du navigateur Internet Explorer, ce simulateur fonctionne uniquement avec les versions 9 et suivantes.</strong>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="dateSignatureConvention" label="Date de signature de la convention" type="date">
+			<Description><![CDATA[
+C’est la date de signature de la convention de stage qui détermine le pourcentage appliqué au plafond horaire de la sécurité sociale pour calculer le montant horaire de la gratification due au stagiaire (art. D242-2-1 du code de la sécurité sociale).
+			]]></Description>
+		</Data>
+		<Data id="2" name="finPeriodePlafondsecu" label="Fin période plafond de la sécurité sociale" type="year" source="1" index="'finPeriode'"></Data>
+		<Data id="3" name="organismePublic" label="L’employeur est-il un organisme public ? " type="choice">
+			<Description><![CDATA[
+Le montant de la gratification due par une administration, un établissement public ou tout organisme de droit public ne peut pas excéder le taux minimum légal. En cas de réponse Oui, le taux horaire de la gratification n’est pas modifiable.
+			]]></Description>
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+			</Choices>
+		</Data>
+		<Data id="4" name="heuresPresenceJour" label="Nombre d'heures de présence par jour" type="number" default="7" min="1" max="10">
+			<Description><![CDATA[
+La gratification d’un stage d’une durée supérieure à 2 mois est due pour chaque heure de présence effective du stagiaire. Des dispositions conventionnelles peuvent prévoir une durée de travail hebdomadaire supérieure ou inférieure à la durée légale de 35 heures. La durée de travail effectif ne peut pas dépasser la durée maximale de 10 heures par jour.
+			]]></Description>
+		</Data>
+		<Data id="5" name="plafondHoraire" label="Plafond horaire de la sécurité sociale" type="money" source="1" index="'plafond'">
+			<Description><![CDATA[
+Montant de référence pour le calcul de la gratification minimale du stagiaire. Il est modifié chaque année par arrêté interministériel publié au Journal officiel et entre en vigueur au 1er janvier.
+			]]></Description>
+		</Data>
+		<Data id="6" name="tauxMinimal" label="Taux minimal de la gratification" type="percent" source="2" index="'taux'">
+			<Description><![CDATA[
+Il s’agit du taux minimum légal, fixé par décret, établi en pourcentage du plafond horaire de la sécurité sociale. Il n’est pas modifiable si l’employeur est un organisme public.
+			]]></Description>
+		</Data>
+		<Data id="7" name="tauxMinimalConvention" label="Taux horaire figurant sur la convention" type="percent" default="#6" min="15">
+			<Description><![CDATA[
+Il s’agit du taux minimum légal, fixé par décret, établi en pourcentage du plafond horaire de la sécurité sociale. Il est modifiable, car, dans certaines branches professionnelles, le montant de la gratification est fixé par convention de branche ou accord professionnel étendu et peut être supérieur au montant minimum légal (à vérifier dans la convention collective dont dépend l’employeur).
+			]]></Description>
+		</Data>
+		<Data id="8" name="tauxMinimalRetenu" label="Taux horaire minimal retenu" type="percent"></Data>
+		<Data id="9" name="finPeriodeTauxMinimal" label="Fin période de validité du taux minimal" type="date" source="2" index="'finPeriode'"></Data>
+		<DataGroup id="1" name="donneesMois1" label="Données 1er mois">
+			<Data id="10" name="mois1" label="Mois 1" type="month"></Data>
+			<Data id="11" name="an1" label="An 1" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="12" name="joursOuvrables1" label="Nombre de jours ouvrables du 1er mois" type="integer" content="workdaysofmonth(#11, #10)"></Data>
+			<Data id="13" name="joursPresence1" label="Nombre de jours de présence le 1er mois" type="number" min="1" max="25"></Data>
+			<Data id="14" name="nbheures1" label="Nombre d'heures effectuées le 1er mois" type="number" min="1" max="250"></Data>
+			<Data id="15" name="plafondHoraire1" label="Plafond horaire pour le 1er mois" type="money" source="3" index="'plafond'"></Data>
+			<Data id="16" name="gratificationMinHeure1" label="Gratification minimale/heure minimal pour le 1er mois" type="money"></Data>
+			<Data id="17" name="finPeriodePlafondsecu1" label="Fin période plafond de la sécurité sociale pour le 1er mois" type="year" source="3" index="'finPeriode'"></Data>
+			<Data id="18" name="prevAn1" label="An précédent An 1" type="year" content="#11 - 1"></Data>
+			<Data id="19" name="gratification1" label="Gratification totale pour le 1er mois" type="money" content="#14 * #16"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="donneesMois2" label="Données 2e mois">
+			<Data id="20" name="mois2" label="Mois 2" type="month"></Data>
+			<Data id="21" name="an2" label="An 2" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="22" name="joursOuvrables2" label="Nombre de jours ouvrables du 2e mois" type="integer" content="workdaysofmonth(#21, #20)"></Data>
+			<Data id="23" name="joursPresence2" label="Nombre de jours de présence le 2è mois" type="number" min="1" max="25"></Data>
+			<Data id="24" name="nbheures2" label="Nombre d'heures effectuées le 2è  mois" type="number" min="1" max="250"></Data>
+			<Data id="25" name="plafondHoraire2" label="Plafond horaire pour le 2e mois" type="money" source="4" index="'plafond'"></Data>
+			<Data id="26" name="gratificationMinHeure2" label="Gratification minimale/heure minimal pour le 2e mois" type="money"></Data>
+			<Data id="27" name="finPeriodePlafondsecu2" label="Fin période plafond de la sécurité sociale pour le 2e mois" type="year" source="4" index="'finPeriode'"></Data>
+			<Data id="28" name="prevAn2" label="An précédent An 2" type="year" content="#21 - 1"></Data>
+			<Data id="29" name="gratification2" label="Gratification totale pour le 2e  mois" type="money" content="#24 * #26"></Data>
+		</DataGroup>
+		<DataGroup id="3" name="donneesMois3" label="Données 3e mois">
+			<Data id="30" name="mois3" label="Mois 3" type="month"></Data>
+			<Data id="31" name="an3" label="An 3" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="32" name="joursOuvrables3" label="Nombre de jours ouvrables du 3e mois" type="integer" content="workdaysofmonth(#31, #30)"></Data>
+			<Data id="33" name="joursPresence3" label="Nombre de jours de présence le 3è mois" type="number" min="1" max="25"></Data>
+			<Data id="34" name="nbheures3" label="Nombre d'heures effectuées le 3è  mois" type="number" min="1" max="250"></Data>
+			<Data id="35" name="plafondHoraire3" label="Plafond horaire pour le 3e mois" type="money" source="5" index="'plafond'"></Data>
+			<Data id="36" name="gratificationMinHeure3" label="Gratification minimale/heure minimal pour le 3e mois" type="money"></Data>
+			<Data id="37" name="finPeriodePlafondsecu3" label="Fin période plafond de la sécurité sociale pour le 3e mois" type="year" source="5" index="'finPeriode'"></Data>
+			<Data id="38" name="prevAn3" label="An précédent An 3" type="year" content="#31 - 1"></Data>
+			<Data id="39" name="gratification3" label="Gratification totale pour le 3è  mois" type="money" content="#34 * #36"></Data>
+		</DataGroup>
+		<DataGroup id="4" name="donneesMois4" label="Données 4e mois">
+			<Data id="40" name="mois4" label="Mois 4" type="month"></Data>
+			<Data id="41" name="an4" label="An 4" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="42" name="joursOuvrables4" label="Nombre de jours ouvrables du 4e mois" type="integer" content="workdaysofmonth(#41, #40)"></Data>
+			<Data id="43" name="joursPresence4" label="Nombre de jours de présence le 4è mois" type="number" min="1" max="25"></Data>
+			<Data id="44" name="nbheures4" label="Nombre d'heures effectuées le 4è  mois" type="number" min="1" max="250"></Data>
+			<Data id="45" name="plafondHoraire4" label="Plafond horaire pour le 4e mois" type="money" source="6" index="'plafond'"></Data>
+			<Data id="46" name="gratificationMinHeure4" label="Gratification minimale/heure minimal pour le 4e mois" type="money"></Data>
+			<Data id="47" name="finPeriodePlafondsecu4" label="Fin période plafond de la sécurité sociale pour le 4e mois" type="year" source="6" index="'finPeriode'"></Data>
+			<Data id="48" name="prevAn4" label="An précédent An 4" type="year" content="#41 - 1"></Data>
+			<Data id="49" name="gratification4" label="Gratification totale pour le 4è  mois" type="money" content="#44 * #46"></Data>
+		</DataGroup>
+		<DataGroup id="5" name="donneesMois5" label="Données 5e mois">
+			<Data id="50" name="mois5" label="Mois 5" type="month"></Data>
+			<Data id="51" name="an5" label="An 5" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="52" name="joursOuvrables5" label="Nombre de jours ouvrables du 5e mois" type="integer" content="workdaysofmonth(#51, #50)"></Data>
+			<Data id="53" name="joursPresence5" label="Nombre de jours de présence le 5è mois" type="number" min="1" max="25"></Data>
+			<Data id="54" name="nbheures5" label="Nombre d'heures effectuées le 5è  mois" type="number" min="1" max="250"></Data>
+			<Data id="55" name="plafondHoraire5" label="Plafond horaire pour le 5e mois" type="money" source="7" index="'plafond'"></Data>
+			<Data id="56" name="gratificationMinHeure5" label="Gratification minimale/heure minimal pour le 5e mois" type="money"></Data>
+			<Data id="57" name="finPeriodePlafondsecu5" label="Fin période plafond de la sécurité sociale pour le 5e mois" type="year" source="7" index="'finPeriode'"></Data>
+			<Data id="58" name="prevAn5" label="An précédent An 5" type="year" content="#51 - 1"></Data>
+			<Data id="59" name="gratification5" label="Gratification totale pour le 5è  mois" type="money" content="#54 * #56"></Data>
+		</DataGroup>
+		<DataGroup id="6" name="donneesMois6" label="Données 6e mois">
+			<Data id="60" name="mois6" label="Mois 6" type="month"></Data>
+			<Data id="61" name="an6" label="An 6" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="62" name="joursOuvrables6" label="Nombre de jours ouvrables du 6e mois" type="integer" content="workdaysofmonth(#61, #60)"></Data>
+			<Data id="63" name="joursPresence6" label="Nombre de jours de présence le 6è mois" type="number" min="1" max="25"></Data>
+			<Data id="64" name="nbheures6" label="Nombre d'heures effectuées le 6è  mois" type="number" min="1" max="250"></Data>
+			<Data id="65" name="plafondHoraire6" label="Plafond horaire pour le 6e mois" type="money" source="8" index="'plafond'"></Data>
+			<Data id="66" name="gratificationMinHeure6" label="Gratification minimale/heure minimal pour le 6e mois" type="money"></Data>
+			<Data id="67" name="finPeriodePlafondsecu6" label="Fin période plafond de la sécurité sociale pour le 6e mois" type="year" source="8" index="'finPeriode'"></Data>
+			<Data id="68" name="prevAn6" label="An précédent An 6" type="year" content="#61 - 1"></Data>
+			<Data id="69" name="gratification6" label="Gratification totale pour le 6è  mois" type="money" content="#64 * #66"></Data>
+		</DataGroup>
+		<DataGroup id="7" name="donneesMois7" label="Données 7e mois">
+			<Data id="70" name="mois7" label="Mois 7" type="month"></Data>
+			<Data id="71" name="an7" label="An 7" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="72" name="joursOuvrables7" label="Nombre de jours ouvrables du 7e mois" type="integer" content="workdaysofmonth(#71, #70)"></Data>
+			<Data id="73" name="joursPresence7" label="Nombre de jours de présence le 7è mois" type="number" min="1" max="25"></Data>
+			<Data id="74" name="nbheures7" label="Nombre d'heures effectuées le 7è  mois" type="number" min="1" max="250"></Data>
+			<Data id="75" name="plafondHoraire7" label="Plafond horaire pour le 7e mois" type="money" source="9" index="'plafond'"></Data>
+			<Data id="76" name="gratificationMinHeure7" label="Gratification minimale/heure minimal pour le 7e mois" type="money"></Data>
+			<Data id="77" name="finPeriodePlafondsecu7" label="Fin période plafond de la sécurité sociale pour le 7e mois" type="year" source="9" index="'finPeriode'"></Data>
+			<Data id="78" name="prevAn7" label="An précédent An 7" type="year" content="#71 - 1"></Data>
+			<Data id="79" name="gratification7" label="Gratification totale pour le 7è  mois" type="money" content="#74 * #76"></Data>
+		</DataGroup>
+		<DataGroup id="8" name="donneesMois8" label="Données 8e mois">
+			<Data id="80" name="mois8" label="Mois 8" type="month"></Data>
+			<Data id="81" name="an8" label="An 8" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="82" name="joursOuvrables8" label="Nombre de jours ouvrables du 8e mois" type="integer" content="workdaysofmonth(#81, #80)"></Data>
+			<Data id="83" name="joursPresence8" label="Nombre de jours de présence le 8è mois" type="number" min="1" max="25"></Data>
+			<Data id="84" name="nbheures8" label="Nombre d'heures effectuées le 8è  mois" type="number" min="1" max="250"></Data>
+			<Data id="85" name="plafondHoraire8" label="Plafond horaire pour le 8e mois" type="money" source="10" index="'plafond'"></Data>
+			<Data id="86" name="gratificationMinHeure8" label="Gratification minimale/heure minimal pour le 8e mois" type="money"></Data>
+			<Data id="87" name="finPeriodePlafondsecu8" label="Fin période plafond de la sécurité sociale pour le 8e mois" type="year" source="10" index="'finPeriode'"></Data>
+			<Data id="88" name="prevAn8" label="An précédent An 8" type="year" content="#81 - 1"></Data>
+			<Data id="89" name="gratification8" label="Gratification totale pour le 8è  mois" type="money" content="#84 * #86"></Data>
+		</DataGroup>
+		<DataGroup id="9" name="donneesMois9" label="Données 9e mois">
+			<Data id="90" name="mois9" label="Mois 9" type="month"></Data>
+			<Data id="91" name="an9" label="An 9" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="92" name="joursOuvrables9" label="Nombre de jours ouvrables du 9e mois" type="integer" content="workdaysofmonth(#91, #90)"></Data>
+			<Data id="93" name="joursPresence9" label="Nombre de jours de présence le 9è mois" type="number" min="1" max="25"></Data>
+			<Data id="94" name="nbheures9" label="Nombre d'heures effectuées le 9è  mois" type="number" min="1" max="250"></Data>
+			<Data id="95" name="plafondHoraire9" label="Plafond horaire pour le 9e mois" type="money" source="11" index="'plafond'"></Data>
+			<Data id="96" name="gratificationMinHeure9" label="Gratification minimale/heure minimal pour le 9e mois" type="money"></Data>
+			<Data id="97" name="finPeriodePlafondsecu9" label="Fin période plafond de la sécurité sociale pour le 9e mois" type="year" source="11" index="'finPeriode'"></Data>
+			<Data id="98" name="prevAn9" label="An précédent An 9" type="year" content="#91 - 1"></Data>
+			<Data id="99" name="gratification9" label="Gratification totale pour le 9è  mois" type="money" content="#94 * #96"></Data>
+		</DataGroup>
+		<DataGroup id="10" name="donneesMois10" label="Données 10e mois">
+			<Data id="100" name="mois10" label="Mois 10" type="month"></Data>
+			<Data id="101" name="an10" label="An 10" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="102" name="joursOuvrables10" label="Nombre de jours ouvrables du 10e mois" type="integer" content="workdaysofmonth(#101, #100)"></Data>
+			<Data id="103" name="joursPresence10" label="Nombre de jours de présence le 10è mois" type="number" min="1" max="25"></Data>
+			<Data id="104" name="nbheures10" label="Nombre d'heures effectuées le 10è  mois" type="number" min="1" max="250"></Data>
+			<Data id="105" name="plafondHoraire10" label="Plafond horaire pour le 10e mois" type="money" source="12" index="'plafond'"></Data>
+			<Data id="106" name="gratificationMinHeure10" label="Gratification minimale/heure minimal pour le 10e mois" type="money"></Data>
+			<Data id="107" name="finPeriodePlafondsecu10" label="Fin période plafond de la sécurité sociale pour le 10e mois" type="year" source="12" index="'finPeriode'"></Data>
+			<Data id="108" name="prevAn10" label="An précédent An 10" type="year" content="#101 - 1"></Data>
+			<Data id="109" name="gratification10" label="Gratification totale pour le 10è  mois" type="money" content="#104 * #106"></Data>
+		</DataGroup>
+		<DataGroup id="11" name="donneesMois11" label="Données 11e mois">
+			<Data id="110" name="mois11" label="Mois 11" type="month"></Data>
+			<Data id="111" name="an11" label="An 11" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="112" name="joursOuvrables11" label="Nombre de jours ouvrables du 11e mois" type="integer" content="workdaysofmonth(#111, #110)"></Data>
+			<Data id="113" name="joursPresence11" label="Nombre de jours de présence le 11è mois" type="number" min="1" max="25"></Data>
+			<Data id="114" name="nbheures11" label="Nombre d'heures effectuées le 11è  mois" type="number" min="1" max="250"></Data>
+			<Data id="115" name="plafondHoraire11" label="Plafond horaire pour le 11e mois" type="money" source="13" index="'plafond'"></Data>
+			<Data id="116" name="gratificationMinHeure11" label="Gratification minimale/heure minimal pour le 11e mois" type="money"></Data>
+			<Data id="117" name="finPeriodePlafondsecu11" label="Fin période plafond de la sécurité sociale pour le 11e mois" type="year" source="3" index="'finPeriode'"></Data>
+			<Data id="118" name="prevAn11" label="An précédent An 11" type="year" content="#111 - 1"></Data>
+			<Data id="119" name="gratification11" label="Gratification totale pour le 11è  mois" type="money" content="#114 * #116"></Data>
+		</DataGroup>
+		<DataGroup id="12" name="donneesMois12" label="Données 12e mois">
+			<Data id="120" name="mois12" label="Mois 12" type="month"></Data>
+			<Data id="121" name="an12" label="An 12" type="year" min="year(now) - 1" max="year(now) + 5"></Data>
+			<Data id="122" name="joursOuvrables12" label="Nombre de jours ouvrables du 12e mois" type="integer" content="workdaysofmonth(#121, #120)"></Data>
+			<Data id="123" name="joursPresence12" label="Nombre de jours de présence le 12è mois" type="number" min="1" max="25"></Data>
+			<Data id="124" name="nbheures12" label="Nombre d'heures effectuées le 12è  mois" type="number" min="1" max="250"></Data>
+			<Data id="125" name="plafondHoraire12" label="Plafond horaire pour le 12e mois" type="money" source="14" index="'plafond'"></Data>
+			<Data id="126" name="gratificationMinHeure12" label="Gratification minimale/heure minimal pour le 12e mois" type="money"></Data>
+			<Data id="127" name="finPeriodePlafondsecu12" label="Fin période plafond de la sécurité sociale pour le 12e mois" type="year" source="3" index="'finPeriode'"></Data>
+			<Data id="128" name="prevAn12" label="An précédent An 12" type="year" content="#121 - 1"></Data>
+			<Data id="129" name="gratification12" label="Gratification totale pour le 12è  mois" type="money" content="#124 * #126"></Data>
+		</DataGroup>
+		<Data id="151" name="premierJour1erMois" label="Premier jour du 1er mois" type="date" content="'1/' + #10 + '/' + #11"></Data>
+		<Data id="152" name="premierJour2eMois" label="Premier jour du 2e mois" type="date" content="'1/' + #20 + '/' + #21"></Data>
+		<Data id="153" name="premierJour3eMois" label="Premier jour du 3e mois" type="date" content="'1/' + #30 + '/' + #31"></Data>
+		<Data id="154" name="premierJour4eMois" label="Premier jour du 4e mois" type="date" content="'1/' + #40 + '/' + #41"></Data>
+		<Data id="155" name="premierJour5eMois" label="Premier jour du 5e mois" type="date" content="'1/' + #50 + '/' + #51"></Data>
+		<Data id="156" name="premierJour6eMois" label="Premier jour du 6e mois" type="date" content="'1/' + #60 + '/' + #61"></Data>
+		<Data id="157" name="premierJour7eMois" label="Premier jour du 7e mois" type="date" content="'1/' + #70 + '/' + #71"></Data>
+		<Data id="158" name="premierJour8eMois" label="Premier jour du 8e mois" type="date" content="'1/' + #80 + '/' + #81"></Data>
+		<Data id="159" name="premierJour9eMois" label="Premier jour du 9e mois" type="date" content="'1/' + #90 + '/' + #91"></Data>
+		<Data id="160" name="premierJour10eMois" label="Premier jour du 10e mois" type="date" content="'1/' + #100 + '/' + #101"></Data>
+		<Data id="161" name="premierJour11eMois" label="Premier jour du 11e mois" type="date" content="'1/' + #110 + '/' + #111"></Data>
+		<Data id="162" name="premierJour12eMois" label="Premier jour du 12e mois" type="date" content="'1/' + #120 + '/' + #121"></Data>
+		<Data id="200" name="gridOK" label="Saisie OK" type="boolean"></Data>
+		<Data id="201" name="gratificationTotale" label="Gratification totale" type="money" content="sum(#19, #29, #39, #49, #59, #69, #79, #89, #99, #109, #119, #129)"></Data>
+		<Data id="202" name="nbMois" label="Nombre de mois travaillés" type="integer" content="count(#14, #24, #34, #44, #54, #64, #74, #84, #94, #104, #114, #124)"></Data>
+		<Data id="203" name="gratificationLissee" label="Gratification lissée" type="money"></Data>
+		<Data id="204" name="totalheures" label="Nombre total d'heures travaillées" type="number" content="sum(#14, #24, #34, #44, #54, #64, #74, #84, #94, #104, #114, #124)"></Data>
+		<Data id="205" name="totaljours" label="Nombre total de jours de présence" type="number" content="sum(#13, #23, #33, #43, #53, #63, #73, #83, #93, #103, #113, #123)"></Data>
+		<Data id="206" name="chronoOK" label="Chronologie des mois ok" type="boolean"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="calcul" label="Calcul" template="pages:article.html.twig" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Convention de stage
+						]]></Legend>
+						<Field position="1" data="1" usage="input" label="Date de signature de la convention (format : JJ/MM/AAAA)" required="1" visibleRequired="0" help="1" widget="abDatepicker">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="3" usage="input" label="L’employeur est-il un organisme public ?" required="1" visibleRequired="0" help="1" expanded="1"></Field>
+						<Field position="3" data="7" usage="input" label="Pourcentage du plafond horaire de la sécurité sociale figurant sur la convention" required="0" visibleRequired="0" help="1">
+							<PostNote><![CDATA[
+Ce taux, fixé par la convention entre le stagiaire et l'organisme, ne peut pas être inférieur à #6% du plafond horaire de la sécurité sociale.
+							]]></PostNote>
+						</Field>
+						<Field position="4" data="4" usage="input" label="Nombre d'heures de présence par jour" required="1" visibleRequired="0" help="1"></Field>
+						<Field position="5" data="6" usage="output" label="Pourcentage du plafond horaire de la sécurité sociale" required="0" visibleRequired="0" help="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2" disposition="grid">
+						<Legend><![CDATA[
+Gratification mensuelle due en fonction de la présence effective du stagiaire
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="mois" type="month" label="Mois"></Column>
+							<Column id="2" name="an" type="year" label="Année"></Column>
+							<Column id="3" name="nbJoursOuvrables" type="integer" label="Nombre de jours ouvrés [(*)^1(Information complémentaire sur le nombre de jours ouvrés)]"></Column>
+							<Column id="4" name="nbJoursPresence" type="number" label="Nombre de jours de présence"></Column>
+							<Column id="5" name="nbheures" type="number" label="Nombre d'heures"></Column>
+							<Column id="6" name="plafondHoraireSecu" type="money" label="Plafond horaire séc. soc."></Column>
+							<Column id="7" name="montantHoraireConvention" type="money" label="Montant horaire"></Column>
+							<Column id="8" name="gratification" type="money" label="Gratification mensuelle"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="1er mois">
+							<Field position="1" data="10" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="11" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="12" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="13" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="14" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="15" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="16" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="19" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="2" label="2e mois">
+							<Field position="1" data="20" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="21" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="22" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="23" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="24" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="25" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="26" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="29" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="3" label="3e mois">
+							<Field position="1" data="30" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="31" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="32" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="33" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="34" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="35" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="36" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="39" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="4" label="4e mois">
+							<Field position="1" data="40" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="41" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="42" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="43" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="44" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="45" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="46" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="49" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="5" label="5e mois">
+							<Field position="1" data="50" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="51" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="52" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="53" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="54" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="55" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="56" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="59" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="6" datagroup="6" label="6e mois">
+							<Field position="1" data="60" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="61" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="62" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="63" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="64" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="65" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="66" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="69" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="7" datagroup="7" label="7e mois">
+							<Field position="1" data="70" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="71" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="72" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="73" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="74" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="75" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="76" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="79" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="8" datagroup="8" label="8e mois">
+							<Field position="1" data="80" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="81" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="82" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="83" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="84" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="85" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="86" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="89" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="9" datagroup="9" label="9e mois">
+							<Field position="1" data="90" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="91" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="92" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="93" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="94" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="95" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="96" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="99" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="10" datagroup="10" label="10e mois">
+							<Field position="1" data="100" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="101" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="102" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="103" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="104" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="105" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="106" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="109" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="11" datagroup="11" label="11e mois">
+							<Field position="1" data="110" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="111" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="112" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="113" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="114" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="115" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="116" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="119" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="12" datagroup="12" label="12e mois">
+							<Field position="1" data="120" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="121" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="3" data="122" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="4" data="123" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="5" data="124" usage="input" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="6" data="125" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="7" data="126" usage="output" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="8" data="129" usage="output" required="0" visibleRequired="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<BlockInfo id="3" name="blocGratification" label="">
+						<Chapter id="1" name="chapitreGratification" label="">
+							<Section id="1" name="sectionGratification1" label="">
+								<Content><![CDATA[
+Gratification totale due pour #205 jours (#204 heures) : #201 €
+								]]></Content>
+							</Section>
+							<Section id="2" name="sectionGratification2" label="">
+								<Content><![CDATA[
+Gratification mensuelle lissée sur la totalité de la durée de stage (#202 mois) : #203 €
+								]]></Content>
+							</Section>
+							<Section id="3" name="sectionGratification3" label="">
+								<Content><![CDATA[
+La durée du stage est inférieure ou égale à 308 heures, par conséquent, l’organisme d’accueil n’a pas l’obligation de gratifier.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="effacer" label="Remettre à 0" what="submit" for="newSimulation" class="btn-default" shape="button" location="bottom"></Action>
+				<Action name="imprimer" label="Imprimer (PDF)" what="submit" for="jumpToStep" uri="2" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+(*) Le nombre de jours ouvrés pré-calculé est donné à titre indicatif pour un stage se déroulant du lundi au vendredi (hors samedi et dimanche) à l’exception des jours fériés.
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+		<Step id="2" name="impressionPDF" label="Impression PDF" template="pages:gratification-stagiaire.print.html.twig" output="downloadablePDF" pdfFooter="0">
+			<Panels>
+				<Panel id="1" name="panel1" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Convention de stage
+						]]></Legend>
+						<Field position="1" data="1" usage="output" label="Date de signature de la convention" required="1" visibleRequired="0" help="0"></Field>
+						<Field position="2" data="3" usage="output" label="L’employeur est-il un organisme public ?" required="1" visibleRequired="0" help="0" expanded="1"></Field>
+						<Field position="3" data="7" usage="output" label="Taux horaire de la gratification figurant dans la convention" required="0" visibleRequired="0" help="0">
+							<PostNote><![CDATA[
+Ce taux, fixé par la convention entre le stagiaire et l'organisme, ne peut pas être inférieur à #6% du plafond horaire de la sécurité sociale.
+							]]></PostNote>
+						</Field>
+						<Field position="4" data="4" usage="output" label="Nombre d'heures de présence par jour" required="1" visibleRequired="0" help="0"></Field>
+						<Field position="5" data="6" usage="output" label="Taux horaire de la gratification" required="0" visibleRequired="0" help="1"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', 'finPeriode') as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' ORDER BY debutperiode DESC" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="dateSignatureConvention" format="Y-m-d" data="1"></Parameter>
+		</Source>
+		<Source id="2" datasource="gratification-stagiaire" request="SELECT taux, strftime('%%m/%%m/%%Y', finPeriode) as finPeriode FROM tauxMinimal WHERE debutPeriode &lt;= '%1$s' ORDER BY debutperiode DESC LIMIT 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="dateSignatureConvention" format="Y-m-d" data="1"></Parameter>
+		</Source>
+		<Source id="3" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', 'finPeriode') as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" format="Y" data="11"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="10"></Parameter>
+		</Source>
+		<Source id="4" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', 'finPeriode') as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" format="Y" data="21"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="20"></Parameter>
+		</Source>
+		<Source id="5" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="31"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="30"></Parameter>
+		</Source>
+		<Source id="6" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="41"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="40"></Parameter>
+		</Source>
+		<Source id="7" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="51"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="50"></Parameter>
+		</Source>
+		<Source id="8" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="61"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="60"></Parameter>
+		</Source>
+		<Source id="9" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="71"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="70"></Parameter>
+		</Source>
+		<Source id="10" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="81"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="80"></Parameter>
+		</Source>
+		<Source id="11" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="91"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="90"></Parameter>
+		</Source>
+		<Source id="12" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="101"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="100"></Parameter>
+		</Source>
+		<Source id="13" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="111"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="110"></Parameter>
+		</Source>
+		<Source id="14" datasource="gratification-stagiaire" request="SELECT plafond, strftime('%%Y', finPeriode) as finPeriode FROM plafondHoraire WHERE debutPeriode &lt;= '%1$s' || '-' || '%2$s' || '-15' ORDER BY debutperiode DESC LIMIT 1" requestType="complex" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="an" data="121"></Parameter>
+			<Parameter type="columnValue" origin="data" name="mois" format="m" data="120"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Contrôle du nombre d'heures de présence">
+			<Conditions value="#4 &gt; 10">
+				<Condition operand="heuresPresenceJour" operator="&gt;" expression="10"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="4" value="La durée de travail effectif ne peut pas dépasser la durée maximale de 10 heures par jour"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Controle du nombre d'heures effectuées le 1er mois">
+			<Conditions value="#14 &lt;= 0">
+				<Condition operand="nbheures1" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="14" value="Le nombre d'heures du premier mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Avertissement sur le plafond horaire du 1er mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #11 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an1" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois1" value="1er mois : ATTENTION, le plafond horaire de #11 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #18"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Controle du nombre d'heures effectuées le 2ème mois">
+			<Conditions value="#24 &lt;= 0">
+				<Condition operand="nbheures2" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="24" value="Le nombre d'heures du deuxième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Avertissement sur le plafond horaire du 2ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #21 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an2" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois2" value="2e mois : ATTENTION, le plafond horaire de #21 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #28"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Controle du nombre d'heures effectuées le 3ème mois">
+			<Conditions value="#34 &lt;= 0">
+				<Condition operand="nbheures3" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="34" value="Le nombre d'heures du troisième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Avertissement sur le plafond horaire du 3ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #31 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an3" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois3" value="3e mois : ATTENTION, le plafond horaire de #31 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #38"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Controle du nombre d'heures effectuées le 4ème mois">
+			<Conditions value="#44 &lt;= 0">
+				<Condition operand="nbheures4" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="44" value="Le nombre d'heures du quatrième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Avertissement sur le plafond horaire du 4ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #41 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an4" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois4" value="4e mois : ATTENTION, le plafond horaire de #41 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #48"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Controle du nombre d'heures effectuées le 5ème mois">
+			<Conditions value="#54 &lt;= 0">
+				<Condition operand="nbheures5" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="54" value="Le nombre d'heures du cinquième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Avertissement sur le plafond horaire du 5ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #51 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an5" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois5" value="5e mois : ATTENTION, le plafond horaire de #51 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #58"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Controle du nombre d'heures effectuées le 6ème mois">
+			<Conditions value="#64 &lt;= 0">
+				<Condition operand="nbheures6" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="64" value="Le nombre d'heures du sixième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="Avertissement sur le plafond horaire du 6ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #61 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an6" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois6" value="6e mois : ATTENTION, le plafond horaire de #61 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #68"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="Controle du nombre d'heures effectuées le 7ème mois">
+			<Conditions value="#74 &lt;= 0">
+				<Condition operand="nbheures7" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="74" value="Le nombre d'heures du septième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Avertissement sur le plafond horaire du 7ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #71 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an7" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois7" value="7e mois : ATTENTION, le plafond horaire de #71 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #78"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Controle du nombre d'heures effectuées le 8ème mois">
+			<Conditions value="#84 &lt;= 0">
+				<Condition operand="nbheures8" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="84" value="Le nombre d'heures du huitième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Avertissement sur le plafond horaire du 8ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #81 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an8" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois8" value="8e mois : ATTENTION, le plafond horaire de #81 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #88"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Controle du nombre d'heures effectuées le 9ème mois">
+			<Conditions value="#94 &lt;= 0">
+				<Condition operand="nbheures9" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="94" value="Le nombre d'heures du neuvième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Avertissement sur le plafond horaire du 9ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #91 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an9" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois9" value="9e mois : ATTENTION, le plafond horaire de #91 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #98"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Controle du nombre d'heures effectuées le 10ème mois">
+			<Conditions value="#104 &lt;= 0">
+				<Condition operand="nbheures10" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="104" value="Le nombre d'heures du dixième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Avertissement sur le plafond horaire du 10ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #101 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an10" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois10" value="10e mois : ATTENTION, le plafond horaire de #101 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #108"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Controle du nombre d'heures effectuées le 11ème mois">
+			<Conditions value="#114 &lt;= 0">
+				<Condition operand="nbheures11" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="114" value="Le nombre d'heures du onzième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Avertissement sur le plafond horaire du 11ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #111 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an11" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois11" value="11e mois : ATTENTION, le plafond horaire de #111 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #118"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Controle du nombre d'heures effectuées le 12ème mois">
+			<Conditions value="#124 &lt;= 0">
+				<Condition operand="nbheures12" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="124" value="Le nombre d'heures du douzième mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Avertissement sur le plafond horaire du 12ème mois">
+			<Conditions value="dynamic = 1 &amp;&amp; #121 &gt; year(now)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="an12" operator="&gt;" expression="year(now)"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="datagroup" datagroup="donneesMois12" value="12e mois : ATTENTION, le plafond horaire de #121 ne sera connu qu'à partir de l’arrêté au Journal officiel en novembre ou décembre #128"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Contrôle du nombre total d'heures">
+			<Conditions value="#204 &gt; 924">
+				<Condition operand="totalheures" operator="&gt;" expression="924"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="dataset" value="Le nombre total d'heures doit être inférieur à 924"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Contrôle du taux horaire figurant sur la convention">
+			<Conditions value="#7 &lt; #6">
+				<Condition operand="tauxMinimalConvention" operator="&lt;" expression="#6"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="dataset" value="Le taux horaire ne peut être inférieur au taux mimimum légal"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Condition d'affichage du champ 'Organisme public ?' ">
+			<Conditions value="defined(#1)">
+				<Condition operand="dateSignatureConvention" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Condition d'affichage du taux horaire de la gratification de la convention">
+			<Conditions value="defined(#1) &amp;&amp; defined(#3) &amp;&amp; #3 = 2 &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="dateSignatureConvention" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="=" expression="2"></Condition>
+					<Condition operand="tauxMinimal" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="Condition d'affichage du nombre d'heures de présence par jour">
+			<Conditions value="defined(#1) &amp;&amp; defined(#3)">
+				<Connector type="all">
+					<Condition operand="dateSignatureConvention" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Condition d'affichage du taux horaire de la gratification">
+			<Conditions value="defined(#1) &amp;&amp; defined(#3) &amp;&amp; defined(#4) &amp;&amp; #3 = 1">
+				<Connector type="all">
+					<Condition operand="dateSignatureConvention" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="present"></Condition>
+					<Condition operand="heuresPresenceJour" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="Condition d'affichage du fieldset gratification mensuelle">
+			<Conditions value="defined(#1) &amp;&amp; defined(#3) &amp;&amp; defined(#4)">
+				<Connector type="all">
+					<Condition operand="dateSignatureConvention" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="present"></Condition>
+					<Condition operand="heuresPresenceJour" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="showObject" target="footnote" step="1" footnote="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="hideObject" target="footnote" step="1" footnote="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="R33" label="Condition d'affichage des boutons 'Remettre à 0' et 'Imprimer'">
+			<Conditions value="dynamic = 0 || #200">
+				<Connector type="any">
+					<Condition operand="dynamic" operator="=" expression="0"></Condition>
+					<Condition operand="gridOK" operator="isTrue"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="effacer"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="R34" label="Condition d'affichage de la note de bas de page 1 de l'étape de saisie">
+			<Conditions value="#204 &gt; 308 &amp;&amp; #204 &lt;= 924 &amp;&amp; #200">
+				<Connector type="all">
+					<Condition operand="totalheures" operator="&gt;" expression="308"></Condition>
+					<Condition operand="totalheures" operator="&lt;=" expression="924"></Condition>
+					<Condition operand="gridOK" operator="isTrue"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="35" name="R35" label="Condition d'affichage de la note de bas de page 2 de l'étape de saisie">
+			<Conditions value="#204 &gt; 308 &amp;&amp; #204 &lt;= 924 &amp;&amp; #200 &amp;&amp; defined(#202) &amp;&amp; #202 &gt; 1 &amp;&amp; defined(#203)">
+				<Connector type="all">
+					<Condition operand="totalheures" operator="&gt;" expression="308"></Condition>
+					<Condition operand="totalheures" operator="&lt;=" expression="924"></Condition>
+					<Condition operand="gridOK" operator="isTrue"></Condition>
+					<Condition operand="nbMois" operator="present"></Condition>
+					<Condition operand="nbMois" operator="&gt;" expression="1"></Condition>
+					<Condition operand="gratificationLissee" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="36" name="R36" label="Contrôle de l'ordre chronologique : 2ème mois">
+			<Conditions value="defined(#20) &amp;&amp; defined(#21) &amp;&amp; defined(#10) &amp;&amp; defined(#11) &amp;&amp; #152 &lt;= #151">
+				<Connector type="all">
+					<Condition operand="mois2" operator="present"></Condition>
+					<Condition operand="an2" operator="present"></Condition>
+					<Condition operand="mois1" operator="present"></Condition>
+					<Condition operand="an1" operator="present"></Condition>
+					<Condition operand="premierJour2eMois" operator="&lt;=" expression="#151"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois2" value="2e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="imprimer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="effacer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="37" name="R37" label="Contrôle de l'ordre chronologique : 3ème mois">
+			<Conditions value="defined(#30) &amp;&amp; defined(#31) &amp;&amp; defined(#20) &amp;&amp; defined(#21) &amp;&amp; #153 &lt;= #152">
+				<Connector type="all">
+					<Condition operand="mois3" operator="present"></Condition>
+					<Condition operand="an3" operator="present"></Condition>
+					<Condition operand="mois2" operator="present"></Condition>
+					<Condition operand="an2" operator="present"></Condition>
+					<Condition operand="premierJour3eMois" operator="&lt;=" expression="#152"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois3" value="3e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="38" name="R38" label="Contrôle de l'ordre chronologique : 4ème mois">
+			<Conditions value="defined(#40) &amp;&amp; defined(#41) &amp;&amp; defined(#30) &amp;&amp; defined(#31) &amp;&amp; #154 &lt;= #153">
+				<Connector type="all">
+					<Condition operand="mois4" operator="present"></Condition>
+					<Condition operand="an4" operator="present"></Condition>
+					<Condition operand="mois3" operator="present"></Condition>
+					<Condition operand="an3" operator="present"></Condition>
+					<Condition operand="premierJour4eMois" operator="&lt;=" expression="#153"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois4" value="4e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="39" name="R39" label="Contrôle de l'ordre chronologique : 5ème mois">
+			<Conditions value="defined(#50) &amp;&amp; defined(#51) &amp;&amp; defined(#40) &amp;&amp; defined(#41) &amp;&amp; #155 &lt;= #154">
+				<Connector type="all">
+					<Condition operand="mois5" operator="present"></Condition>
+					<Condition operand="an5" operator="present"></Condition>
+					<Condition operand="mois4" operator="present"></Condition>
+					<Condition operand="an4" operator="present"></Condition>
+					<Condition operand="premierJour5eMois" operator="&lt;=" expression="#154"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois5" value="5e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="40" name="R40" label="Contrôle de l'ordre chronologique : 6ème mois">
+			<Conditions value="defined(#60) &amp;&amp; defined(#61) &amp;&amp; defined(#50) &amp;&amp; defined(#51) &amp;&amp; #156 &lt;= #155">
+				<Connector type="all">
+					<Condition operand="mois6" operator="present"></Condition>
+					<Condition operand="an6" operator="present"></Condition>
+					<Condition operand="mois5" operator="present"></Condition>
+					<Condition operand="an5" operator="present"></Condition>
+					<Condition operand="premierJour6eMois" operator="&lt;=" expression="#155"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois6" value="6e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="41" name="R41" label="Contrôle de l'ordre chronologique : 7ème mois">
+			<Conditions value="defined(#70) &amp;&amp; defined(#71) &amp;&amp; defined(#60) &amp;&amp; defined(#61) &amp;&amp; #157 &lt;= #156">
+				<Connector type="all">
+					<Condition operand="mois7" operator="present"></Condition>
+					<Condition operand="an7" operator="present"></Condition>
+					<Condition operand="mois6" operator="present"></Condition>
+					<Condition operand="an6" operator="present"></Condition>
+					<Condition operand="premierJour7eMois" operator="&lt;=" expression="#156"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois7" value="7e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="42" name="R42" label="Contrôle de l'ordre chronologique : 8ème mois">
+			<Conditions value="defined(#80) &amp;&amp; defined(#81) &amp;&amp; defined(#70) &amp;&amp; defined(#71) &amp;&amp; #158 &lt;= #157">
+				<Connector type="all">
+					<Condition operand="mois8" operator="present"></Condition>
+					<Condition operand="an8" operator="present"></Condition>
+					<Condition operand="mois7" operator="present"></Condition>
+					<Condition operand="an7" operator="present"></Condition>
+					<Condition operand="premierJour8eMois" operator="&lt;=" expression="#157"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois8" value="8e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="43" name="R43" label="Contrôle de l'ordre chronologique : 9ème mois">
+			<Conditions value="defined(#90) &amp;&amp; defined(#91) &amp;&amp; defined(#80) &amp;&amp; defined(#81) &amp;&amp; #159 &lt;= #158">
+				<Connector type="all">
+					<Condition operand="mois9" operator="present"></Condition>
+					<Condition operand="an9" operator="present"></Condition>
+					<Condition operand="mois8" operator="present"></Condition>
+					<Condition operand="an8" operator="present"></Condition>
+					<Condition operand="premierJour9eMois" operator="&lt;=" expression="#158"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois9" value="9e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="44" name="R44" label="Contrôle de l'ordre chronologique : 10ème mois">
+			<Conditions value="defined(#100) &amp;&amp; defined(#101) &amp;&amp; defined(#90) &amp;&amp; defined(#91) &amp;&amp; #160 &lt;= #159">
+				<Connector type="all">
+					<Condition operand="mois10" operator="present"></Condition>
+					<Condition operand="an10" operator="present"></Condition>
+					<Condition operand="mois9" operator="present"></Condition>
+					<Condition operand="an9" operator="present"></Condition>
+					<Condition operand="premierJour10eMois" operator="&lt;=" expression="#159"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois10" value="10e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="45" name="R45" label="Contrôle de l'ordre chronologique : 11ème mois">
+			<Conditions value="defined(#110) &amp;&amp; defined(#111) &amp;&amp; defined(#100) &amp;&amp; defined(#101) &amp;&amp; #161 &lt;= #160">
+				<Connector type="all">
+					<Condition operand="mois11" operator="present"></Condition>
+					<Condition operand="an11" operator="present"></Condition>
+					<Condition operand="mois10" operator="present"></Condition>
+					<Condition operand="an10" operator="present"></Condition>
+					<Condition operand="premierJour11eMois" operator="&lt;=" expression="#160"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois11" value="11e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="46" name="R46" label="Contrôle de l'ordre chronologique : 12ème mois">
+			<Conditions value="defined(#120) &amp;&amp; defined(#121) &amp;&amp; defined(#110) &amp;&amp; defined(#111) &amp;&amp; #162 &lt;= #161">
+				<Connector type="all">
+					<Condition operand="mois12" operator="present"></Condition>
+					<Condition operand="an12" operator="present"></Condition>
+					<Condition operand="mois11" operator="present"></Condition>
+					<Condition operand="an11" operator="present"></Condition>
+					<Condition operand="premierJour12eMois" operator="&lt;=" expression="#161"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="datagroup" datagroup="donneesMois12" value="12e mois : les mois doivent être présentés dans un ordre chronologique"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="effacer"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="47" name="R47" label="Détermination du taux horaire minimal">
+			<Conditions value="defined(#3) &amp;&amp; #3 = 2">
+				<Connector type="all">
+					<Condition operand="organismePublic" operator="present"></Condition>
+					<Condition operand="organismePublic" operator="=" expression="2"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="max(#6, #7)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="#6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="48" name="R48" label="Détermination du nombre de jours de présence du 1er mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#12)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables1" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="#12"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="13" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="49" name="R49" label="Détermination du nombre d'heures effectuées le 1er mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#13)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence1" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="14" value="#4 * #13"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="14" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="50" name="R50" label="Détermination de la gratification minimale/heure pour le 1er mois">
+			<Conditions value="defined(#14)">
+				<Condition operand="nbheures1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="16" value="#15 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="16" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="51" name="R51" label="Détermination du nombre de jours de présence du 2e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#22)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables2" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="#22"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="23" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="52" name="R52" label="Détermination du nombre d'heures effectuées le 2e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#23)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence2" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="24" value="#4 * #23"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="24" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="53" name="R53" label="Détermination de la gratification minimale/heure pour le 2e mois">
+			<Conditions value="defined(#24)">
+				<Condition operand="nbheures2" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="#25 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="54" name="R54" label="Détermination du nombre de jours de présence du 3e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#32)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables3" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="#32"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="55" name="R55" label="Détermination du nombre d'heures effectuées le 3e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#33)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence3" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="#4 * #33"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="56" name="R56" label="Détermination de la gratification minimale/heure pour le 3e mois">
+			<Conditions value="defined(#34)">
+				<Condition operand="nbheures3" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="#35 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="57" name="R57" label="Détermination du nombre de jours de présence du 4e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#42)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables4" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="#42"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="58" name="R58" label="Détermination du nombre d'heures effectuées le 4e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#43)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence4" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="44" value="#4 * #43"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="44" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="59" name="R59" label="Détermination de la gratification minimale/heure pour le 4e mois">
+			<Conditions value="defined(#44)">
+				<Condition operand="nbheures4" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="#45 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="46" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="60" name="R60" label="Détermination du nombre de jours de présence du 5e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#52)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables5" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="#52"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="61" name="R61" label="Détermination du nombre d'heures effectuées le 5e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#53)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence5" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="#4 * #53"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="62" name="R62" label="Détermination de la gratification minimale/heure pour le 5e mois">
+			<Conditions value="defined(#54)">
+				<Condition operand="nbheures5" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="#55 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="63" name="R63" label="Détermination du nombre de jours de présence du 6e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#62)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables6" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="#62"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="63" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="64" name="R64" label="Détermination du nombre d'heures effectuées le 6e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#63)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence6" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="#4 * #63"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="64" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="65" name="R65" label="Détermination de la gratification minimale/heure pour le 6e mois">
+			<Conditions value="defined(#64)">
+				<Condition operand="nbheures6" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="#65 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="66" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="66" name="R66" label="Détermination du nombre de jours de présence du 7e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#72)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables7" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="73" value="#72"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="73" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="67" name="R67" label="Détermination du nombre d'heures effectuées le 7e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#73)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence7" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="74" value="#4 * #73"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="74" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="68" name="R68" label="Détermination de la gratification minimale/heure pour le 7e mois">
+			<Conditions value="defined(#74)">
+				<Condition operand="nbheures7" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="76" value="#75 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="76" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="69" name="R69" label="Détermination du nombre de jours de présence du 8e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#82)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables8" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="83" value="#82"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="83" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="70" name="R70" label="Détermination du nombre d'heures effectuées le 8e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#83)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence8" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="84" value="#4 * #83"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="84" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="71" name="R71" label="Détermination de la gratification minimale/heure pour le 8e mois">
+			<Conditions value="defined(#84)">
+				<Condition operand="nbheures8" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="#85 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="86" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="72" name="R72" label="Détermination du nombre de jours de présence du 9e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#92)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables9" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="93" value="#92"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="93" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="73" name="R73" label="Détermination du nombre d'heures effectuées le 9e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#93)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence9" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="94" value="#4 * #93"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="94" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="74" name="R74" label="Détermination de la gratification minimale/heure pour le 9e mois">
+			<Conditions value="defined(#94)">
+				<Condition operand="nbheures9" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="96" value="#95 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="96" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="75" name="R75" label="Détermination du nombre de jours de présence du 10e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#102)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables10" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="103" value="#102"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="103" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="76" name="R76" label="Détermination du nombre d'heures effectuées le 10e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#103)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence10" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="104" value="#4 * #103"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="104" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="77" name="R77" label="Détermination de la gratification minimale/heure pour le 10e mois">
+			<Conditions value="defined(#104)">
+				<Condition operand="nbheures10" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="106" value="#105 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="106" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="78" name="R78" label="Détermination du nombre de jours de présence du 11e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#112)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables11" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="113" value="#112"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="113" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="79" name="R79" label="Détermination du nombre d'heures effectuées le 11e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#113)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence11" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="114" value="#4 * #113"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="114" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="80" name="R80" label="Détermination de la gratification minimale/heure pour le 11e mois">
+			<Conditions value="defined(#114)">
+				<Condition operand="nbheures11" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="116" value="#115 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="116" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="81" name="R81" label="Détermination du nombre de jours de présence du 12e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#122)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursOuvrables12" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="123" value="#122"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="123" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="82" name="R82" label="Détermination du nombre d'heures effectuées le 12e mois">
+			<Conditions value="dynamic = 1 &amp;&amp; defined(#123)">
+				<Connector type="all">
+					<Condition operand="dynamic" operator="=" expression="1"></Condition>
+					<Condition operand="joursPresence12" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="124" value="#4 * #123"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="124" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="83" name="R83" label="Détermination de la gratification minimale/heure pour le 12e mois">
+			<Conditions value="defined(#124)">
+				<Condition operand="nbheures12" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="126" value="#125 * (#8 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="126" value="''"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="84" name="R84" label="Détermination de la gratification lissée">
+			<Conditions value="defined(#201) &amp;&amp; defined(#202) &amp;&amp; #202 &gt; 0">
+				<Connector type="all">
+					<Condition operand="gratificationTotale" operator="present"></Condition>
+					<Condition operand="nbMois" operator="present"></Condition>
+					<Condition operand="nbMois" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="203" value="#201 / #202"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="203" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="85" name="R85" label="Détermination si saisie Ok">
+			<Conditions value="defined(#5) &amp;&amp; #5 &gt; 0 &amp;&amp; ((defined(#11) &amp;&amp; defined(#14)) || (defined(#21) &amp;&amp; defined(#24)) || (defined(#31) &amp;&amp; defined(#34)) || (defined(#41) &amp;&amp; defined(#44)) || (defined(#51) &amp;&amp; defined(#54)) || (defined(#61) &amp;&amp; defined(#64)) || (defined(#71) &amp;&amp; defined(#74)) || (defined(#81) &amp;&amp; defined(#84)) || (defined(#91) &amp;&amp; defined(#94)) || (defined(#101) &amp;&amp; defined(#104)) || (defined(#111) &amp;&amp; defined(#114)) || (defined(#121) &amp;&amp; defined(#124)))">
+				<Connector type="all">
+					<Condition operand="plafondHoraire" operator="present"></Condition>
+					<Condition operand="plafondHoraire" operator="&gt;" expression="0"></Condition>
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="an1" operator="present"></Condition>
+							<Condition operand="nbheures1" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an2" operator="present"></Condition>
+							<Condition operand="nbheures2" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an3" operator="present"></Condition>
+							<Condition operand="nbheures3" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an4" operator="present"></Condition>
+							<Condition operand="nbheures4" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an5" operator="present"></Condition>
+							<Condition operand="nbheures5" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an6" operator="present"></Condition>
+							<Condition operand="nbheures6" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an7" operator="present"></Condition>
+							<Condition operand="nbheures7" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an8" operator="present"></Condition>
+							<Condition operand="nbheures8" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an9" operator="present"></Condition>
+							<Condition operand="nbheures9" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an10" operator="present"></Condition>
+							<Condition operand="nbheures10" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an11" operator="present"></Condition>
+							<Condition operand="nbheures11" operator="present"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="an12" operator="present"></Condition>
+							<Condition operand="nbheures12" operator="present"></Condition>
+						</Connector>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="200" value="true"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="200" value="false"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="86" name="R86" label="Détermination du taux minimal">
+			<Conditions value="!defined(#7) &amp;&amp; defined(#6)">
+				<Connector type="all">
+					<Condition operand="tauxMinimalConvention" operator="blank"></Condition>
+					<Condition operand="tauxMinimal" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="7" value="#6"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="87" name="R87" label="Détermination si la gratification est due">
+			<Conditions value="defined(#204) &amp;&amp; #204 &gt; 0 &amp;&amp; #204 &lt;= 308">
+				<Connector type="all">
+					<Condition operand="totalheures" operator="present"></Condition>
+					<Condition operand="totalheures" operator="&gt;" expression="0"></Condition>
+					<Condition operand="totalheures" operator="&lt;=" expression="308"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="section" step="1" panel="1" blockinfo="3" chapter="1" section="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="88" name="R88" label="Condition d'affichage du bouton Imprimer PDF">
+			<Conditions value="#200 &amp;&amp; #204 &gt; 308 &amp;&amp; #204 &lt;= 924">
+				<Connector type="all">
+					<Condition operand="gridOK" operator="isTrue"></Condition>
+					<Condition operand="totalheures" operator="&gt;" expression="308"></Condition>
+					<Condition operand="totalheures" operator="&lt;=" expression="924"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="89" name="R89" label="Conditions d'affichage du bloc d'info gratification">
+			<Conditions value="defined(#204) &amp;&amp; ((#204 &gt; 308 &amp;&amp; #204 &lt;= 924) || (#204 &gt; 0 &amp;&amp; #204 &lt;= 308)) &amp;&amp; #200">
+				<Connector type="all">
+					<Condition operand="totalheures" operator="present"></Condition>
+					<Connector type="any">
+						<Connector type="all">
+							<Condition operand="totalheures" operator="&gt;" expression="308"></Condition>
+							<Condition operand="totalheures" operator="&lt;=" expression="924"></Condition>
+						</Connector>
+						<Connector type="all">
+							<Condition operand="totalheures" operator="&gt;" expression="0"></Condition>
+							<Condition operand="totalheures" operator="&lt;=" expression="308"></Condition>
+						</Connector>
+					</Connector>
+					<Condition operand="gridOK" operator="isTrue"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="90" name="R90" label="Controle du nombre de jours de présence du 1er mois">
+			<Conditions value="#13 &lt;= 0">
+				<Condition operand="joursPresence1" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="13" value="Le nombre de jours de présence du premier mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="91" name="R91" label="Controle du nombre de jours de présence du 2è mois">
+			<Conditions value="#23 &lt;= 0">
+				<Condition operand="joursPresence2" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="23" value="Le nombre de jours de présence du 2è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="92" name="R92" label="Controle du nombre de jours de présence du 3è mois">
+			<Conditions value="#33 &lt;= 0">
+				<Condition operand="joursPresence3" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="33" value="Le nombre de jours de présence du 3è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="93" name="R93" label="Controle du nombre de jours de présence du 4è mois">
+			<Conditions value="#43 &lt;= 0">
+				<Condition operand="joursPresence4" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="43" value="Le nombre de jours de présence du 4è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="94" name="R94" label="Controle du nombre de jours de présence du 5è mois">
+			<Conditions value="#53 &lt;= 0">
+				<Condition operand="joursPresence5" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="53" value="Le nombre de jours de présence du 5è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="95" name="R95" label="Controle du nombre de jours de présence du 6è mois">
+			<Conditions value="#63 &lt;= 0">
+				<Condition operand="joursPresence6" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="63" value="Le nombre de jours de présence du 6è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="96" name="R96" label="Controle du nombre de jours de présence du 8è mois">
+			<Conditions value="#83 &lt;= 0">
+				<Condition operand="joursPresence8" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="83" value="Le nombre de jours de présence du 8è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="97" name="R97" label="Controle du nombre de jours de présence 10è 1er mois">
+			<Conditions value="#103 &lt;= 0">
+				<Condition operand="joursPresence10" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="103" value="Le nombre de jours de présence du 10è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="98" name="R98" label="Controle du nombre de jours de présence du 11è mois">
+			<Conditions value="#113 &lt;= 0">
+				<Condition operand="joursPresence11" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="113" value="Le nombre de jours de présence du 11è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="99" name="R99" label="Controle du nombre de jours de présence du 12è mois">
+			<Conditions value="#123 &lt;= 0">
+				<Condition operand="joursPresence12" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="123" value="Le nombre de jours de présence du 12è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="100" name="R100" label="Controle du nombre de jours de présence du 9è mois">
+			<Conditions value="#93 &lt;= 0">
+				<Condition operand="joursPresence9" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="93" value="Le nombre de jours de présence du 9è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="101" name="R101" label="Controle du nombre de jours de présence du 7è mois">
+			<Conditions value="#73 &lt;= 0">
+				<Condition operand="joursPresence7" operator="&lt;=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="73" value="Le nombre de jours de présence du 7è mois doit être positif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="102" name="R102" label="Contrôle de la chronologie entre les mois">
+			<Conditions value="(defined(#120) &amp;&amp; defined(#121) &amp;&amp; defined(#110) &amp;&amp; defined(#111) &amp;&amp; #162 &lt;= #161) || (defined(#110) &amp;&amp; defined(#111) &amp;&amp; defined(#100) &amp;&amp; defined(#108) &amp;&amp; #161 &lt;= #160) || (defined(#100) &amp;&amp; defined(#101) &amp;&amp; defined(#90) &amp;&amp; defined(#91) &amp;&amp; #160 &lt;= #159) || (defined(#90) &amp;&amp; defined(#91) &amp;&amp; defined(#80) &amp;&amp; defined(#81) &amp;&amp; #159 &lt;= #158) || (defined(#80) &amp;&amp; defined(#81) &amp;&amp; defined(#70) &amp;&amp; defined(#71) &amp;&amp; #158 &lt;= #157) || (defined(#70) &amp;&amp; defined(#71) &amp;&amp; defined(#60) &amp;&amp; defined(#61) &amp;&amp; #157 &lt;= #156) || (defined(#60) &amp;&amp; defined(#61) &amp;&amp; defined(#50) &amp;&amp; defined(#51) &amp;&amp; #156 &lt;= #155) || (defined(#50) &amp;&amp; defined(#51) &amp;&amp; defined(#40) &amp;&amp; defined(#41) &amp;&amp; #155 &lt;= #154) || (defined(#40) &amp;&amp; defined(#41) &amp;&amp; defined(#30) &amp;&amp; defined(#31) &amp;&amp; #154 &lt;= #153) || (defined(#30) &amp;&amp; defined(#31) &amp;&amp; defined(#20) &amp;&amp; defined(#21) &amp;&amp; #153 &lt;= #152) || (defined(#20) &amp;&amp; defined(#21) &amp;&amp; defined(#10) &amp;&amp; defined(#11) &amp;&amp; #152 &lt;= #151)">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="mois12" operator="present"></Condition>
+						<Condition operand="an12" operator="present"></Condition>
+						<Condition operand="mois11" operator="present"></Condition>
+						<Condition operand="an11" operator="present"></Condition>
+						<Condition operand="premierJour12eMois" operator="&lt;=" expression="#161"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois11" operator="present"></Condition>
+						<Condition operand="an11" operator="present"></Condition>
+						<Condition operand="mois10" operator="present"></Condition>
+						<Condition operand="prevAn10" operator="present"></Condition>
+						<Condition operand="premierJour11eMois" operator="&lt;=" expression="#160"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois10" operator="present"></Condition>
+						<Condition operand="an10" operator="present"></Condition>
+						<Condition operand="mois9" operator="present"></Condition>
+						<Condition operand="an9" operator="present"></Condition>
+						<Condition operand="premierJour10eMois" operator="&lt;=" expression="#159"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois9" operator="present"></Condition>
+						<Condition operand="an9" operator="present"></Condition>
+						<Condition operand="mois8" operator="present"></Condition>
+						<Condition operand="an8" operator="present"></Condition>
+						<Condition operand="premierJour9eMois" operator="&lt;=" expression="#158"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois8" operator="present"></Condition>
+						<Condition operand="an8" operator="present"></Condition>
+						<Condition operand="mois7" operator="present"></Condition>
+						<Condition operand="an7" operator="present"></Condition>
+						<Condition operand="premierJour8eMois" operator="&lt;=" expression="#157"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois7" operator="present"></Condition>
+						<Condition operand="an7" operator="present"></Condition>
+						<Condition operand="mois6" operator="present"></Condition>
+						<Condition operand="an6" operator="present"></Condition>
+						<Condition operand="premierJour7eMois" operator="&lt;=" expression="#156"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois6" operator="present"></Condition>
+						<Condition operand="an6" operator="present"></Condition>
+						<Condition operand="mois5" operator="present"></Condition>
+						<Condition operand="an5" operator="present"></Condition>
+						<Condition operand="premierJour6eMois" operator="&lt;=" expression="#155"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois5" operator="present"></Condition>
+						<Condition operand="an5" operator="present"></Condition>
+						<Condition operand="mois4" operator="present"></Condition>
+						<Condition operand="an4" operator="present"></Condition>
+						<Condition operand="premierJour5eMois" operator="&lt;=" expression="#154"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois4" operator="present"></Condition>
+						<Condition operand="an4" operator="present"></Condition>
+						<Condition operand="mois3" operator="present"></Condition>
+						<Condition operand="an3" operator="present"></Condition>
+						<Condition operand="premierJour4eMois" operator="&lt;=" expression="#153"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois3" operator="present"></Condition>
+						<Condition operand="an3" operator="present"></Condition>
+						<Condition operand="mois2" operator="present"></Condition>
+						<Condition operand="an2" operator="present"></Condition>
+						<Condition operand="premierJour3eMois" operator="&lt;=" expression="#152"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="mois2" operator="present"></Condition>
+						<Condition operand="an2" operator="present"></Condition>
+						<Condition operand="mois1" operator="present"></Condition>
+						<Condition operand="an1" operator="present"></Condition>
+						<Condition operand="premierJour2eMois" operator="&lt;=" expression="#151"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="imprimer"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="action" step="1" action="effacer"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+Mise en production en mars 2015.
+Mise à jour en avril 2018 (wording modifié pour cotisations sociales, rectification lien cassé pour convention, problème d’affichage quand saisie 7e mois/bloc disparaît, ajout d'une colonne 15% de plafond horaire; modification "Taux horaire de la gratification figurant dans la convention" par "Pourcentage du plafond horaire de la sécurité sociale retenu", modifications pour accessibilité).
+	]]></RelatedInformations>
+</Simulator>

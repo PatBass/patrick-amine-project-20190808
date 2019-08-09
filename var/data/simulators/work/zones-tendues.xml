@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="zones-tendues" label="Savoir si un logement est situé en zone tendue" defaultView="particuliers" referer="" dynamic="0" memo="0">
+	<Description><![CDATA[
+Ce simulateur vous permet de déterminer si le logement est situé en zone tendue.
+
+La zone détermine :
+• pour un terrain constructible : l'application de <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31638" title="Link: https://www.service-public.fr/particuliers/vosdroits/F31638">la taxe foncière sur les propriétés non bâties</a> (TFPNB) ;
+• pour un logement vacant : l’application de <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F2847">la taxe sur les logements vacants</a> (TLV) applicable à certaines communes ;
+• pour un logement loué (bail d'habitation) : le droit du locataire à <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1168">un préavis d'1 mois</a> (logement vide ou loi 1948), l'application de <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1314">l'encadrement des loyers</a> (logement vide ou meublé).
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="commune" label="Code insee de la commune" type="text" />
+		<Data id="2" name="preavis" label="Preavis zone tendue" type="integer" source="1" index="'preavis'" />
+		<Data id="3" name="nomCommune" label="Nom de la commune" type="text" source="1" index="'commune'" />
+		<Data id="4" name="txtDeReponse" label="Texte de réponse" type="text" />
+	</DataSet>
+	<Steps>
+		<Step id="1" name="zonage" label="Zonage" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="zonagePanel" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Commune (nom ou code postal)" prompt="Saisir le nom de la ville ou son code postal" required="1" visibleRequired="0" colon="0" help="0" widget="geoAPILocalities" />
+					</FieldSet>
+					<BlockInfo id="2" name="blocResultats" label="">
+						<Chapter id="1" name="chapitreResultats" label="">
+							<Section id="1" name="sectionResultats0" label="">
+								<Content><![CDATA[
+#3 #4
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<FootNotes position="beforeActions">
+				<FootNote id="1"><![CDATA[
+<h2>Pour toute explication, consulter les fiches pratiques :
+</h2><ul><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1168" title="Congé donné par le locataire - Nouvelle fenêtre">Congé donné par le locataire</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1314" title="En quoi consiste l'encadrement des loyers - Nouvelle fenêtre">En quoi consiste l'encadrement des loyers</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1310" title="Logement du secteur privé : fixation et paiement du loyer - Nouvelle fenêtre">Logement du secteur privé : fixation et paiement du loyer</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1312" title="Réévaluation d'un loyer sous-évalué au renouvellement du bail (secteur privé) - Nouvelle fenêtre">Réévaluation d'un loyer sous-évalué au renouvellement du bail (secteur privé)</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F2847" title="Taxe sur les logements vacants applicable à certaines communes (TLV) - Nouvelle fenêtre">Taxe sur les logements vacants applicable à certaines communes (TLV)</a></li><li><a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F31638" title="Taxe foncière sur les propriétés non bâties- Nouvelle fenêtre">Taxe foncière sur les propriétés non bâties</a></li></ul>
+				]]></FootNote>
+			</FootNotes>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="zonage-commune" label="Zonage commune" request="SELECT commune, zone, preavis, frais FROM zonageCommunes WHERE codeInsee = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="insee" data="1" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="R1">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2) &amp;&amp; #2 = 0">
+				<Connector type="all">
+					<Condition operand="nomCommune" operator="present" />
+					<Condition operand="preavis" operator="present" />
+					<Condition operand="preavis" operator="=" expression="0" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="'n\'est pas en zone tendue'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="R2">
+			<Conditions value="defined(#3) &amp;&amp; defined(#2) &amp;&amp; #2 = 1">
+				<Connector type="all">
+					<Condition operand="nomCommune" operator="present" />
+					<Condition operand="preavis" operator="present" />
+					<Condition operand="preavis" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="'est en zone tendue'" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="R3">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#3)">
+				<Connector type="all">
+					<Condition operand="commune" operator="present" />
+					<Condition operand="preavis" operator="present" />
+					<Condition operand="nomCommune" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="2" />
+				<Action id="2" name="showObject" target="footnote" step="1" footnote="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="2" />
+				<Action id="2" name="hideObject" target="footnote" step="1" footnote="1" />
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations><![CDATA[
+Mise en production : octobre 2017.
+Modification du texte de présentation : 26/10/2018.
+	]]></RelatedInformations>
+</Simulator>

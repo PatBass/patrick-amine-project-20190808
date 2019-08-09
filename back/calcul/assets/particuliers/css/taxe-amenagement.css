@@ -1,0 +1,40 @@
+@import "common.css";
+
+.simulator-breadcrumb {
+	margin-top: 2em;
+}
+.step-page label, .step-page .label {
+	width: 70%;
+}
+.step-page input[type="number"] {
+	min-width: 5em;
+	max-width: 10em;
+}
+.step-page .fieldset h3.legend {
+	border-bottom: 3px solid;
+	color: #0b6ba8;
+	margin: 0 0 0.8em;
+	padding: 0;
+	width: 100%;
+}
+.step-page .listbox {
+	display: block;
+}
+#natureDossier-container > label,
+#natureProjet-container > label,
+#codeInsee-container > label ,
+#dateFaitGenerateur-container > label{
+	text-align: left;
+	width: 20%;
+}
+#geoAPILocalitiescodeInsee {
+	max-width: 100%;
+	width: 30em;
+}
+#TA-container {
+	font-size: 2em;
+}
+#simulation-panel-1-fieldset-5 .label {
+	text-align: left;
+	width: 40%;
+}

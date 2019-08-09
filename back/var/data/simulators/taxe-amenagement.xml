@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="taxe-amenagement" label="Simulateur de calcul de la taxe d'aménagement" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Cet outil est mis à votre disposition par le Ministère de la cohésion des territoires. Il vous aide à calculer les impositions dues en Taxe d’aménagement telle que définie aux articles L.331-1 à L.331-34 du code de l’urbanisme.
+
+Le périmètre de ce simulateur est le calcul d'une taxation initiale (TI) de la <b>Taxe d'Aménagement L3 - Locaux à usage d’habitation principale et leurs annexes bénéficiant d’un PTZ (+).</b>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="natureDossier" label="Nature du dossier" type="choice">
+			<Choices>
+				<Choice id="1" value="DP" label="Déclaration préalable"></Choice>
+				<Choice id="2" value="PC" label="Projet de construction"></Choice>
+				<Choice id="3" value="PA" label="Projet d'aménagement"></Choice>
+			</Choices>
+		</Data>
+		<Data id="2" name="natureProjet" label="Nature du projet" type="choice">
+			<Choices>
+				<Choice id="1" value="1" label="Maison individuelle"></Choice>
+				<Choice id="2" value="2" label="Autre"></Choice>
+			</Choices>
+		</Data>
+		<Data id="3" name="codeInsee" label="Code Insee de la commune des travaux" type="text"></Data>
+		<Data id="4" name="numDepartement" label="Numéro du département de la commune des travaux" type="department" source="1" index="'numDepartement'"></Data>
+		<Data id="5" name="codeRegion" label="Code de la région de la commune des travaux" type="region" source="2" index="'codeRegion'"></Data>
+		<Data id="6" name="dateFaitGenerateur" label="Date du fait générateur" type="date"></Data>
+		<Data id="7" name="titulaireCertificatUrbanisme" label="Le déclarant est titulaire d'un certificat d'urbanisme ?" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+				<Choice id="3" value="0" label="Je ne sais pas"></Choice>
+			</Choices>
+		</Data>
+		<Data id="8" name="dateCertificatUrbanisme" label="Date du certificat d'urbanisme" type="date"></Data>
+		<Data id="9" name="ZAC" label="Terrain situé dans une Zone d'Aménagement Concertée (Z.A.C) ?" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+				<Choice id="3" value="0" label="Je ne sais pas"></Choice>
+			</Choices>
+		</Data>
+		<Data id="10" name="PUP" label="Terrain situé dans un périmètre ayant fait l’objet d’une convention de Projet Urbain Partenarial (P.U.P) ?" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+				<Choice id="3" value="0" label="Je ne sais pas"></Choice>
+			</Choices>
+		</Data>
+		<Data id="11" name="OIN" label="Terrain situé dans le périmètre d’une Opération d’Intérêt National (O.I.N) ?" type="choice" default="0">
+			<Choices>
+				<Choice id="1" value="1" label="Oui"></Choice>
+				<Choice id="2" value="2" label="Non"></Choice>
+				<Choice id="3" value="0" label="Je ne sais pas"></Choice>
+			</Choices>
+		</Data>
+		<Data id="12" name="SH_C" label="SH_C : Surfaces créées hormis les surfaces de stationnement closes et couvertes" type="integer" default="0" unit="m2"></Data>
+		<Data id="13" name="SS_C" label="SS_C : Surfaces créées pour le stationnement clos et couvert" type="integer" default="0" unit="m2"></Data>
+		<Data id="14" name="S_E" label="S_E : Surface taxable existante conservée" type="integer" default="0" unit="m2"></Data>
+		<Data id="15" name="SJ_C" label="SJ_C : Surface des abris de jardin/colombiers/pigeonniers" type="integer" default="0" unit="m2"></Data>
+		<Data id="16" name="NH_C" label="NH_C : Nombre de logements créés" type="integer" default="0"></Data>
+		<Data id="17" name="NH_E" label="NH_E : Nombre de logements existants" type="integer" default="0"></Data>
+		<Data id="18" name="ab" label="ab : Abattement" type="number" content="0.5"></Data>
+		<Data id="19" name="EF2_C" label="EF2_C : Exonération communale facultative relative aux résidences principales financées à l’aide du prêt à taux zéro renforcé (PTZ+)" type="percent" source="1" index="'ef2'"></Data>
+		<Data id="20" name="EF7_C" label="EF7_C : Exonération communale facultative relative aux surfaces à usage de stationnement, annexes aux immeubles autres que d’habitations individuelles" type="percent" source="1" index="'ef7'"></Data>
+		<Data id="21" name="EF8_C" label="EF8_C : Exonération communale facultative relative aux abris de jardin soumis à déclaration préalable" type="percent" source="1" index="'ef8'"></Data>
+		<Data id="22" name="EF2_D" label="EF2_D : Exonération départementale facultative relative aux résidences principales financées à l’aide du prêt à taux zéro renforcé (PTZ+)" type="percent" source="2" index="'ef2'"></Data>
+		<Data id="23" name="EF7_D" label="EF7_D : Exonération départementale facultative relative aux surfaces à usage de stationnement, annexes aux immeubles autres que d’habitations individuelles" type="percent" source="2" index="'ef7'"></Data>
+		<Data id="24" name="EF8_D" label="EF8_D : Exonération départementale facultative relative aux abris de jardin soumis à déclaration préalable" type="percent" source="2" index="'ef8'"></Data>
+		<Data id="25" name="EF2_R" label="EF2_R : Exonération régionale facultative relative aux résidences principales financées à l’aide du prêt à taux zéro renforcé (PTZ+)" type="percent" source="3" index="'ef2'"></Data>
+		<Data id="26" name="EF7_R" label="EF7_R : Exonération régionale facultative relative aux surfaces à usage de stationnement, annexes aux immeubles autres que d’habitations individuelles" type="percent" source="3" index="'ef7'"></Data>
+		<Data id="27" name="EF8_R" label="EF8_R : Exonération régionale facultative relative aux abris de jardin soumis à déclaration préalable" type="percent" source="3" index="'ef8'"></Data>
+		<Data id="28" name="Tx_C" label="Tx_C : Taux communal de la taxe" type="percent" source="1" index="'tauxTaxe'"></Data>
+		<Data id="29" name="Tx_D" label="Tx_D : Taux départemental de la taxe" type="percent" source="2" index="'tauxTaxe'"></Data>
+		<Data id="30" name="Tx_R" label="Tx_R : Taux régional de la taxe" type="percent" source="3" index="'tauxTaxe'"></Data>
+		<Data id="31" name="Vf" label="Vf : Valeur forfaitaire du mètre carré" type="money" source="3" index="'vf'"></Data>
+		<Data id="32" name="Ex1_C" label="Ex1_C : Exonération pour les surfaces d'habitation créées ne bénéficiant pas d'un abattement, part communale" type="number"></Data>
+		<Data id="33" name="Ex1_D" label="Ex1_D : Exonération pour les surfaces d'habitation créées ne bénéficiant pas d'un abattement, part départementale" type="number"></Data>
+		<Data id="34" name="Ex1_R" label="Ex1_R : Exonération pour les surfaces d'habitation créées ne bénéficiant pas d'un abattement, part régionale" type="number"></Data>
+		<Data id="35" name="Ex2_C" label="Ex2_C : Exonération pour les surfaces à usage de stationnement bénéficiant d'un abattement, part communale" type="number"></Data>
+		<Data id="36" name="Ex2_D" label="Ex2_D : Exonération pour les surfaces à usage de stationnement bénéficiant d'un abattement, part départementale" type="number"></Data>
+		<Data id="37" name="Ex2_R" label="Ex2_R : Exonération pour les surfaces à usage de stationnement bénéficiant d'un abattement, part régionale" type="number"></Data>
+		<Data id="38" name="Ex3_C" label="Ex3_C : Exonération pour les surfaces à usage de stationnement ne bénéficiant pas d'un abattement, part communale" type="number"></Data>
+		<Data id="39" name="Ex3_D" label="Ex3_D : Exonération pour les surfaces à usage de stationnement ne bénéficiant pas d'un abattement, part départementale" type="number"></Data>
+		<Data id="40" name="Ex3_R" label="Ex3_R : Exonération pour les surfaces à usage de stationnement ne bénéficiant pas d'un abattement, part régionale" type="number"></Data>
+		<Data id="41" name="Ex4_C" label="Ex4_C : Exonération pour les surfaces d'abris de jardin bénéficiant d'un abattement, part communale" type="number"></Data>
+		<Data id="42" name="Ex4_D" label="Ex4_D : Exonération pour les surfaces d'abris de jardin bénéficiant d'un abattement, part départementale" type="number"></Data>
+		<Data id="43" name="Ex4_R" label="Ex4_R : Exonération pour les surfaces d'abris de jardin bénéficiant d'un abattement, part régionale" type="number"></Data>
+		<Data id="44" name="Ex5_C" label="Ex5_C : Exonération pour les surfaces d'abris de jardin ne bénéficiant pas d'un abattement, part communale" type="number"></Data>
+		<Data id="45" name="Ex5_D" label="Ex5_D : Exonération pour les surfaces d'abris de jardin ne bénéficiant pas d'un abattement, part départementale" type="number"></Data>
+		<Data id="46" name="Ex5_R" label="Ex5_R : Exonération pour les surfaces d'abris de jardin ne bénéficiant pas d'un abattement, part régionale" type="number"></Data>
+		<Data id="47" name="S_E_A" label="S_E_A : Surface existante ayant pu bénéficier d'un d'abattement" type="integer" unit="m2"></Data>
+		<Data id="48" name="S_A" label="S_A : Surface d’abattement totale" type="integer" unit="m2"></Data>
+		<Data id="49" name="S_C_A" label="S_C_A : Surface créée bénéficiant d'un abattement" type="integer" unit="m2"></Data>
+		<Data id="50" name="SH_A" label="SH_A : Surface créée d'habitation bénéficiant d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="51" name="SJ_A" label="SJ_A : Surface créée d'abris de jardin bénéficiant d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="52" name="SS_A" label="SS_A : Surface créée à usage de stationnement bénéficiant d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="53" name="SH_NA" label="SH_NA : Surface créée d'habitation ne bénéficiant pas d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="54" name="SJ_NA" label="SJ_NA : Surface créée d'abris de jardin ne bénéficiant pas d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="55" name="SS_NA" label="SS_NA : Surface créée à usage de stationnement ne bénéficiant pas d’un abattement" type="integer" unit="m2"></Data>
+		<Data id="56" name="TA_C" label="TA_C : Part communale de la taxe d'aménagement" type="money"></Data>
+		<Data id="57" name="TA_D" label="TA_D : Part départementale de la taxe d'aménagement" type="money" content="(#50 * (1 - #18) + #53 * (1 - #33) + #52 * (1 - #36) * (1 - #18) + #55 * (1 - #39) + #51 * (1 - #42) * (1 - #18) + #54 * (1 - #45)) * #31 * #29"></Data>
+		<Data id="58" name="TA_R" label="TA_R : Part régionale de la taxe d'aménagement" type="money" default="0"></Data>
+		<Data id="59" name="TA" label="Taxe d'aménagement" type="money"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="saisie" label="Saisie" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="panSaisie" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Dossier / Projet
+						]]></Legend>
+						<Field position="1" data="1" usage="input" newline="0" label="Nature du dossier" prompt="Sélectionnez la nature de votre dossier" required="1" visibleRequired="0" help="0" widget="abListbox"></Field>
+						<Field position="2" data="2" usage="input" newline="0" label="Nature du projet" required="1" visibleRequired="0" help="0" expanded="1"></Field>
+						<Field position="3" data="3" usage="input" newline="0" label="Commune" required="1" visibleRequired="0" help="0" widget="geoAPILocalities"></Field>
+						<Field position="4" data="6" usage="input" newline="0" label="Date du fait générateur" required="1" visibleRequired="0" colon="0" help="0" widget="abDatepicker"></Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend><![CDATA[
+Situation juridique du terrain
+						]]></Legend>
+						<Field position="1" data="7" usage="input" newline="0" label="Êtes-vous titulaire d’un certificat d’urbanisme pour ce terrain ?" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="2" data="8" usage="input" newline="0" label="Date du certificat d'urbanisme" required="0" visibleRequired="1" colon="0" help="0" widget="abDatepicker"></Field>
+						<Field position="3" data="9" usage="input" newline="0" label="Le terrain est-il situé dans une Zone d’Aménagement Concertée (Z.A.C.) ?" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="4" data="10" usage="input" newline="0" label="Le terrain est-il situé dans un périmètre ayant fait l’objet d’une convention de Projet Urbain Partenarial (P.U.P) ? " required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+						<Field position="5" data="11" usage="input" newline="0" label="Le projet est-il situé dans le périmètre d’une Opération d’Intérêt National (O.I.N) ?" required="0" visibleRequired="0" colon="0" help="0" expanded="1"></Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Legend><![CDATA[
+Surfaces taxables
+						]]></Legend>
+						<Field position="1" data="12" usage="input" newline="0" label="Surfaces créées hormis les surfaces de stationnement closes et couvertes" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="2" data="13" usage="input" newline="0" label="Surfaces créées pour le stationnement clos et couvert" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="3" data="14" usage="input" newline="0" label="Surface taxable existante conservée" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="4" data="15" usage="input" newline="0" label="Surface des abris de jardin/colombiers/pigeonniers" required="0" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+					<FieldSet id="4">
+						<Legend><![CDATA[
+Logements
+						]]></Legend>
+						<Field position="1" data="16" usage="input" newline="0" label="Nombre de logements créés" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						<Field position="2" data="17" usage="input" newline="0" label="Nombre de logements existants" required="0" visibleRequired="0" colon="0" help="0"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="calculer" label="Calculer" what="submit" for="nextStep" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+		<Step id="2" name="resultats" label="Résultats" template="pages:article.html.twig" output="normal">
+			<Description><![CDATA[
+Résultats
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="panResultats" label="">
+					<FieldSet id="1">
+						<Legend><![CDATA[
+Taxe d'aménagement
+						]]></Legend>
+						<Field position="1" data="56" usage="output" newline="0" label="Part communale" required="0" visibleRequired="0" colon="0" help="0" emphasize="1"></Field>
+						<Field position="2" data="57" usage="output" newline="0" label="Part départementale" required="0" visibleRequired="0" colon="0" help="0" emphasize="1"></Field>
+						<Field position="3" data="58" usage="output" newline="0" label="Part régionale" required="0" visibleRequired="0" colon="0" help="0" emphasize="1"></Field>
+						<Field position="4" data="59" usage="output" newline="0" label="Taxe d'aménagement" required="0" visibleRequired="0" colon="0" help="0" emphasize="1"></Field>
+					</FieldSet>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="precedent" label="Précédent" what="submit" for="priorStep" class="btn-default" shape="button" location="bottom"></Action>
+				<Action name="nouvellesimu" label="Nouvelle simulation" what="submit" for="newSimulation" class="btn-primary" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="taxe-amenagement" label="Taux et exonérations de la taxe d'aménagement de la commune" request="SELECT tauxtaxe as tauxTaxe, ef2, ef7, ef8, numdepartement as numDepartement FROM tauxCommunes WHERE codeInsee = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="codeInsee" data="3"></Parameter>
+		</Source>
+		<Source id="2" datasource="taxe-amenagement" label="Taux et exonérations de la taxe d'aménagement du département" request="SELECT tauxtaxe as tauxTaxe, ef2, ef7, ef8, coderegion as codeRegion FROM tauxDepartements WHERE numDepartement = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="numDepartement" data="4"></Parameter>
+		</Source>
+		<Source id="3" datasource="taxe-amenagement" label="Taux et exonérations de la taxe d'aménagement de la région" request="SELECT vf, tauxtaxe as tauxTaxe, ef2, ef7, ef8 FROM tauxRegions WHERE codeRegion = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="codeRegion" data="5"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="rDCU" label="Condition d'entrée de la date du certificat d'urbanisme">
+			<Conditions value="defined(#7) &amp;&amp; #7 = 1">
+				<Connector type="all">
+					<Condition operand="titulaireCertificatUrbanisme" operator="present"></Condition>
+					<Condition operand="titulaireCertificatUrbanisme" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="rEx1_C" label="Détermination du taux d'exonération communal concernent les surfaces d'habitation créées ne bénéficiant pas d'un abattement">
+			<Conditions value="defined(#19) &amp;&amp; #19 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF2_C" operator="present"></Condition>
+					<Condition operand="EF2_C" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="#19 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="32" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="rEx1_D" label="Détermination du taux d'exonération départemental concernent les surfaces d'habitation créées ne bénéficiant pas d'un abattement">
+			<Conditions value="defined(#22) &amp;&amp; #22 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF2_D" operator="present"></Condition>
+					<Condition operand="EF2_D" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="#22 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="33" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="rEx1_R" label="Détermination du taux d'exonération régional concernent les surfaces d'habitation créées ne bénéficiant pas d'un abattement">
+			<Conditions value="defined(#25) &amp;&amp; #25 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF2_R" operator="present"></Condition>
+					<Condition operand="EF2_R" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="#25 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="34" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="rEx2_Ex3_C1" label="Détermination du taux d'exonération communal concernent les surfaces à usage de stationnement">
+			<Conditions value="defined(#20) &amp;&amp; #20 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF7_C" operator="present"></Condition>
+					<Condition operand="EF7_C" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="#20 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="38" value="#20 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="rEx2_Ex3_C2" label="Détermination du taux d'exonération communal concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#20) || #20 = 0) &amp;&amp; (!defined(#19) || #19 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_C" operator="blank"></Condition>
+						<Condition operand="EF7_C" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_C" operator="blank"></Condition>
+						<Condition operand="EF2_C" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="38" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="rEx2_Ex3_C3" label="Détermination du taux d'exonération communal concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#20) || #20 = 0) &amp;&amp; defined(#19)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_C" operator="blank"></Condition>
+						<Condition operand="EF7_C" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_C" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="35" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="38" value="#19 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="rEx4_Ex5_C2" label="Détermination du taux d'exonération communal concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#21) || #21 = 0) &amp;&amp; (!defined(#19) || #19 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_C" operator="blank"></Condition>
+						<Condition operand="EF8_C" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_C" operator="blank"></Condition>
+						<Condition operand="EF2_C" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="44" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="rEx4_Ex5_C3" label="Détermination du taux d'exonération communal concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#21) || #21 = 0) &amp;&amp; defined(#19)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_C" operator="blank"></Condition>
+						<Condition operand="EF8_C" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_C" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="44" value="#19 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="rEx4_Ex5_C1" label="Détermination du taux d'exonération communal concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="defined(#21) &amp;&amp; #21 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF8_C" operator="present"></Condition>
+					<Condition operand="EF8_C" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="41" value="#21 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="44" value="#21 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="rEx2_Ex3_D1" label="Détermination du taux d'exonération départemental concernent les surfaces à usage de stationnement">
+			<Conditions value="defined(#23) &amp;&amp; #23 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF7_D" operator="present"></Condition>
+					<Condition operand="EF7_D" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="#23 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="39" value="#23 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="rEx2_Ex3_D2" label="Détermination du taux d'exonération départemental concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#23) || #23 = 0) &amp;&amp; (!defined(#22) || #22 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_D" operator="blank"></Condition>
+						<Condition operand="EF7_D" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_D" operator="blank"></Condition>
+						<Condition operand="EF2_D" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="39" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="rEx2_Ex3_D3" label="Détermination du taux d'exonération départemental concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#23) || #23 = 0) &amp;&amp; defined(#22)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_D" operator="blank"></Condition>
+						<Condition operand="EF7_D" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_D" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="39" value="#22 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="rEx4_Ex5_D1" label="Détermination du taux d'exonération départemental concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="defined(#24) &amp;&amp; #24 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF8_D" operator="present"></Condition>
+					<Condition operand="EF8_D" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="#24 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="45" value="#24 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="rEx4_Ex5_D2" label="Détermination du taux d'exonération départemental concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#24) || #24 = 0) &amp;&amp; (!defined(#22) || #22 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_D" operator="blank"></Condition>
+						<Condition operand="EF8_D" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_D" operator="blank"></Condition>
+						<Condition operand="EF2_D" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="45" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="rEx4_Ex5_D3" label="Détermination du taux d'exonération départemental concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#24) || #24 = 0) &amp;&amp; defined(#22)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_D" operator="blank"></Condition>
+						<Condition operand="EF8_D" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_D" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="42" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="45" value="#22 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="rEx2_Ex3_R1" label="Détermination du taux d'exonération régional concernent les surfaces à usage de stationnement">
+			<Conditions value="defined(#26) &amp;&amp; #26 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF7_R" operator="present"></Condition>
+					<Condition operand="EF7_R" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="#26 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="40" value="#26 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="rEx2_Ex3_R2" label="Détermination du taux d'exonération régional concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#26) || #26 = 0) &amp;&amp; (!defined(#25) || #25 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_R" operator="blank"></Condition>
+						<Condition operand="EF7_R" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_R" operator="blank"></Condition>
+						<Condition operand="EF2_R" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="40" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="rEx2_Ex3_R3" label="Détermination du taux d'exonération régional concernent les surfaces à usage de stationnement">
+			<Conditions value="(!defined(#26) || #26 = 0) &amp;&amp; defined(#25)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF7_R" operator="blank"></Condition>
+						<Condition operand="EF7_R" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_R" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="40" value="#25 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="rEx4_Ex5_R1" label="Détermination du taux d'exonération régional concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="defined(#27) &amp;&amp; #27 &gt; 0">
+				<Connector type="all">
+					<Condition operand="EF8_R" operator="present"></Condition>
+					<Condition operand="EF8_R" operator="&gt;" expression="0"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="#27 / 100"></Action>
+				<Action id="2" name="setAttribute" target="content" data="46" value="#27 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="rEx4_Ex5_R2" label="Détermination du taux d'exonération régional concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#27) || #27 = 0) &amp;&amp; (!defined(#25) || #25 = 0)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_R" operator="blank"></Condition>
+						<Condition operand="EF8_R" operator="=" expression="0"></Condition>
+					</Connector>
+					<Connector type="any">
+						<Condition operand="EF2_R" operator="blank"></Condition>
+						<Condition operand="EF2_R" operator="=" expression="0"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="46" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="rEx4_Ex5_R3" label="Détermination du taux d'exonération régional concernent les surfaces d'abris de jardin (ou assimilées)">
+			<Conditions value="(!defined(#27) || #27 = 0) &amp;&amp; defined(#25)">
+				<Connector type="all">
+					<Connector type="any">
+						<Condition operand="EF8_R" operator="blank"></Condition>
+						<Condition operand="EF8_R" operator="=" expression="0"></Condition>
+					</Connector>
+					<Condition operand="EF2_R" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="43" value="0"></Action>
+				<Action id="2" name="setAttribute" target="content" data="46" value="#25 / 100"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="rRSC1" label="Détermination de la surface existante ayant pu bénéficier d'un d'abattement">
+			<Conditions value="defined(#14) &amp;&amp; defined(#17)">
+				<Connector type="all">
+					<Condition operand="S_E" operator="present"></Condition>
+					<Condition operand="NH_E" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="47" value="min(#14, #17 * 100)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="rRSC2" label="Détermination de la surface d’abattement totale">
+			<Conditions value="defined(#12) &amp;&amp; defined(#14) &amp;&amp; defined(#13) &amp;&amp; defined(#16) &amp;&amp; defined(#17)">
+				<Connector type="all">
+					<Condition operand="SH_C" operator="present"></Condition>
+					<Condition operand="S_E" operator="present"></Condition>
+					<Condition operand="SS_C" operator="present"></Condition>
+					<Condition operand="NH_C" operator="present"></Condition>
+					<Condition operand="NH_E" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="48" value="min(#12 + #14 + #13, (#16 + #17) * 100)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="rRSC3" label="Déduction de  la surface créée bénéficiant d'un abattement">
+			<Conditions value="defined(#48) &amp;&amp; defined(#47) &amp;&amp; defined(#12) &amp;&amp; defined(#13)">
+				<Connector type="all">
+					<Condition operand="S_A" operator="present"></Condition>
+					<Condition operand="S_E_A" operator="present"></Condition>
+					<Condition operand="SH_C" operator="present"></Condition>
+					<Condition operand="SS_C" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="49" value="min(#48 - #47, #12 + #13)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="rRSC4" label="Détermination de la surface créée d'habitation bénéficiant d’un abattement">
+			<Conditions value="defined(#12) &amp;&amp; defined(#15) &amp;&amp; defined(#13) &amp;&amp; defined(#49)">
+				<Connector type="all">
+					<Condition operand="SH_C" operator="present"></Condition>
+					<Condition operand="SJ_C" operator="present"></Condition>
+					<Condition operand="SS_C" operator="present"></Condition>
+					<Condition operand="S_C_A" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="50" value="(#12 - #15) / (#12 + #13) * #49"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="rRSC5" label="Détermination de la surface créée d'abris de jardin bénéficiant d’un abattement">
+			<Conditions value="defined(#15) &amp;&amp; defined(#12) &amp;&amp; defined(#13)">
+				<Connector type="all">
+					<Condition operand="SJ_C" operator="present"></Condition>
+					<Condition operand="SH_C" operator="present"></Condition>
+					<Condition operand="SS_C" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="51" value="#15 / (#12 + #13) * #49"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="rRSC6" label="Détermination de la surface créée à usage de stationnement bénéficiant d’un abattement">
+			<Conditions value="defined(#49) &amp;&amp; defined(#50) &amp;&amp; defined(#51)">
+				<Connector type="all">
+					<Condition operand="S_C_A" operator="present"></Condition>
+					<Condition operand="SH_A" operator="present"></Condition>
+					<Condition operand="SJ_A" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="52" value="#49 - #50 - #51"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="rRSC7" label="Détermination de la surface créée d'habitation ne bénéficiant pas d’un abattement">
+			<Conditions value="defined(#12) &amp;&amp; defined(#15) &amp;&amp; defined(#50)">
+				<Connector type="all">
+					<Condition operand="SH_C" operator="present"></Condition>
+					<Condition operand="SJ_C" operator="present"></Condition>
+					<Condition operand="SH_A" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="53" value="#12 - #15 - #50"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="rRSC8" label="Détermination de la surface créée d'abris de jardin ne bénéficiant pas d’un abattement">
+			<Conditions value="defined(#15) &amp;&amp; defined(#51)">
+				<Connector type="all">
+					<Condition operand="SJ_C" operator="present"></Condition>
+					<Condition operand="SJ_A" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="54" value="#15 - #51"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="rRSC9" label="Détermination de la surface créée à usage de stationnement ne bénéficiant pas d’un abattement">
+			<Conditions value="defined(#13) &amp;&amp; defined(#52)">
+				<Connector type="all">
+					<Condition operand="SS_C" operator="present"></Condition>
+					<Condition operand="SS_A" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="55" value="#13 - #52"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="rCP1" label="Détermination de la part communale de la taxe d'aménagement">
+			<Conditions value="#9 = 1 || #10 = 1 || #11 = 1">
+				<Connector type="any">
+					<Condition operand="ZAC" operator="=" expression="1"></Condition>
+					<Condition operand="PUP" operator="=" expression="1"></Condition>
+					<Condition operand="OIN" operator="=" expression="1"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="0"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="56" value="(#50 * (1 - #18) + #53 * (1 - #32) + #52 * (1 - #35) * (1 - #18) + #55 * (1 - #38) + #51 * (1 - #41) * (1 - #18) + #54 * (1 - #44)) * #31 * #28"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="33" name="rCP3" label="Détermination de la part régionale de la taxe d'aménagement">
+			<Conditions value="defined(#5) &amp;&amp; #5 = 11">
+				<Connector type="all">
+					<Condition operand="codeRegion" operator="present"></Condition>
+					<Condition operand="codeRegion" operator="=" expression="11"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="(#50 * (1 - #18) + #53 * (1 - #34) + #52 * (1 - #37) * (1 - #18) + #55 * (1 - #40) + #51 * (1 - #43) * (1 - #18) + #54 * (1 - #46)) * #31 * #30"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="58" value="0"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="34" name="rCTA" label="Calcul de la taxe d'aménagement">
+			<Conditions value="defined(#56) &amp;&amp; defined(#57) &amp;&amp; defined(#58)">
+				<Connector type="all">
+					<Condition operand="TA_C" operator="present"></Condition>
+					<Condition operand="TA_D" operator="present"></Condition>
+					<Condition operand="TA_R" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="59" value="#56 + #57 + #58"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

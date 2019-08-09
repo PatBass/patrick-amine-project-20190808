@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <title>la Saisie guidée service public</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="fr" />
+        <link rel='stylesheet' type='text/css' href="{{ absolute_url(asset('assets/particuliers/css/style-pdf.css')) }}" />
+    </head>
+    <style> 
+        p    {margin-top: 7px;}   
+    </style> 
+    <body>
+        <div class="step-page">
+            <div class="foot-notes">
+                <div  class="AlignerAgauche">
+                    <br>
+                        {% if (data.entete1 != '') and (data.entete1 != ' ') %}<br>{{ data.entete1|nl2br }}{% endif %}
+                        {% if (data.entete2 != '') and (data.entete2 != ' ') %}<br>{{ data.entete2|nl2br }}{% endif %}
+                        {% if (data.entete3 != '') and (data.entete3 != ' ') %}<br>{{ data.entete3|nl2br }}{% endif %}
+                        {% if (data.entete4 != '') and (data.entete4 != ' ') %}<br>{{ data.entete4|nl2br }}{% endif %}
+                        {% if (data.entete1 != '') and (data.entete1 != ' ') %}<br><br>{% endif %}
+                                
+                        <p><b><u>{{ data.Donnee1objet  }}</u></b></p>
+
+                        {% if (data.donnee1 != '') and (data.donnee1 != ' ') and (data.donnee1 != '  ') %}<p>{{ data.donnee1|nl2br }}</p>{% endif %}
+                        {% if (data.donnee2 != '') and (data.donnee2 != ' ') and (data.donnee2 != '  ')%}<p>{{ data.donnee2|nl2br }}</p>{% endif %}
+                        {% if (data.donnee3 != '') and (data.donnee3 != ' ') and (data.donnee3 != '  ') %}<p>{{ data.donnee3|nl2br }}</p>{% endif %}
+                        {% if (data.donnee4 != '') and (data.donnee4 != ' ') and (data.donnee4 != '  ') %}<p>{{ data.donnee4|nl2br }}</p>{% endif %}
+                        {% if (data.donnee5 != '') and (data.donnee5 != ' ') and (data.donnee5 != '  ') %}<p>{{ data.donnee5|nl2br }}</p>{% endif %}
+                        {% if (data.donnee6 != '') and (data.donnee6 != ' ') and (data.donnee6 != '  ') %}<p>{{ data.donnee6|nl2br }}</p>{% endif %}
+                        {% if (data.donnee7 != '') and (data.donnee7 != ' ') and (data.donnee7 != '  ') %}<p>{{ data.donnee7|nl2br }}</p>{% endif %}
+                        {% if (data.donnee8 != '') and (data.donnee8 != ' ') and (data.donnee8 != '  ') %}<p>{{ data.donnee8|nl2br }}</p>{% endif %}
+                        {% if (data.donnee9 != '') and (data.donnee9 != ' ') and (data.donnee9 != '  ') %}<p>{{ data.donnee9|nl2br }}</p>{% endif %}
+                        {% if (data.donnee10 != '') and (data.donnee10 != ' ') and (data.donnee10 != '  ') %}<p>{{ data.donnee10|nl2br }}</p>{% endif %}
+                        {% if (data.donnee11 != '') and (data.donnee11 != ' ') and (data.donnee11 != '  ') %}<p>{{ data.donnee11|nl2br }}</p>{% endif %}
+                        {% if (data.donnee12 != '') and (data.donnee12 != ' ') and (data.donnee12 != '  ') %}<p>{{ data.donnee12|nl2br }}</p>{% endif %}
+                        {% if (data.donnee13 != '') and (data.donnee13 != ' ') and (data.donnee13 != '  ')%}<p>{{ data.donnee13|nl2br }}</p>{% endif %}
+                </div>
+                <div  class="AlignerAdroite">
+                    <p>
+                        {% if (data.donnee14 != '') and (data.donnee14 != ' ') %}<br>{{ data.donnee14 }}{% endif %}
+                        {% if (data.donnee15 != '') and (data.donnee15 != ' ') %}<br>{{ data.donnee15 }}{% endif %}
+                        {% if (data.donnee16 != '') and (data.donnee16 != ' ') %}<br>{{ data.donnee16 }}{% endif %}
+                        <br><br>
+                        <font color="#e4e1e1">...........................</font>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

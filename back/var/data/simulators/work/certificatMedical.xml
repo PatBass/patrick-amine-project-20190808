@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="certificatMedical" label="SIMULATEUR : FAUT-IL UN CERTIFICAT MÉDICAL POUR OBTENIR UNE LICENCE SPORTIVE ?" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description edition="manual"><![CDATA[
+Ce simulateur vous indique s'il faut fournir un certificat médical pour obtenir ou renouveler une licence sportive (loisir ou compétition) auprès de votre fédération (football, tennis, équitation, judo...). Selon les cas, il vous informe sur la durée de validité de votre certificat médical. Il vous permet de répondre au questionnaire santé et d'attester de votre état de santé qui, le cas échéant,  vous dispense de fournir un certificat médical.
+
+<div>Pour plus d'informations, consulter <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1030" title="Link: https://www.service-public.fr/particuliers/vosdroits/F1030">Un certificat médical est-il obligatoire pour faire du sport ?</a> et <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F1029">Licence sportive (compétition ou loisir</a>)
+
+</div>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<DataGroup id="1" name="questionsEtape1" label="questionsEtape1 Votre situation">
+			<Data id="1" name="sportsRisqueAutresSports" label="Sport à risques?" type="choice">
+				<Description edition="manual"><![CDATA[
+<b>Rappel </b>
+Les <b>disciplines sportives à contraintes particulières</b> sont :
+- l'alpinisme, la plongée subaquatique, la spéléologie ;
+- les sports, pratiqués en compétition, pour lesquels le combat peut prendre fin par K-O (boxe anglaise, kick boxing, savate...) ;
+- les sports comportant l'utilisation d'armes à feu ou à air comprimé (tir, ball-trap, biathlon) ;
+- les sports, pratiqués en compétition, comportant l'utilisation de véhicules, à l'exception du modélisme automobile radioguidé (sport-auto, karting et motocyclisme) ;
+- les sports aéronautiques pratiqués en compétition, à l'exception de l'aéromodélisme (voltige aérienne, vol à voile, vol libre...) ;
+- le parachutisme ;
+- le rugby à XV, le rugby à XIII et le rugby à VII.
+				]]></Description>
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="2" name="laLicenceValide" label="la Licence Valide ?" type="choice">
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="3" name="lerenouvellementplusde2fois" label="Renouvellement  2fois" type="choice">
+				<Description edition="manual"><![CDATA[
+Répondez <i>non </i>si vous avez fourni un certificat médical l’an passé, ou si vous l’avez fourni l’année précédente et que vous renouvelez votre licence pour la 2e année consécutive. Exemple : vous avez fourni un certificat médical en 2016 pour la saison 2016-2017, vous avez renouvelé une première fois votre licence en 2017 pour la saison 2017-2018 sans fournir de certificat médical. Vous renouvelez pour la seconde fois votre licence en 2018 pour la saison 2018-2019.
+Répondez <i>oui </i>si vous avez renouvelé votre licence 2 années de suite sans fournir de certificat.
+				]]></Description>
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="4" name="UneLicenceCompetition" label="Licence compétition ?" type="choice">
+				<Description edition="manual"><![CDATA[
+Le terme de licence recouvre différentes intensités de pratique.
+Selon la fédération, il peut exister une licence "compétition" et une licence "loisir", ainsi qu'une licence "dirigeant/arbitre".
+La licence "loisir" est un titre à l'année, mais elle n'implique pas obligatoirement une pratique régulière.
+La licence "compétition" du sport concerné est obligatoire pour participer aux <a target="_blank" rel="nofollow" href="https://www.service-public.fr/particuliers/vosdroits/F124">compétitions</a> liées à la fédération. Par exemple, pour participer à un championnat de football amateur, une licence de la fédération française de football est nécessaire.
+Toutefois, la licence "compétition" autorise la participation aux compétitions, mais ne l'impose pas obligatoirement. Par exemple, la licence de la fédération française de tennis donne la possibilité à son détenteur de pratiquer la compétition, mais celui-ci peut ne faire aucune compétition dans l'année.
+				]]></Description>
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="5" name="LaFrequenceRenouvellement" label="La fréquence renouvellement ?" type="choice">
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="6" name="LadatePremierCertificatInferieure" label="La date du dernier certificat est inférieure ?" type="choice">
+				<Choices>
+					<Choice id="1" value="2" label="Non" />
+					<Choice id="2" value="1" label="Oui" />
+				</Choices>
+			</Data>
+		</DataGroup>
+		<DataGroup id="2" name="questionnaireSante" label="Questionnaire de santé">
+			<Data id="7" name="question1aujourd" label="DouleurAujourd" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="8" name="question2aujourd" label="Interruption aujourd" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="9" name="question3aujourd" label="avisMedicalAujourd" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="10" name="question4" label="Décès subit" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="11" name="question5" label="Douleur poitrine" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="12" name="question6" label="Asthme" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="13" name="question7" label="Perte de connaissance" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="14" name="question8" label="Arrêt sport" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="15" name="question9" label="Traitement médical" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="16" name="ReponseGrilleouinon1" label="Réponse Oui Non 1" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="17" name="ReponseGrilleouinon2" label="Réponse oui non 2" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="18" name="ReponseGrilleouinon3" label="Reponse oui non 3" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="19" name="ReponseGrilleouinon4" label="Reponse oui non 4" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="20" name="ReponseGrilleouinon5" label="Reponse oui non 5" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="21" name="ReponseGrilleouinon6" label="Reponse oui non 6" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="22" name="ReponseQuestion7" label="Reponse oui non 7" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="23" name="ReponseQuestion8" label="Reponse oui non 8" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+			<Data id="24" name="ReponseQuestion9Aujourd" label="Reponse oui non 9" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Oui" />
+					<Choice id="2" value="2" label="Non" />
+				</Choices>
+			</Data>
+		</DataGroup>
+		<Data id="25" name="AffichageBloc6" label="AffichageBloc6 Certificat medical datant de moins d'un an" type="boolean" />
+		<Data id="26" name="AffichageBloc7" label="AffichageBloc7 Avertissement aucun certificat n'est necessaire" type="boolean" />
+		<DataGroup id="3" name="groupedonneferdeation" label="groupedonnefederation autocomplet">
+			<Data id="27" name="donnefederation" label="donne federation" type="choice">
+				<Choices>
+					<Source id="1" valueColumn="id" labelColumn="nom" />
+				</Choices>
+			</Data>
+			<Data id="28" name="resultattelephone" label="Resultat téléphone" type="text" source="2" index="'telephone'" />
+			<Data id="29" name="nomfederation" label="Nom Fédération" type="text" source="2" index="'nom'" />
+			<Data id="30" name="siteweb" label="siteweb" type="text" source="2" index="'siteweb'" />
+			<Data id="31" name="email" label="email" type="text" source="2" index="'email'" />
+			<Data id="32" name="frequenceRenouvellementFederation" label="Fréquence renouvellement fédération" type="text" source="2" index="'Freqyence'" />
+			<Data id="33" name="datederniersertificatinferieur2" label="Date dernier certificat 2 (fédé renseignée)" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Non" />
+					<Choice id="2" value="2" label="Oui" />
+				</Choices>
+			</Data>
+			<Data id="34" name="majdate" label="maj_date" type="text" source="2" index="'maj'" />
+			<Data id="35" name="dateDernierCertificat3" label="Date dernier certificat 3 (fédé NON renseignée)" type="choice">
+				<Choices>
+					<Choice id="1" value="1" label="Non" />
+					<Choice id="2" value="2" label="Oui" />
+				</Choices>
+			</Data>
+		</DataGroup>
+		<Data id="36" name="AffichageduBloc12" label="Affichagebloc12" type="boolean" />
+		<Data id="37" name="AffichageBloc13" label="AffichageBloc13" type="boolean" />
+	</DataSet>
+	<Steps>
+		<Step id="1" name="questionnaire" label="Questionnaire" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Description edition="manual"><![CDATA[
+Le renseignement du questionnaire de santé est obligatoire lorsque la présentation d'un certificat médical n'est pas exigée lors du renouvellement de la licence (à l'exception des fédérations sportives scolaires). Pour renouveler sa licence, le sportif atteste qu'il a répondu non à l'ensemble des questions. Une réponse positive à l'une des questions entraîne la nécessité de présenter un certificat médical.
+			]]></Description>
+			<Panels>
+				<Panel id="1" name="questionnaireSante" label="Questionnaire santé">
+					<FieldSet id="1" disposition="grid">
+						<Legend edition="manual"><![CDATA[
+Votre situation
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="lespremieresquestions" type="text" label="Réponse" />
+						</Columns>
+						<FieldRow id="1" datagroup="1" label="Pratiquez-vous une discipline sportive à contraintes particulières ?" help="1" colon="0">
+							<Field position="1" data="1" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="2" datagroup="1" label="Possédez-vous une licence en cours de validité ?" colon="0">
+							<Field position="1" data="2" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="3" datagroup="1" label=" Avez-vous renouvelé votre licence deux fois sans fournir de certificat médical ?" help="1" colon="0">
+							<Field position="1" data="3" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="4" datagroup="1" label="S'agit-il d'une &quot;licence compétition&quot; ?" help="1" colon="0">
+							<Field position="1" data="4" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+					</FieldSet>
+					<FieldSet id="2">
+						<Legend edition="manual"><![CDATA[
+Recherchez votre fédération
+						]]></Legend>
+						<Field position="1" data="27" usage="input" newline="0" prompt="Saisissez ici le nom de votre fédération ou du sport pratiqué, par exemple " required="0" visibleRequired="0" colon="0" help="0" widget="AutocompletionListbox">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="28" usage="output" newline="0" label="Contactez votre fédération pour connaître la durée de validité du certificat médical qu'elle a fixée :" required="0" visibleRequired="0" colon="0" help="0" />
+						<Field position="3" data="29" usage="output" newline="0" label="Nom de fédération" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="4" data="30" usage="output" newline="0" label="site web" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="5" data="31" usage="output" newline="0" label="Email" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="9" name="blocfrequence" label="">
+						<Chapter id="1" name="chapitrefrequence" label="">
+							<Section id="1" name="section1" label="">
+								<Content edition="manual"><![CDATA[
+<h11><b>Le dernier certificat médical que vous avez fourni a-t-il moins de  <h10> #32  </h10></b><h13>(information mise à jour le #34)</h13> <b>?</b></h11>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="10">
+						<Field position="1" data="33" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="11">
+						<Field position="1" data="35" usage="input" newline="0" label="Le dernier certificat médical que vous avez fourni est-il encore valable selon les indications de votre fédération ? " required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote edition="manual"><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3" disposition="grid">
+						<Legend edition="manual"><![CDATA[
+Complétez ce questionnaire de santé (vos données restent confidentielles et ne sont pas recueillies)
+						]]></Legend>
+						<Columns>
+							<Column id="1" name="les9questions" type="text" label="Réponse" />
+						</Columns>
+						<FieldRow id="1" datagroup="2" label="A ce jour, ressentez-vous une douleur, un manque de force ou une raideur suite à un problème osseux, articulaire ou musculaire (fracture, entorse, luxation, déchirure, tendinite, etc...) survenu durant les 12 derniers mois ?" colon="0">
+							<Field position="1" data="16" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="2" datagroup="2" label="A ce jour, votre pratique sportive est-elle interrompue pour des raisons de santé ?" colon="0">
+							<Field position="1" data="17" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="3" datagroup="2" label="A ce jour, pensez-vous avoir besoin d’un avis médical pour poursuivre votre pratique sportive ?" colon="0">
+							<Field position="1" data="18" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="4" datagroup="2" label="Durant les 12 derniers mois, un membre de  votre famille est-il décédé subitement d’une cause cardiaque ou inexpliquée ?" colon="0">
+							<Field position="1" data="19" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="5" datagroup="2" label="Durant les 12 derniers mois, avez-vous ressenti une douleur dans la poitrine, des palpitations, un essoufflement inhabituel ou  un malaise ?" colon="0">
+							<Field position="1" data="20" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="6" datagroup="2" label="Durant les 12 derniers mois, avez-vous eu un épisode de respiration sifflante (asthme) ?" colon="0">
+							<Field position="1" data="21" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="7" datagroup="2" label="Durant les 12 derniers mois, avez-vous eu une perte de connaissance ?" colon="0">
+							<Field position="1" data="22" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="8" datagroup="2" label="Durant les 12 derniers mois, si vous avez arrêté le sport pendant 30 jours ou plus pour des raisons de santé, avez-vous repris sans l’accord d’un médecin ?" colon="0">
+							<Field position="1" data="23" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+						<FieldRow id="9" datagroup="2" label="Durant les 12 derniers mois, avez-vous débuté un traitement médical de longue durée (hors contraception et désensibilisation  aux allergies) ?" colon="0">
+							<Field position="1" data="24" usage="input" newline="0" required="0" visibleRequired="0" colon="0" help="0" expanded="1" />
+						</FieldRow>
+					</FieldSet>
+					<BlockInfo id="4" name="BlocResultatsOUIQuestionnaire" label="">
+						<Chapter id="1" name="oui" label="">
+							<Section id="1" name="oui" label="">
+								<Content edition="manual"><![CDATA[
+Vous avez répondu <i>oui </i>à une ou plusieurs questions, vous devez fournir un certificat médical de non contre-indication à la pratique du sport ou de la discipline concernée, datant de moins d'un an à la date de la demande de la licence. Consultez votre médecin.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="5" name="BlocResultatsNONQuestionnaire" label="">
+						<Chapter id="1" name="non" label="">
+							<Section id="1" name="non" label="">
+								<Content edition="manual"><![CDATA[
+Vous avez répondu <i>non </i>à toutes les questions, vous n'avez pas de certificat médical à fournir. Simplement attestez, selon les modalités prévues par votre fédération, avoir répondu <i>non </i>à toutes les questions lors de la demande de renouvellement de la licence.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="6" name="CAS1xxx1erREPONSExxOUI" label="">
+						<Chapter id="1" name="certificatMedicalNecessaire" label="">
+							<Section id="1" name="resultatcertificatmedical" label="">
+								<Content edition="manual"><![CDATA[
+Vous devez fournir un certificat médical de non contre-indication à la pratique de la discipline concernée, datant de moins d'un an à la date de la demande de la licence. Consultez votre médecin.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="7" name="LicenceScolaire" label="">
+						<Chapter id="1" name="LicenceScolaire" label="">
+							<Section id="1" name="LicenceScolaire" label="">
+								<Content edition="manual"><![CDATA[
+A noter : aucun certificat médical n'est nécessaire pour obtenir une <b>licence de fédération sportive scolaire</b> (UNSS, UGSEL, USEP) sauf pour pratiquer une discipline sportive à contraintes particulières.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="8" name="blocinfoaccueil" label="">
+						<Chapter id="1" name="chapitte1" label="">
+							<Section id="1" name="section1" label="">
+								<Content edition="manual"><![CDATA[
+<b>Les disciplines sportives à contraintes particulières sont :</b>
+- l'alpinisme, la plongée subaquatique, la spéléologie ;
+- les sports, pratiqués en compétition, pour lesquels le combat peut prendre fin par K-O (boxe anglaise, kick boxing, savate...) ;
+- les sports comportant l'utilisation d'armes à feu ou à air comprimé (tir, ball-trap, biathlon) ;
+- les sports, pratiqués en compétition, comportant l'utilisation de véhicules, à l'exception du modélisme automobile radioguidé (sport-auto, karting et motocyclisme) ;
+- les sports aéronautiques pratiqués en compétition, à l'exception de l'aéromodélisme (voltige aérienne, vol à voile, vol libre...) ;
+- le parachutisme ;
+- le rugby à XV, le rugby à XIII et le rugby à VII.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="12" name="CAS2xxxxxNONxNONxxxxxNONxOUIxOUIxNONxNON" label="">
+						<Chapter id="1" name="ch1" label="">
+							<Section id="1" name="section1" label="">
+								<Content edition="manual"><![CDATA[
+Vous devez fournir un certificat médical de non contre-indication à la pratique du sport ou de la discipline concernée, datant de moins d'un an à la date de la demande de la licence. Consultez votre médecin.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<BlockInfo id="13" name="CAS3xxxNONxOUIxOUIxOUI" label="">
+						<Chapter id="1" name="ch1" label="">
+							<Section id="1" name="sec1" label="">
+								<Content edition="manual"><![CDATA[
+Vous devez fournir un certificat médical de non contre-indication à la pratique du sport ou de la discipline concernée, en compétition, et datant de moins d'un an à la date de la demande de la licence. Consultez votre médecin.
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="Recommencer" label="Nouvelle simulation" shape="button" what="reset" for="newSimulation" location="bottom" />
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="federation" label="sourcefederation" request="SELECT id, nom, telephone FROM annuaire" returnType="assocArray" />
+		<Source id="2" datasource="federation" label="resultatfederation" request="SELECT id, nom, telephone, freqyence as Freqyence, siteweb, email, maj FROM annuaire WHERE '%1$s' = id" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="resultatfederation" data="27" />
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="Affichage Question 2 questionnaire">
+			<Conditions value="defined(#16)">
+				<Condition operand="ReponseGrilleouinon1" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="Affichage question 3 questionnaire">
+			<Conditions value="defined(#17)">
+				<Condition operand="ReponseGrilleouinon2" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Affichage question 4 questionnaire">
+			<Conditions value="defined(#18)">
+				<Condition operand="ReponseGrilleouinon3" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Affichage question 5 questionnaire">
+			<Conditions value="defined(#19)">
+				<Condition operand="ReponseGrilleouinon4" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Affichage question 6 questionnaire">
+			<Conditions value="defined(#20)">
+				<Condition operand="ReponseGrilleouinon5" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="Affichage question 7 questionnaire">
+			<Conditions value="defined(#21)">
+				<Condition operand="ReponseGrilleouinon6" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="7" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="Affichage question 8 questionnaire">
+			<Conditions value="defined(#22)">
+				<Condition operand="ReponseQuestion7" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="8" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="8" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="Affichage question 9 questionnaire">
+			<Conditions value="defined(#23)">
+				<Condition operand="ReponseQuestion8" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="9" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="3" fieldrow="9" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="Gestion condition affichage bloc 6 (CM nécessaire)  a true ou false  / cas 1 : oui">
+			<Conditions value="defined(#1) &amp;&amp; #1 != 2">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="!=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="25" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="25" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Gestion condition affichage bloc 7 (avertissement licence scolaire)  true ou false">
+			<Conditions value="#1 = 2 &amp;&amp; !defined(#2) &amp;&amp; defined(#1)">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="blank" />
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="26" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Afficher ou masquer le bloc 6  : cas 1 (oui)">
+			<Conditions value="#25">
+				<Condition operand="AffichageBloc6" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="6" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="6" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Afficher ou masquer le Bloc 7  1er question = non">
+			<Conditions value="#26">
+				<Condition operand="AffichageBloc7" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="7" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="7" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="si q1 non renseignée: cacher les autres questions">
+			<Conditions value="!defined(#1)">
+				<Condition operand="sportsRisqueAutresSports" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="6" />
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="7" />
+				<Action id="3" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="2" />
+				<Action id="4" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="3" />
+				<Action id="5" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="4" />
+				<Action id="6" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="12" />
+				<Action id="7" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="13" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="affichage question 2 possedez-vous">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Affichage question 3 licence renouvelée 2 fois">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2 &amp;&amp; #2 = 1">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="3" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Affichage question 4 (s agit til)">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#2) &amp;&amp; #2 = 1 &amp;&amp; defined(#3) &amp;&amp; #3 = 1">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="present" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="present" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="1" fieldrow="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="affichage de groupe de donnée fédération">
+			<Conditions value="#1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#3) &amp;&amp; defined(#4)">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="laLicenceValide" operator="present" />
+					<Condition operand="lerenouvellementplusde2fois" operator="present" />
+					<Condition operand="UneLicenceCompetition" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Affichage de groupe de donnée 2 questionnaire de santé">
+			<Conditions value="(defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#2) &amp;&amp; #2 = 1 &amp;&amp; defined(#3) &amp;&amp; #3 = 2) || (defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#2) &amp;&amp; #2 = 1 &amp;&amp; defined(#3) &amp;&amp; #3 = 1 &amp;&amp; defined(#4) &amp;&amp; #4 = 2 &amp;&amp; defined(#27) &amp;&amp; defined(#32) &amp;&amp; defined(#33) &amp;&amp; #33 = 2) || (defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#2) &amp;&amp; #2 = 1 &amp;&amp; defined(#3) &amp;&amp; #3 = 1 &amp;&amp; defined(#4) &amp;&amp; #4 = 2 &amp;&amp; defined(#35) &amp;&amp; #35 = 2 &amp;&amp; defined(#27) &amp;&amp; !defined(#32))">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="present" />
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="present" />
+						<Condition operand="laLicenceValide" operator="=" expression="1" />
+						<Condition operand="lerenouvellementplusde2fois" operator="present" />
+						<Condition operand="lerenouvellementplusde2fois" operator="=" expression="2" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="present" />
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="present" />
+						<Condition operand="laLicenceValide" operator="=" expression="1" />
+						<Condition operand="lerenouvellementplusde2fois" operator="present" />
+						<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+						<Condition operand="UneLicenceCompetition" operator="present" />
+						<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+						<Condition operand="donnefederation" operator="present" />
+						<Condition operand="frequenceRenouvellementFederation" operator="present" />
+						<Condition operand="datederniersertificatinferieur2" operator="present" />
+						<Condition operand="datederniersertificatinferieur2" operator="=" expression="2" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="present" />
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="present" />
+						<Condition operand="laLicenceValide" operator="=" expression="1" />
+						<Condition operand="lerenouvellementplusde2fois" operator="present" />
+						<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+						<Condition operand="UneLicenceCompetition" operator="present" />
+						<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+						<Condition operand="dateDernierCertificat3" operator="present" />
+						<Condition operand="dateDernierCertificat3" operator="=" expression="2" />
+						<Condition operand="donnefederation" operator="present" />
+						<Condition operand="frequenceRenouvellementFederation" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="3" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3" />
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="5" />
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Condition affichage resultat recherche autocomplet">
+			<Conditions value="#1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#27) &amp;&amp; !defined(#32)">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+					<Condition operand="donnefederation" operator="present" />
+					<Condition operand="frequenceRenouvellementFederation" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="2" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Affichage resultat recherche fédération si info frequence dispo">
+			<Conditions value="#1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#27) &amp;&amp; defined(#32)">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+					<Condition operand="donnefederation" operator="present" />
+					<Condition operand="frequenceRenouvellementFederation" operator="present" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Afficher le bloc vous avez repondu non a toutes les questions">
+			<Conditions value="defined(#16) &amp;&amp; defined(#17) &amp;&amp; defined(#18) &amp;&amp; defined(#19) &amp;&amp; defined(#20) &amp;&amp; defined(#21) &amp;&amp; defined(#22) &amp;&amp; defined(#23) &amp;&amp; defined(#24) &amp;&amp; #16 = 2 &amp;&amp; #17 = 2 &amp;&amp; #18 = 2 &amp;&amp; #19 = 2 &amp;&amp; #20 = 2 &amp;&amp; #21 = 2 &amp;&amp; #22 = 2 &amp;&amp; #23 = 2 &amp;&amp; #24 = 2">
+				<Connector type="all">
+					<Condition operand="ReponseGrilleouinon1" operator="present" />
+					<Condition operand="ReponseGrilleouinon2" operator="present" />
+					<Condition operand="ReponseGrilleouinon3" operator="present" />
+					<Condition operand="ReponseGrilleouinon4" operator="present" />
+					<Condition operand="ReponseGrilleouinon5" operator="present" />
+					<Condition operand="ReponseGrilleouinon6" operator="present" />
+					<Condition operand="ReponseQuestion7" operator="present" />
+					<Condition operand="ReponseQuestion8" operator="present" />
+					<Condition operand="ReponseQuestion9Aujourd" operator="present" />
+					<Condition operand="ReponseGrilleouinon1" operator="=" expression="2" />
+					<Condition operand="ReponseGrilleouinon2" operator="=" expression="2" />
+					<Condition operand="ReponseGrilleouinon3" operator="=" expression="2" />
+					<Condition operand="ReponseGrilleouinon4" operator="=" expression="2" />
+					<Condition operand="ReponseGrilleouinon5" operator="=" expression="2" />
+					<Condition operand="ReponseGrilleouinon6" operator="=" expression="2" />
+					<Condition operand="ReponseQuestion7" operator="=" expression="2" />
+					<Condition operand="ReponseQuestion8" operator="=" expression="2" />
+					<Condition operand="ReponseQuestion9Aujourd" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="5" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="afficher bloc vous avez repondu oui a au moins une question">
+			<Conditions value="(defined(#16) &amp;&amp; defined(#17) &amp;&amp; defined(#18) &amp;&amp; defined(#19) &amp;&amp; defined(#20) &amp;&amp; defined(#21) &amp;&amp; defined(#22) &amp;&amp; defined(#23) &amp;&amp; defined(#24)) &amp;&amp; (#16 = 1 || #17 = 1 || #18 = 1 || #19 = 1 || #20 = 1 || #21 = 1 || #22 = 1 || #23 = 1 || #24 = 1)">
+				<Connector type="all">
+					<Connector type="all">
+						<Condition operand="ReponseGrilleouinon1" operator="present" />
+						<Condition operand="ReponseGrilleouinon2" operator="present" />
+						<Condition operand="ReponseGrilleouinon3" operator="present" />
+						<Condition operand="ReponseGrilleouinon4" operator="present" />
+						<Condition operand="ReponseGrilleouinon5" operator="present" />
+						<Condition operand="ReponseGrilleouinon6" operator="present" />
+						<Condition operand="ReponseQuestion7" operator="present" />
+						<Condition operand="ReponseQuestion8" operator="present" />
+						<Condition operand="ReponseQuestion9Aujourd" operator="present" />
+					</Connector>
+					<Connector type="any">
+						<Condition operand="ReponseGrilleouinon1" operator="=" expression="1" />
+						<Condition operand="ReponseGrilleouinon2" operator="=" expression="1" />
+						<Condition operand="ReponseGrilleouinon3" operator="=" expression="1" />
+						<Condition operand="ReponseGrilleouinon4" operator="=" expression="1" />
+						<Condition operand="ReponseGrilleouinon5" operator="=" expression="1" />
+						<Condition operand="ReponseGrilleouinon6" operator="=" expression="1" />
+						<Condition operand="ReponseQuestion7" operator="=" expression="1" />
+						<Condition operand="ReponseQuestion8" operator="=" expression="1" />
+						<Condition operand="ReponseQuestion9Aujourd" operator="=" expression="1" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="4" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="4" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="affichage de la premiere description bloc 8 (déf sports à risques)">
+			<Conditions value="defined(#1)">
+				<Condition operand="sportsRisqueAutresSports" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="8" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="8" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="affichage champ contactez votre federation">
+			<Conditions value="defined(#27) &amp;&amp; #4 = 2 &amp;&amp; #3 = 1 &amp;&amp; #2 = 1 &amp;&amp; #1 = 2 &amp;&amp; !defined(#32)">
+				<Connector type="all">
+					<Condition operand="donnefederation" operator="present" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="frequenceRenouvellementFederation" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="2" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="10" field="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="3" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="4" />
+				<Action id="3" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="5" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="affichage resultat fédération si info fédération disponible">
+			<Conditions value="defined(#29) &amp;&amp; defined(#32) &amp;&amp; #1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2">
+				<Connector type="all">
+					<Condition operand="nomfederation" operator="present" />
+					<Condition operand="frequenceRenouvellementFederation" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="9" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2" />
+				<Action id="3" name="showObject" target="field" step="1" panel="1" fieldset="10" field="1" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="10" field="1" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="cacher info federation au demarrage">
+			<Conditions value="!defined(#27)">
+				<Condition operand="donnefederation" operator="blank" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2" />
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="10" field="1" />
+				<Action id="3" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="9" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Affichage question La date de votre CM dépasse (info fréquence non renseignée)">
+			<Conditions value="defined(#1) &amp;&amp; #1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#27) &amp;&amp; !defined(#32)">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="present" />
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+					<Condition operand="donnefederation" operator="present" />
+					<Condition operand="frequenceRenouvellementFederation" operator="blank" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="11" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="11" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="afficher le bouton recommencer">
+			<Conditions value="defined(#1)">
+				<Condition operand="sportsRisqueAutresSports" operator="present" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="Recommencer" />
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="Gestion condition affichage bloc 12 a true ou false  / cas 2 : (non-non) -(non-oui-oui-non-non)">
+			<Conditions value="(defined(#1) &amp;&amp; #1 = 2 &amp;&amp; defined(#2) &amp;&amp; #2 = 2) || (#1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#33) &amp;&amp; #33 = 1 &amp;&amp; defined(#27) &amp;&amp; defined(#32)) || (defined(#1) &amp;&amp; #1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; #4 = 2 &amp;&amp; defined(#35) &amp;&amp; #35 = 1 &amp;&amp; defined(#27) &amp;&amp; !defined(#32))">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="present" />
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="present" />
+						<Condition operand="laLicenceValide" operator="=" expression="2" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="=" expression="1" />
+						<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+						<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+						<Condition operand="datederniersertificatinferieur2" operator="present" />
+						<Condition operand="datederniersertificatinferieur2" operator="=" expression="1" />
+						<Condition operand="donnefederation" operator="present" />
+						<Condition operand="frequenceRenouvellementFederation" operator="present" />
+					</Connector>
+					<Connector type="all">
+						<Condition operand="sportsRisqueAutresSports" operator="present" />
+						<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+						<Condition operand="laLicenceValide" operator="=" expression="1" />
+						<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+						<Condition operand="UneLicenceCompetition" operator="=" expression="2" />
+						<Condition operand="dateDernierCertificat3" operator="present" />
+						<Condition operand="dateDernierCertificat3" operator="=" expression="1" />
+						<Condition operand="donnefederation" operator="present" />
+						<Condition operand="frequenceRenouvellementFederation" operator="blank" />
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="36" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="30" name="R30" label="affichage ou masquer le bloc 12">
+			<Conditions value="#36">
+				<Condition operand="AffichageduBloc12" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="12" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="12" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="31" name="R31" label="Gestion condition affichage bloc 13 a true ou false  / cas 3 : (non -oui - oui - oui)">
+			<Conditions value="#1 = 2 &amp;&amp; #2 = 1 &amp;&amp; #3 = 1 &amp;&amp; defined(#4) &amp;&amp; #4 = 1">
+				<Connector type="all">
+					<Condition operand="sportsRisqueAutresSports" operator="=" expression="2" />
+					<Condition operand="laLicenceValide" operator="=" expression="1" />
+					<Condition operand="lerenouvellementplusde2fois" operator="=" expression="1" />
+					<Condition operand="UneLicenceCompetition" operator="present" />
+					<Condition operand="UneLicenceCompetition" operator="=" expression="1" />
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="true" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="setAttribute" target="content" data="37" value="false" />
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="32" name="R32" label="affichage ou masquer bloc 13">
+			<Conditions value="#37">
+				<Condition operand="AffichageBloc13" operator="isTrue" />
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="13" />
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="13" />
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+	<RelatedInformations edition="manual"><![CDATA[
+Mise en prod le 21/08/18.
+Modification (intitulé fiche Licence sportive dans texte de présentation) faite en qualif le 31/08/18 et en production le 18/09/18.
+	]]></RelatedInformations>
+</Simulator>

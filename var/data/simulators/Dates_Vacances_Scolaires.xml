@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="Dates_Vacances_Scolaires" label="Calendrier des vacances scolaires" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+Les dates des vacances scolaires dépendent de la zone dans laquelle se trouve l'établissement (école maternelle ou primaire, collège ou lycée).
+Retrouvez ici le calendrier scolaire 2018-2019 et 2019-2020 de votre département.
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="Departement" label="Département" type="choice">
+			<Choices>
+				<Source id="1" valueColumn="id" labelColumn="Dpt"></Source>
+			</Choices>
+		</Data>
+		<DataGroup id="1" name="groupeinfo1" label="groupeinfo1">
+			<Data id="2" name="Academie" label="Académie de" type="text" source="2" index="'Academie'"></Data>
+			<Data id="3" name="Region" label="Région de" type="text" source="2" index="'Region'"></Data>
+			<Data id="4" name="Zone" label="Zone de" type="text" source="2" index="'Zone'"></Data>
+		</DataGroup>
+		<DataGroup id="2" name="infoligne1" label="infoligne1">
+			<Data id="5" name="Vacances1" label="Vacances1" type="text" source="3" index="'Description'"></Data>
+			<Data id="6" name="Debut1" label="Date de début1" type="date" source="3" index="'DateDebut'"></Data>
+			<Data id="7" name="Fin1" label="Date de fin1" type="date" source="3" index="'DateFin'"></Data>
+			<Data id="8" name="Annee1" label="Année1" type="text" source="3" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="3" name="infoligne2" label="infoligne2">
+			<Data id="11" name="Vacances2" label="Vacances2" type="text" source="4" index="'Description'"></Data>
+			<Data id="12" name="Debut2" label="Date de début2" type="date" source="4" index="'DateDebut'"></Data>
+			<Data id="13" name="Fin2" label="Date de fin2" type="date" source="4" index="'DateFin'"></Data>
+			<Data id="14" name="Annee2" label="Année2" type="text" source="4" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="4" name="infoligne3" label="infoligne3">
+			<Data id="15" name="Vacances3" label="Vacances3" type="text" source="5" index="'Description'"></Data>
+			<Data id="16" name="Debut3" label="Date de début3" type="date" source="5" index="'DateDebut'"></Data>
+			<Data id="17" name="Fin3" label="Date de fin3" type="date" source="5" index="'DateFin'"></Data>
+			<Data id="18" name="Annee3" label="Année3" type="text" source="5" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="5" name="infoligne4" label="infoligne4">
+			<Data id="19" name="Vacances4" label="Vacances4" type="text" source="6" index="'Description'"></Data>
+			<Data id="20" name="Debut4" label="Date de début4" type="date" source="6" index="'DateDebut'"></Data>
+			<Data id="21" name="Fin4" label="Date de fin4" type="date" source="6" index="'DateFin'"></Data>
+			<Data id="22" name="Annee4" label="Année4" type="text" source="6" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="6" name="infoligne5" label="infoligne5">
+			<Data id="23" name="Vacances5" label="Vacances5" type="text" source="7" index="'Description'"></Data>
+			<Data id="24" name="Debut5" label="Date de début5" type="date" source="7" index="'DateDebut'"></Data>
+			<Data id="25" name="Fin5" label="Date de fin5" type="date" source="7" index="'DateFin'"></Data>
+			<Data id="26" name="Annee5" label="Année5" type="text" source="7" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="7" name="infoligne6" label="infoligne6">
+			<Data id="27" name="Vacances6" label="Vacances6" type="text" source="8" index="'Description'"></Data>
+			<Data id="28" name="Debut6" label="Date de début6" type="date" source="8" index="'DateDebut'"></Data>
+			<Data id="29" name="Fin6" label="Date de fin6" type="date" source="8" index="'DateFin'"></Data>
+			<Data id="30" name="Annee6" label="Année6" type="text" source="8" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="8" name="infoligne7" label="infoligne7">
+			<Data id="31" name="Vacances7" label="Vacances7" type="text" source="9" index="'Description'"></Data>
+			<Data id="32" name="Debut7" label="Date de début7" type="date" source="9" index="'DateDebut'"></Data>
+			<Data id="33" name="Fin7" label="Date de fin7" type="date" source="9" index="'DateFin'"></Data>
+			<Data id="34" name="Annee7" label="Année7" type="text" source="9" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="9" name="infoligne8" label="infoligne8">
+			<Data id="35" name="Vacances8" label="Vacances8" type="text" source="10" index="'Description'"></Data>
+			<Data id="36" name="Debut8" label="Date de début8" type="date" source="10" index="'DateDebut'"></Data>
+			<Data id="37" name="Fin8" label="Date de fin8" type="date" source="10" index="'DateFin'"></Data>
+			<Data id="38" name="Annee8" label="Année8" type="text" source="10" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="10" name="infoligne9" label="infoligne9">
+			<Data id="39" name="Vacances9" label="Vacances9" type="text" source="11" index="'Description'"></Data>
+			<Data id="40" name="Debut9" label="Date de début9" type="date" source="11" index="'DateDebut'"></Data>
+			<Data id="41" name="Fin9" label="Date de fin9" type="date" source="11" index="'DateFin'"></Data>
+			<Data id="42" name="Annee9" label="Année9" type="text" source="11" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="11" name="infoligne10" label="infoligne10">
+			<Data id="43" name="Vacances10" label="Vacances10" type="text" source="12" index="'Description'"></Data>
+			<Data id="44" name="Debut10" label="Date de début10" type="date" source="12" index="'DateDebut'"></Data>
+			<Data id="45" name="Fin10" label="Date de fin10" type="date" source="12" index="'DateFin'"></Data>
+			<Data id="46" name="Annee10" label="Année10" type="text" source="12" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="12" name="infoligne11" label="infoligne11">
+			<Data id="47" name="Vacances11" label="Vacances11" type="text" source="13" index="'Description'"></Data>
+			<Data id="48" name="Debut11" label="Date de début11" type="date" source="13" index="'DateDebut'"></Data>
+			<Data id="49" name="Fin11" label="Date de fin11" type="date" source="13" index="'DateFin'"></Data>
+			<Data id="50" name="Annee11" label="Année11" type="text" source="13" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="13" name="infoligne12" label="infoligne12">
+			<Data id="51" name="Vacances12" label="Vacances12" type="text" source="14" index="'Description'"></Data>
+			<Data id="52" name="Debut12" label="Date de début12" type="date" source="14" index="'DateDebut'"></Data>
+			<Data id="53" name="Fin12" label="Date de fin12" type="date" source="14" index="'DateFin'"></Data>
+			<Data id="54" name="Annee12" label="Année12" type="text" source="14" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<DataGroup id="14" name="infoligne13" label="infoligne13">
+			<Data id="55" name="Vacances13" label="Vacances13" type="text" source="15" index="'Description'"></Data>
+			<Data id="56" name="Debut13" label="Date de début13" type="date" source="15" index="'DateDebut'"></Data>
+			<Data id="57" name="Fin13" label="Date de fin13" type="date" source="15" index="'DateFin'"></Data>
+			<Data id="58" name="Annee13" label="Année13" type="text" source="15" index="'annee_scolaire'"></Data>
+		</DataGroup>
+		<Data id="59" name="annee_scolaire" label="Année Scolaire" type="choice">
+			<Choices>
+				<Choice id="1" value="2018-2019" label="2018 - 2019"></Choice>
+				<Choice id="2" value="2019-2020" label="2019 - 2020"></Choice>
+			</Choices>
+		</Data>
+		<Data id="60" name="donnesansespace" label="donneesansespace" type="text"></Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="DatesVacances" label="Dates des vacances" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="1" label="">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Choisissez le département" prompt="Indiquez le nom du département" required="0" visibleRequired="0" help="0" widget="AutocompletionListbox">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="59" usage="input" newline="0" label="Choisissez l'année scolaire" required="0" visibleRequired="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="3" name="blocinfo" label="">
+						<Chapter id="1" name="chapitre1" label="">
+							<Section id="1" name="section1" label="">
+								<Content><![CDATA[
+Académie  #2, région #3 ( #4 )
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+					<FieldSet id="2" disposition="grid">
+						<Columns>
+							<Column id="1" name="Vacances" type="text" label="Vacances"></Column>
+							<Column id="2" name="Debut" type="text" label="Dernier jour de cours"></Column>
+							<Column id="3" name="Fin" type="text" label="Reprise des cours"></Column>
+						</Columns>
+						<FieldRow id="1" datagroup="2" label="1" colon="0">
+							<Field position="1" data="5" usage="output" newline="0" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="6" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="7" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="2" datagroup="3" label="2" colon="0">
+							<Field position="1" data="11" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="12" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="13" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="3" datagroup="4" label="3" colon="0">
+							<Field position="1" data="15" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="16" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="17" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="4" datagroup="5" label="4" colon="0">
+							<Field position="1" data="19" usage="output" newline="0" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="20" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="21" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="5" datagroup="6" label="5" colon="0">
+							<Field position="1" data="23" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="24" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="25" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="6" datagroup="7" label="6" colon="0">
+							<Field position="1" data="27" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="28" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="29" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="7" datagroup="8" label="7" colon="0">
+							<Field position="1" data="31" usage="output" newline="0" required="0" visibleRequired="0" help="0"></Field>
+							<Field position="2" data="32" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="33" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="8" datagroup="9" label="8" colon="0">
+							<Field position="1" data="35" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="36" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="37" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="9" datagroup="10" label="9" colon="0">
+							<Field position="1" data="39" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="40" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="41" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="10" datagroup="11" label="10" colon="0">
+							<Field position="1" data="43" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="44" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="45" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="11" datagroup="12" label="11" colon="0">
+							<Field position="1" data="47" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="48" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="49" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="12" datagroup="11" label="12" colon="0">
+							<Field position="1" data="51" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="52" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="53" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+						<FieldRow id="13" datagroup="12" label="13" colon="0">
+							<Field position="1" data="55" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="2" data="56" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+							<Field position="3" data="57" usage="output" newline="0" required="0" visibleRequired="0" colon="0" help="0"></Field>
+						</FieldRow>
+					</FieldSet>
+					<BlockInfo id="4" name="lienupoload" label="">
+						<Chapter id="1" name="chapitre1" label="">
+							<Section id="1" name="ZoneA" label="">
+								<Content><![CDATA[
+Pour intégrer ces dates dans votre agenda (Outlook, Lightning/Thunderbird, Google agenda...), téléchargez le fichier suivant et ouvrez-le sur votre ordinateur ou smartphone ﻿ <a target="_blank" rel="nofollow"  class="btn btn-primary"  href="/simulateur/calcul/assets/particuliers/fichiers_ics/#60-#59.ics"> Fichier des vacances scolaires</a>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="Reinitialiser" label="Choisir un autre département" what="submit" for="newSimulation" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<Sources>
+		<Source id="1" datasource="VacancesScolaires" label="Choix" request="SELECT dpt as Dpt, id FROM Academie" returnType="assocArray"></Source>
+		<Source id="2" datasource="VacancesScolaires" label="appartient_a_la_Zone" request="SELECT dpt as Dpt, region as Region, academie as Academie, zone as Zone FROM Academie WHERE id = '%1$s'" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param" data="1"></Parameter>
+		</Source>
+		<Source id="3" datasource="VacancesScolaires" label="result_filtre1" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param1" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="4" datasource="VacancesScolaires" label="result_filtre2" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 1" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param2" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="5" datasource="VacancesScolaires" label="result_filtre3" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 2" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param3" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="6" datasource="VacancesScolaires" label="result_filtre4" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 3" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param4" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="7" datasource="VacancesScolaires" label="result_filtre5" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 4" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param5" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="8" datasource="VacancesScolaires" label="result_filtre6" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 5" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param6" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="9" datasource="VacancesScolaires" label="result_filtre7" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 6" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param7" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="10" datasource="VacancesScolaires" label="result_filtre8" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 7" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param8" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="11" datasource="VacancesScolaires" label="result_filtre9" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 8" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param9" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="12" datasource="VacancesScolaires" label="result_filtre10" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 9" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param10" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="13" datasource="VacancesScolaires" label="result_filtre11" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 10" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param11" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="14" datasource="VacancesScolaires" label="result_filtre12" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 11" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param12" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+		<Source id="15" datasource="VacancesScolaires" label="result_filtre13" request="SELECT zone as Zone, description as Description, datedebut as DateDebut, datefin as DateFin, annee_scolaire FROM Calendrier WHERE Zone = '%1$s' AND annee_scolaire = '%2$s' ORDER BY id LIMIT 1 OFFSET 12" returnType="assocArray" returnPath="0">
+			<Parameter type="columnValue" origin="data" name="Param13" data="4"></Parameter>
+			<Parameter type="columnValue" origin="data" name="annee" data="59"></Parameter>
+		</Source>
+	</Sources>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="afficher la ligne 2">
+			<Conditions value="defined(#1) &amp;&amp; defined(#11)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances2" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="afficher la ligne 3">
+			<Conditions value="defined(#1) &amp;&amp; defined(#15)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances3" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="afficher la ligne 4">
+			<Conditions value="defined(#1) &amp;&amp; defined(#19)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances4" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="afficher la ligne 5">
+			<Conditions value="defined(#1) &amp;&amp; defined(#23)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances5" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="afficher la ligne 6">
+			<Conditions value="defined(#1) &amp;&amp; defined(#27)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances6" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="6"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="6"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="afficher la ligne 7">
+			<Conditions value="defined(#1) &amp;&amp; defined(#31)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances7" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="7"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="7"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="afficher la ligne 8">
+			<Conditions value="defined(#1) &amp;&amp; defined(#35)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances8" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="8"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="8"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="afficher la ligne 9">
+			<Conditions value="defined(#1) &amp;&amp; defined(#39)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances9" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="9"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="9"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="afficher la ligne 10">
+			<Conditions value="defined(#1) &amp;&amp; defined(#43)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances10" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="10"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="10"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="afficher la ligne 11">
+			<Conditions value="defined(#1) &amp;&amp; defined(#47)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances11" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="11"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="11"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="afficher la ligne 12">
+			<Conditions value="defined(#1) &amp;&amp; defined(#51)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances12" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="12"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="12"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="afficher la ligne 13">
+			<Conditions value="defined(#1) &amp;&amp; defined(#55)">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="Vacances13" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="13"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldrow" step="1" panel="1" fieldset="2" fieldrow="13"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="afficher choix de l annee scolaire">
+			<Conditions value="defined(#1)">
+				<Condition operand="Departement" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="1" field="2"></Action>
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="afficher grille et champ 2 et 3">
+			<Conditions value="defined(#59) &amp;&amp; defined(#1)">
+				<Connector type="all">
+					<Condition operand="annee_scolaire" operator="present"></Condition>
+					<Condition operand="Departement" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Bouton d'action">
+			<Conditions value="defined(#6)">
+				<Condition operand="Debut1" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="Reinitialiser"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="action" step="1" action="Reinitialiser"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="Renommer Zone A">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Zone A'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Zone A'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'ZoneA'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="Renommer Zone B">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Zone B'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Zone B'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'ZoneB'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="18" name="R18" label="Renommer Zone C">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Zone C'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Zone C'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'ZoneC'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="19" name="R19" label="Renommer Guadeloupe">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Guadeloupe'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Guadeloupe'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'Guadeloupe'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="20" name="R20" label="Renommer Martinique">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Martinique'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Martinique'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'Martinique'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="21" name="R21" label="Renommer Guyane">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Guyane'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Guyane'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'Guyane'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="22" name="R22" label="Renommer La Réunion">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'La Réunion'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'La Réunion'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'LaReunion'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="23" name="R23" label="Saint Pierre et Miquelon">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Saint-Pierre et Miquelon'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Saint-Pierre et Miquelon'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'SaintPierreetMiquelon'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="24" name="R24" label="Mayotte">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Mayotte'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Mayotte'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'Mayotte'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="25" name="R25" label="Wallis et Futuna">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Wallis et Futuna'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Wallis et Futuna'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'WallisetFutuna'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="26" name="R26" label="Polynésie Française">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Polynésie'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Polynésie'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'PolynesieFrancaise'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="27" name="R27" label="Nouvelle Calédonie">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Nouvelle Calédonie'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Nouvelle Calédonie'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'NouvelleCaledonie'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="28" name="R28" label="Corse">
+			<Conditions value="defined(#4) &amp;&amp; #4 = 'Corse'">
+				<Connector type="all">
+					<Condition operand="Zone" operator="present"></Condition>
+					<Condition operand="Zone" operator="=" expression="'Corse'"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="60" value="'Corse'"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="29" name="R29" label="masquer blmoc 4 si 2019 2020">
+			<Conditions value="defined(#1) &amp;&amp; defined(#59) &amp;&amp; #59 = '2018-2019'">
+				<Connector type="all">
+					<Condition operand="Departement" operator="present"></Condition>
+					<Condition operand="annee_scolaire" operator="present"></Condition>
+					<Condition operand="annee_scolaire" operator="=" expression="2018-2019"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="4"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>

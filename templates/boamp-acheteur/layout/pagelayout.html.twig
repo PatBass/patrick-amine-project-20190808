@@ -1,0 +1,41 @@
+{% extends 'base/layout/pagelayout.html.twig' %}
+
+{# les macro utilisées dans le projet #}
+{% import "boamp-acheteur/element/pub.html.twig" as pub %}
+{% import "boamp-acheteur/element/nav.html.twig" as nav %}
+{% block doctype %}
+<!DOCTYPE html>
+{% endblock %}
+
+{% block html %}{{ parent() }}{% endblock %}
+
+{% block title %}Boamp.fr{% endblock %}
+
+{% block metas %}
+{{ parent() }}{% include 'boamp-acheteur/sections/meta.html.twig' %}
+{% endblock %}
+
+{% block bodyclass %}alt-theme{% endblock %}
+
+{% block styles %}
+{{ parent() }}{% include 'boamp-acheteur/sections/favicon.html.twig' %}
+{% include 'boamp-acheteur/sections/styles.html.twig' %}
+{% endblock %}
+
+{% block body %}
+	<noscript>
+		<p class="text-center text-danger">Javascript est desactivé dans votre navigateur.</p>
+	</noscript>
+	<!--[if lte IE 9]>
+		<div class="browsehappy">
+		<p>Savez-vous que votre navigateur est obsolète ? Pour naviguer de la manière la plus satisfaisante sur le reste du Web, nous vous recommandons de procéder à une <a href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie">mise à jour de votre navigateur</a>.</p>
+		<p>Vous pouvez aussi <a href="http://browsehappy.com/">essayer d’autres navigateurs web populaires</a>.</p>
+		</div>
+	<![endif]-->
+  {% include 'boamp-acheteur/sections/header.html.twig' %}
+  {% block content %}{% endblock %}
+  {% include 'boamp-acheteur/sections/footer.html.twig' %}
+  {% block scripts %}
+	{{ parent() }}{% include 'boamp-acheteur/sections/scripts.html.twig' %}
+  {% endblock %}
+{% endblock %}

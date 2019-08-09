@@ -1,0 +1,35 @@
+
+
+{# 
+ # nav-top
+ # liens d'évitements
+ #}
+{% macro nav_top() %}
+
+	<ul class="liensEvitement" title="Liens d'acc&egrave;s rapides">
+		<li><a href="#connexionForm">Connexion au service de veille</a></li>
+		<li><a href="#navigation">Navigation</a></li>
+		<li><a href="#main">Contenu principal</a></li>
+	</ul>
+
+{% endmacro %}
+
+
+{# 
+ #  breadcrumb
+ #}
+{% macro breadcrumb() %}
+
+		<div id="filAriane">
+			<!-- Path content: START -->
+			<p>
+				<a href="http://www.boamp.fr/BOAMP">Accueil</a>
+				<span class="path-separator">></span>
+				<span class="path-text">Simulateurs</span>
+			</p>
+			<!-- Path content: END -->
+		</div>
+
+{% endmacro %}
+
+

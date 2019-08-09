@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="CalculReduction" label="Calculer un prix après réduction" defaultView="particuliers" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="UTC">
+	<Description><![CDATA[
+<blockquote>Ce simulateur permet de calculer le prix après l'application d'un taux de réduction (soldes, promotion, remise, rabais, ristourne...).
+
+</blockquote>
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," moneySymbol="€" symbolPosition="after" groupingSeparator=" " groupingSize="3">
+		<Data id="1" name="PrixOrigine" label="Prix avant réduction" type="money" min="0.01"></Data>
+		<Data id="2" name="TauxReduction" label="Taux de réduction" type="percent" min="0.01" max="100"></Data>
+		<Data id="3" name="ValeurReduction" label="Montant de la réduction" type="money"></Data>
+		<Data id="4" name="PrixReduit" label="Prix après réduction" type="money"></Data>
+		<Data id="5" name="prixapresreduction2" label="Prix aprés réduction 2" type="money"></Data>
+		<Data id="6" name="TauxReduction2" label="2e taux de réduction" type="percent" min="0.01" max="100"></Data>
+		<DataGroup id="1" name="Cumul" label="">
+			<Data id="7" name="ValeurReduction2" label="Montant de la 2e réduction" type="money"></Data>
+			<Data id="8" name="ValeurReductionTotale" label="Montant total des réductions" type="money"></Data>
+			<Data id="9" name="PrixFinal" label="Prix final" type="money"></Data>
+		</DataGroup>
+		<Data id="10" name="Question_2e_Taux" label="2e taux de réduction ?" type="choice">
+			<Choices>
+				<Choice id="1" value="Oui" label="Oui"></Choice>
+				<Choice id="2" value="Non" label="Non"></Choice>
+			</Choices>
+		</Data>
+	</DataSet>
+	<Steps>
+		<Step id="1" name="CalculPrixReduit" label="Calcul du prix réduit" template="pages:article.html.twig" output="normal" dynamic="1">
+			<Panels>
+				<Panel id="1" name="Calcul" label="Calcul de réduction">
+					<FieldSet id="1">
+						<Field position="1" data="1" usage="input" newline="0" label="Indiquez ici votre prix d'origine" required="1" visibleRequired="0" colon="0" help="0" widget="AutoMoneyFormat">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="2" usage="input" newline="0" label="Indiquez le taux de réduction à appliquer" required="1" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="2">
+						<Field position="1" data="3" usage="output" newline="0" label="Montant de la réduction obtenue" required="0" visibleRequired="0" colon="0" help="0" emphasize="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="4" usage="output" newline="0" label="Prix après réduction" required="0" visibleRequired="0" colon="0" help="0" emphasize="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="5" usage="output" newline="0" label="Prix après réduction" required="0" visibleRequired="0" colon="0" help="0" emphasize="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="3">
+						<Field position="1" data="10" usage="input" newline="0" label="Bénéficiez-vous d'une seconde réduction ?" required="0" visibleRequired="0" colon="0" help="0" expanded="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="4">
+						<Field position="1" data="6" usage="input" newline="0" label="Indiquez le 2e taux de réduction" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<FieldSet id="5">
+						<Field position="1" data="7" usage="output" newline="0" label="Montant de la 2e réduction" required="0" visibleRequired="0" colon="0" help="0">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="2" data="8" usage="output" newline="0" label="Montant total des réductions" required="0" visibleRequired="0" colon="0" help="0" emphasize="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+						<Field position="3" data="9" usage="output" newline="0" label="Prix final" required="0" visibleRequired="0" colon="0" help="0" emphasize="1">
+							<PreNote><![CDATA[
+
+							]]></PreNote>
+						</Field>
+					</FieldSet>
+					<BlockInfo id="6" name="Merci" label="">
+						<Chapter id="1" name="Merci" label="">
+							<Section id="1" name="Merci" label="">
+								<Content><![CDATA[
+<blockquote><b>Merci d'avoir utilisé ce simulateur.</b>
+</blockquote>
+								]]></Content>
+							</Section>
+						</Chapter>
+					</BlockInfo>
+				</Panel>
+			</Panels>
+			<ActionList>
+				<Action name="Nouvelle_simulation" label="Nouvelle simulation" what="reset" for="newSimulation" shape="button" location="bottom"></Action>
+			</ActionList>
+		</Step>
+	</Steps>
+	<BusinessRules>
+		<BusinessRule id="1" name="R1" label="warning +">
+			<Conditions value="#2 &gt; 100">
+				<Condition operand="TauxReduction" operator="&gt;" expression="100"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="data" data="2" value="Attention, le taux ne doit pas être supérieur à 100%"></Action>
+				<Action id="2" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="2" name="R2" label="warning -">
+			<Conditions value="#2 &lt; 0">
+				<Condition operand="TauxReduction" operator="&lt;" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="2" value="Attention, le taux ne peut pas être négatif"></Action>
+				<Action id="2" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="3" name="R3" label="Calcul Remise">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; #2 &gt; 0 &amp;&amp; #2 &lt;= 100">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="&gt;" expression="0"></Condition>
+					<Condition operand="TauxReduction" operator="&lt;=" expression="100"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="3" value="#1 * (#2 / 100)"></Action>
+				<Action id="2" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="4" name="R4" label="Prix Réduit">
+			<Conditions value="defined(#3)">
+				<Condition operand="ValeurReduction" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="4" value="#1 - #3"></Action>
+				<Action id="2" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="Nouvelle_simulation"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="5" name="R5" label="Prix Réduit 2">
+			<Conditions value="defined(#3)">
+				<Condition operand="ValeurReduction" operator="present"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="5" value="#1 - #3"></Action>
+				<Action id="2" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+				<Action id="3" name="hideObject" target="action" step="1" action="Nouvelle_simulation"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="6" name="R6" label="warning_0">
+			<Conditions value="#2 = 0">
+				<Condition operand="TauxReduction" operator="=" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="dataset" value="Le taux ne doit pas être nul"></Action>
+				<Action id="2" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="7" name="R7" label="2e Réduction">
+			<Conditions value="#10 = 'Non'">
+				<Condition operand="Question_2e_Taux" operator="=" expression="Non"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="action" step="1" action="Nouvelle_simulation"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="4"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="8" name="R8" label="warning 2+">
+			<Conditions value="#6 &gt; 100">
+				<Condition operand="TauxReduction2" operator="&gt;" expression="100"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyWarning" target="data" data="6" value="Attention, le taux ne doit pas être supérieur à 100%"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="9" name="R9" label="warning 2-">
+			<Conditions value="#6 &lt; 0">
+				<Condition operand="TauxReduction2" operator="&lt;" expression="0"></Condition>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="notifyError" target="data" data="6" value="Attention, le taux ne peut pas être négatif"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="10" name="R10" label="Calcul Reduc 2 bis">
+			<Conditions value="defined(#7)">
+				<Connector type="all">
+					<Condition operand="ValeurReduction2" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="8" value="#3 + #7"></Action>
+				<Action id="2" name="setAttribute" target="content" data="9" value="#4 - #7"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="11" name="R11" label="Reduc 2">
+			<Conditions value="defined(#6)">
+				<Connector type="all">
+					<Condition operand="TauxReduction2" operator="present"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="setAttribute" target="content" data="7" value="#4 * (#6 / 100)"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="12" name="R12" label="Affichage départ">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; #2 &gt; 0 &amp;&amp; #2 &lt;= 100">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="&gt;" expression="0"></Condition>
+					<Condition operand="TauxReduction" operator="&lt;=" expression="100"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="showObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="2"></Action>
+				<Action id="2" name="hideObject" target="fieldset" step="1" panel="1" fieldset="3"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="13" name="R13" label="affiche 2e partie">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#10) &amp;&amp; #10 = 'Oui'">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Condition operand="Question_2e_Taux" operator="present"></Condition>
+					<Condition operand="Question_2e_Taux" operator="=" expression="Oui"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="4" field="1"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="field" step="1" panel="1" fieldset="4" field="1"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="14" name="R14" label="afficher 3eme partie">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#10) &amp;&amp; #10 = 'Oui' &amp;&amp; defined(#6) &amp;&amp; #6 &gt;= 0 &amp;&amp; #6 &lt; 100">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Condition operand="Question_2e_Taux" operator="present"></Condition>
+					<Condition operand="Question_2e_Taux" operator="=" expression="Oui"></Condition>
+					<Condition operand="TauxReduction2" operator="present"></Condition>
+					<Condition operand="TauxReduction2" operator="&gt;=" expression="0"></Condition>
+					<Condition operand="TauxReduction2" operator="&lt;" expression="100"></Condition>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="fieldset" step="1" panel="1" fieldset="5"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="fieldset" step="1" panel="1" fieldset="5"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="15" name="R15" label="Affiche bouton">
+			<Conditions value="(defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#10) &amp;&amp; #10 = 'Non') || (defined(#1) &amp;&amp; defined(#2) &amp;&amp; defined(#6) &amp;&amp; #10 = 'Oui' &amp;&amp; defined(#6) &amp;&amp; #6 &gt;= 0 &amp;&amp; #6 &lt;= 100)">
+				<Connector type="any">
+					<Connector type="all">
+						<Condition operand="PrixOrigine" operator="present"></Condition>
+						<Condition operand="TauxReduction" operator="present"></Condition>
+						<Condition operand="Question_2e_Taux" operator="present"></Condition>
+						<Condition operand="Question_2e_Taux" operator="=" expression="Non"></Condition>
+					</Connector>
+					<Connector type="all">
+						<Condition operand="PrixOrigine" operator="present"></Condition>
+						<Condition operand="TauxReduction" operator="present"></Condition>
+						<Condition operand="TauxReduction2" operator="present"></Condition>
+						<Condition operand="Question_2e_Taux" operator="=" expression="Oui"></Condition>
+						<Condition operand="TauxReduction2" operator="present"></Condition>
+						<Condition operand="TauxReduction2" operator="&gt;=" expression="0"></Condition>
+						<Condition operand="TauxReduction2" operator="&lt;=" expression="100"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="blockinfo" step="1" panel="1" blockinfo="6"></Action>
+				<Action id="2" name="showObject" target="action" step="1" action="Nouvelle_simulation"></Action>
+			</IfActions>
+			<ElseActions>
+				<Action id="1" name="hideObject" target="blockinfo" step="1" panel="1" blockinfo="6"></Action>
+				<Action id="2" name="hideObject" target="action" step="1" action="Nouvelle_simulation"></Action>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="16" name="R16" label="afficher prixreductionBig et cacher small">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; (!defined(#10) || #10 = 'Non')">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Connector type="any">
+						<Condition operand="Question_2e_Taux" operator="blank"></Condition>
+						<Condition operand="Question_2e_Taux" operator="=" expression="Non"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+		<BusinessRule id="17" name="R17" label="afficher prix recduction small et cacher big">
+			<Conditions value="defined(#1) &amp;&amp; defined(#2) &amp;&amp; (defined(#10) &amp;&amp; #10 = 'Oui')">
+				<Connector type="all">
+					<Condition operand="PrixOrigine" operator="present"></Condition>
+					<Condition operand="TauxReduction" operator="present"></Condition>
+					<Connector type="all">
+						<Condition operand="Question_2e_Taux" operator="present"></Condition>
+						<Condition operand="Question_2e_Taux" operator="=" expression="Oui"></Condition>
+					</Connector>
+				</Connector>
+			</Conditions>
+			<IfActions>
+				<Action id="1" name="showObject" target="field" step="1" panel="1" fieldset="2" field="3"></Action>
+				<Action id="2" name="hideObject" target="field" step="1" panel="1" fieldset="2" field="2"></Action>
+			</IfActions>
+			<ElseActions>
+			</ElseActions>
+		</BusinessRule>
+	</BusinessRules>
+</Simulator>
