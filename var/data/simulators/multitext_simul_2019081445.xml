@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../doc/Simulator.xsd" name="multitext_simul_2019081445" label="multitext_simul_2019081445-label" category="" defaultView="Default" referer="" dynamic="0" memo="0" locale="fr-FR" timezone="Europe/Paris">
+	<Description edition="wysihtml"><![CDATA[
+
+	]]></Description>
+	<DataSet dateFormat="d/m/Y" decimalPoint="," groupingSeparator=" " groupingSize="3" moneySymbol="€" symbolPosition="after">
+		<Data id="1" name="multitext_simul_2019081445_data_name" label="multitext_simul_2019081445_data_label" type="multitext">
+			<Choices>
+				<Choice id="1" value="multitext_simul_2019081445_choice_value" label="multitext_simul_2019081445_choice_label" />
+			</Choices>
+		</Data>
+	</DataSet>
+</Simulator>

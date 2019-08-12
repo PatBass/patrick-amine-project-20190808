@@ -28,7 +28,7 @@ THE SOFTWARE.
 	function Simulators() {
 	};
 
-	Simulators.dataTypes = ['date', 'boolean', 'number', 'integer', 'text', 'textarea', 'money', 'choice', 'multichoice', 'percent', 'table', 'department', 'region', 'country', 'year', 'month', 'day'];
+	Simulators.dataTypes = ['date', 'boolean', 'number', 'integer', 'text', 'textarea', 'money', 'choice', 'multichoice', 'percent', 'table', 'department', 'region', 'country', 'year', 'month', 'day', 'multitext'];
 
 	Simulators.functions = {
 		"abs" : {arity: 1, args: ['number'], type: 'number', label: Translator.trans('abs') },

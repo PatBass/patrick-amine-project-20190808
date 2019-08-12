@@ -547,7 +547,7 @@ THE SOFTWARE.
 			minimumResultsForSearch: 100
 		});
 		$column.next().next().find("td.new-field-choices").hide();
-		if (field[5] === 'choice' || field[5] === 'multichoice') {
+		if (field[5] === 'choice' || field[5] === 'multichoice' || field[5] === 'multitext') {
 			var choicesPanel = Datasources.drawChoicesForInput(num);
 			choicesPanel.find('button.delete-choice-source').removeClass('update-button').hide();
 			choicesPanel.find('.edit-choice-source').removeClass('update-button').hide();
@@ -588,11 +588,11 @@ THE SOFTWARE.
 		type.on('change', function (e) {
 			var prev = $(this).data('previous');
 			var curr = $(this).val();
-			if (prev === 'choice' || prev === 'multichoice') {
+			if (prev === 'choice' || prev === 'multichoice' || prev === 'multitext') {
 				if (curr != 'choice' && curr != 'multichoice') {
 					$column.next().next().find("td.new-field-choices").hide().empty();
 				}
-			} else if (curr === 'choice' || curr === 'multichoice') {
+			} else if (curr === 'choice' || curr === 'multichoice' || curr === 'multitext') {
 				var choicesPanel = Datasources.drawChoicesForInput(num);
 				choicesPanel.find('button.delete-choice-source').removeClass('update-button').hide();
 				choicesPanel.find('.edit-choice-source').removeClass('update-button').hide();
@@ -799,6 +799,18 @@ THE SOFTWARE.
 				}
 				break;
 			case 'choice':
+				var ok = false;
+				$.each(info.choices, function(val, label) {
+					if (value == val) {
+						ok = true;
+						return false; // break
+					}
+				});
+				if (! ok) {
+					return Translator.trans("The field '%field%' is invalid", { 'field' : info.label});
+				}
+				break;
+			case 'multitext':
 				var ok = false;
 				$.each(info.choices, function(val, label) {
 					if (value == val) {

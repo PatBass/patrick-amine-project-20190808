@@ -86,10 +86,10 @@ class Data extends DatasetChild {
 	 * - country: a country code
 	 *
 	 */
-	const TYPES = ['date', 'boolean', 'number', 'integer', 'text', 'textarea', 'money', 'choice', 'multichoice', 'percent', 'table', 'department', 'region', 'country', 'year', 'month', 'day'];
+	const TYPES = ['date', 'boolean', 'number', 'integer', 'text', 'textarea', 'money', 'choice', 'multichoice', 'percent', 'table', 'department', 'region', 'country', 'year', 'month', 'day', 'multitext'];
 
 	/**
-	 * @var string     $type date, boolean, number, integer, text, textarea, money, choice, multichoice, percent, table, department region, country, ²
+	 * @var string     $type date, boolean, number, integer, text, textarea, money, choice, multichoice, percent, table, department, region, country, multitext ²
 	 * array
 	 *
 	 * @access  private
@@ -210,7 +210,7 @@ class Data extends DatasetChild {
 	private $memorize = false;  
 
 	/**
-	 * @var array      $choices If the type of this data is "choice" or "multichoice", contains the list of Choice objects allowing the user to select the value of this data item.
+	 * @var array      $choices If the type of this data is "choice" or "multichoice" or "multitext", contains the list of Choice objects allowing the user to select the value of this data item.
 	 *
 	 * @access  private
 	 *

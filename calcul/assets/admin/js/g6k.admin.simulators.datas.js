@@ -110,10 +110,40 @@ THE SOFTWARE.
 				}
 			]
 		};
+		Simulators.dataset['script'] = {
+			'id': 20000,
+			'label': Translator.trans('Script'),
+			'type': 'multitext',
+			'options': [
+				{
+					'label': Translator.trans('Disabled'),
+					'name': 0
+				},
+				{
+					'label': Translator.trans('Enabled'),
+					'name': 1
+				}
+			]
+		};
 		Simulators.dataset['dynamic'] = {
 			'id': 20001, 
 			'label': Translator.trans('Interactive UI'),
 			'type': 'choice',
+			'options': [
+				{
+					'label': Translator.trans('No'),
+					'name': 0
+				},
+				{
+					'label': Translator.trans('Yes'),
+					'name': 1
+				}
+			]
+		};
+		Simulators.dataset['dynamic'] = {
+			'id': 20001,
+			'label': Translator.trans('Interactive UI'),
+			'type': 'multitext',
 			'options': [
 				{
 					'label': Translator.trans('No'),
@@ -222,7 +252,7 @@ THE SOFTWARE.
 	Simulators.replaceByValueLabel = function(data, value) {
 		if (/#\d+/.test(value)) {
 			return Simulators.replaceByDataLabel(value);
-		} else if (data.type === 'choice') {
+		} else if (data.type === 'choice' || data.type === 'multitext') {
 			var label = Simulators.getChoiceLabel(data, value);
 			return label !== '' ? '« ' + label + ' »' : value;
 		} else {
@@ -617,7 +647,7 @@ THE SOFTWARE.
 			};
 			var newDataPanel = Simulators.drawDataForDisplay(data);
 			var choices = [];
-			if (data.type == 'choice') {
+			if (data.type == 'choice' || data.type == 'multitext') {
 				var choicesPanel = Simulators.drawChoicesForDisplay(data.id);
 				var choicesContainer = choicesPanel.find('> .card-body');
 				var id = 0;
@@ -713,7 +743,7 @@ THE SOFTWARE.
 		});
 		dataPanelContainer.find('select[data-attribute=type]').on('change', function(e) {
 			var type = $(this).val();
-			if (type === 'choice') {
+			if (type === 'choice' || type === 'multitext') {
 				var choicesPanel;
 				if (Simulators.dataChoicesBackup) {
 					choicesPanel = Simulators.dataChoicesBackup;
@@ -1579,7 +1609,7 @@ THE SOFTWARE.
 				}
 			});
 			var dataPanelContainer = Simulators.drawDataForInput(data);
-			if (data.type === 'choice') {
+			if (data.type === 'choice' || data.type === 'multitext') {
 				var choicesPanel = Simulators.drawChoicesForInput(data.id);
 				var choiceSourceContainers = dataContainerGroup.find('div.choice-source-container');
 				if (choiceSourceContainers.length > 0) {

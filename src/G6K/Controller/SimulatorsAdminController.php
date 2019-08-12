@@ -322,7 +322,7 @@ class SimulatorsAdminController extends BaseAdminController {
 					$columns = array();
 					foreach($dstable->Column as $dscolumn) {
 						$choices = array();
-						if ((string)$dscolumn['type'] == 'choice' && $dscolumn->Choices) {
+						if (((string)$dscolumn['type'] == 'choice' || (string)$dscolumn['type'] == 'multitext')  && $dscolumn->Choices) {
 							foreach($dscolumn->Choices->Choice as $dschoice) {
 								$choices[] = array(
 									'id' => (int)$dschoice['id'],
@@ -419,10 +419,6 @@ class SimulatorsAdminController extends BaseAdminController {
 			}
 		}
 		$valid = true;
-
-
-
-		dump($this->simu);die;
 
 
 		if ($simulator !== null && $simulator != 'new') {
